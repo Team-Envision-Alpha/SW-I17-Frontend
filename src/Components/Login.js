@@ -1,31 +1,38 @@
 import React, { useState } from "react";
-import { gql,useMutation} from "@apollo/client";
+import { gql, useMutation } from "@apollo/client";
 
 const Login = () => {
-  const [userData,setUserData] = useState({email:"",password:""})
-  const handleChange = e=> setUserData({...userData,[e.target.name]:e.target.value})
+  const [userData, setUserData] = useState({ email: "", password: "" });
+  const handleChange = (e) =>
+    setUserData({ ...userData, [e.target.name]: e.target.value });
   const LOGIN_MUTATION = gql`
-    mutation loginUser($email:String!,$password:String!){
-      loginUser(email:$email,password:$password){
-        name,email,role,token
+    mutation loginUser($email: String!, $password: String!) {
+      loginUser(email: $email, password: $password) {
+        name
+        email
+        role
+        token
       }
     }
-  `
-  const [login,{loading}] = useMutation(LOGIN_MUTATION,{
-    update(_,result){
-      console.log(result.data.loginUser)
+  `;
+  const [login, { loading }] = useMutation(LOGIN_MUTATION, {
+    update(_, result) {
+      console.log(result.data.loginUser);
     },
-    variables:userData
-  })
-  const onSubmit = e=>{
-    e.preventDefault()
-    login()
+    variables: userData,
+  });
+  const onSubmit = (e) => {
+    e.preventDefault();
+    login();
     console.log(loading);
-  }
+  };
   return (
     <>
       <div className="w-full max-w-xs h-full mx-auto py-[25vh]">
-        <form className="bg-white shadow-md rounded flex flex-col px-8 pt-6 pb-8 mb-4 gap-4 " onSubmit={onSubmit}>
+        <form
+          className="bg-white shadow-md rounded flex flex-col px-8 pt-6 pb-8 mb-4 gap-4 "
+          onSubmit={onSubmit}
+        >
           <div className="flex flex-col gap-2 justify-center">
             <label
               className="block text-gray-700 text-sm font-bold "
