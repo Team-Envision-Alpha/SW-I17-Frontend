@@ -25,6 +25,9 @@ function Post() {
 
   //   const [selectpostcomments, setSelectpostcomments] = useState(null);
   const [selectpostid, setSelectpostid] = useState(null);
+  if (isLoggedin) {
+    const fbuser = localStorage.getItem("fbuser");
+  }
 
   // console.log(posts);
 
@@ -64,6 +67,10 @@ function Post() {
     </div>
   ) : (
     <>
+      <div>
+        Logged in as <img src={fbuser.picture.data.url}></img>
+        {fbuser.name}
+      </div>
       <LatestPost
         setisLoggedin={setisLoggedin}
         selectedpostcomments={selectpostcomments}

@@ -45,8 +45,10 @@ export default function FB({ setIsLoggedIn }) {
           console.log(response);
           localStorage.setItem("fbaccesstoken", response.accessToken);
           localStorage.setItem("fbuserid", response.userID);
+          localStorage.setItem("fbuser", response);
           setupdate(!update);
           if (response.userID) {
+            console.log("Logged in as ");
             setIsLoggedIn(true);
           }
         }}
