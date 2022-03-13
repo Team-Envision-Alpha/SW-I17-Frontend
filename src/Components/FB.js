@@ -33,6 +33,7 @@ useEffect(() => {
           window.location.reload();
         }
       });
+      // eslint-disable-next-line
   }, [update]);
 
 
