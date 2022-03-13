@@ -21,7 +21,7 @@ function Post() {
   //   const [isloading, setisloading] = useState(true);
   //   const [textInput, setTextInput] = React.useState("");
 
-  //   const [isLoggedin, setisLoggedin] = useState(false);
+  const [isLoggedin, setisLoggedin] = useState(false);
 
   //   const [selectpostcomments, setSelectpostcomments] = useState(null);
   const [selectpostid, setSelectpostid] = useState(null);
@@ -58,14 +58,14 @@ function Post() {
       });
   }, []);
 
-  return !accessid ? (
+  return !accessid || isLoggedin == false ? (
     <div className="h-100 d-flex align-items-center justify-content-center">
       <FbLogin />
     </div>
   ) : (
     <>
       <LatestPost
-        // setisLoggedin={setisLoggedin}
+        setisLoggedin={setisLoggedin}
         selectedpostcomments={selectpostcomments}
         setselectedpostcomments={setSelectpostcomments}
         setselectedpostid={setSelectpostid}
