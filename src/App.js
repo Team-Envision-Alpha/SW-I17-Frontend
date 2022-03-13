@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Login from "./Components/Login";
 import { 
   Routes, 
@@ -16,6 +16,8 @@ const App = () => {
   `
   const {loading,error,data} = useQuery(HELLO)
   console.log(data)
+  console.log(loading);
+  console.log(error);
   return (
     <>
     <Router>

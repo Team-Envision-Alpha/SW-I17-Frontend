@@ -20,6 +20,7 @@ const Login = () => {
   const onSubmit = e=>{
     e.preventDefault()
     login()
+    console.log(loading);
   }
   return (
     <>
@@ -64,12 +65,12 @@ const Login = () => {
             >
               Sign In
             </button>
-            <a
+            {/* <a
               className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800"
               href="#"
             >
               Forgot Password?
-            </a>
+            </a> */}
           </div>
         </form>
       </div>
