@@ -27,13 +27,13 @@ useEffect(() => {
             response.data.data[0].access_token
           );
           localStorage.setItem("fbpageid", response.data.data[0].id);
+          console.log(fbpageid);
         } else {
           alert("No page found linked to this account");
           window.location.reload();
         }
       });
   }, [update]);
-
 
 
   return (
