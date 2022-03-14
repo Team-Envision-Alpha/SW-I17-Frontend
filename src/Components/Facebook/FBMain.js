@@ -60,24 +60,28 @@ function Post() {
         }
       });
   }, []);
-
-  return !accessid || isLoggedin == false ? (
-    <div className="h-100 d-flex align-items-center justify-content-center">
-      <FbLogin />
-    </div>
-  ) : (
+  console.log(accessid);
+  return (
     <>
-      <div>
-        Logged in as <img src={fbuser.picture.data.url}></img>
-        {fbuser.name}
-      </div>
-      <LatestPost
-        setisLoggedin={setisLoggedin}
-        selectedpostcomments={selectpostcomments}
-        setselectedpostcomments={setSelectpostcomments}
-        setselectedpostid={setSelectpostid}
-        selectedpostid={selectpostid}
-      />
+      {!accessid ? (
+        <div className="h-100 d-flex align-items-center justify-content-center">
+          <FbLogin />
+        </div>
+      ) : (
+        <>
+          <div>
+            Logged in as <img src={fbuser.picture.data.url}></img>
+            {fbuser.name}
+          </div>
+          <LatestPost
+            setisLoggedin={setisLoggedin}
+            selectedpostcomments={selectpostcomments}
+            setselectedpostcomments={setSelectpostcomments}
+            setselectedpostid={setSelectpostid}
+            selectedpostid={selectpostid}
+          />
+        </>
+      )}
     </>
   );
 }
