@@ -1,7 +1,7 @@
 import React from "react";
-// import Login from "./Components/Login";
-// import { Routes, Route, BrowserRouter as Router } from "react-router-dom";
-// import FB from "./Components/Facebook/FBLogin";
+import Login from "./Components/Login";
+import { Routes, Route, BrowserRouter as Router } from "react-router-dom";
+import FB from "./Components/Facebook/FBLogin";
 // import { gql, useQuery } from "@apollo/client";
 import SocialPanel from "./pages/SocialPanel.js";
 
@@ -17,13 +17,13 @@ const App = () => {
   // console.log(error);
   return (
     <>
-      {/* <Router>
+      <Router>
         <Routes>
           <Route path="/" element={<Login />} />
           <Route path="/fb" element={<FB />} />
+          <Route path="/social" element={<SocialPanel />} />
         </Routes>
-      </Router> */}
-      <SocialPanel />
+      </Router>
     </>
   );
 };
