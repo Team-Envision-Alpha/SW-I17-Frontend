@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { gql, useMutation } from "@apollo/client";
 
+import logo from "../Assets/Images/logo.svg";
+import loginBg from "../Assets/Images/Group.svg";
+
 const Login = () => {
   const [userData, setUserData] = useState({ email: "", password: "" });
   const handleChange = (e) =>
@@ -28,58 +31,69 @@ const Login = () => {
   };
   return (
     <>
-      <div className="w-full max-w-xs h-full mx-auto py-[25vh]">
-        <form
-          className="bg-white shadow-md rounded flex flex-col px-8 pt-6 pb-8 mb-4 gap-4 "
-          onSubmit={onSubmit}
-        >
-          <div className="flex flex-col gap-2 justify-center">
-            <label
-              className="block text-gray-700 text-sm font-bold "
-              htmlFor="email"
+      <div
+        className="flex flex-col gap-[10vh] h-[100vh] justify-center items-center"
+        style={{
+          backgroundImage: `url(${loginBg})`,
+        }}
+      >
+        <div>
+          <img src={logo} alt="logo" width={500} height={100} />
+        </div>
+        <div className="font-IBM-Sans flex flex-col gap-6 justify-center items-center ">
+          <div>
+            <h2
+              className="text-[5vh] text-center "
+              style={{ color: "#04559C", fontWeight: "700" }}
             >
-              email
-            </label>
-            <input
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              name="email"
-              type="text"
-              placeholder="email"
-              value={userData.email}
-              onChange={handleChange}
-            />
+              LOGIN
+            </h2>
           </div>
-          <div className="flex flex-col gap-2 justify-center">
-            <label
-              className="block text-gray-700 text-sm font-bold "
-              htmlFor="password"
-            >
-              Password
-            </label>
-            <input
-              className="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
-              name="password"
-              type="password"
-              placeholder="******************"
-              value={userData.password}
-              onChange={handleChange}
-            />
+          <div className="flex flex-col gap-10 justify-center items-center">
+            <form action="/" onSubmit={onSubmit}>
+              <input
+                type="email"
+                name="email"
+                id="mail"
+                placeholder="Email address"
+                autoComplete="off"
+                className="outline-none w-[24vw] px-4 py-2 text-[3vh] font-light "
+                style={{
+                  color: "#818181",
+                  background: "#E0E0E0",
+                  opacity: "0.5",
+                  borderRadius: "11.8px",
+                }}
+                value={userData.email}
+                onChange={handleChange}
+              />
+              <input
+                type="password"
+                name="password"
+                id="pass"
+                placeholder="Password"
+                autoComplete="off"
+                className="outline-none w-[24vw] px-4 py-2 text-[3vh] font-light "
+                style={{
+                  color: "#818181",
+                  background: "#E0E0E0",
+                  opacity: "0.5",
+                  borderRadius: "11.8px",
+                }}
+                value={userData.password}
+                onChange={handleChange}
+              />
+              <div
+                className="w-[6vw] p-2 text-[3vh] text-white rounded-lg text-center"
+                style={{ background: "#1F8B24" }}
+              >
+                <button className="font-extrabold  " type="submit">
+                  Login
+                </button>
+              </div>
+            </form>
           </div>
-          <div className="flex items-center justify-between">
-            <button
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-              type="submit"
-            >
-              Sign In
-            </button>
-            {/* <a
-              className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800"
-              href="#"
-            >
-              Forgot Password?
-            </a> */}
-          </div>
-        </form>
+        </div>
       </div>
     </>
   );
