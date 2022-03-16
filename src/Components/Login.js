@@ -32,7 +32,7 @@ const Login = () => {
   return (
     <>
       <div
-        className="flex flex-col gap-[10vh] h-[100vh] justify-center items-center"
+        className="flex flex-col gap-[10vh] h-[100vh] justify-center items-center -mt-10"
         style={{
           backgroundImage: `url(${loginBg})`,
         }}
@@ -49,8 +49,12 @@ const Login = () => {
               LOGIN
             </h2>
           </div>
-          <div className="flex flex-col gap-10 justify-center items-center">
-            <form action="/" onSubmit={onSubmit}>
+          <div>
+            <form
+              action="/"
+              onSubmit={onSubmit}
+              className="flex flex-col gap-10 justify-center items-center"
+            >
               <input
                 type="email"
                 name="email"
