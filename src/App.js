@@ -2,6 +2,7 @@ import React from "react";
 import Login from "./Components/Login";
 import { Routes, Route, BrowserRouter as Router } from "react-router-dom";
 import FB from "./Components/Facebook/FBLogin";
+import Twitter from "./Components/Twitter/twitter.js";
 // import { gql, useQuery } from "@apollo/client";
 import SocialPanel from "./pages/SocialPanel.js";
 
@@ -21,6 +22,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Login />} />
           <Route path="/fb" element={<FB />} />
+          <Route path="/twitter" element={<Twitter />} />
           <Route path="/social" element={<SocialPanel />} />
         </Routes>
       </Router>
