@@ -1,5 +1,4 @@
 import React from "react";
-// import Navbar from "./Components/Navbar.js";
 // import Login from "./Components/Login";
 // import { Routes, Route, BrowserRouter as Router } from "react-router-dom";
 // import FB from "./Components/Facebook/FBLogin";
@@ -24,7 +23,6 @@ const App = () => {
           <Route path="/fb" element={<FB />} />
         </Routes>
       </Router> */}
-      {/* <Navbar /> */}
       <SocialPanel />
     </>
   );
