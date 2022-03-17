@@ -1,8 +1,5 @@
 import React from 'react';
 import bg from '../Assets/Images/Group.svg';
-import { BsCameraReels, BsCamera } from 'react-icons/bs';
-import { AiFillDashboard, AiOutlineDown } from 'react-icons/ai';
-import Button from '@mui/material/Button';
 
 import Navbar from '../Components/Navbar';
 import DashCard from '../Components/DashCard';
