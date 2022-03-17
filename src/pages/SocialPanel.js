@@ -1,11 +1,11 @@
-import React from 'react';
-import bg from '../Assets/Images/Group.svg';
-import { BsCameraReels, BsCamera } from 'react-icons/bs';
-import { AiOutlineDown } from 'react-icons/ai';
-import Button from '@mui/material/Button';
+import React from "react";
+import bg from "../Assets/Images/Group.svg";
+import { BsCameraReels, BsCamera } from "react-icons/bs";
+import { AiOutlineDown } from "react-icons/ai";
+import Button from "@mui/material/Button";
 
-import Navbar from '../Components/Navbar';
-import PostCard from '../Components/PostCard';
+import Navbar from "../Components/Navbar";
+// import PostCard from "../Components/PostCard";
 
 const SocialPanel = () => {
   return (
@@ -23,10 +23,10 @@ const SocialPanel = () => {
             placeholder="Text here"
             className="outline-none w-[20vw] p-4 font-IBM-Sans font-light"
             style={{
-              color: '#818181',
-              background: '#E0E0E0',
-              opacity: '0.5',
-              borderRadius: '8px',
+              color: "#818181",
+              background: "#E0E0E0",
+              opacity: "0.5",
+              borderRadius: "8px",
             }}
           />
 
@@ -35,16 +35,16 @@ const SocialPanel = () => {
               <div
                 className="w-[5vw] h-[6vh] rounded-full flex justify-center items-center  "
                 style={{
-                  background: '#DFE9F9',
-                  width: '3vw',
-                  height: '6vh',
-                  borderRadius: '16vh',
+                  background: "#DFE9F9",
+                  width: "3vw",
+                  height: "6vh",
+                  borderRadius: "16vh",
                 }}
               >
-                <BsCamera style={{ color: '#0F56B3' }} className="text-[4vh]" />
+                <BsCamera style={{ color: "#0F56B3" }} className="text-[4vh]" />
               </div>
               <span
-                style={{ color: '#0A3977' }}
+                style={{ color: "#0A3977" }}
                 className="text-[3vh] font-bold"
               >
                 Photo
@@ -54,19 +54,19 @@ const SocialPanel = () => {
               <div
                 className="flex justify-center items-center  "
                 style={{
-                  background: ' #DFF4DF',
-                  width: '3vw',
-                  height: '6vh',
-                  borderRadius: '16vh',
+                  background: " #DFF4DF",
+                  width: "3vw",
+                  height: "6vh",
+                  borderRadius: "16vh",
                 }}
               >
                 <BsCameraReels
-                  style={{ color: '#1F8B24' }}
+                  style={{ color: "#1F8B24" }}
                   className="text-[3vh]"
                 />
               </div>
               <span
-                style={{ color: '#1F8B24' }}
+                style={{ color: "#1F8B24" }}
                 className="text-[3vh] font-bold"
               >
                 Video
@@ -80,7 +80,7 @@ const SocialPanel = () => {
             <div className="flex items-center">
               <button
                 className="text-white text-xl w-[10vh] h-[6vh] flex items-center justify-center"
-                style={{ backgroundColor: '#7C4DFF', borderRadius: '8px' }}
+                style={{ backgroundColor: "#7C4DFF", borderRadius: "8px" }}
               >
                 Post
               </button>
@@ -88,7 +88,7 @@ const SocialPanel = () => {
           </div>
         </div>
 
-        <div className="flex flex-col gap-6 ">
+        {/* <div className="flex flex-col gap-6 ">
           <div>
             <p className="text-[3vh] font-IBM-Sans ">Post Analytics</p>
           </div>
@@ -98,7 +98,7 @@ const SocialPanel = () => {
             <PostCard />
             <PostCard />
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );
