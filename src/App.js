@@ -1,4 +1,5 @@
 import React from "react";
+// import Venue from "./pages/Venue";
 // import Login from "./Components/Login";
 // import { Routes, Route, BrowserRouter as Router } from "react-router-dom";
 // import FB from "./Components/Facebook/FBLogin";
@@ -24,6 +25,7 @@ const App = () => {
         </Routes>
       </Router> */}
       <SocialPanel />
+      {/* <Venue /> */}
     </>
   );
 };
