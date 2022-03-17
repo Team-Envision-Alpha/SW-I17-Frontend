@@ -1,9 +1,9 @@
-import React from "react";
-import postCard from "../Assets/Images/postCard.svg";
-import logo_new from "../Assets/Images/logo_new.svg";
-import { AiOutlineLike } from "react-icons/ai";
-import { FiBookmark } from "react-icons/fi";
-import { FaComment } from "react-icons/fa";
+import React from 'react';
+import postCard from '../Assets/Images/postCard.svg';
+import logo_new from '../Assets/Images/logo_new.svg';
+import { AiOutlineLike } from 'react-icons/ai';
+import { FiBookmark } from 'react-icons/fi';
+import { FaComment } from 'react-icons/fa';
 
 const PostCard = () => {
   return (
@@ -12,7 +12,7 @@ const PostCard = () => {
         <div>
           <div
             className="w-[16vw] h-[40vh] rounded-xl"
-            style={{ backgroundColor: "rgba(224, 224, 224, 0.5)" }}
+            style={{ backgroundColor: 'rgba(224, 224, 224, 0.5)' }}
           >
             <img src={postCard} alt="img" width={250} />
             <div className="flex gap-2 p-2 items-center">
@@ -23,7 +23,7 @@ const PostCard = () => {
                 <p className="font-bold text-xs ">
                   Stoic Wisdom for an Every day
                 </p>
-                <p className="text-xs" style={{ color: "#414141" }}>
+                <p className="text-xs" style={{ color: '#414141' }}>
                   Anastasia Cruickshank
                 </p>
               </div>
