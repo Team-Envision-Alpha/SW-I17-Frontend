@@ -5,7 +5,7 @@ import { AiOutlineDown } from "react-icons/ai";
 import Button from "@mui/material/Button";
 
 import Navbar from "../Components/Navbar";
-import PostCard from "../Components/PostCard";
+// import PostCard from "../Components/PostCard";
 
 const SocialPanel = () => {
   return (
@@ -88,7 +88,7 @@ const SocialPanel = () => {
           </div>
         </div>
 
-        <div className="flex flex-col gap-6 ">
+        {/* <div className="flex flex-col gap-6 ">
           <div>
             <p className="text-[3vh] font-IBM-Sans ">Post Analytics</p>
           </div>
@@ -98,7 +98,7 @@ const SocialPanel = () => {
             <PostCard />
             <PostCard />
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );
