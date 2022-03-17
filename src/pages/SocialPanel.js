@@ -5,11 +5,11 @@ import { AiOutlineDown } from "react-icons/ai";
 import Button from "@mui/material/Button";
 
 import Navbar from "../Components/Navbar";
-// import PostCard from "../Components/PostCard";
+import PostCard from "../Components/PostCard";
 
 const SocialPanel = () => {
   return (
-    <div style={{ backgroundImage: `url(${bg})` }} className="h-[100vh]">
+    <div style={{ backgroundImage: `url(${bg})` }}>
       <Navbar />
       <div className="flex flex-col my-12 gap-8 px-10">
         <div>
