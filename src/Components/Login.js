@@ -65,7 +65,6 @@ const Login = () => {
                 style={{
                   color: "#818181",
                   background: "#E0E0E0",
-                  opacity: "0.5",
                   borderRadius: "11.8px",
                 }}
                 value={userData.email}
@@ -81,7 +80,6 @@ const Login = () => {
                 style={{
                   color: "#818181",
                   background: "#E0E0E0",
-                  opacity: "0.5",
                   borderRadius: "11.8px",
                 }}
                 value={userData.password}
