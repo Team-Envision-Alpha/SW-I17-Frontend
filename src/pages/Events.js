@@ -308,7 +308,7 @@ const Venue = () => {
                   </div>
                   <div className="flex flex-col gap-4">
                     <div
-                      className="w-[full] p-4 outline-none rounded-[8px] bg-black text-white cursor-pointer"
+                      className="w-[full] p-4 outline-none text-center rounded-[8px] bg-black text-white cursor-pointer"
                       onClick={() => {
                         setExtraUsers([...extrausers, userdata]);
                         console.log(extrausers);
@@ -318,7 +318,72 @@ const Venue = () => {
                     </div>
                   </div>
                 </div>
-                <table></table>
+                <table className="w-full mt-5 max-h-[40vh] overflow-scroll">
+                  <thead>
+                    <tr
+                      className="text-md font-semibold   text-gray-900   border-[#B9B9B9]  text-center border-3"
+                      style={{ background: "rgba(0, 0, 0, 0.05)" }}
+                    >
+                      <th className="py-3 border-[#B9B9B9] border-2 ">Name</th>
+                      <th className="py-3  border-[#B9B9B9] border-2">Email</th>
+                      <th className="py-3  border-[#B9B9B9] border-2">Phone</th>
+                      <th className="py-3 border-[#B9B9B9] border-2">Modify</th>
+                    </tr>
+                  </thead>
+                  <tbody className="bg-white">
+                    {extrausers &&
+                      extrausers.map((user, idx) => {
+                        return (
+                          <tr className="text-[#000000]">
+                            <td
+                              className="text-center py-3 border-[#B9B9B9] border-2 
+                  text-md"
+                            >
+                              <div>
+                                <p>{user.name}</p>
+                              </div>
+                            </td>
+                            <td className="text-center py-3 text-md  border-[#B9B9B9] border-2">
+                              <div>
+                                <p>{user.email}</p>
+                              </div>
+                            </td>
+                            <td className="text-center py-3 text-md border-[#B9B9B9] border-2">
+                              <div>
+                                <p>{user.phone}</p>
+                              </div>
+                            </td>
+                            <td className="text-center py-3 text-md border-[#B9B9B9] border-2 ">
+                              <div>
+                                <p
+                                  className="text-[#874439] font-bold cursor-pointer hover:underline transition"
+                                  onClick={() => {
+                                    const resp = arrayRemove(extrausers, user);
+                                    if (resp != "empty") {
+                                      setExtraUsers(resp);
+                                      // setFormData({
+                                      //   ...formdata,
+                                      //   invitedTeams: resp,
+                                      // });
+                                    } else {
+                                      // setFormData((formdata) => {
+                                      //   const newData = { ...formdata };
+                                      //   delete newData.invitedTeams;
+                                      //   return newData;
+                                      // });
+                                      setExtraUsers([]);
+                                    }
+                                  }}
+                                >
+                                  Delete
+                                </p>
+                              </div>
+                            </td>
+                          </tr>
+                        );
+                      })}
+                  </tbody>
+                </table>
               </div>
             </div>
           </form>
