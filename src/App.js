@@ -7,6 +7,7 @@ import Twitter from './Components/Twitter/twitter.js';
 // import { gql, useQuery } from "@apollo/client";
 import SocialPanel from './pages/SocialPanel.js';
 import DashBoard from './pages/DashBoard.js';
+import InvitedEvent from './pages/InvitedEvent';
 
 const App = () => {
   // const HELLO = gql`
@@ -27,6 +28,7 @@ const App = () => {
           <Route path="/twitter" element={<Twitter />} />
           <Route path="/social" element={<SocialPanel />} />
           <Route path="/dashboard" element={<DashBoard />} />
+          <Route path="/invitedevents" element={<InvitedEvent />} />
         </Routes>
       </Router>
     </>
