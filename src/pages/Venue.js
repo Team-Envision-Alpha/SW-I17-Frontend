@@ -1,10 +1,11 @@
 import React from "react";
 import Navbar from "../Components/Navbar";
+import bg from "../Assets/Images/Group.svg";
 
 const Venue = () => {
   return (
     <>
-      <div>
+      <div className="h-full" style={{ backgroundImage: `url(${bg})` }}>
         <Navbar />
         <div className="flex flex-col gap-10 font-IBM-Sans px-8 my-10">
           <div>

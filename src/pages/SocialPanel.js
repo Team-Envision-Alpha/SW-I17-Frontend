@@ -5,7 +5,7 @@ import { AiOutlineDown } from "react-icons/ai";
 import Button from "@mui/material/Button";
 
 import Navbar from "../Components/Navbar";
-import PostCard from "../Components/PostCard";
+// import PostCard from "../Components/PostCard";
 
 const SocialPanel = () => {
   return (
