@@ -2,9 +2,6 @@ import React from "react";
 import dp from "../Assets/Images/dp.svg";
 import logo from "../Assets/Images/logo.svg";
 import Button from "@mui/material/Button";
-import bg from "../Assets/Images/Group.svg";
-
-import { height } from "@mui/system";
 
 const Navbar = () => {
   return (

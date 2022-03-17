@@ -19,7 +19,7 @@ const Venue = () => {
                   <h4>Event Name</h4>
                   <input
                     type="text"
-                    className="w-[full] p-4 outline-none"
+                    className="w-full p-4 outline-none"
                     style={{
                       color: "#818181",
                       background: "#E0E0E0",
