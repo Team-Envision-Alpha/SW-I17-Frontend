@@ -9,7 +9,9 @@ import Events from "./pages/Events";
 import DashBoard from "./pages/DashBoard.js";
 import User from "./pages/User";
 import EventReq from "./pages/EventReq";
+import InvitedEvent from "./pages/InvitedEvent";
 import EventModal from "./Components/EventModal";
+import VenuHeadDashboard from "./pages/VenuHeadDashboard";
 
 const App = () => {
   const HELLO = gql`
@@ -31,9 +33,11 @@ const App = () => {
           <Route path="/social" element={<SocialPanel />} />
           <Route path="/events" element={<Events />} />
           <Route path="/dashboard" element={<DashBoard />} />
+          <Route path="/venue_head_dashboard" element={<VenuHeadDashboard />} />
           <Route path="/user_registration" element={<User />} />
           <Route path="/requests" element={<EventReq />} />
           <Route path="/event_modal" element={<EventModal />} />
+          <Route path="/invited_event" element={<InvitedEvent />} />
         </Routes>
       </Router>
     </>
