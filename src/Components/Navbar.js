@@ -8,7 +8,9 @@ const Navbar = () => {
     <>
       <div className="flex justify-between p-6 h-[12vh] items-center">
         <div>
-          <img src={logo} alt="logo" width={300} h={60} />
+          <a href="/dashboard">
+            <img src={logo} alt="logo" width={300} h={60} />
+          </a>
         </div>
         <div className="flex gap-8 ">
           <div className="flex gap-2">
@@ -22,9 +24,11 @@ const Navbar = () => {
               </p>
             </div>
           </div>
-          <Button variant="outlined" color="error" size="small">
-            Logout
-          </Button>
+          <a href="/">
+            <Button variant="outlined" color="error" size="small">
+              Logout
+            </Button>
+          </a>
         </div>
       </div>
     </>

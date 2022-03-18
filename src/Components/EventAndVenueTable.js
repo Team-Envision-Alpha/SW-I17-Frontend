@@ -1,14 +1,12 @@
-import { useState, React } from "react";
-import EventModal from "./EventModal";
+import React from "react";
 
-const Table = ({ status, statusHeader }) => {
-  const [isOpen, setIsOpen] = useState(false);
+const EventAndTable = ({ status, statusHeader }) => {
   return (
     <>
       <section className="container  font-IBM-Sans ">
-        <div className="w-[50vw]  rounded-lg shadow-lg">
+        <div className="w-[50vw] rounded-lg shadow-lg">
           <div className="w-full">
-            <table className="w-full ">
+            <table className="w-full">
               <thead>
                 <tr
                   className="text-md font-semibold   text-gray-900   border-[#B9B9B9]  text-center border-3"
@@ -46,17 +44,8 @@ const Table = ({ status, statusHeader }) => {
                   </td>
                   <td className="text-center py-3 text-md border-[#B9B9B9] border-2 ">
                     <div>
-                      <p
-                        className="text-[#874439] font-bold cursor-pointer hover:text-red-600"
-                        onClick={() => {
-                          return setIsOpen(true);
-                        }}
-                      >
-                        {status}
-                      </p>
+                      <p className="text-[#874439] font-bold">{status}</p>
                     </div>
-
-                    {isOpen && <EventModal setIsOpen={setIsOpen} />}
                   </td>
                 </tr>
                 <tr className="text-[#000000]">
@@ -168,4 +157,4 @@ const Table = ({ status, statusHeader }) => {
   );
 };
 
-export default Table;
+export default EventAndTable;

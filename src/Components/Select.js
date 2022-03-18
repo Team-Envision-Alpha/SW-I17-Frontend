@@ -45,7 +45,13 @@ export default function select({ data, setFormData, formdata, name }) {
       name={name}
       styles={customStyles}
       options={formoptions}
-      onChange={(e) => setFormData({ ...formdata, [name]: e.value })}
+      onChange={(e) => {
+        if (e.value) {
+          setFormData({ ...formdata, [name]: e.value });
+        } else {
+          setFormData({ ...formdata, [name]: "" });
+        }
+      }}
     />
   );
 }
