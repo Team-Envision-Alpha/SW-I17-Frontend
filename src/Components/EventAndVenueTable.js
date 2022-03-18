@@ -1,6 +1,6 @@
 import React from "react";
 
-const EventAndVenueTable = () => {
+const EventAndTable = ({ status, statusHeader }) => {
   return (
     <>
       <section className="container  font-IBM-Sans ">
@@ -17,147 +17,9 @@ const EventAndVenueTable = () => {
                   </th>
                   <th className="py-3  border-[#B9B9B9] border-2">Venue</th>
                   <th className="py-3  border-[#B9B9B9] border-2">Venue</th>
-                  <th className="py-3 border-[#B9B9B9] border-2">Status</th>
-                </tr>
-              </thead>
-              <tbody className="bg-white">
-                <tr className="text-[#000000]">
-                  <td
-                    className="text-center py-3 border-[#B9B9B9] border-2 
-                  text-md"
-                  >
-                    <div>
-                      <p>xyz</p>
-                    </div>
-                  </td>
-                  <td className="text-center py-3 text-md  border-[#B9B9B9] border-2">
-                    <div>
-                      <p>xyz</p>
-                    </div>
-                  </td>
-                  <td className="text-center py-3 text-md border-[#B9B9B9] border-2">
-                    <div>
-                      <p>xyz</p>
-                    </div>
-                  </td>
-                  <td className="text-center py-3 text-md border-[#B9B9B9] border-2 ">
-                    <div>
-                      <p className="text-[#874439] font-bold">View status</p>
-                    </div>
-                  </td>
-                </tr>
-                <tr className="text-[#000000]">
-                  <td
-                    className="text-center py-3 border-[#B9B9B9] border-2 
-                  text-md"
-                  >
-                    <div>
-                      <p>xyz</p>
-                    </div>
-                  </td>
-                  <td className="text-center py-3 text-md  border-[#B9B9B9] border-2">
-                    <div>
-                      <p>xyz</p>
-                    </div>
-                  </td>
-                  <td className="text-center py-3 text-md border-[#B9B9B9] border-2">
-                    <div>
-                      <p>xyz</p>
-                    </div>
-                  </td>
-                  <td className="text-center py-3 text-md border-[#B9B9B9] border-2 ">
-                    <div>
-                      <p className="text-[#874439] font-bold">View staus</p>
-                    </div>
-                  </td>
-                </tr>
-                <tr className="text-[#000000]">
-                  <td
-                    className="text-center py-3 border-[#B9B9B9] border-2 
-                  text-md"
-                  >
-                    <div>
-                      <p>xyz</p>
-                    </div>
-                  </td>
-                  <td className="text-center py-3 text-md  border-[#B9B9B9] border-2">
-                    <div>
-                      <p>xyz</p>
-                    </div>
-                  </td>
-                  <td className="text-center py-3 text-md border-[#B9B9B9] border-2">
-                    <div>
-                      <p>xyz</p>
-                    </div>
-                  </td>
-                  <td className="text-center py-3 text-md border-[#B9B9B9] border-2 ">
-                    <div>
-                      <p className="text-[#874439] font-bold">View status</p>
-                    </div>
-                  </td>
-                </tr>
-                <tr className="text-[#000000]">
-                  <td
-                    className="text-center py-3 border-[#B9B9B9] border-2 
-                  text-md"
-                  >
-                    <div>
-                      <p>xyz</p>
-                    </div>
-                  </td>
-                  <td className="text-center py-3 text-md  border-[#B9B9B9] border-2">
-                    <div>
-                      <p>xyz</p>
-                    </div>
-                  </td>
-                  <td className="text-center py-3 text-md border-[#B9B9B9] border-2">
-                    <div>
-                      <p>xyz</p>
-                    </div>
-                  </td>
-                  <td className="text-center py-3 text-md border-[#B9B9B9] border-2 ">
-                    <div>
-                      <p className="text-[#874439] font-bold">View status</p>
-                    </div>
-                  </td>
-                </tr>
-                <tr className="text-[#000000]">
-                  <td
-                    className="text-center py-3 border-[#B9B9B9] border-2 
-                  text-md"
-                  >
-                    <div>
-                      <p>xyz</p>
-                    </div>
-                  </td>
-                  <td className="text-center py-3 text-md  border-[#B9B9B9] border-2">
-                    <div>
-                      <p>xyz</p>
-                    </div>
-                  </td>
-                  <td className="text-center py-3 text-md border-[#B9B9B9] border-2">
-                    <div>
-                      <p>xyz</p>
-                    </div>
-                  </td>
-                  <td className="text-center py-3 text-md border-[#B9B9B9] border-2 ">
-                    <div>
-                      <p className="text-[#874439] font-bold">View status</p>
-                    </div>
-                  </td>
-                </tr>
-              </tbody>
-              <thead>
-                <tr
-                  className="text-md font-semibold   text-gray-900   border-[#B9B9B9]  text-center border-3"
-                  style={{ background: "rgba(0, 0, 0, 0.05)" }}
-                >
-                  <th className="py-3 border-[#B9B9B9] border-2 ">
-                    Quality manager email address
+                  <th className="py-3 border-[#B9B9B9] border-2">
+                    {statusHeader}
                   </th>
-                  <th className="py-3  border-[#B9B9B9] border-2">Venue</th>
-                  <th className="py-3  border-[#B9B9B9] border-2">Venue</th>
-                  <th className="py-3 border-[#B9B9B9] border-2">Status</th>
                 </tr>
               </thead>
               <tbody className="bg-white">
@@ -182,7 +44,7 @@ const EventAndVenueTable = () => {
                   </td>
                   <td className="text-center py-3 text-md border-[#B9B9B9] border-2 ">
                     <div>
-                      <p className="text-[#874439] font-bold">View status</p>
+                      <p className="text-[#874439] font-bold">{status}</p>
                     </div>
                   </td>
                 </tr>
@@ -207,7 +69,7 @@ const EventAndVenueTable = () => {
                   </td>
                   <td className="text-center py-3 text-md border-[#B9B9B9] border-2 ">
                     <div>
-                      <p className="text-[#874439] font-bold">View staus</p>
+                      <p className="text-[#874439] font-bold">{status}</p>
                     </div>
                   </td>
                 </tr>
@@ -232,7 +94,7 @@ const EventAndVenueTable = () => {
                   </td>
                   <td className="text-center py-3 text-md border-[#B9B9B9] border-2 ">
                     <div>
-                      <p className="text-[#874439] font-bold">View status</p>
+                      <p className="text-[#874439] font-bold">{status}</p>
                     </div>
                   </td>
                 </tr>
@@ -257,7 +119,7 @@ const EventAndVenueTable = () => {
                   </td>
                   <td className="text-center py-3 text-md border-[#B9B9B9] border-2 ">
                     <div>
-                      <p className="text-[#874439] font-bold">View status</p>
+                      <p className="text-[#874439] font-bold">{status}</p>
                     </div>
                   </td>
                 </tr>
@@ -282,7 +144,7 @@ const EventAndVenueTable = () => {
                   </td>
                   <td className="text-center py-3 text-md border-[#B9B9B9] border-2 ">
                     <div>
-                      <p className="text-[#874439] font-bold">View status</p>
+                      <p className="text-[#874439] font-bold">{status}</p>
                     </div>
                   </td>
                 </tr>
@@ -295,4 +157,4 @@ const EventAndVenueTable = () => {
   );
 };
 
-export default EventAndVenueTable;
+export default EventAndTable;
