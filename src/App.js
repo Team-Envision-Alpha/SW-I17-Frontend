@@ -12,6 +12,7 @@ import EventReq from "./pages/EventReq";
 import InvitedEvent from "./pages/InvitedEvent";
 import EventModal from "./Components/EventModal";
 import VenuHeadDashboard from "./pages/VenuHeadDashboard";
+import VenueDetails from "./pages/VenuDetails";
 
 const App = () => {
   const HELLO = gql`
@@ -38,6 +39,7 @@ const App = () => {
           <Route path="/requests" element={<EventReq />} />
           <Route path="/event_modal" element={<EventModal />} />
           <Route path="/invited_event" element={<InvitedEvent />} />
+          <Route path="/venue_details" element={<VenueDetails />} />
         </Routes>
       </Router>
     </>
