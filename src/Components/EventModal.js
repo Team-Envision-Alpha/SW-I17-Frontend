@@ -47,8 +47,8 @@ const EventModal = ({ setIsOpen }) => {
               <div className="flex items-center gap-2">
                 <img src={Icon_1} alt="icon_1" />
                 <div className="flex flex-col justify-center items-start">
-                  <p className="text-[2vh]">Request Pending</p>
-                  <p className="text-[#818181] text-[1.5vh] ">
+                  <p className="text-[2vh] text-left">Request Pending</p>
+                  <p className="text-[#818181] text-[1.5vh] text-left">
                     Your request has been uploaded and pending for approval
                   </p>
                 </div>
@@ -56,8 +56,10 @@ const EventModal = ({ setIsOpen }) => {
               <div className="flex items center gap-2">
                 <img src={Icon_2} alt="icon_1" />
                 <div className="flex flex-col justify-center items-start">
-                  <p className="text-[2vh]">Request Approved by Team Head</p>
-                  <p className="text-[#818181] text-[1.5vh] -ml-3">
+                  <p className="text-[2vh] text-left">
+                    Request Approved by Team Head
+                  </p>
+                  <p className="text-[#818181] text-[1.5vh] text-left">
                     Your request has been approved by team head and pending for
                     approval from Venue head.
                   </p>
@@ -66,8 +68,8 @@ const EventModal = ({ setIsOpen }) => {
               <div className="flex items center gap-2">
                 <img src={Icon_3} alt="icon_1" />
                 <div className="flex flex-col justify-center items-start">
-                  <p className="text-[2vh]">Approved by Venue Head</p>
-                  <p className="text-[#818181] text-[1.5vh]">
+                  <p className="text-[2vh] text-left">Approved by Venue Head</p>
+                  <p className="text-[#818181] text-[1.5vh] text-left">
                     Your request has been approved by venue head and pending for
                     social media details.
                   </p>
@@ -76,8 +78,10 @@ const EventModal = ({ setIsOpen }) => {
               <div className="flex items center gap-2">
                 <img src={Icon_4} alt="icon_1" />
                 <div className="flex flex-col justify-center items-start">
-                  <p className="text-[2vh]">Social Detalis required</p>
-                  <p className="text-[#818181] text-[1.5vh]">
+                  <p className="text-[2vh] text-left">
+                    Social Detalis required
+                  </p>
+                  <p className="text-[#818181] text-[1.5vh] text-left">
                     Your social details are required to move further.
                   </p>
                 </div>
@@ -85,8 +89,8 @@ const EventModal = ({ setIsOpen }) => {
               <div className="flex items center gap-2">
                 <img src={Icon_5} alt="icon_1" />
                 <div className="flex flex-col justify-center items-start">
-                  <p className="text-[2vh]">Food Detalis required</p>
-                  <p className="text-[#818181] text-[1.5vh]">
+                  <p className="text-[2vh] text-left">Food Detalis required</p>
+                  <p className="text-[#818181] text-[1.5vh] text-left">
                     Your social details are required to move further.
                   </p>
                 </div>
@@ -94,8 +98,8 @@ const EventModal = ({ setIsOpen }) => {
               <div className="flex items center gap-2">
                 <img src={Icon_6} alt="icon_1" />
                 <div className="flex flex-col justify-center items-start">
-                  <p className="text-[2vh]">Event registaration</p>
-                  <p className="text-[#818181] text-[1.5vh]">
+                  <p className="text-[2vh] text-left">Event registaration</p>
+                  <p className="text-[#818181] text-[1.5vh] text-left">
                     Event registration is complete.
                   </p>
                 </div>

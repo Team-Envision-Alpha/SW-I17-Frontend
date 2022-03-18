@@ -2,6 +2,7 @@ import React from "react";
 import Navbar from "../Components/Navbar";
 import bg from "../Assets/Images/Group.svg";
 import EventAndVenueTable from "../Components/EventAndVenueTable";
+
 const EventAndVenueDetails = () => {
   return (
     <>
@@ -14,7 +15,10 @@ const EventAndVenueDetails = () => {
             </p>
           </div>
           <div>
-            <EventAndVenueTable status="Edit | Set Password | Delete" S />
+            <EventAndVenueTable
+              status="Edit | Set Password | Delete"
+              statusHeader="Password"
+            />
           </div>
         </div>
       </div>
