@@ -3,9 +3,11 @@ import { gql, useMutation } from "@apollo/client";
 
 import logo from "../Assets/Images/logo.svg";
 import loginBg from "../Assets/Images/Group.svg";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [userData, setUserData] = useState({ email: "", password: "" });
+  const navigate = useNavigate();
   const handleChange = (e) =>
     setUserData({ ...userData, [e.target.name]: e.target.value });
   const LOGIN_MUTATION = gql`
@@ -20,7 +22,9 @@ const Login = () => {
   `;
   const [login, { loading }] = useMutation(LOGIN_MUTATION, {
     update(_, result) {
-      console.log(result.data.loginUser);
+      // console.log(result.data.loginUser);
+      localStorage.setItem("aicteuser", JSON.stringify(result.data.loginUser));
+      navigate("/dashboard");
     },
     variables: userData,
   });
@@ -32,14 +36,18 @@ const Login = () => {
   return (
     <>
       <div
-        className="flex flex-col gap-[10vh] h-[100vh] justify-center items-center -mt-10"
+        className="flex flex-col gap-[5vh] h-[100vh] justify-center items-center -mt-12"
         style={{
           backgroundImage: `url(${loginBg})`,
         }}
       >
         <div>
-          <img src={logo} alt="logo" width={500} height={100} />
+          <img src={logo} alt="logo" width={400} height={100} />
         </div>
+        <p className="font-IBM-Sans flex flex-col gap-5 justify-center items-center text-[5vh] text-center mt-5 font-bold">
+          {" "}
+          AICTE Event Management Portal
+        </p>
         <div className="font-IBM-Sans flex flex-col gap-6 justify-center items-center ">
           <div>
             <h2

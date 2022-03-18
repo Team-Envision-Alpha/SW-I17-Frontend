@@ -18,9 +18,9 @@ const Navbar = () => {
               <img src={dp} alt="dp" />
             </div>
             <div className="font-IBM-Sans">
-              <p className="text-sm">Anastasia Cruickshank</p>
-              <p className="text-xs " style={{ color: "#818181" }}>
-                Senior usability geek
+              <p className="text-sm">Rishit Shivesh</p>
+              <p className="text-xs capitalize " style={{ color: "#818181" }}>
+                admin
               </p>
             </div>
           </div>
