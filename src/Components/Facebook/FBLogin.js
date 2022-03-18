@@ -35,21 +35,19 @@ export default function FB({ setIsLoggedIn }) {
 
   return (
     <div>
-      <h1 className="text-center">FB</h1>
       <FacebookLogin
-        appId="647567206327849"
+        appId="4850606978327959c"
         autoLoad={false}
         fields="name,email,picture"
         scope="pages_show_list,read_page_mailboxes,pages_messaging,pages_read_engagement, pages_manage_metadata,pages_manage_posts,pages_read_engagement, public_profile"
         callback={(response) => {
-          console.log(response);
           localStorage.setItem("fbaccesstoken", response.accessToken);
           localStorage.setItem("fbuserid", response.userID);
           localStorage.setItem("fbuser", response);
           setupdate(!update);
           if (response.userID) {
             console.log("Logged in as ");
-            setIsLoggedIn(true);
+            // setIsLoggedIn(true);
           }
         }}
       />
