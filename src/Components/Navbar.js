@@ -2,8 +2,11 @@ import React from "react";
 import dp from "../Assets/Images/dp.svg";
 import logo from "../Assets/Images/logo.svg";
 import Button from "@mui/material/Button";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
+  const navigate = useNavigate();
+
   return (
     <>
       <div className="flex justify-between p-6 h-[12vh] items-center">
@@ -24,7 +27,13 @@ const Navbar = () => {
               </p>
             </div>
           </div>
-          <a href="/">
+          <a
+            href="/"
+            onClick={() => {
+              localStorage.removeItem("aicteuser");
+              navigate("/");
+            }}
+          >
             <Button variant="outlined" color="error" size="small">
               Logout
             </Button>

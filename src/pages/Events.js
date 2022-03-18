@@ -1,4 +1,4 @@
-import React, { Component, Fragment, useState } from "react";
+import React, { Fragment, useState } from "react";
 import Navbar from "../Components/Navbar";
 import bg from "../Assets/Images/Group.svg";
 import Select from "../Components/Select.js";
@@ -17,7 +17,7 @@ const Venue = () => {
   const [formdata, setFormData] = useState({});
   const [extrausers, setExtraUsers] = useState([]);
   const [userdata, setUserData] = useState({});
-  const [userfile, setUserFile] = useState();
+  // const [userfile, setUserFile] = useState();
   const teams = ["events", "hr", "finance", "c&m", "technical"];
   const disabled_dates = [
     new Date(2022, 3, 10),
@@ -25,17 +25,17 @@ const Venue = () => {
     new Date(2022, 4, 10),
   ];
   function arrayRemove(arr, value) {
-    if (arr.length == 1) {
+    if (arr.length === 1) {
       return "empty";
     } else {
       return arr.filter(function (ele) {
-        return ele != value;
+        return ele !== value;
       });
     }
   }
   function readAppendFile(f) {
     // console.log(f);
-    var name = f.name;
+    // var name = f.name;
     const reader = new FileReader();
     reader.onload = (evt) => {
       // evt = on_file_select event
@@ -240,7 +240,7 @@ const Venue = () => {
                                 formdata.invitedTeams,
                                 team
                               );
-                              if (resp != "empty") {
+                              if (resp !== "empty") {
                                 setFormData({
                                   ...formdata,
                                   invitedTeams: resp,
@@ -457,7 +457,7 @@ const Venue = () => {
                                   className="text-[#874439] font-bold cursor-pointer hover:underline transition"
                                   onClick={() => {
                                     const resp = arrayRemove(extrausers, user);
-                                    if (resp != "empty") {
+                                    if (resp !== "empty") {
                                       setExtraUsers(resp);
                                       // setFormData({
                                       //   ...formdata,
