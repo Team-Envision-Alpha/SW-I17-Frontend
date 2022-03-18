@@ -13,7 +13,7 @@ const EventReq = () => {
             <p className="font-bold text-[4vh] tracking-wide">Event Request</p>
           </div>
           <div>
-            <Table />
+            <Table status="View Status" statusHeader="Request Status" />
           </div>
         </div>
       </div>
