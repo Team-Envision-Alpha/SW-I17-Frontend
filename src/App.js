@@ -40,7 +40,7 @@ const App = () => {
           <Route path="/requests" element={<EventReq />} />
           <Route path="/event_modal" element={<EventModal />} />
           <Route path="/invited_event" element={<InvitedEvent />} />
-          <Route path="/venue_details" element={<VenueDetails />} />
+          <Route path="/add_venue" element={<VenueDetails />} />
           <Route
             path="/event_and_venue_details"
             element={<EventAndVenueDetails />}

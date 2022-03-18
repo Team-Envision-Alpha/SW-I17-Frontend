@@ -4,6 +4,8 @@ import { gql, useMutation } from "@apollo/client";
 import logo from "../Assets/Images/logo.svg";
 import loginBg from "../Assets/Images/Group.svg";
 import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Login = () => {
   const [userData, setUserData] = useState({ email: "", password: "" });
@@ -21,16 +23,39 @@ const Login = () => {
     }
   `;
   const [login, { loading }] = useMutation(LOGIN_MUTATION, {
-    update(_, result) {
-      // console.log(result.data.loginUser);
-      localStorage.setItem("aicteuser", JSON.stringify(result.data.loginUser));
+    onError: (err) => {
+      console.log(err);
+      toast.error("Error: Invalid Credentials", {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    },
+    onCompleted: (result) => {
+      console.log(result);
+      localStorage.setItem("aicteuser", JSON.stringify(result.loginUser));
       navigate("/dashboard");
     },
+
     variables: userData,
   });
   const onSubmit = (e) => {
     e.preventDefault();
+    toast.info("Logging in!", {
+      position: "top-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
     login();
+
     console.log(loading);
   };
   return (
@@ -41,6 +66,17 @@ const Login = () => {
           backgroundImage: `url(${loginBg})`,
         }}
       >
+        <ToastContainer
+          position="top-center"
+          autoClose={3000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+        />
         <div>
           <img src={logo} alt="logo" width={400} height={100} />
         </div>
