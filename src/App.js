@@ -25,6 +25,11 @@ const App = () => {
   console.log(data);
   console.log(loading);
   console.log(error);
+
+
+
+
+  
   return (
     <>
       <Router>
