@@ -24,11 +24,14 @@ const DashBoard = () => {
         </div>
 
         <div className="flex justify-center items-center gap-12  flex-wrap ">
-          <DashCard icon={calendar} name="Events" />
+          <a href="/events">
+            <DashCard icon={calendar} name="Add Events" />
+          </a>
           <DashCard icon={report} name="Generate Report" />
           <DashCard icon={activity} name="Activity" />
-          <DashCard icon={user} name="Create User" />
-
+          <a href="/user_registration">
+            <DashCard icon={user} name="Create User" />
+          </a>
           <DashCard icon={editUser} name="Edit User" />
           <DashCard icon={socialAnalytics} name="Social Analytics" />
         </div>

@@ -15,7 +15,7 @@ const User = () => {
             <div className="grid grid-cols-2 gap-20 items-center justify-center px-40">
               <div className="flex flex-col gap-10">
                 <div className="flex flex-col gap-4">
-                  <h4>Event Name</h4>
+                  <h4>Name</h4>
                   <input
                     type="text"
                     className="w-full p-4 outline-none"
