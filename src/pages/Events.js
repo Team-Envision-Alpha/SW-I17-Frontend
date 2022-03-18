@@ -9,6 +9,7 @@ import "react-date-range/dist/styles.css"; // main style file
 import "react-date-range/dist/theme/default.css"; // theme css file
 import { BsCheckLg, BsXLg, BsPlusLg } from "react-icons/bs";
 import states from "../Assets/Data/States.json";
+import * as XLSX from "xlsx";
 
 const Venue = () => {
   const [startdate, setStartDate] = useState(new Date());
@@ -16,7 +17,8 @@ const Venue = () => {
   const [formdata, setFormData] = useState({});
   const [extrausers, setExtraUsers] = useState([]);
   const [userdata, setUserData] = useState({});
-  const teams = ["Events", "HR", "Finance", "C&M", "Technical"];
+  const [userfile, setUserFile] = useState();
+  const teams = ["events", "hr", "finance", "c&m", "technical"];
   const disabled_dates = [
     new Date(2022, 3, 10),
     new Date(2022, 3, 11),
@@ -31,7 +33,49 @@ const Venue = () => {
       });
     }
   }
-  console.log(formdata);
+  function readAppendFile(f) {
+    // console.log(f);
+    var name = f.name;
+    const reader = new FileReader();
+    reader.onload = (evt) => {
+      // evt = on_file_select event
+      /* Parse data */
+      const bstr = evt.target.result;
+      const wb = XLSX.read(bstr, { type: "binary" });
+      /* Get first worksheet */
+      const wsname = wb.SheetNames[0];
+      const ws = wb.Sheets[wsname];
+      /* Convert array of arrays */
+      const data = XLSX.utils.sheet_to_csv(ws, { header: 1 });
+      /* Update state */
+      // console.log("Data>>>" + data); // shows that excel data is read
+      // console.log(convertToJson(data));
+      setExtraUsers([...extrausers, ...convertToJson(data)]); // shows data in json format
+    };
+    reader.readAsBinaryString(f);
+  }
+
+  function convertToJson(csv) {
+    var lines = csv.split("\n");
+    var result = [];
+    var headers = lines[0].split(",");
+    for (var i = 1; i < lines.length; i++) {
+      var obj = {};
+      var currentline = lines[i].split(",");
+
+      for (var j = 0; j < headers.length; j++) {
+        obj[headers[j]] = currentline[j];
+      }
+
+      result.push(obj);
+    }
+
+    return result; //JavaScript object
+    // return JSON.stringify(result); //JSON
+  }
+  // console.log(readFile());
+  // console.log(extrausers);
+  // console.log(userfile.file);
   return (
     <>
       <div className="h-full" style={{ backgroundImage: `url(${bg})` }}>
@@ -245,6 +289,27 @@ const Venue = () => {
                       </div>
                     );
                   })}
+                  <div className="mt-8">
+                    <div className="flex flex-col justify-center text-center object-center mx-auto place-content-center">
+                      Upload Event Image<br></br>
+                      <input
+                        type="file"
+                        name="image"
+                        accept="image/svg, image/png, image/jpeg, image/jpg, image/webp"
+                        className="mt-8 block ml-12 w-full text-sm text-slate-500 place-content-center
+      file:mr-4 file:py-2 file:px-4
+      file:rounded-full file:border-0
+      file:text-sm file:font-semibold
+      file:bg-blue-50 file:text-blue-700
+      hover:file:bg-violet-100"
+                      />
+                      {/* <div className="mt-8">
+                        <Button variant="outlined" color="primary">
+                          Upload Event Image
+                        </Button>
+                      </div> */}
+                    </div>
+                  </div>
                 </div>
               </div>
               <div>
@@ -310,15 +375,45 @@ const Venue = () => {
                     <div
                       className="w-[full] p-4 outline-none text-center rounded-[8px] bg-black text-white cursor-pointer"
                       onClick={() => {
-                        setExtraUsers([...extrausers, userdata]);
-                        console.log(extrausers);
+                        if (userdata.name && userdata.email && userdata.phone) {
+                          setExtraUsers([...extrausers, userdata]);
+                        }
+                        // console.log(extrausers);
                       }}
                     >
                       Submit
                     </div>
                   </div>
                 </div>
-                <table className="w-full mt-5 max-h-[40vh] overflow-scroll">
+                <div className=" mt-4 flex flex-col justify-center text-center object-center mx-auto place-content-center">
+                  Upload file for invite list<br></br>
+                  <input
+                    type="file"
+                    className="mt-8 block w-full text-sm text-slate-500 place-content-center ml-[35%]
+      file:mr-4 file:py-2 file:px-4
+      file:rounded-full file:border-0
+      file:text-sm file:font-semibold
+      file:bg-blue-50 file:text-blue-700
+      hover:file:bg-violet-100"
+                    onChange={(e) => {
+                      // setUserFile(e.target.files[0]);
+                      // console.log(readFile(e.target.files[0]));
+                      readAppendFile(e.target.files[0]);
+                      // setExtraUsers([
+                      //   ...extrausers,
+                      //   readFile(e.target.files[0]),
+                      // ]);
+                      // // console.log(e.target.files[0]);
+                    }}
+                  />
+                  {/* <div className="mt-8">
+                    <Button variant="outlined" color="primary">
+                      Add to Event List
+                    </Button>
+                  </div> */}
+                </div>
+                <hr className="mt-5"></hr>
+                <table className="w-full mt-5 ">
                   <thead>
                     <tr
                       className="text-md font-semibold   text-gray-900   border-[#B9B9B9]  text-center border-3"
@@ -330,11 +425,14 @@ const Venue = () => {
                       <th className="py-3 border-[#B9B9B9] border-2">Modify</th>
                     </tr>
                   </thead>
-                  <tbody className="bg-white">
+                  <tbody
+                    className=" max-h-[40vh] overflow-scroll"
+                    style={{ maxHeight: "30vh", overflowY: "scroll" }}
+                  >
                     {extrausers &&
                       extrausers.map((user, idx) => {
                         return (
-                          <tr className="text-[#000000]">
+                          <tr className="text-[#000000] odd:bg-white even:bg-slate-100">
                             <td
                               className="text-center py-3 border-[#B9B9B9] border-2 
                   text-md"
@@ -387,6 +485,11 @@ const Venue = () => {
               </div>
             </div>
           </form>
+          <div className="mt-8 mx-auto">
+            <Button variant="contained" color="primary">
+              Submit Event Data
+            </Button>
+          </div>
         </div>
       </div>
     </>
