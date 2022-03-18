@@ -13,6 +13,7 @@ import InvitedEvent from "./pages/InvitedEvent";
 import EventModal from "./Components/EventModal";
 import VenuHeadDashboard from "./pages/VenuHeadDashboard";
 import VenueDetails from "./pages/VenuDetails";
+import EventAndVenueDetails from "./pages/EventAndVenueDetails";
 
 const App = () => {
   const HELLO = gql`
@@ -40,6 +41,10 @@ const App = () => {
           <Route path="/event_modal" element={<EventModal />} />
           <Route path="/invited_event" element={<InvitedEvent />} />
           <Route path="/venue_details" element={<VenueDetails />} />
+          <Route
+            path="/event_and_venue_details"
+            element={<EventAndVenueDetails />}
+          />
         </Routes>
       </Router>
     </>
