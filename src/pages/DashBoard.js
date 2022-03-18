@@ -33,7 +33,9 @@ const DashBoard = () => {
             <DashCard icon={user} name="Create User" />
           </a>
           <DashCard icon={editUser} name="Edit User" />
-          <DashCard icon={socialAnalytics} name="Social Analytics" />
+          <a href="/social">
+            <DashCard icon={socialAnalytics} name="Social Analytics" />
+          </a>
         </div>
 
         {/* <div  */}
