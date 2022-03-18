@@ -80,7 +80,14 @@ const Table = ({ status, statusHeader }) => {
                   </td>
                   <td className="text-center py-3 text-md border-[#B9B9B9] border-2 ">
                     <div>
-                      <p className="text-[#874439] font-bold">{status}</p>
+                      <p
+                        className="text-[#874439] font-bold cursor-pointer hover:text-red-600"
+                        onClick={() => {
+                          return setIsOpen(true);
+                        }}
+                      >
+                        {status}
+                      </p>
                     </div>
                   </td>
                 </tr>
@@ -105,7 +112,14 @@ const Table = ({ status, statusHeader }) => {
                   </td>
                   <td className="text-center py-3 text-md border-[#B9B9B9] border-2 ">
                     <div>
-                      <p className="text-[#874439] font-bold">{status}</p>
+                      <p
+                        className="text-[#874439] font-bold cursor-pointer hover:text-red-600"
+                        onClick={() => {
+                          return setIsOpen(true);
+                        }}
+                      >
+                        {status}
+                      </p>
                     </div>
                   </td>
                 </tr>
@@ -130,7 +144,14 @@ const Table = ({ status, statusHeader }) => {
                   </td>
                   <td className="text-center py-3 text-md border-[#B9B9B9] border-2 ">
                     <div>
-                      <p className="text-[#874439] font-bold">{status}</p>
+                      <p
+                        className="text-[#874439] font-bold cursor-pointer hover:text-red-600"
+                        onClick={() => {
+                          return setIsOpen(true);
+                        }}
+                      >
+                        {status}
+                      </p>
                     </div>
                   </td>
                 </tr>
@@ -155,7 +176,14 @@ const Table = ({ status, statusHeader }) => {
                   </td>
                   <td className="text-center py-3 text-md border-[#B9B9B9] border-2 ">
                     <div>
-                      <p className="text-[#874439] font-bold">{status}</p>
+                      <p
+                        className="text-[#874439] font-bold cursor-pointer hover:text-red-600"
+                        onClick={() => {
+                          return setIsOpen(true);
+                        }}
+                      >
+                        {status}
+                      </p>
                     </div>
                   </td>
                 </tr>

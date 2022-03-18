@@ -1,7 +1,7 @@
 import React from 'react';
 import Eventcard from '../Assets/Images/event.svg';
 
-const EventCard = () => {
+const EventCard = (props) => {
   return (
     <>
       <div className="flex flex-col gap-0 font-IBM-Sans px-7 mt-10 grid grid-cols-12 ">
@@ -23,7 +23,7 @@ const EventCard = () => {
               class=" hover:bg-green-700 text-white font-bold py-1 px-2 rounded-lg h"
               style={{ backgroundColor: '#1F8B24' }}
             >
-              View
+              {props.name}
             </button>
           </div>
           <div class="flex flex-row-reverse object-right">
