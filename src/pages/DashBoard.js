@@ -39,7 +39,7 @@ const DashBoard = () => {
             </a>
           ) : null}
           {user.role == "admin" ? (
-            <a href="/user_registration">
+            <a href="/edituser">
               <DashCard icon={editUser} name="View Users" />
             </a>
           ) : null}

@@ -21,6 +21,8 @@ const EventModal = ({ setIsOpen, event }) => {
       return 4;
     } else if (e == "complete") {
       return 5;
+    } else {
+      return -1;
     }
   }
   return (
@@ -146,7 +148,7 @@ const EventModal = ({ setIsOpen, event }) => {
                 className="flex items center gap-2"
                 style={{
                   filter: `${
-                    reqlevel(event.status) >= 2 ? "null" : "grayscale(100%)"
+                    reqlevel(event.status) >= 5 ? "null" : "grayscale(100%)"
                   }`,
                 }}
               >
