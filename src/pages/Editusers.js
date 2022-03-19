@@ -2,8 +2,21 @@ import React from "react";
 import Navbar from "../Components/Navbar";
 import Table from "../Components/Table";
 import bg from "../Assets/Images/Group.svg";
+import { gql, useQuery } from "@apollo/client";
 
 const EventReq = () => {
+  const USER_QUERY = gql`
+    query {
+      getAllUsers {
+        id
+        name
+        email
+        phone
+      }
+    }
+  `;
+  const { loading, err, data } = useQuery(USER_QUERY);
+  console.log(data.getAllUsers);
   return (
     <>
       <div style={{ backgroundImage: `url(${bg})` }}>
@@ -35,41 +48,44 @@ const EventReq = () => {
                       </tr>
                     </thead>
                     <tbody className="bg-white">
-                      <tr className="text-[#000000]">
-                        <td
-                          className="text-center py-3 border-[#B9B9B9] border-2 
-                  text-md"
-                        >
-                          <div>
-                            <p>xyz</p>
-                          </div>
-                        </td>
-                        <td className="text-center py-3 text-md  border-[#B9B9B9] border-2">
-                          <div>
-                            <p>xyz</p>
-                          </div>
-                        </td>
-                        <td className="text-center py-3 text-md border-[#B9B9B9] border-2">
-                          <div>
-                            <p>xyz</p>
-                          </div>
-                        </td>
-                        <td className="text-center py-3 text-md border-[#B9B9B9] border-2 ">
-                          <div>
-                            {/* <p
-                              className="text-[#874439] font-bold cursor-pointer hover:text-red-600"
-                              // onClick={() => {
-                              //   return setIsOpen(true);
-                              // }}
+                      {data.getAllUsers &&
+                        data.getAllUsers.map(({ id, name, email, phone }) => (
+                          <tr key={id} className="text-[#000000]">
+                            <td
+                              className="text-center py-3 border-[#B9B9B9] border-2 
+                    text-md"
                             >
-                              Edit User
-                            </p> */}
-                            Role
-                          </div>
+                              <div>
+                                <p>{name}</p>
+                              </div>
+                            </td>
+                            <td className="text-center py-3 text-md  border-[#B9B9B9] border-2">
+                              <div>
+                                <p>{email}</p>
+                              </div>
+                            </td>
+                            <td className="text-center py-3 text-md border-[#B9B9B9] border-2">
+                              <div>
+                                <p>{phone}</p>
+                              </div>
+                            </td>
+                            <td className="text-center py-3 text-md border-[#B9B9B9] border-2 ">
+                              <div>
+                                {/* <p
+                                className="text-[#874439] font-bold cursor-pointer hover:text-red-600"
+                                // onClick={() => {
+                                //   return setIsOpen(true);
+                                // }}
+                              >
+                                Edit User
+                              </p> */}
+                                Role
+                              </div>
 
-                          {/* {isOpen && <EventModal setIsOpen={setIsOpen} />} */}
-                        </td>
-                      </tr>
+                              {/* {isOpen && <EventModal setIsOpen={setIsOpen} />} */}
+                            </td>
+                          </tr>
+                        ))}
                     </tbody>
                   </table>
                 </div>
