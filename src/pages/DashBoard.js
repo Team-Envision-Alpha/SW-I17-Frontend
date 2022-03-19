@@ -8,11 +8,13 @@ import calendar from "../Assets/Images/Dashboard/calendar.svg";
 import editUser from "../Assets/Images/Dashboard/editUser.svg";
 import report from "../Assets/Images/Dashboard/report.svg";
 import socialAnalytics from "../Assets/Images/Dashboard/socialAnalytics.svg";
-import user from "../Assets/Images/Dashboard/user.svg";
+import createuser from "../Assets/Images/Dashboard/user.svg";
 import Navbar from "../Components/Navbar";
 import DashCard from "../Components/DashCard";
 import Upcoming from "../Assets/Images/Dashboard/upcoming.svg";
 const DashBoard = () => {
+  const user = JSON.parse(localStorage.getItem("aicteuser"));
+
   return (
     <div style={{ backgroundImage: `url(${bg})` }}>
       <Navbar />
@@ -31,10 +33,16 @@ const DashBoard = () => {
           <a href="/requests">
             <DashCard icon={activity} name="User Requests" />
           </a>
-          <a href="/user_registration">
-            <DashCard icon={user} name="Create User" />
-          </a>
-          <DashCard icon={editUser} name="Edit User" />
+          {user.role == "admin" ? (
+            <a href="/user_registration">
+              <DashCard icon={createuser} name="Create User" />
+            </a>
+          ) : null}
+          {user.role == "admin" ? (
+            <a href="/user_registration">
+              <DashCard icon={editUser} name="View Users" />
+            </a>
+          ) : null}
           <a href="/social">
             <DashCard icon={socialAnalytics} name="Social Analytics" />
           </a>

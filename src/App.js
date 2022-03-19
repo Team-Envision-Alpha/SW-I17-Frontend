@@ -14,6 +14,7 @@ import EventModal from "./Components/EventModal";
 import VenuHeadDashboard from "./pages/VenuHeadDashboard";
 import VenueDetails from "./pages/VenuDetails";
 import EventAndVenueDetails from "./pages/EventAndVenueDetails";
+import EditUser from "./pages/Editusers";
 
 const App = () => {
   const HELLO = gql`
@@ -26,10 +27,6 @@ const App = () => {
   console.log(loading);
   console.log(error);
 
-
-
-
-  
   return (
     <>
       <Router>
@@ -38,11 +35,14 @@ const App = () => {
           <Route path="/fb" element={<FB />} />
           <Route path="/twitter" element={<Twitter />} />
           <Route path="/social" element={<SocialPanel />} />
+
           <Route path="/events" element={<Events />} />
           <Route path="/dashboard" element={<DashBoard />} />
           <Route path="/venue_head_dashboard" element={<VenuHeadDashboard />} />
           <Route path="/user_registration" element={<User />} />
           <Route path="/requests" element={<EventReq />} />
+          <Route path="/edituser" element={<EditUser />} />
+
           <Route path="/event_modal" element={<EventModal />} />
           <Route path="/invited_event" element={<InvitedEvent />} />
           <Route path="/add_venue" element={<VenueDetails />} />

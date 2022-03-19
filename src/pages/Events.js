@@ -16,12 +16,14 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const Venue = () => {
+  const user = JSON.parse(localStorage.getItem("aicteuser"));
+  console.log(user);
   const [startdate, setStartDate] = useState(new Date());
   const [enddate, setEndDate] = useState(new Date());
   const [formdata, setFormData] = useState({});
   const [extrausers, setExtraUsers] = useState([]);
   const [userdata, setUserData] = useState({});
-  // const [userfile, setUserFile] = useState();
+  const [userfile, setUserFile] = useState();
   const teams = ["events", "hr", "finance", "c&m", "technical"];
   const time = [
     "9:00 AM-10:00 AM",
@@ -46,17 +48,17 @@ const Venue = () => {
     new Date(2022, 4, 10),
   ];
   function arrayRemove(arr, value) {
-    if (arr.length === 1) {
+    if (arr.length == 1) {
       return "empty";
     } else {
       return arr.filter(function (ele) {
-        return ele !== value;
+        return ele != value;
       });
     }
   }
   function readAppendFile(f) {
     // console.log(f);
-    // var name = f.name;
+    var name = f.name;
     const reader = new FileReader();
     reader.onload = (evt) => {
       // evt = on_file_select event
@@ -110,18 +112,18 @@ const Venue = () => {
 
   const EVENT_MUTATION = gql`
     mutation createEvent(
-      $name: String!
-      $description: String!
-      $venue: ID!
-      $organiser: String!
-      $caption: String!
-      $fromdate: String!
-      $todate: String!
-      $time: String!
-      $image: String!
+      $name: String
+      $description: String
+      $venue: ID
+      $organiser: String
+      $caption: String
+      $fromdate: String
+      $todate: String
+      $time: String
+      $image: String
       $departmentInvited: [String]
       $usersInvited: [InvitedUserInput]
-      $status: String!
+      $status: String
     ) {
       createEvent(
         eventInput: {
@@ -139,13 +141,14 @@ const Venue = () => {
           status: $status
         }
       ) {
+        id
         name
       }
     }
   `;
-  const [events, { event_loading }] = useMutation(EVENT_MUTATION, {
+  const [events, event_loading] = useMutation(EVENT_MUTATION, {
     onError: (err) => {
-      console.log(err);
+      console.log(err.message);
       toast.error("Error: Event Not Added!", {
         position: "top-center",
         autoClose: 3000,
@@ -170,18 +173,23 @@ const Venue = () => {
       });
       setFormData({});
     },
-    // update(_, result) {
-    //   console.log(result.data.registerUser);
-    //   // localStorage.setItem("aicteuser", JSON.stringify(result.data.loginUser));
-    //   setFormData({});
-    // },
     variables: formdata,
   });
   const onSubmit = (e) => {
     console.log(formdata);
     e.preventDefault();
     setFormData({ ...formdata, usersInvited: extrausers, status: "pending" });
-    events();
+    // events();
+    const localEvents = JSON.parse(localStorage.getItem("events"));
+    if (localEvents) {
+      localStorage.setItem(
+        "events",
+        JSON.stringify([...localEvents, formdata])
+      );
+    } else {
+      localStorage.setItem("events", JSON.stringify([formdata]));
+    }
+    console.log(JSON.parse(localStorage.getItem("events")));
     // console.log(loading);
   };
   const handleImage = (e) => {
@@ -212,7 +220,7 @@ const Venue = () => {
             <p className="text-[3vh] ">Register Event</p>
           </div>
 
-          <form action="/">
+          <form>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-20 ">
               <div className="flex flex-col gap-6 pl-4">
                 <div className="flex flex-col gap-4">
@@ -255,7 +263,7 @@ const Venue = () => {
                   />
                 </div>
                 <div className="flex flex-col gap-4">
-                  <h4>Organiser</h4>
+                  <h4>Organiser ID</h4>
                   <input
                     type="text"
                     className="w-full p-4 outline-none"
@@ -265,9 +273,10 @@ const Venue = () => {
                       border: "2px solid grey",
                       borderRadius: "8px",
                     }}
-                    value={formdata.organiser ? formdata.organiser : ""}
+                    value={user.id}
                     name="organiser"
                     placeholder="Text here"
+                    readOnly
                     onChange={(e) => {
                       setFormData({ ...formdata, organiser: e.target.value });
                     }}
@@ -409,7 +418,7 @@ const Venue = () => {
                                 formdata.departmentInvited,
                                 team
                               );
-                              if (resp !== "empty") {
+                              if (resp != "empty") {
                                 setFormData({
                                   ...formdata,
                                   departmentInvited: resp,
@@ -631,7 +640,7 @@ const Venue = () => {
                                   className="text-[#874439] font-bold cursor-pointer hover:underline transition"
                                   onClick={() => {
                                     const resp = arrayRemove(extrausers, user);
-                                    if (resp !== "empty") {
+                                    if (resp != "empty") {
                                       setExtraUsers(resp);
                                       // setFormData({
                                       //   ...formdata,
@@ -658,12 +667,12 @@ const Venue = () => {
                 </table>
               </div>
             </div>
+            <div className="mt-8 mx-auto" onClick={onSubmit}>
+              <Button variant="contained" color="primary">
+                Submit Event Data
+              </Button>
+            </div>
           </form>
-          <div className="mt-8 mx-auto" onClick={onSubmit}>
-            <Button variant="contained" color="primary">
-              Submit Event Data
-            </Button>
-          </div>
         </div>
       </div>
     </>

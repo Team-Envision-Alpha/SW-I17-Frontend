@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { gql, useMutation } from "@apollo/client";
 
 import logo from "../Assets/Images/logo.svg";
@@ -11,16 +11,17 @@ const Login = () => {
   const [userData, setUserData] = useState({ email: "", password: "" });
   const navigate = useNavigate();
   const handleChange = (e) =>
-  setUserData({ ...userData, [e.target.name]: e.target.value });
+    setUserData({ ...userData, [e.target.name]: e.target.value });
   const LOGIN_MUTATION = gql`
-  mutation loginUser($email: String!, $password: String!) {
-    loginUser(email: $email, password: $password) {
-      name
-      email
-      role
-      token
+    mutation loginUser($email: String!, $password: String!) {
+      loginUser(email: $email, password: $password) {
+        name
+        email
+        role
+        token
+        id
+      }
     }
-  }
   `;
   const [login, { loading }] = useMutation(LOGIN_MUTATION, {
     onError: (err) => {
@@ -44,12 +45,11 @@ const Login = () => {
     variables: userData,
   });
 
-  useEffect(()=>{
+  useEffect(() => {
     if (localStorage.getItem("aicteuser")) {
       navigate("/dashboard");
-      
     }
-  },[])
+  }, []);
   const onSubmit = (e) => {
     e.preventDefault();
     toast.info("Logging in!", {
