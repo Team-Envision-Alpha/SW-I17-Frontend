@@ -34,7 +34,7 @@ const App = () => {
       <Router>
         <Routes>
           <Route path="/" element={<Login />} />
-          <Route path="/fb" element={<FB />} />
+          {/* <Route path="/fb" element={<FB />} /> */}
           <Route path="/twitter" element={<Twitter />} />
           <Route path="/social" element={<SocialPanel />} />
 
@@ -59,7 +59,7 @@ const App = () => {
           <Route
             path="/social_analytics"
             element={
-              <SocialAnalytics title="Last 6 Months (Revenue)" aspect={2 / 1} />
+              <SocialAnalytics title="Analytics Per Post" aspect={2 / 1} />
             }
           />
         </Routes>
