@@ -14,6 +14,8 @@ import EventModal from "./Components/EventModal";
 import VenuHeadDashboard from "./pages/VenuHeadDashboard";
 import VenueDetails from "./pages/VenuDetails";
 import EventAndVenueDetails from "./pages/EventAndVenueDetails";
+import Canteen from "./pages/Canteen";
+import SocialAnalytics from "./pages/SocialAnalytics";
 
 const App = () => {
   const HELLO = gql`
@@ -42,8 +44,18 @@ const App = () => {
           <Route path="/invited_event" element={<InvitedEvent />} />
           <Route path="/venue_details" element={<VenueDetails />} />
           <Route
+            path="/canteen"
+            element={<Canteen eventName="Blockchain Workshop" />}
+          />
+          <Route
             path="/event_and_venue_details"
             element={<EventAndVenueDetails />}
+          />
+          <Route
+            path="/social_analytics"
+            element={
+              <SocialAnalytics title="Last 6 Months (Revenue)" aspect={2 / 1} />
+            }
           />
         </Routes>
       </Router>
