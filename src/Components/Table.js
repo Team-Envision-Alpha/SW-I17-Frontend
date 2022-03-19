@@ -4,7 +4,8 @@ import EventModal from "./EventModal";
 const Table = ({ status, statusHeader }) => {
   const [isOpen, setIsOpen] = useState(false);
   const events = JSON.parse(localStorage.getItem("events"));
-  console.log(events);
+  const [pevent, setPevent] = useState({});
+  // console.log(events);
   return (
     <>
       <section className="container  font-IBM-Sans ">
@@ -55,6 +56,7 @@ const Table = ({ status, statusHeader }) => {
                           <p
                             className="text-[#874439] font-bold cursor-pointer hover:text-red-600 capitalize"
                             onClick={() => {
+                              setPevent(event);
                               return setIsOpen(true);
                             }}
                           >
@@ -63,7 +65,7 @@ const Table = ({ status, statusHeader }) => {
                         </div>
 
                         {isOpen && (
-                          <EventModal setIsOpen={setIsOpen} event={event} />
+                          <EventModal setIsOpen={setIsOpen} event={pevent} />
                         )}
                       </td>
                     </tr>

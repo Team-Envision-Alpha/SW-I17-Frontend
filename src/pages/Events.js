@@ -176,20 +176,32 @@ const Venue = () => {
     variables: formdata,
   });
   const onSubmit = (e) => {
-    console.log(formdata);
     e.preventDefault();
     setFormData({ ...formdata, usersInvited: extrausers, status: "pending" });
-    // events();
+    console.log(formdata);
     const localEvents = JSON.parse(localStorage.getItem("events"));
     if (localEvents) {
       localStorage.setItem(
         "events",
-        JSON.stringify([...localEvents, formdata])
+        JSON.stringify([...localEvents, { ...formdata, status: "pending" }])
       );
     } else {
-      localStorage.setItem("events", JSON.stringify([formdata]));
+      localStorage.setItem(
+        "events",
+        JSON.stringify([{ ...formdata, status: "pending" }])
+      );
     }
     console.log(JSON.parse(localStorage.getItem("events")));
+    toast.success(`Event Added successfully!`, {
+      position: "top-center",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+    setFormData({});
     // console.log(loading);
   };
   const handleImage = (e) => {
