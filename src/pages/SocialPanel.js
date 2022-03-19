@@ -20,34 +20,34 @@ const SocialPanel = () => {
         <div className="flex justify-center my-10 gap-10">
           <div className="flex items-center">
             <button
-              className="text-black font-semibold text-xl w-[10vh] h-[6vh] flex items-center justify-center"
-              style={{ backgroundColor: "orange", borderRadius: "8px" }}
+              className="text-black font-semibold text-xl w-[20vh] h-[6vh] flex items-center justify-center"
+              style={{ backgroundColor: "#4267b2", borderRadius: "8px" }}
             >
-              Post
+              Facebook
             </button>
           </div>
           <div className="flex items-center">
             <button
-              className="text-black font-semibold text-xl w-[10vh] h-[6vh] flex items-center justify-center"
-              style={{ backgroundColor: "orange", borderRadius: "8px" }}
+              className="text-black font-semibold text-xl w-[20vh] h-[6vh] flex items-center justify-center"
+              style={{ backgroundColor: "#0077b5", borderRadius: "8px" }}
             >
-              Post
+              Twitter
             </button>
           </div>
           <div className="flex items-center">
             <button
-              className="text-black font-semibold text-xl w-[10vh] h-[6vh] flex items-center justify-center"
-              style={{ backgroundColor: "orange", borderRadius: "8px" }}
+              className="text-black font-semibold text-xl w-[20vh] h-[6vh] flex items-center justify-center"
+              style={{ backgroundColor: "#3a5385", borderRadius: "8px" }}
             >
-              Post
+              LinkedIn
             </button>
           </div>
           <div className="flex items-center">
             <button
-              className="text-black font-semibold text-xl w-[10vh] h-[6vh] flex items-center justify-center"
-              style={{ backgroundColor: "orange", borderRadius: "8px" }}
+              className="text-black font-semibold text-xl w-[20vh] h-[6vh] flex items-center justify-center"
+              style={{ backgroundColor: "#df2a78", borderRadius: "8px" }}
             >
-              Post
+              Instagram
             </button>
           </div>
         </div>

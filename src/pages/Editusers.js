@@ -15,8 +15,8 @@ const EventReq = () => {
       }
     }
   `;
-  const { loading, err, data } = useQuery(USER_QUERY);
-  console.log(data.getAllUsers);
+  // const { loading, err, data } = useQuery(USER_QUERY);
+  // console.log(data.getAllUsers);
   return (
     <>
       <div style={{ backgroundImage: `url(${bg})` }}>
@@ -48,30 +48,28 @@ const EventReq = () => {
                       </tr>
                     </thead>
                     <tbody className="bg-white">
-                      {data.getAllUsers &&
-                        data.getAllUsers.map(({ id, name, email, phone }) => (
-                          <tr key={id} className="text-[#000000]">
-                            <td
-                              className="text-center py-3 border-[#B9B9B9] border-2 
+                      <tr className="text-[#000000]">
+                        <td
+                          className="text-center py-3 border-[#B9B9B9] border-2 
                     text-md"
-                            >
-                              <div>
-                                <p>{name}</p>
-                              </div>
-                            </td>
-                            <td className="text-center py-3 text-md  border-[#B9B9B9] border-2">
-                              <div>
-                                <p>{email}</p>
-                              </div>
-                            </td>
-                            <td className="text-center py-3 text-md border-[#B9B9B9] border-2">
-                              <div>
-                                <p>{phone}</p>
-                              </div>
-                            </td>
-                            <td className="text-center py-3 text-md border-[#B9B9B9] border-2 ">
-                              <div>
-                                {/* <p
+                        >
+                          <div>
+                            <p>A. Suresh</p>
+                          </div>
+                        </td>
+                        <td className="text-center py-3 text-md  border-[#B9B9B9] border-2">
+                          <div>
+                            <p>sureash_8@gmail.com</p>
+                          </div>
+                        </td>
+                        <td className="text-center py-3 text-md border-[#B9B9B9] border-2">
+                          <div>
+                            <p>8745973210</p>
+                          </div>
+                        </td>
+                        <td className="text-center py-3 text-md border-[#B9B9B9] border-2 ">
+                          <div>
+                            {/* <p
                                 className="text-[#874439] font-bold cursor-pointer hover:text-red-600"
                                 // onClick={() => {
                                 //   return setIsOpen(true);
@@ -79,13 +77,12 @@ const EventReq = () => {
                               >
                                 Edit User
                               </p> */}
-                                Role
-                              </div>
+                            Role
+                          </div>
 
-                              {/* {isOpen && <EventModal setIsOpen={setIsOpen} />} */}
-                            </td>
-                          </tr>
-                        ))}
+                          {/* {isOpen && <EventModal setIsOpen={setIsOpen} />} */}
+                        </td>
+                      </tr>
                     </tbody>
                   </table>
                 </div>
