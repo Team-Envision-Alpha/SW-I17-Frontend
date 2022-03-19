@@ -1,5 +1,5 @@
 import React from "react";
-import dp from "../Assets/Images/dp.svg";
+import dp from "../Assets/Images/ico.svg";
 import logo from "../Assets/Images/logo.svg";
 import Button from "@mui/material/Button";
 import { useNavigate } from "react-router-dom";
@@ -18,7 +18,7 @@ const Navbar = () => {
         <div className="flex gap-8 ">
           <div className="flex gap-2">
             <div>
-              <img src={dp} alt="dp" />
+              <img src={dp} alt="dp" width={35} />
             </div>
             <div className="font-IBM-Sans">
               <p className="text-sm capitalize">{user.name}</p>

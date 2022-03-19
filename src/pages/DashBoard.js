@@ -12,16 +12,17 @@ import createuser from "../Assets/Images/Dashboard/user.svg";
 import Navbar from "../Components/Navbar";
 import DashCard from "../Components/DashCard";
 import Upcoming from "../Assets/Images/Dashboard/upcoming.svg";
+import social from "../Assets/Images/Dashboard/social.svg";
 const DashBoard = () => {
   const user = JSON.parse(localStorage.getItem("aicteuser"));
 
   return (
     <div style={{ backgroundImage: `url(${bg})` }}>
       <Navbar />
-      <div className="flex flex-col justify-center items-center my-10 gap-10 px-72">
+      <div className="flex flex-col justify-center items-center my-10 gap-8 px-64">
         <div>
-          <p className="text-[4vh] font-IBM-Sans font-extrabold">
-            Main Admin Dashboard
+          <p className="text-[4vh] font-IBM-Sans font-extrabold capitalize">
+            {user.role} Dashboard
           </p>
         </div>
 
@@ -29,7 +30,9 @@ const DashBoard = () => {
           <a href="/events">
             <DashCard icon={calendar} name="Add Events" />
           </a>
-          <DashCard icon={report} name="Generate Report" />
+          {user.role == "admin" ? (
+            <DashCard icon={report} name="Generate Report" />
+          ) : null}
           <a href="/requests">
             <DashCard icon={activity} name="User Requests" />
           </a>
@@ -43,9 +46,16 @@ const DashBoard = () => {
               <DashCard icon={editUser} name="View Users" />
             </a>
           ) : null}
-          <a href="/social">
-            <DashCard icon={socialAnalytics} name="Social Analytics" />
-          </a>
+          {user.role == "admin" ? (
+            <a href="/social">
+              <DashCard icon={socialAnalytics} name="Social Analytics" />
+            </a>
+          ) : null}
+          {user.role == "admin" ? (
+            <a href="/social">
+              <DashCard icon={social} name="Social Media" />
+            </a>
+          ) : null}
           <a href="/invited_event">
             <DashCard icon={Upcoming} name="Invited Events" />
           </a>
