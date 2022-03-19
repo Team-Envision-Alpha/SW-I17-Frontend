@@ -1,6 +1,6 @@
 import Select from "react-select";
 import React from "react";
-export default function select({ data, setFormData, formdata, name }) {
+export default function select({ data, setFormData, formdata, name, dataobj }) {
   const customStyles = {
     option: (provided, state) => ({
       ...provided,
@@ -29,14 +29,21 @@ export default function select({ data, setFormData, formdata, name }) {
       return { ...provided, opacity, transition };
     },
   };
-
-  let formoptions = data.map((data) => {
-    return {
-      label: data,
-      value: data,
-    };
-  });
-
+  if (data) {
+    var formoptions = data.map((data) => {
+      return {
+        label: data,
+        value: data,
+      };
+    });
+  } else {
+    var formoptions = dataobj.map((data) => {
+      return {
+        label: `${data.name} - ${data.city} (${data.pincode})`,
+        value: data.id,
+      };
+    });
+  }
   return (
     <Select
       classNamePrefix="select"

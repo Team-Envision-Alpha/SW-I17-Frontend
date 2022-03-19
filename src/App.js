@@ -27,6 +27,11 @@ const App = () => {
   console.log(data);
   console.log(loading);
   console.log(error);
+
+
+
+
+  
   return (
     <>
       <Router>
@@ -42,7 +47,7 @@ const App = () => {
           <Route path="/requests" element={<EventReq />} />
           <Route path="/event_modal" element={<EventModal />} />
           <Route path="/invited_event" element={<InvitedEvent />} />
-          <Route path="/venue_details" element={<VenueDetails />} />
+          <Route path="/add_venue" element={<VenueDetails />} />
           <Route
             path="/canteen"
             element={<Canteen eventName="Blockchain Workshop" />}

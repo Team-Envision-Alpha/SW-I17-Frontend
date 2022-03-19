@@ -1,4 +1,4 @@
-import React, { Component, Fragment, useState } from "react";
+import React, { Component, Fragment, useState, useEffect } from "react";
 import Navbar from "../Components/Navbar";
 import bg from "../Assets/Images/Group.svg";
 import Select from "../Components/Select.js";
@@ -9,7 +9,11 @@ import "react-date-range/dist/styles.css"; // main style file
 import "react-date-range/dist/theme/default.css"; // theme css file
 import { BsCheckLg, BsXLg, BsPlusLg } from "react-icons/bs";
 import states from "../Assets/Data/States.json";
+import { gql, useMutation, useQuery } from "@apollo/client";
+
 import * as XLSX from "xlsx";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Venue = () => {
   const [startdate, setStartDate] = useState(new Date());
@@ -17,25 +21,42 @@ const Venue = () => {
   const [formdata, setFormData] = useState({});
   const [extrausers, setExtraUsers] = useState([]);
   const [userdata, setUserData] = useState({});
-  const [userfile, setUserFile] = useState();
+  // const [userfile, setUserFile] = useState();
   const teams = ["events", "hr", "finance", "c&m", "technical"];
+  const time = [
+    "9:00 AM-10:00 AM",
+    "10:00 AM-11:00 AM",
+    "11:00 AM-12:00 PM",
+    "12:00 PM-1:00 PM",
+    "1:00 PM-2:00 PM",
+    "2:00 PM-3:00 PM",
+    "3:00 PM-4:00 PM",
+    "4:00 PM-5:00 PM",
+    "5:00 PM-6:00 PM",
+    "6:00 PM-7:00 PM",
+    "7:00 PM-8:00 PM",
+    "8:00 PM-9:00 PM",
+    "9:00 PM-10:00 PM",
+    "10:00 PM-11:00 PM",
+    "11:00 PM-12:00 AM",
+  ];
   const disabled_dates = [
     new Date(2022, 3, 10),
     new Date(2022, 3, 11),
     new Date(2022, 4, 10),
   ];
   function arrayRemove(arr, value) {
-    if (arr.length == 1) {
+    if (arr.length === 1) {
       return "empty";
     } else {
       return arr.filter(function (ele) {
-        return ele != value;
+        return ele !== value;
       });
     }
   }
   function readAppendFile(f) {
     // console.log(f);
-    var name = f.name;
+    // var name = f.name;
     const reader = new FileReader();
     reader.onload = (evt) => {
       // evt = on_file_select event
@@ -73,13 +94,119 @@ const Venue = () => {
     return result; //JavaScript object
     // return JSON.stringify(result); //JSON
   }
-  // console.log(readFile());
-  // console.log(extrausers);
-  // console.log(userfile.file);
+  console.log(formdata);
+  const VENUE_QUERY = gql`
+    query {
+      getAllVenues {
+        id
+        name
+        city
+        pincode
+      }
+    }
+  `;
+
+  const { loading, err, data } = useQuery(VENUE_QUERY);
+
+  const EVENT_MUTATION = gql`
+    mutation createEvent(
+      $name: String!
+      $description: String!
+      $venue: ID!
+      $organiser: String!
+      $caption: String!
+      $fromdate: String!
+      $todate: String!
+      $time: String!
+      $image: String!
+      $departmentInvited: [String]
+      $usersInvited: [InvitedUserInput]
+      $status: String!
+    ) {
+      createEvent(
+        eventInput: {
+          name: $name
+          description: $description
+          venue: $venue
+          organiser: $organiser
+          caption: $caption
+          fromdate: $fromdate
+          todate: $todate
+          time: $time
+          image: $image
+          departmentInvited: $departmentInvited
+          usersInvited: $usersInvited
+          status: $status
+        }
+      ) {
+        name
+      }
+    }
+  `;
+  const [events, { event_loading }] = useMutation(EVENT_MUTATION, {
+    onError: (err) => {
+      console.log(err);
+      toast.error("Error: Event Not Added!", {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    },
+    onCompleted: (data) => {
+      console.log(data);
+
+      toast.success(`Event Added successfully!`, {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+      setFormData({});
+    },
+    // update(_, result) {
+    //   console.log(result.data.registerUser);
+    //   // localStorage.setItem("aicteuser", JSON.stringify(result.data.loginUser));
+    //   setFormData({});
+    // },
+    variables: formdata,
+  });
+  const onSubmit = (e) => {
+    console.log(formdata);
+    e.preventDefault();
+    setFormData({ ...formdata, usersInvited: extrausers, status: "pending" });
+    events();
+    // console.log(loading);
+  };
+  const handleImage = (e) => {
+    const file = e.target.files[0];
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = (e) => {
+      setFormData({ ...formdata, image: e.target.result });
+    };
+  };
   return (
     <>
       <div className="h-full" style={{ backgroundImage: `url(${bg})` }}>
         <Navbar />
+        <ToastContainer
+          position="top-center"
+          autoClose={3000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+        />
         <div className="flex flex-col flex-wrap gap-10 font-IBM-Sans px-8 my-10">
           <div>
             <p className="text-[3vh] ">Register Event</p>
@@ -99,8 +226,12 @@ const Venue = () => {
                       border: "2px solid grey",
                       borderRadius: "8px",
                     }}
+                    value={formdata.name ? formdata.name : ""}
                     placeholder="Text here"
                     name="name"
+                    onChange={(e) => {
+                      setFormData({ ...formdata, name: e.target.value });
+                    }}
                   />
                 </div>
                 <div className="flex flex-col gap-4">
@@ -115,8 +246,12 @@ const Venue = () => {
                       borderRadius: "8px",
                     }}
                     placeholder="Text here"
+                    value={formdata.description ? formdata.description : ""}
                     rows={6}
                     name="description"
+                    onChange={(e) => {
+                      setFormData({ ...formdata, description: e.target.value });
+                    }}
                   />
                 </div>
                 <div className="flex flex-col gap-4">
@@ -130,8 +265,31 @@ const Venue = () => {
                       border: "2px solid grey",
                       borderRadius: "8px",
                     }}
+                    value={formdata.organiser ? formdata.organiser : ""}
                     name="organiser"
                     placeholder="Text here"
+                    onChange={(e) => {
+                      setFormData({ ...formdata, organiser: e.target.value });
+                    }}
+                  />
+                </div>
+                <div className="flex flex-col gap-4">
+                  <h4>Caption</h4>
+                  <input
+                    type="text"
+                    className="w-full p-4 outline-none"
+                    style={{
+                      color: "#818181",
+                      background: "#F6F5F6",
+                      border: "2px solid grey",
+                      borderRadius: "8px",
+                    }}
+                    value={formdata.caption ? formdata.caption : ""}
+                    name="caption"
+                    placeholder="Text here"
+                    onChange={(e) => {
+                      setFormData({ ...formdata, caption: e.target.value });
+                    }}
                   />
                 </div>
               </div>
@@ -148,7 +306,7 @@ const Venue = () => {
                           setStartDate(e);
                           setFormData({
                             ...formdata,
-                            startdate: e.toLocaleString().split(",")[0],
+                            fromdate: e.toLocaleString().split(",")[0],
                           });
                         }}
                       />
@@ -162,7 +320,7 @@ const Venue = () => {
                           setEndDate(e);
                           setFormData({
                             ...formdata,
-                            enddate: e.toLocaleString().split(",")[0],
+                            todate: e.toLocaleString().split(",")[0],
                           });
                         }}
                       />
@@ -170,7 +328,7 @@ const Venue = () => {
                   </div>
                 </div>
                 <div className="flex gap-6 text-black mt-1 w-full">
-                  <div className="flex flex-col gap-4 w-full">
+                  {/* <div className="flex flex-col gap-4 w-full">
                     <h4>States</h4>
                     <Select
                       data={states}
@@ -178,17 +336,28 @@ const Venue = () => {
                       setFormData={setFormData}
                       formdata={formdata}
                     />
-                  </div>
+                  </div> */}
 
                   <div className="flex flex-col gap-4 w-full">
                     <h4>Venue</h4>
-                    <Select
-                      data={states}
-                      name="venue"
-                      setFormData={setFormData}
-                      formdata={formdata}
-                    />
+                    {data ? (
+                      <Select
+                        dataobj={data.getAllVenues}
+                        name="venue"
+                        setFormData={setFormData}
+                        formdata={formdata}
+                      />
+                    ) : null}
                   </div>
+                </div>
+                <div className="flex flex-col gap-4">
+                  <h4>Time</h4>
+                  <Select
+                    data={time}
+                    name="time"
+                    setFormData={setFormData}
+                    formdata={formdata}
+                  />
                 </div>
               </div>
               <div className="flex flex-col">
@@ -198,7 +367,7 @@ const Venue = () => {
                 <div className="flex justify-evenly">
                   <div
                     onClick={() => {
-                      setFormData({ ...formdata, invitedTeams: teams });
+                      setFormData({ ...formdata, departmentInvited: teams });
                     }}
                   >
                     <Button variant="outlined" color="success">
@@ -214,7 +383,7 @@ const Venue = () => {
                     onClick={() => {
                       setFormData((formdata) => {
                         const newData = { ...formdata };
-                        delete newData.invitedTeams;
+                        delete newData.departmentInvited;
                         return newData;
                       });
                     }}
@@ -230,25 +399,25 @@ const Venue = () => {
                   {teams.map((team, idx) => {
                     return (
                       <div className="mr-4 transition mt-3">
-                        {formdata.invitedTeams &&
-                        formdata.invitedTeams.includes(team) ? (
+                        {formdata.departmentInvited &&
+                        formdata.departmentInvited.includes(team) ? (
                           <Button
                             variant="outlined"
                             color="success"
                             onClick={() => {
                               const resp = arrayRemove(
-                                formdata.invitedTeams,
+                                formdata.departmentInvited,
                                 team
                               );
-                              if (resp != "empty") {
+                              if (resp !== "empty") {
                                 setFormData({
                                   ...formdata,
-                                  invitedTeams: resp,
+                                  departmentInvited: resp,
                                 });
                               } else {
                                 setFormData((formdata) => {
                                   const newData = { ...formdata };
-                                  delete newData.invitedTeams;
+                                  delete newData.departmentInvited;
                                   return newData;
                                 });
                               }
@@ -264,18 +433,18 @@ const Venue = () => {
                             variant="outlined"
                             color="primary"
                             onClick={() => {
-                              if (formdata.invitedTeams) {
+                              if (formdata.departmentInvited) {
                                 setFormData({
                                   ...formdata,
-                                  invitedTeams: [
-                                    ...formdata.invitedTeams,
+                                  departmentInvited: [
+                                    ...formdata.departmentInvited,
                                     team,
                                   ],
                                 });
                               } else {
                                 setFormData({
                                   ...formdata,
-                                  invitedTeams: [team],
+                                  departmentInvited: [team],
                                 });
                               }
                             }}
@@ -302,6 +471,7 @@ const Venue = () => {
       file:text-sm file:font-semibold
       file:bg-blue-50 file:text-blue-700
       hover:file:bg-violet-100"
+                        onChange={handleImage}
                       />
                       {/* <div className="mt-8">
                         <Button variant="outlined" color="primary">
@@ -377,6 +547,10 @@ const Venue = () => {
                       onClick={() => {
                         if (userdata.name && userdata.email && userdata.phone) {
                           setExtraUsers([...extrausers, userdata]);
+                          setFormData({
+                            ...formdata,
+                            usersInvited: extrausers,
+                          });
                         }
                         // console.log(extrausers);
                       }}
@@ -457,16 +631,16 @@ const Venue = () => {
                                   className="text-[#874439] font-bold cursor-pointer hover:underline transition"
                                   onClick={() => {
                                     const resp = arrayRemove(extrausers, user);
-                                    if (resp != "empty") {
+                                    if (resp !== "empty") {
                                       setExtraUsers(resp);
                                       // setFormData({
                                       //   ...formdata,
-                                      //   invitedTeams: resp,
+                                      //   departmentInvited: resp,
                                       // });
                                     } else {
                                       // setFormData((formdata) => {
                                       //   const newData = { ...formdata };
-                                      //   delete newData.invitedTeams;
+                                      //   delete newData.departmentInvited;
                                       //   return newData;
                                       // });
                                       setExtraUsers([]);
@@ -485,7 +659,7 @@ const Venue = () => {
               </div>
             </div>
           </form>
-          <div className="mt-8 mx-auto">
+          <div className="mt-8 mx-auto" onClick={onSubmit}>
             <Button variant="contained" color="primary">
               Submit Event Data
             </Button>
