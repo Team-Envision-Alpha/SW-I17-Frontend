@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const navigate = useNavigate();
-
+  const user = JSON.parse(localStorage.getItem("aicteuser"));
   return (
     <>
       <div className="flex justify-between p-6 h-[12vh] items-center">
@@ -21,9 +21,9 @@ const Navbar = () => {
               <img src={dp} alt="dp" />
             </div>
             <div className="font-IBM-Sans">
-              <p className="text-sm">Rishit Shivesh</p>
+              <p className="text-sm capitalize">{user.name}</p>
               <p className="text-xs capitalize " style={{ color: "#818181" }}>
-                admin
+                {user.role}
               </p>
             </div>
           </div>
