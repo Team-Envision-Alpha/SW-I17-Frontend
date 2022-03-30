@@ -35,7 +35,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Login />} />
           {/* <Route path="/fb" element={<FB />} /> */}
-//           <Route path="/twitter" element={<Twitter />} />
+{/*        <Route path="/twitter" element={<Twitter />} /> */}
           <Route path="/social" element={<SocialPanel />} />
 
           <Route path="/events" element={<Events />} />
