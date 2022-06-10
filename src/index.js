@@ -7,14 +7,16 @@ import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 const token = JSON.parse(localStorage.getItem("aicteuser"))
   ? JSON.parse(localStorage.getItem("aicteuser")).token
   : "";
+
+const graphURL = process.env.NODE_ENV !="development" ? "http://localhost:4000/graphql" : "https://brrok3hux1.execute-api.ap-south-1.amazonaws.com/dev/graphql";
 const client = new ApolloClient({
-  uri: "http://localhost:4000/graphql",
+  uri: graphURL,
   cache: new InMemoryCache(),
   headers: {
     Authorization: token,
   },
 });
-
+console.log(process.env.NODE_ENV)
 ReactDOM.render(
   <React.StrictMode>
     <ApolloProvider client={client}>
