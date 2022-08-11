@@ -1,0 +1,266 @@
+import Sidebar from "../Components/Sidebar";
+import bg from "../Assets/Images/Group.svg";
+import Burger from "../Components/burger";
+import Detail from "../Components/Event/Detail";
+import Duration from "../Components/Event/Duration";
+import Invitations from "../Components/Event/Invitations";
+import Teams from "../Components/Event/Teams";
+import React, { Component, Fragment, useState, useEffect } from "react";
+// import Navbar from "../Components/Navbar";
+// import bg from "../Assets/Images/Group.svg";
+import Select from "../Components/Select.js";
+// import { DateRangePicker } from "react-date-range";
+
+import Button from "@mui/material/Button";
+import "react-date-range/dist/styles.css"; // main style file
+import "react-date-range/dist/theme/default.css"; // theme css file
+import { BsCheckLg, BsXLg, BsPlusLg } from "react-icons/bs";
+import states from "../Assets/Data/States.json";
+import { gql, useMutation, useQuery } from "@apollo/client";
+
+import * as XLSX from "xlsx";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+export default function Event() {
+  const steps = [
+    "Event Details",
+    "Event Duration",
+    "Select Teams",
+    "Invitations",
+  ];
+  const stepElements = [<Detail />, <Duration />];
+  const [show, setShow] = useState(false);
+  const [current, setCurrent] = useState(0);
+  const state1 =
+    " border-2 border-green-500 rounded-full h-[50px] w-[50px] mx-auto my-auto pt-[10px]  md:scale-100 scale-50";
+  const state2 =
+    "bg-green-500 text-white rounded-full h-[50px] w-[50px] mx-auto my-auto pt-[12px]  md:scale-100 scale-50";
+  ///////////////////////////////////////
+  const user = { role: "admin", name: "Rishit", id: "1" };
+
+  const [formdata, setFormData] = useState({});
+  const [extrausers, setExtraUsers] = useState([]);
+  const [userdata, setUserData] = useState({});
+  const [userfile, setUserFile] = useState();
+  const teams = ["events", "hr", "finance", "c&m", "technical"];
+
+  console.log(formdata);
+  /////////////////////////////////////////////
+
+  console.log(formdata);
+  const VENUE_QUERY = gql`
+    query {
+      getAllVenues {
+        id
+        name
+        city
+        pincode
+      }
+    }
+  `;
+
+  const { loading, err, data } = useQuery(VENUE_QUERY);
+  // const data = [{ id: 1234 }, { id: 1234 }];
+  const EVENT_MUTATION = gql`
+    mutation createEvent(
+      $name: String
+      $description: String
+      $venue: ID
+      $organiser: String
+      $caption: String
+      $fromdate: String
+      $todate: String
+      $time: String
+      $image: String
+      $departmentInvited: [String]
+      $usersInvited: [InvitedUserInput]
+      $status: String
+    ) {
+      createEvent(
+        eventInput: {
+          name: $name
+          description: $description
+          venue: $venue
+          organiser: $organiser
+          caption: $caption
+          fromdate: $fromdate
+          todate: $todate
+          time: $time
+          image: $image
+          departmentInvited: $departmentInvited
+          usersInvited: $usersInvited
+          status: $status
+        }
+      ) {
+        id
+        name
+      }
+    }
+  `;
+  const [events, event_loading] = useMutation(EVENT_MUTATION, {
+    onError: (err) => {
+      console.log(err.message);
+      toast.error("Error: Event Not Added!", {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    },
+    onCompleted: (data) => {
+      console.log(data);
+
+      toast.success(`Event Added successfully!`, {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+      setFormData({});
+    },
+    variables: formdata,
+  });
+  const onSubmit = (e) => {
+    e.preventDefault();
+    setFormData({ ...formdata, usersInvited: extrausers, status: "pending" });
+    console.log(formdata);
+    const localEvents = JSON.parse(localStorage.getItem("events"));
+    if (localEvents) {
+      localStorage.setItem(
+        "events",
+        JSON.stringify([...localEvents, { ...formdata, status: "pending" }])
+      );
+    } else {
+      localStorage.setItem(
+        "events",
+        JSON.stringify([{ ...formdata, status: "pending" }])
+      );
+    }
+    console.log(JSON.parse(localStorage.getItem("events")));
+    toast.success(`Event Added successfully!`, {
+      position: "top-center",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+    setFormData({});
+    // console.log(loading);
+  };
+
+  return (
+    <main
+      className="flex flex-row bg-[#f3f3f3]"
+      style={{ backgroundImage: `url(${bg})` }}
+    >
+      <div className="md:hidden block absolute z-50">
+        <Burger open={show} setOpen={setShow}></Burger>
+      </div>
+      <Sidebar show={show} setShow={setShow} />
+      <section className="mt-12 mx-10 z-10 md:ml-[25vw]">
+        <h1 className="font-bold text-2xl">Book a Venue</h1>
+        <p className="mt-8 text-blue-400 hover:text-blue-600 transition cursor-pointer mb-8">
+          Breadcrumb / breadcrumb / breadcrumb
+        </p>
+        <div className="flex flex-row mx-auto md:justify-center justify-between md:w-[70vw] w-max ">
+          <div className="mx-auto w-[85vw] md:w-[50vw]  ">
+            <div className="flex flex-row justify-between">
+              {steps.map((step, index) => {
+                // console.log(current, index, current <= index);
+                return (
+                  <div className="text-center">
+                    <div className={index <= current ? state2 : state1}>
+                      {index}
+                    </div>
+                    <div className="text-[0.5rem] sm:text-sm mt-0 sm:mt-2">
+                      {step}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+
+        <div className="flex flex-row mx-auto md:justify-center justify-between md:w-[70vw] w-max mt-8">
+          {current === 0 ? (
+            <Detail
+              setFormData={setFormData}
+              formdata={formdata}
+              extrausers={extrausers}
+              setExtraUsers={setExtraUsers}
+              setUserData={setUserData}
+              userdata={userdata}
+              setUserFile={setUserFile}
+              userfile={userfile}
+              user={user}
+              current={current}
+              setCurrent={setCurrent}
+            />
+          ) : null}
+          {current === 1 ? (
+            <Duration
+              current={current}
+              setCurrent={setCurrent}
+              setFormData={setFormData}
+              formdata={formdata}
+              extrausers={extrausers}
+              setExtraUsers={setExtraUsers}
+              setUserData={setUserData}
+              userdata={userdata}
+              setUserFile={setUserFile}
+              userfile={userfile}
+              user={user}
+              data={data}
+            />
+          ) : null}
+
+          {current === 2 ? (
+            <Teams
+              current={current}
+              setCurrent={setCurrent}
+              setFormData={setFormData}
+              formdata={formdata}
+              extrausers={extrausers}
+              setExtraUsers={setExtraUsers}
+              setUserData={setUserData}
+              userdata={userdata}
+              setUserFile={setUserFile}
+              userfile={userfile}
+              user={user}
+              data={data}
+              teams={teams}
+            />
+          ) : null}
+
+          {current === 3 ? (
+            <Invitations
+              current={current}
+              setCurrent={setCurrent}
+              setFormData={setFormData}
+              formdata={formdata}
+              extrausers={extrausers}
+              setExtraUsers={setExtraUsers}
+              setUserData={setUserData}
+              userdata={userdata}
+              setUserFile={setUserFile}
+              userfile={userfile}
+              user={user}
+              data={data}
+              teams={teams}
+            />
+          ) : null}
+        </div>
+      </section>
+    </main>
+  );
+}

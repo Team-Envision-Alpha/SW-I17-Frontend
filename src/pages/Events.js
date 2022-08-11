@@ -16,8 +16,9 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const Venue = () => {
-  const user = JSON.parse(localStorage.getItem("aicteuser"));
-  console.log(user);
+  // const user = JSON.parse(localStorage.getItem("aicteuser"));
+  // console.log(user);
+  const user = { role: "admin", name: "Rishit" };
   const [startdate, setStartDate] = useState(new Date());
   const [enddate, setEndDate] = useState(new Date());
   const [formdata, setFormData] = useState({});
@@ -109,7 +110,7 @@ const Venue = () => {
   `;
 
   const { loading, err, data } = useQuery(VENUE_QUERY);
-
+  // const data = [{ id: 1234 }, { id: 1234 }];
   const EVENT_MUTATION = gql`
     mutation createEvent(
       $name: String

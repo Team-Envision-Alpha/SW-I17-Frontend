@@ -5,10 +5,11 @@ import { Routes, Route, BrowserRouter as Router } from "react-router-dom";
 // import Twitter from "./Components/Twitter/twitter.js";
 import { gql, useQuery } from "@apollo/client";
 import SocialPanel from "./pages/SocialPanel.js";
-import Events from "./pages/Events";
+import OldEvents from "./pages/Events";
 import DashBoard from "./pages/DashBoard.js";
 import User from "./pages/User";
 import EventReq from "./pages/EventReq";
+import Event from "./pages/NewEvent";
 import InvitedEvent from "./pages/InvitedEvent";
 import EventModal from "./Components/EventModal";
 import VenuHeadDashboard from "./pages/VenuHeadDashboard";
@@ -35,10 +36,11 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Login />} />
           {/* <Route path="/fb" element={<FB />} /> */}
-{/*        <Route path="/twitter" element={<Twitter />} /> */}
+          {/*        <Route path="/twitter" element={<Twitter />} /> */}
           <Route path="/social" element={<SocialPanel />} />
 
-          <Route path="/events" element={<Events />} />
+          <Route path="/events" element={<Event />} />
+          <Route path="/oldevents" element={<OldEvents />} />
           <Route path="/dashboard" element={<DashBoard />} />
           <Route path="/venue_head_dashboard" element={<VenuHeadDashboard />} />
           <Route path="/user_registration" element={<User />} />
