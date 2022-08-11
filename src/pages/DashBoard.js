@@ -14,8 +14,8 @@ import DashCard from "../Components/DashCard";
 import Upcoming from "../Assets/Images/Dashboard/upcoming.svg";
 import social from "../Assets/Images/Dashboard/social.svg";
 const DashBoard = () => {
-  const user = JSON.parse(localStorage.getItem("aicteuser"));
-
+  // const user = JSON.parse(localStorage.getItem("aicteuser"));
+  const user = { name: "Rishit", role: "admin" };
   return (
     <div style={{ backgroundImage: `url(${bg})` }}>
       <Navbar />
