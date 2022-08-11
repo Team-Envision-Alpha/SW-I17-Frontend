@@ -8,6 +8,8 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const Login = () => {
+  // user = localStorage.getItem("aicteuser")
+  const user = { name: "Rishit", role: "admin" };
   const [userData, setUserData] = useState({ email: "", password: "" });
   const navigate = useNavigate();
   const handleChange = (e) =>
@@ -46,7 +48,7 @@ const Login = () => {
   });
 
   useEffect(() => {
-    if (localStorage.getItem("aicteuser")) {
+    if (user) {
       navigate("/dashboard");
     }
   }, []);

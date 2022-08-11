@@ -6,7 +6,8 @@ import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const navigate = useNavigate();
-  const user = JSON.parse(localStorage.getItem("aicteuser"));
+  // const user = JSON.parse(localStorage.getItem("aicteuser"));
+  const user = { name: "Rishit", role: "admin" };
   return (
     <>
       <div className="flex justify-between p-6 h-[12vh] items-center">
