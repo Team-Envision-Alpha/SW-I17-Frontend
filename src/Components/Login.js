@@ -114,7 +114,7 @@ const Login = () => {
                 id="mail"
                 placeholder="Email address"
                 autoComplete="off"
-                className="outline-none w-[24vw] px-4 py-2 text-[3vh] font-light "
+                className="outline-none w-[24vw] min-w-full px-4 py-2 text-[3vh] font-light "
                 style={{
                   color: "#818181",
                   background: "#E0E0E0",
@@ -129,7 +129,7 @@ const Login = () => {
                 id="pass"
                 placeholder="Password"
                 autoComplete="off"
-                className="outline-none w-[24vw] px-4 py-2 text-[3vh] font-light "
+                className="outline-none w-[32vw] min-w-max px-4 py-2 text-[3vh] font-light "
                 style={{
                   color: "#818181",
                   background: "#E0E0E0",
@@ -139,10 +139,10 @@ const Login = () => {
                 onChange={handleChange}
               />
               <div
-                className="w-[6vw] p-2 text-[3vh] text-white rounded-lg text-center"
+                className="w-24 min-w-max p-2 px-4 text-[3vh] text-white rounded-lg text-center"
                 style={{ background: "#1F8B24" }}
               >
-                <button className="font-extrabold  " type="submit">
+                <button className="font-extrabold" type="submit">
                   Login
                 </button>
               </div>

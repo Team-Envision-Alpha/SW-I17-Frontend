@@ -4,9 +4,9 @@ import Eventcard from '../Assets/Images/event.svg';
 const EventCard = (props) => {
   return (
     <>
-      <div className="flex flex-col gap-0 font-IBM-Sans px-7 mt-10 grid grid-cols-12 ">
+      <div className="transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110 flex flex-col gap-0 font-IBM-Sans px-7 mt-10 grid grid-cols-12 ">
         <div
-          className="col-span-1  rounded-l-xl "
+          className="col-span-1  rounded-l-xl"
           style={{ backgroundColor: '#E6C45B' }}
         ></div>
         <div
@@ -14,13 +14,13 @@ const EventCard = (props) => {
           style={{ backgroundColor: '#908976' }}
         >
           <div className="px-12 col-span-2">
-            <p className="text font-IBM-Sans mt-5 font-bold py-1">
+            <p className="text leading-6 font-IBM-Sans mt-5 font-bold py-1">
               <p>BlockChain Workshop</p>
-              <p className="font-light">9:00 AM - 10:00 AM</p>
-              Date-18th March (Friday)
+              <p className="font-light ">9:00 AM - 10:00 AM</p>
+              <p>Date-18th March (Friday)</p>
             </p>
             <button
-              class=" hover:bg-green-700 text-white font-bold py-1 px-2 rounded-lg h"
+              class=" hover:bg-green-700 text-white font-bold py-1 mb-2 mt-2 px-2 rounded-lg h"
               style={{ backgroundColor: '#1F8B24' }}
             >
               {props.name}
