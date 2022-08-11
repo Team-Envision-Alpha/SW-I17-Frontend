@@ -16,7 +16,7 @@ const DashBoard = () => {
           </p>
         </div>
         
-          <div className="flex flex-col container lg:px-20 mx-auto pb-20">
+          <div className="flex flex-col container lg:px-20 mx-auto pt-20">
           <div className="flex-row justify-center items-center grid md:grid-cols-2 sm:grid-cols-1">
             <EventCard name="Edit"></EventCard>
             <EventCard name="Edit"></EventCard>
