@@ -18,8 +18,10 @@ export default function Sidebar({ current, show, setShow }) {
       //   style={{ transform: show ? "translateX(0)" : "translateX(-100%)" }}
     >
       {/* <div className=""> */}
-      <img src={logo} className="w-[12vw] md:w-[8vw] mx-auto" />
-      <img src={text} className="w-[20vw] md:w-[14vw] mx-auto" />
+      <a href="/dashboard">
+        <img src={logo} className="w-[12vw] md:w-[8vw] mx-auto" />
+        <img src={text} className="w-[20vw] md:w-[14vw] mx-auto" />
+      </a>
       <div className="bg-[#00000050] my-6 h-[1px]" />
 
       <p className="text-center font-bold">Dashboard</p>
