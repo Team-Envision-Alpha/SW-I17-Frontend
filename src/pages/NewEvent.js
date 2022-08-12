@@ -33,7 +33,7 @@ export default function Event() {
   const [show, setShow] = useState(false);
   const [current, setCurrent] = useState(0);
   const state1 =
-    " border-2 border-green-500 rounded-full h-[50px] w-[50px] mx-auto my-auto pt-[10px]  md:scale-100 scale-50";
+    " border-2 bg-[#f3f3f3] border-green-500 rounded-full h-[50px] w-[50px] mx-auto my-auto pt-[10px]  md:scale-100 scale-50";
   const state2 =
     "bg-green-500 text-white rounded-full h-[50px] w-[50px] mx-auto my-auto pt-[12px]  md:scale-100 scale-50";
   ///////////////////////////////////////
@@ -173,7 +173,17 @@ export default function Event() {
         </p>
         <div className="flex flex-row mx-auto md:justify-center justify-between md:w-[70vw] w-max ">
           <div className="mx-auto w-[85vw] md:w-[50vw]  ">
-            <div className="flex flex-row justify-between">
+            <div className="flex flex-row justify-between relative">
+              <div className="transition w-[80vw] md:w-[45vw] h-[5px] mx-auto my-auto absolute top-[23px] left-[23px] md:scale-100 scale-50 flex flex-row flex-wrap">
+                <div
+                  className={`w-full h-full bg-green-600 transition `}
+                  style={{ flexBasis: `${(current / 3) * 100}%` }}
+                ></div>
+                <div
+                  className={`w-full h-full bg-green-300 transition `}
+                  style={{ flexBasis: `${((3 - current) / 3) * 100}%` }}
+                ></div>
+              </div>
               {steps.map((step, index) => {
                 // console.log(current, index, current <= index);
                 return (
