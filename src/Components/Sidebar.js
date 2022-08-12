@@ -13,14 +13,14 @@ export default function Sidebar({ current, show, setShow }) {
   return (
     <div
       className={`${
-        show ? "translate-x-0 absolute " : "translate-x-[-100vw]"
-      } md:translate-x-0 absolute flex flex-col align-middle h-[100vh] md:fixed z-40 bg-white px-10 py-5 transition duration-500`}
+        show ? "translate-x-0 " : "translate-x-[-100vw]"
+      } md:translate-x-0 flex flex-col align-middle h-[100vh] fixed overflow-y-scroll z-40 bg-white px-10 py-5 transition duration-500`}
       //   style={{ transform: show ? "translateX(0)" : "translateX(-100%)" }}
     >
       {/* <div className=""> */}
       <a href="/dashboard">
         <img src={logo} className="w-[12vw] md:w-[8vw] mx-auto" />
-        <img src={text} className="w-[20vw] md:w-[14vw] mx-auto" />
+        <img src={text} className="w-[20vw] md:w-[12vw] mx-auto" />
       </a>
       <div className="bg-[#00000050] my-6 h-[1px]" />
 
@@ -50,6 +50,10 @@ export default function Sidebar({ current, show, setShow }) {
           <img src={socialAnalytics} className="w-[2vw]" />
           <p className="ml-4 my-auto ">Social Analytics</p>
         </div>
+        {/* <div className="flex flex-row px-1 py-5">
+          <img src={socialAnalytics} className="w-[2vw]" />
+          <p className="ml-4 my-auto ">Social Analytics</p>
+        </div> */}
       </div>
       {/* </div> */}
     </div>

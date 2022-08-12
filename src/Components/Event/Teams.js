@@ -93,7 +93,7 @@ export default function Details({
   };
 
   return (
-    <div className="w-[50vw] bg-[#f3b641] shadow-xl rounded-2xl overflow-y-hidden my-10">
+    <div className="w-[80vw] md:w-[50vw] bg-[#f3b641] shadow-xl rounded-2xl overflow-y-hidden my-10">
       <div className="w-full h-full py-5 mt-5 bg-white px-10">
         <p className="text-center my-10 text-lg font-bold">
           Fill out the Following Details

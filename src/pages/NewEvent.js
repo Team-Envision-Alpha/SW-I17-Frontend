@@ -5,6 +5,10 @@ import Detail from "../Components/Event/Detail";
 import Duration from "../Components/Event/Duration";
 import Invitations from "../Components/Event/Invitations";
 import Teams from "../Components/Event/Teams";
+import Food from "../Components/Event/Food";
+
+import Navbar from "../Components/NewNavbar";
+
 import React, { Component, Fragment, useState, useEffect } from "react";
 // import Navbar from "../Components/Navbar";
 // import bg from "../Assets/Images/Group.svg";
@@ -28,6 +32,7 @@ export default function Event() {
     "Event Duration",
     "Select Teams",
     "Invitations",
+    "Food Requirements",
   ];
   const stepElements = [<Detail />, <Duration />];
   const [show, setShow] = useState(false);
@@ -162,11 +167,12 @@ export default function Event() {
       className="flex flex-row bg-[#f3f3f3]"
       style={{ backgroundImage: `url(${bg})` }}
     >
+      <Navbar />
       <div className="md:hidden block absolute z-50">
         <Burger open={show} setOpen={setShow}></Burger>
       </div>
       <Sidebar show={show} setShow={setShow} />
-      <section className="mt-12 mx-10 z-10 md:ml-[25vw]">
+      <section className="mt-12 mx-10 z-10 md:ml-[25vw] lg:ml-[25vw]">
         <h1 className="font-bold text-2xl">Book a Venue</h1>
         <p className="mt-8 text-blue-400 hover:text-blue-600 transition cursor-pointer mb-8">
           Breadcrumb / breadcrumb / breadcrumb
@@ -174,14 +180,20 @@ export default function Event() {
         <div className="flex flex-row mx-auto md:justify-center justify-between md:w-[70vw] w-max ">
           <div className="mx-auto w-[85vw] md:w-[50vw]  ">
             <div className="flex flex-row justify-between relative">
-              <div className="transition w-[80vw] md:w-[45vw] h-[5px] mx-auto my-auto absolute top-[23px] left-[23px] md:scale-100 scale-50 flex flex-row flex-wrap">
+              <div className="transition w-[70vw] md:w-[45vw] h-[5px] mx-auto my-auto absolute top-[23px] left-[23px] flex flex-row flex-wrap">
                 <div
                   className={`w-full h-full bg-green-600 transition `}
-                  style={{ flexBasis: `${(current / 3) * 100}%` }}
+                  style={{
+                    flexBasis: `${(current / (steps.length - 1)) * 100}%`,
+                  }}
                 ></div>
                 <div
                   className={`w-full h-full bg-green-300 transition `}
-                  style={{ flexBasis: `${((3 - current) / 3) * 100}%` }}
+                  style={{
+                    flexBasis: `${
+                      ((steps.length - 1 - current) / (steps.length - 1)) * 100
+                    }%`,
+                  }}
                 ></div>
               </div>
               {steps.map((step, index) => {
@@ -189,7 +201,7 @@ export default function Event() {
                 return (
                   <div className="text-center">
                     <div className={index <= current ? state2 : state1}>
-                      {index}
+                      {index + 1}
                     </div>
                     <div className="text-[0.5rem] sm:text-sm mt-0 sm:mt-2">
                       {step}
@@ -254,6 +266,24 @@ export default function Event() {
 
           {current === 3 ? (
             <Invitations
+              current={current}
+              setCurrent={setCurrent}
+              setFormData={setFormData}
+              formdata={formdata}
+              extrausers={extrausers}
+              setExtraUsers={setExtraUsers}
+              setUserData={setUserData}
+              userdata={userdata}
+              setUserFile={setUserFile}
+              userfile={userfile}
+              user={user}
+              data={data}
+              teams={teams}
+            />
+          ) : null}
+
+          {current === 4 ? (
+            <Food
               current={current}
               setCurrent={setCurrent}
               setFormData={setFormData}
