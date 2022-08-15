@@ -168,11 +168,11 @@ export default function Event() {
       style={{ backgroundImage: `url(${bg})` }}
     >
       <Navbar />
-      <div className="md:hidden block absolute z-50">
+      <div className="lg:hidden block absolute z-50">
         <Burger open={show} setOpen={setShow}></Burger>
       </div>
       <Sidebar show={show} setShow={setShow} />
-      <section className="mt-12 mx-10 z-10 md:ml-[25vw] lg:ml-[25vw]">
+      <section className="mt-12 mx-10 z-10 md:ml-[28vw] lg:ml-[25vw]">
         <h1 className="font-bold text-2xl">Book a Venue</h1>
         <p className="mt-8 text-blue-400 hover:text-blue-600 transition cursor-pointer mb-8">
           Breadcrumb / breadcrumb / breadcrumb
@@ -180,7 +180,7 @@ export default function Event() {
         <div className="flex flex-row mx-auto md:justify-center justify-between md:w-[70vw] w-max ">
           <div className="mx-auto w-[85vw] md:w-[50vw]  ">
             <div className="flex flex-row justify-between relative">
-              <div className="transition w-[70vw] md:w-[45vw] h-[5px] mx-auto my-auto absolute top-[23px] left-[23px] flex flex-row flex-wrap">
+              <div className="transition w-[70vw] md:w-[45vw] h-[5px] mx-auto my-auto absolute top-[23px] left-[23px] flex flex-row flex-wrap justify-center">
                 <div
                   className={`w-full h-full bg-green-600 transition `}
                   style={{
