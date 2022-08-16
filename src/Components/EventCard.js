@@ -4,13 +4,13 @@ import Eventcard from '../Assets/Images/event.svg';
 const EventCard = (props) => {
   return (
     <>
-      <div className="transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110 flex flex-col gap-0 font-IBM-Sans px-7 mt-10 grid grid-cols-12 ">
+      <div className="transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110 flex-col gap-0 font-IBM-Sans px-7 mt-10 grid grid-cols-12 ">
         <div
           className="col-span-1  rounded-l-xl"
           style={{ backgroundColor: '#E6C45B' }}
         ></div>
         <div
-          className="rounded-r-xl flex flex-row grid grid-cols-3 col-span-11 text-white"
+          className="rounded-r-xl flex-row grid grid-cols-3 col-span-11 text-white"
           style={{ backgroundColor: '#908976' }}
         >
           <div className="px-12 col-span-2">
