@@ -42,7 +42,7 @@ export default function Event() {
   const state2 =
     "bg-green-500 text-white rounded-full h-[50px] w-[50px] mx-auto my-auto pt-[12px]  md:scale-100 scale-50";
   ///////////////////////////////////////
-  const user = { role: "admin", name: "Rishit", id: "1" };
+  const user = JSON.parse(localStorage.getItem("aicteuser"));
 
   const [formdata, setFormData] = useState({
     fromdate: new Date().toLocaleString().split(",")[0],

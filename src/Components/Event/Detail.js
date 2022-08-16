@@ -78,7 +78,7 @@ export default function Details({
           />
         </div>
         <div className="flex flex-col gap-4">
-          <h4>Organiser ID</h4>
+          <h4>Organiser</h4>
           <input
             type="text"
             className="w-full p-4 outline-none"
@@ -88,7 +88,7 @@ export default function Details({
               border: "2px solid grey",
               borderRadius: "8px",
             }}
-            value={user.id}
+            value={`${user.name} - (${user.email})`}
             name="organiser"
             placeholder="Text here"
             readOnly

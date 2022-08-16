@@ -1,6 +1,13 @@
 import Select from "react-select";
 import React from "react";
-export default function select({ data, setFormData, formdata, name, dataobj }) {
+export default function select({
+  data,
+  setFormData,
+  formdata,
+  name,
+  dataobj,
+  value,
+}) {
   const customStyles = {
     option: (provided, state) => ({
       ...provided,
@@ -44,6 +51,7 @@ export default function select({ data, setFormData, formdata, name, dataobj }) {
       };
     });
   }
+
   return (
     <Select
       classNamePrefix="select"
@@ -52,6 +60,7 @@ export default function select({ data, setFormData, formdata, name, dataobj }) {
       name={name}
       styles={customStyles}
       options={formoptions}
+      value={formdata.name}
       onChange={(e) => {
         if (e.value) {
           setFormData({ ...formdata, [name]: e.value });

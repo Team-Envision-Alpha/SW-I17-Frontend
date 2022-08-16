@@ -9,7 +9,8 @@ import "react-toastify/dist/ReactToastify.css";
 
 const Login = () => {
   // user = localStorage.getItem("aicteuser")
-  const user = { name: "Rishit", role: "admin" };
+  // const user = { name: "Rishit", role: "admin" };
+  const [user, setUser] = useState();
   const [userData, setUserData] = useState({ email: "", password: "" });
   const navigate = useNavigate();
   const handleChange = (e) =>
@@ -42,6 +43,7 @@ const Login = () => {
     },
     onCompleted: (result) => {
       console.log(result);
+      setUser(result.loginUser);
       localStorage.setItem("aicteuser", JSON.stringify(result.loginUser));
       navigate("/dashboard");
     },
@@ -144,7 +146,10 @@ const Login = () => {
                 className="w-24 min-w-max text-[3vh] text-white rounded-lg text-center"
                 style={{ background: "#1F8B24" }}
               >
-                <button className="font-extrabold border-none outline-none p-2 px-4" type="submit">
+                <button
+                  className="font-extrabold border-none outline-none p-2 px-4"
+                  type="submit"
+                >
                   Login
                 </button>
               </div>
