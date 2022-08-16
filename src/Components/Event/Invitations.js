@@ -8,6 +8,7 @@ import { BsCheckLg, BsXLg, BsPlusLg } from "react-icons/bs";
 // import states from "../Assets/Data/States.json";
 
 import * as XLSX from "xlsx";
+import { useEffect } from "react";
 
 export default function Details({
   setFormData,
@@ -92,7 +93,9 @@ export default function Details({
       setFormData({ ...formdata, image: e.target.result });
     };
   };
-
+  useEffect(() => {
+    setFormData({ ...formdata, usersInvited: extrausers });
+  }, [extrausers]);
   return (
     <div className="w-[80vw] md:w-[50vw] bg-[#f3b641] shadow-xl rounded-2xl overflow-y-hidden my-10">
       <div className="w-full h-full py-5 mt-5 bg-white px-10">

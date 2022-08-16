@@ -74,9 +74,25 @@ export default function Details({
     setFormData({ ...formdata, times });
   }, [times]);
 
+  function checkTime() {
+    // console.log(formdata);
+    if (formdata.times && Object.keys(formdata.times).length == daysCount()) {
+      var check = false;
+      Object.keys(formdata.times).map((key) => {
+        // console.log(formdata.times[key]);
+        // console.log(formdata.times);
+        if (Object.keys(formdata.times[key]).length != 2) {
+          check = false;
+        } else {
+          check = true;
+        }
+      });
+    }
+    return check;
+  }
   function checkData() {
     console.log(formdata);
-    if (formdata.fromdate && formdata.todate && _.get(formdata, "times.0")) {
+    if (formdata.fromdate && formdata.todate && checkTime()) {
       return true;
     } else {
       return false;
