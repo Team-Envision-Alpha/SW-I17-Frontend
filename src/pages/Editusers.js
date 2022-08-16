@@ -7,16 +7,17 @@ import { gql, useQuery } from "@apollo/client";
 const EventReq = () => {
   const USER_QUERY = gql`
     query {
-      getAllUsers {
+      getUsers {
         id
         name
         email
         phone
+        role
       }
     }
   `;
-  // const { loading, err, data } = useQuery(USER_QUERY);
-  // console.log(data.getAllUsers);
+  const { loading, err, data } = useQuery(USER_QUERY);
+  console.log(data);
   return (
     <>
       <div style={{ backgroundImage: `url(${bg})` }}>
@@ -48,23 +49,24 @@ const EventReq = () => {
                       </tr>
                     </thead>
                     <tbody className="bg-white">
-                      <tr className="text-[#000000]">
+                    {data?.getUsers.map((user) => 
+                      <tr key={user.id} className="text-[#000000]">
                         <td
                           className="text-center py-3 border-[#B9B9B9] border-2 
                     text-md"
                         >
                           <div>
-                            <p>A. Suresh</p>
+                            <p>{user.name}</p>
                           </div>
                         </td>
                         <td className="text-center py-3 text-md  border-[#B9B9B9] border-2">
                           <div>
-                            <p>sureash_8@gmail.com</p>
+                            <p>{user.email}</p>
                           </div>
                         </td>
                         <td className="text-center py-3 text-md border-[#B9B9B9] border-2">
                           <div>
-                            <p>8745973210</p>
+                            <p>{user.phone}</p>
                           </div>
                         </td>
                         <td className="text-center py-3 text-md border-[#B9B9B9] border-2 ">
@@ -77,12 +79,13 @@ const EventReq = () => {
                               >
                                 Edit User
                               </p> */}
-                            Role
+                            {user.role}
                           </div>
 
                           {/* {isOpen && <EventModal setIsOpen={setIsOpen} />} */}
                         </td>
                       </tr>
+                    )}
                     </tbody>
                   </table>
                 </div>

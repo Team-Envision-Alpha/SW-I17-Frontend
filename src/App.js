@@ -25,10 +25,10 @@ const App = () => {
       hello
     }
   `;
-  const { loading, error, data } = useQuery(HELLO);
-  console.log(data);
-  console.log(loading);
-  console.log(error);
+  // const { loading, error, data } = useQuery(HELLO);
+  // console.log(data);
+  // console.log(loading);
+  // console.log(error);
 
   return (
     <>

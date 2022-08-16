@@ -35,14 +35,13 @@ const User = () => {
       $phone: String!
     ) {
       registerUser(
-        userInput: {
+       
           email: $email
           password: $password
           role: $role
           department: $department
           name: $name
           phone: $phone
-        }
       ) {
         id
         name
@@ -58,6 +57,7 @@ const User = () => {
   }, [confirmpassword, formdata.password]);
   const [register, { loading }] = useMutation(REGISTER_MUTATION, {
     onError: (err) => {
+      console.log(err);
       toast.error("Error: User Not Registered!", {
         position: "top-center",
         autoClose: 3000,

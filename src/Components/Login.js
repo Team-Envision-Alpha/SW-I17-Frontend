@@ -14,6 +14,7 @@ const Login = () => {
   const navigate = useNavigate();
   const handleChange = (e) =>
     setUserData({ ...userData, [e.target.name]: e.target.value });
+
   const LOGIN_MUTATION = gql`
     mutation loginUser($email: String!, $password: String!) {
       loginUser(email: $email, password: $password) {
@@ -27,6 +28,7 @@ const Login = () => {
   `;
   const [login, { loading }] = useMutation(LOGIN_MUTATION, {
     onError: (err) => {
+      // console.log(JSON.parse(err.graphQLErrors[0].message.split(": ")[1]).data);
       console.log(err);
       toast.error("Error: Invalid Credentials", {
         position: "top-center",
@@ -47,12 +49,13 @@ const Login = () => {
     variables: userData,
   });
 
-  useEffect(() => {
-    if (user) {
-      navigate("/dashboard");
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (user) {
+  //     navigate("/dashboard");
+  //   }
+  // }, []);
   const onSubmit = (e) => {
+    console.log("logging in");
     e.preventDefault();
     toast.info("Logging in!", {
       position: "top-center",
@@ -104,7 +107,6 @@ const Login = () => {
           </div>
           <div>
             <form
-              action="/"
               onSubmit={onSubmit}
               className="flex flex-col gap-10 justify-center items-center"
             >
@@ -139,10 +141,10 @@ const Login = () => {
                 onChange={handleChange}
               />
               <div
-                className="w-24 min-w-max p-2 px-4 text-[3vh] text-white rounded-lg text-center"
+                className="w-24 min-w-max text-[3vh] text-white rounded-lg text-center"
                 style={{ background: "#1F8B24" }}
               >
-                <button className="font-extrabold" type="submit">
+                <button className="font-extrabold border-none outline-none p-2 px-4" type="submit">
                   Login
                 </button>
               </div>
