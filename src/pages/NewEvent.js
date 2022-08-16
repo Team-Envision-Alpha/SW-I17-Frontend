@@ -44,7 +44,10 @@ export default function Event() {
   ///////////////////////////////////////
   const user = { role: "admin", name: "Rishit", id: "1" };
 
-  const [formdata, setFormData] = useState({});
+  const [formdata, setFormData] = useState({
+    fromdate: new Date().toLocaleString().split(",")[0],
+    todate: new Date().toLocaleString().split(",")[0],
+  });
   const [extrausers, setExtraUsers] = useState([]);
   const [userdata, setUserData] = useState({});
   const [userfile, setUserFile] = useState();

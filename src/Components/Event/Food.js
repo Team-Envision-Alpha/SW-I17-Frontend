@@ -145,7 +145,7 @@ export default function Food({
                 </AccordionSummary>
                 <AccordionDetails>
                   <div className="flex flex-row justify-between">
-                    <div className="flex flex-col w-[30%] hover:shadow-lg transition rounded-sm hover:border-[0.1px] border-[#00000020] p-4">
+                    <div className=" gap-y-4 flex flex-col w-[30%] hover:shadow-lg transition rounded-sm hover:border-[0.1px] border-[#00000020] p-5">
                       <div className="flex flex-row justify-between">
                         <span className="text-xl font-bold">Breakfast</span>
                         <input
@@ -167,7 +167,7 @@ export default function Food({
                       </Typography>
                     </div>
 
-                    <div className="flex flex-col w-[30%] hover:shadow-lg transition rounded-sm hover:border-[0.1px] border-[#00000020] p-4">
+                    <div className="flex gap-y-4 flex-col w-[30%] hover:shadow-lg transition rounded-sm hover:border-[0.1px] border-[#00000020] p-5">
                       <div className="flex flex-row justify-between">
                         <span className="text-xl font-bold">Lunch</span>
                         <input
@@ -189,7 +189,7 @@ export default function Food({
                       </Typography>
                     </div>
 
-                    <div className="flex flex-col w-[30%] hover:shadow-lg transition rounded-sm hover:border-[0.1px] border-[#00000020] p-4">
+                    <div className="flex gap-y-4 flex-col w-[30%] hover:shadow-lg transition rounded-sm hover:border-[0.1px] border-[#00000020] p-5">
                       <div className="flex flex-row justify-between">
                         <span className="text-xl font-bold">Dinner</span>
                         <input

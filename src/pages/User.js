@@ -1,13 +1,17 @@
 import React, { useEffect, useState } from "react";
 import bg from "../Assets/Images/Group.svg";
-import Navbar from "../Components/Navbar";
+// import Navbar from "../Components/Navbar";
 import Select from "../Components/Select";
 import { gql, useMutation } from "@apollo/client";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Sidebar from "../Components/Sidebar";
+import Navbar from "../Components/NewNavbar";
+import Burger from "../Components/burger";
 
 const User = () => {
   const roles = ["admin", "user", "team-head", "venue-head", "social-team"];
+  const [show, setShow] = useState(false);
   const [submitstate, setSubmitstate] = useState(true);
   const [confirmpassword, setConfrmpassword] = useState("");
   const departments = [
@@ -97,6 +101,11 @@ const User = () => {
     <>
       <div style={{ backgroundImage: `url(${bg})` }}>
         <Navbar />
+        <div className="md:hidden block absolute z-50">
+          <Burger open={show} setOpen={setShow}></Burger>
+        </div>
+        <Sidebar show={show} setShow={setShow} />
+        {/* <Navbar /> */}
         <ToastContainer
           position="top-center"
           autoClose={3000}
@@ -108,12 +117,16 @@ const User = () => {
           draggable
           pauseOnHover
         />
-        <div className="flex flex-col gap-10 font-IBM-Sans px-8 my-10">
+        <div className="flex flex-col gap-10 font-IBM-Sans px-8 py-10 md:ml-[28vw] lg:ml-[25vw]">
           <div>
-            <p className="text-[3vh] font-IBM-Sans ">Registration</p>
+            <p className="text-[3vh] font-IBM-Sans ">New User Registration</p>
           </div>
-          <form onSubmit={onSubmit}>
-            <div className="grid grid-cols-2 gap-20 items-center justify-center px-40">
+          <div className="w-[80vw] md:w-[50vw] bg-[#f3b641] shadow-xl rounded-2xl overflow-y-hidden my-10 mx-auto lg:mx-[5vw]">
+            <form
+              onSubmit={onSubmit}
+              className="w-full h-full py-5 mt-5 bg-white px-10"
+            >
+              {/* <div className="grid grid-cols-2 gap-20 items-center justify-center px-40"> */}
               <div className="flex flex-col gap-10">
                 <div className="flex flex-col gap-4">
                   <h4>Name</h4>
@@ -244,8 +257,9 @@ const User = () => {
                   </button>
                 </div>
               </div>
-            </div>
-          </form>
+              {/* </div> */}
+            </form>
+          </div>
         </div>
       </div>
     </>

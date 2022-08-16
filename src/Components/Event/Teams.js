@@ -99,7 +99,7 @@ export default function Details({
           Fill out the Following Details
         </p>
 
-        <div className="flex flex-col">
+        <div className="flex flex-col justify-center">
           <h3 className="mx-auto text-center mb-5">
             Select Teams for Invite List
           </h3>
@@ -134,7 +134,7 @@ export default function Details({
             </Button>
           </div>
 
-          <div className="flex justify-center flex-row flex-wrap mt-1">
+          <div className="flex justify-center flex-row flex-wrap mt-4">
             {teams.map((team, idx) => {
               return (
                 <div className="mr-4 transition mt-3">
@@ -197,28 +197,28 @@ export default function Details({
                 </div>
               );
             })}
-            <div className="mt-8">
-              <div className="flex flex-col justify-center text-center object-center mx-auto place-content-center">
-                Upload Event Image<br></br>
-                <input
-                  type="file"
-                  name="image"
-                  accept="image/svg, image/png, image/jpeg, image/jpg, image/webp"
-                  className="mt-8 block ml-12 w-full text-sm text-slate-500 place-content-center
+          </div>
+        </div>
+        <div className="mt-10 mx-auto">
+          <div className="flex flex-col justify-center text-center align-middle object-center mx-auto place-content-center">
+            Upload Event Image<br></br>
+            <input
+              type="file"
+              name="image"
+              accept="image/svg, image/png, image/jpeg, image/jpg, image/webp"
+              className="mt-8  ml-12 w-full text-sm text-slate-500 place-content-center justify-center flex flex-row mx-auto
       file:mr-4 file:py-2 file:px-4
       file:rounded-full file:border-0
       file:text-sm file:font-semibold
       file:bg-blue-50 file:text-blue-700
       hover:file:bg-violet-100"
-                  onChange={handleImage}
-                />
-                {/* <div className="mt-8">
+              onChange={handleImage}
+            />
+            {/* <div className="mt-8">
                         <Button variant="outlined" color="primary">
                           Upload Event Image
                         </Button>
                       </div> */}
-              </div>
-            </div>
           </div>
         </div>
 

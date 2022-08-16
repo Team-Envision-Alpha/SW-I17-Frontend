@@ -21,13 +21,6 @@ export default function Details({
       setCurrent(current - 1);
     }
   }
-  function checkData() {
-    if (formdata.name && formdata.description) {
-      return true;
-    } else {
-      return false;
-    }
-  }
   return (
     <div className="w-[80vw] md:w-[50vw] bg-[#f3b641] shadow-xl rounded-2xl overflow-y-hidden my-10">
       <div className="w-full h-full py-5 mt-5 bg-white px-10">
@@ -102,18 +95,12 @@ export default function Details({
           <div className="font-bold py-3 cursor-pointer" onClick={handleBack}>
             Go back
           </div>
-          {checkData() ? (
-            <div
-              className=" bg-green-700 text-white px-10 py-3 rounded-lg cursor-pointer"
-              onClick={handleNext}
-            >
-              Next
-            </div>
-          ) : (
-            <div className=" bg-red-400 text-white px-10 py-3 rounded-lg">
-              Please Fill All Fields
-            </div>
-          )}
+          <div
+            className=" bg-green-700 text-white px-10 py-3 rounded-lg cursor-pointer"
+            onClick={handleNext}
+          >
+            Next
+          </div>
         </div>
       </div>
     </div>
