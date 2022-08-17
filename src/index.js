@@ -9,7 +9,7 @@ const token = JSON.parse(localStorage.getItem("aicteuser"))
   : "";
 
 // const graphURL = process.env.NODE_ENV !="development" ? "http://localhost:4000/graphql" : "http://13.127.10.137/graphql";
-const graphURL = "http://13.127.10.137/graphql";
+const graphURL = "https://envisionalpha.aaruush.org/graphql";
 const client = new ApolloClient({
   uri: graphURL,
   cache: new InMemoryCache(),
