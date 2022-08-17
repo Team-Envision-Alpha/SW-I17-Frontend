@@ -17,6 +17,7 @@ const client = new ApolloClient({
     Authorization: token,
   },
 });
+
 ReactDOM.render(
   <React.StrictMode>
     <ApolloProvider client={client}>
