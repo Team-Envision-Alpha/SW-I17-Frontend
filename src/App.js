@@ -18,7 +18,7 @@ import EventAndVenueDetails from "./pages/EventAndVenueDetails";
 import EditUser from "./pages/Editusers";
 import Canteen from "./pages/Canteen";
 import SocialAnalytics from "./pages/SocialAnalytics";
-
+import ViewVenues from "./pages/ViewVenue";
 const App = () => {
   const HELLO = gql`
     query {
@@ -46,7 +46,7 @@ const App = () => {
           <Route path="/user_registration" element={<User />} />
           <Route path="/requests" element={<EventReq />} />
           <Route path="/edituser" element={<EditUser />} />
-
+          <Route path="/venues" element={<ViewVenues />} />
           <Route path="/event_modal" element={<EventModal />} />
           <Route path="/invited_event" element={<InvitedEvent />} />
           <Route path="/add_venue" element={<VenueDetails />} />

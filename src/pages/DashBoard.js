@@ -13,11 +13,16 @@ import Navbar from "../Components/Navbar";
 import DashCard from "../Components/DashCard";
 import Upcoming from "../Assets/Images/Dashboard/upcoming.svg";
 import social from "../Assets/Images/Dashboard/social.svg";
+import allvenues from "../Assets/Images/Dashboard/allvenues.svg";
+
 const DashBoard = () => {
   // const user = JSON.parse(localStorage.getItem("aicteuser"));
   const user = { name: "Rishit", role: "admin" };
   return (
-    <div style={{ backgroundImage: `url(${bg})` }}>
+    <div
+      style={{ backgroundImage: `url(${bg})` }}
+      className="bg-[#f8f7f8] min-h-[100vh] bg-cover"
+    >
       <Navbar />
       <div className="flex flex-col justify-center items-center my-10 gap-8 px-64">
         <div>
@@ -33,6 +38,9 @@ const DashBoard = () => {
           {user.role == "admin" ? (
             <DashCard icon={report} name="Generate Report" />
           ) : null}
+          <a href="/venues">
+            <DashCard icon={allvenues} name="View Venues" />
+          </a>
           <a href="/requests">
             <DashCard icon={activity} name="User Requests" />
           </a>
@@ -41,9 +49,14 @@ const DashBoard = () => {
               <DashCard icon={createuser} name="Create User" />
             </a>
           ) : null}
+          {/* {user.role == "admin" ? (
+            <a href="/edituser">
+              <DashCard icon={createuser} name="Edit User" />
+            </a>
+          ) : null} */}
           {user.role == "admin" ? (
             <a href="/edituser">
-              <DashCard icon={editUser} name="View Users" />
+              <DashCard icon={editUser} name="View/Edit Users" />
             </a>
           ) : null}
           {user.role == "admin" ? (
