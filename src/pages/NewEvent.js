@@ -44,10 +44,7 @@ export default function Event() {
   ///////////////////////////////////////
   const user = JSON.parse(localStorage.getItem("aicteuser"));
 
-  const [formdata, setFormData] = useState({
-    fromdate: new Date().toLocaleString().split(",")[0],
-    todate: new Date().toLocaleString().split(",")[0],
-  });
+  const [formdata, setFormData] = useState({});
   const [extrausers, setExtraUsers] = useState([]);
   const [userdata, setUserData] = useState({});
   const [userfile, setUserFile] = useState();

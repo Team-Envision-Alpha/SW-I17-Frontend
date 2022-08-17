@@ -5,6 +5,11 @@ import Select from "../Select";
 
 import TimeKeeper from "react-timekeeper";
 import _ from "lodash";
+import Accordion from "@mui/material/Accordion";
+import AccordionSummary from "@mui/material/AccordionSummary";
+import AccordionDetails from "@mui/material/AccordionDetails";
+import Typography from "@mui/material/Typography";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 export default function Details({
   setFormData,
@@ -143,58 +148,71 @@ export default function Details({
           {_.times(daysCount(), (i) => {
             return (
               <div className="flex flex-row justify-around" key={i}>
-                <TimeKeeper
-                  time={
-                    _.get(times, `${i}.from`)
-                      ? _.get(times, `${i}.from`)
-                      : "00:00am"
-                  }
-                  switchToMinuteOnHourSelect={true}
-                  onChange={(data) => {
-                    setTimes({
-                      ...times,
-                      [i]: {
-                        ...times[i],
-                        from: data.formatted24,
-                      },
-                    });
-                    // setTimes({
-                    //   ...times,
-                    //   [i]: {
-                    //     ...times[i],
-                    //     from: data.formatted24,
-                    //   },
-                    // });
-                  }}
-                />
-                <TimeKeeper
-                  time={
-                    _.get(times, `${i}.to`)
-                      ? _.get(times, `${i}.to`)
-                      : "00:00am"
-                  }
-                  disabledTimeRange={{
-                    from: "0:00",
-                    to: _.get(times, `${i}.from`),
-                  }}
-                  switchToMinuteOnHourSelect={true}
-                  onChange={(data) => {
-                    setTimes({
-                      ...times,
-                      [i]: {
-                        ...times[i],
-                        to: data.formatted24,
-                      },
-                    });
-                    // setTimes({
-                    //   ...times,
-                    //   [i]: {
-                    //     ...times[i],
-                    //     from: data.formatted24,
-                    //   },
-                    // });
-                  }}
-                />
+                <Accordion>
+                  <AccordionSummary
+                    expandIcon={<ExpandMoreIcon />}
+                    aria-controls="panel1a-content"
+                    id="panel1a-header"
+                  >
+                    <Typography>
+                      Day {i + 1} - {new Date(formdata.fromdate).addDays(i)}
+                    </Typography>
+                  </AccordionSummary>
+                  <AccordionDetails className="flex md:flex-row flex-col p-3 gap-x-2">
+                    <TimeKeeper
+                      time={
+                        _.get(times, `${i}.from`)
+                          ? _.get(times, `${i}.from`)
+                          : "00:00am"
+                      }
+                      switchToMinuteOnHourSelect={true}
+                      onChange={(data) => {
+                        setTimes({
+                          ...times,
+                          [i]: {
+                            ...times[i],
+                            from: data.formatted24,
+                          },
+                        });
+                        // setTimes({
+                        //   ...times,
+                        //   [i]: {
+                        //     ...times[i],
+                        //     from: data.formatted24,
+                        //   },
+                        // });
+                      }}
+                    />
+                    <TimeKeeper
+                      time={
+                        _.get(times, `${i}.to`)
+                          ? _.get(times, `${i}.to`)
+                          : "00:00am"
+                      }
+                      disabledTimeRange={{
+                        from: "0:00",
+                        to: _.get(times, `${i}.from`),
+                      }}
+                      switchToMinuteOnHourSelect={true}
+                      onChange={(data) => {
+                        setTimes({
+                          ...times,
+                          [i]: {
+                            ...times[i],
+                            to: data.formatted24,
+                          },
+                        });
+                        // setTimes({
+                        //   ...times,
+                        //   [i]: {
+                        //     ...times[i],
+                        //     from: data.formatted24,
+                        //   },
+                        // });
+                      }}
+                    />
+                  </AccordionDetails>
+                </Accordion>
               </div>
             );
           })}

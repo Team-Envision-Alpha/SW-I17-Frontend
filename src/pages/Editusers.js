@@ -19,12 +19,17 @@ const EventReq = () => {
       }
     }
   `;
-  const types = ["Name", "Email", "Phone"];
+  const types = ["Name", "Email", "Phone", "Role"];
+
   const { loading, err, data } = useQuery(USER_QUERY);
   const [formdata, setFormData] = useState({});
   const [show, setShow] = useState(false);
   console.log(data);
-  const [filterData, setFilterData] = useState(data?.getUsers);
+  const [filterData, setFilterData] = useState([]);
+  useEffect(() => {
+    setFilterData(data?.getUsers);
+  }, [data]);
+
   useEffect(() => {
     console.log(formdata);
     if (formdata.type && formdata.query) {
@@ -47,7 +52,7 @@ const EventReq = () => {
       setFilterData(data?.getUsers);
     }
   }, [formdata]);
-  // console.log(formdata);
+  console.log(filterData);
   return (
     <>
       <div style={{ backgroundImage: `url(${bg})` }}>
@@ -106,7 +111,8 @@ const EventReq = () => {
                       </tr>
                     </thead>
                     <tbody className="bg-white">
-                      {data?.getUsers.map((user) => (
+                      {data
+                        ? filterData?.map((user) => (
                             <tr key={user.id} className="text-[#000000]">
                               <td
                                 className="text-center py-3 border-[#B9B9B9] border-2 
@@ -143,7 +149,7 @@ const EventReq = () => {
                               </td>
                             </tr>
                           ))
-                        }
+                        : null}
                     </tbody>
                   </table>
                 </div>
