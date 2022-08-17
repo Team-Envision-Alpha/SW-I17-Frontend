@@ -106,8 +106,7 @@ const EventReq = () => {
                       </tr>
                     </thead>
                     <tbody className="bg-white">
-                      {data
-                        ? filterData.map((user) => (
+                      {data?.getUsers.map((user) => (
                             <tr key={user.id} className="text-[#000000]">
                               <td
                                 className="text-center py-3 border-[#B9B9B9] border-2 
@@ -144,7 +143,7 @@ const EventReq = () => {
                               </td>
                             </tr>
                           ))
-                        : null}
+                        }
                     </tbody>
                   </table>
                 </div>
