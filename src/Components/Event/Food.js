@@ -1,3 +1,7 @@
+/* eslint-disable jsx-a11y/alt-text */
+/* eslint-disable no-extend-native */
+/* eslint-disable no-unused-vars */
+
 import Select from "../Select.js";
 // import { DateRangePicker } from "react-date-range";
 import * as React from "react";
@@ -53,11 +57,11 @@ export default function Food({
     }
   }
   function arrayRemove(arr, value) {
-    if (arr.length == 1) {
+    if (arr.length === 1) {
       return "empty";
     } else {
       return arr.filter(function (ele) {
-        return ele != value;
+        return ele !== value;
       });
     }
   }

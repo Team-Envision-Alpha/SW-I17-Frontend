@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+
 import React from "react";
 import bg from "../Assets/Images/Group.svg";
 import { BsCameraReels, BsCamera } from "react-icons/bs";
@@ -35,7 +37,7 @@ const DashBoard = () => {
           <a href="/events">
             <DashCard icon={calendar} name="Add Events" />
           </a>
-          {user.role == "admin" ? (
+          {user.role === "admin" ? (
             <DashCard icon={report} name="Generate Report" />
           ) : null}
           <a href="/venues">
@@ -44,7 +46,7 @@ const DashBoard = () => {
           <a href="/requests">
             <DashCard icon={activity} name="User Requests" />
           </a>
-          {user.role == "admin" ? (
+          {user.role === "admin" ? (
             <a href="/user_registration">
               <DashCard icon={createuser} name="Create User" />
             </a>
@@ -54,17 +56,17 @@ const DashBoard = () => {
               <DashCard icon={createuser} name="Edit User" />
             </a>
           ) : null} */}
-          {user.role == "admin" ? (
+          {user.role === "admin" ? (
             <a href="/edituser">
               <DashCard icon={editUser} name="View/Edit Users" />
             </a>
           ) : null}
-          {user.role == "admin" ? (
+          {user.role === "admin" ? (
             <a href="/social_analytics">
               <DashCard icon={socialAnalytics} name="Social Analytics" />
             </a>
           ) : null}
-          {user.role == "admin" ? (
+          {user.role === "admin" ? (
             <a href="/social">
               <DashCard icon={social} name="Social Media" />
             </a>

@@ -19,11 +19,12 @@ export default function Modal({ modal, setModal, venue }) {
             <img
               src={cross}
               className="absolute right-2 top-2 cursor-pointer"
+              alt="cross"
             />
           </div>
-          {venue.name}
-          {venue.id}
-          {venue.address}
+          {venue?.name}
+          {venue?.id}
+          {venue?.address}
         </div>
       </div>
     </div>

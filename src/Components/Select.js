@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+
 import Select from "react-select";
 import React from "react";
 export default function select({
@@ -44,7 +46,7 @@ export default function select({
       };
     });
   } else {
-    var formoptions = dataobj.map((data) => {
+    formoptions = dataobj.map((data) => {
       return {
         label: `${data.name} - ${data.city} (${data.pincode})`,
         value: data.id,

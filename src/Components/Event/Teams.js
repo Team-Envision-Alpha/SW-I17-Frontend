@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+
 import Select from "../Select.js";
 // import { DateRangePicker } from "react-date-range";
 
@@ -34,11 +36,11 @@ export default function Details({
     }
   }
   function arrayRemove(arr, value) {
-    if (arr.length == 1) {
+    if (arr.length === 1) {
       return "empty";
     } else {
       return arr.filter(function (ele) {
-        return ele != value;
+        return ele !== value;
       });
     }
   }
@@ -148,7 +150,7 @@ export default function Details({
                           formdata.departmentInvited,
                           team
                         );
-                        if (resp != "empty") {
+                        if (resp !== "empty") {
                           setFormData({
                             ...formdata,
                             departmentInvited: resp,

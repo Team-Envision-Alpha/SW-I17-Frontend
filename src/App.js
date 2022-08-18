@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+
 import React from "react";
 import Login from "./Components/Login";
 import { Routes, Route, BrowserRouter as Router } from "react-router-dom";
@@ -25,10 +27,6 @@ const App = () => {
       hello
     }
   `;
-  // const { loading, error, data } = useQuery(HELLO);
-  // console.log(data);
-  // console.log(loading);
-  // console.log(error);
 
   return (
     <>

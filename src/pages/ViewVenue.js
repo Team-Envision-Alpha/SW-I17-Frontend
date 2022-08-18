@@ -1,6 +1,8 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from "react";
 import Navbar from "../Components/NewNavbar";
-import Table from "../Components/Table";
+// import Table from "../Components/Table";
 import bg from "../Assets/Images/Group.svg";
 import { gql, useQuery } from "@apollo/client";
 import Sidebar from "../Components/Sidebar";
@@ -101,7 +103,7 @@ const EventReq = () => {
             <Modal
               modal={modal}
               setModal={setModal}
-              venue={filterData[current]}
+              venue={filterData && filterData[current]}
             ></Modal>
             <section className="container  font-IBM-Sans ">
               <div className="w-[90vw] md:w-[50vw]  rounded-lg shadow-lg">

@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+
 import React, { Component, Fragment, useState, useEffect } from "react";
 import Navbar from "../Components/Navbar";
 import bg from "../Assets/Images/Group.svg";
@@ -49,11 +51,11 @@ const Venue = () => {
     new Date(2022, 4, 10),
   ];
   function arrayRemove(arr, value) {
-    if (arr.length == 1) {
+    if (arr.length === 1) {
       return "empty";
     } else {
       return arr.filter(function (ele) {
-        return ele != value;
+        return ele !== value;
       });
     }
   }
@@ -431,7 +433,7 @@ const Venue = () => {
                                 formdata.departmentInvited,
                                 team
                               );
-                              if (resp != "empty") {
+                              if (resp !== "empty") {
                                 setFormData({
                                   ...formdata,
                                   departmentInvited: resp,
@@ -653,7 +655,7 @@ const Venue = () => {
                                   className="text-[#874439] font-bold cursor-pointer hover:underline transition"
                                   onClick={() => {
                                     const resp = arrayRemove(extrausers, user);
-                                    if (resp != "empty") {
+                                    if (resp !== "empty") {
                                       setExtraUsers(resp);
                                       // setFormData({
                                       //   ...formdata,

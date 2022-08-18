@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+
 import React from "react";
 import Icon_1 from "../Assets/Images/Icon1_Modal.svg";
 import Icon_2 from "../Assets/Images/Icon2_Modal.svg";
@@ -9,17 +11,17 @@ import { ImCancelCircle } from "react-icons/im";
 
 const EventModal = ({ setIsOpen, event }) => {
   function reqlevel(e) {
-    if (e == "pending") {
+    if (e === "pending") {
       return 0;
-    } else if (e == "teamhead") {
+    } else if (e === "teamhead") {
       return 1;
-    } else if (e == "venuehead") {
+    } else if (e === "venuehead") {
       return 2;
-    } else if (e == "social") {
+    } else if (e === "social") {
       return 3;
-    } else if (e == "food") {
+    } else if (e === "food") {
       return 4;
-    } else if (e == "complete") {
+    } else if (e === "complete") {
       return 5;
     } else {
       return -1;

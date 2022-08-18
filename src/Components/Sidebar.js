@@ -1,6 +1,9 @@
+/* eslint-disable jsx-a11y/alt-text */
+/* eslint-disable no-unused-vars */
+
 import logo from "../Assets/Images/aicte.png";
 import text from "../Assets/Images/logo_text.svg";
-import React, { useState } from "react";
+import React from "react";
 
 import event from "../Assets/Images/Dashboard/upcoming.svg";
 import activity from "../Assets/Images/Dashboard/activity.svg";
@@ -19,8 +22,8 @@ export default function Sidebar({ current, show, setShow }) {
     >
       {/* <div className=""> */}
       <a href="/dashboard">
-        <img src={logo} className="w-[12vw] md:w-[8vw] mx-auto" />
-        <img src={text} className="w-[20vw] md:w-[12vw] mx-auto" />
+        <img src={logo} className="w-[12vw] md:w-[8vw] mx-auto"  alt="aicte"/>
+        <img src={text} className="w-[20vw] md:w-[12vw] mx-auto" alt="text aicte" />
       </a>
       <div className="bg-[#00000050] my-6 h-[1px]" />
 

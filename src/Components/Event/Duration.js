@@ -1,3 +1,8 @@
+/* eslint-disable array-callback-return */
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable no-extend-native */
+/* eslint-disable no-unused-vars */
+
 import { Calendar } from "react-date-range";
 import { useState, useEffect } from "react";
 import Select from "../Select";
@@ -81,12 +86,12 @@ export default function Details({
 
   function checkTime() {
     // console.log(formdata);
-    if (formdata.times && Object.keys(formdata.times).length == daysCount()) {
+    if (formdata.times && Object.keys(formdata.times).length === daysCount()) {
       var check = false;
       Object.keys(formdata.times).map((key) => {
         // console.log(formdata.times[key]);
         // console.log(formdata.times);
-        if (Object.keys(formdata.times[key]).length != 2) {
+        if (Object.keys(formdata.times[key]).length !== 2) {
           check = false;
         } else {
           check = true;
