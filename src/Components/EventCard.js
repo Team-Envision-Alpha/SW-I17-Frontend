@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+
 import React from 'react';
 import Eventcard from '../Assets/Images/event.svg';
 
@@ -30,7 +32,7 @@ const EventCard = (props) => {
             <img
               class="object-cover overflow-hidden rounded-tl-xl rounded-bl-xl items-start items-right"
               src={Eventcard}
-              alt="image"
+              alt="eventcard"
             />
           </div>
         </div>

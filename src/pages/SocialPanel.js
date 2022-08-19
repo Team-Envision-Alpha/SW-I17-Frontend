@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+
 import React from "react";
 import bg from "../Assets/Images/Group.svg";
 import { BsCameraReels, BsCamera } from "react-icons/bs";

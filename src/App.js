@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+
 import React from "react";
 import Login from "./Components/Login";
 import { Routes, Route, BrowserRouter as Router } from "react-router-dom";
@@ -18,26 +20,21 @@ import EventAndVenueDetails from "./pages/EventAndVenueDetails";
 import EditUser from "./pages/Editusers";
 import Canteen from "./pages/Canteen";
 import SocialAnalytics from "./pages/SocialAnalytics";
-import SocialMedia from "./pages/SocialMedia";
-import FbLogin from "./pages/FbLogin";
-import FbAccount from "./pages/FbAccount";
-
+import ViewVenues from "./pages/ViewVenue";
+import FacebookLogin from "./pages/facebooklogin";
 const App = () => {
   const HELLO = gql`
     query {
       hello
     }
   `;
-  // const { loading, error, data } = useQuery(HELLO);
-  // console.log(data);
-  // console.log(loading);
-  // console.log(error);
 
   return (
     <>
       <Router>
         <Routes>
           <Route path="/" element={<Login />} />
+          <Route path="/facebooklogin" element={<FacebookLogin />} />
           {/* <Route path="/fb" element={<FB />} /> */}
           {/*        <Route path="/twitter" element={<Twitter />} /> */}
           <Route path="/social" element={<SocialPanel />} />
@@ -49,7 +46,7 @@ const App = () => {
           <Route path="/user_registration" element={<User />} />
           <Route path="/requests" element={<EventReq />} />
           <Route path="/edituser" element={<EditUser />} />
-
+          <Route path="/venues" element={<ViewVenues />} />
           <Route path="/event_modal" element={<EventModal />} />
           <Route path="/invited_event" element={<InvitedEvent />} />
           <Route path="/add_venue" element={<VenueDetails />} />

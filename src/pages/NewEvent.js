@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+
 import Sidebar from "../Components/Sidebar";
 import bg from "../Assets/Images/Group.svg";
 import Burger from "../Components/burger";

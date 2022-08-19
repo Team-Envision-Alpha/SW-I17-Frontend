@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+
 import React from "react";
 import dp from "../Assets/Images/ico.svg";
 import logo from "../Assets/Images/logo.svg";
