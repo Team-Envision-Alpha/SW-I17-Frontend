@@ -22,6 +22,9 @@ import Canteen from "./pages/Canteen";
 import SocialAnalytics from "./pages/SocialAnalytics";
 import ViewVenues from "./pages/ViewVenue";
 import FacebookLogin from "./pages/facebooklogin";
+import FbAccount from "./pages/FbAccount";
+import FbLogin from "./pages/FbLogin";
+import SocialMedia from "./pages/SocialMedia";
 const App = () => {
   const HELLO = gql`
     query {
