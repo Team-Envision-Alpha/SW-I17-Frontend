@@ -41,12 +41,12 @@ const App = () => {
           <Route path="/" element={<Login />} />
           {/* <Route path="/fb" element={<FB />} /> */}
           {/*        <Route path="/twitter" element={<Twitter />} /> */}
-          <Route path="/social" element={<SocialPanel />} />
+          {/* <Route path="/social" element={<SocialPanel />} /> */}
 
           <Route path="/events" element={<Event />} />
-          <Route path="/oldevents" element={<OldEvents />} />
+          {/* <Route path="/oldevents" element={<OldEvents />} /> */}
           <Route path="/dashboard" element={<DashBoard />} />
-          <Route path="/venue_head_dashboard" element={<VenuHeadDashboard />} />
+          {/* <Route path="/venue_head_dashboard" element={<VenuHeadDashboard />} /> */}
           <Route path="/user_registration" element={<User />} />
           <Route path="/requests" element={<EventReq />} />
           <Route path="/edituser" element={<EditUser />} />
