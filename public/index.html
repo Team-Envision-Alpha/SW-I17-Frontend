@@ -13,56 +13,12 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans&display=swap" rel="stylesheet" />
   <title>AICTE EVENT MANAGEMENT</title>
-  <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 </head>
 
 <body>
   <noscript>You need to enable JavaScript to run this app.</noscript>
   <div id="root"></div>
-  <script>
-    $(document).ready(function () {
-        console.log("document ready")
-        FB.init({
-                appId: '2075260336175600',
-                autoLogAppEvents: true,
-                xfbml: true,
-                version: 'v14.0'
-            });
-        window.fbAsyncInit = function () {
-            FB.init({
-                appId: '2075260336175600',
-                autoLogAppEvents: true,
-                xfbml: true,
-                version: 'v14.0'
-            });
-        };
-        FB.getLoginStatus(function (response) {
-            console.log(response);
-        });
-    });
-</script>
-<script>
-    $('#loginfb').click(function () {
-        FB.login(function (response) {
-            if (response.status === 'connected') {
-                console.log(response)
-                console.log("Connected")
-                alert("User FB Login")
-            } else {
-                console.log(response)
-                console.log("Error")
-            }
-        }, { scope: 'public_profile,email,pages_read_engagement,pages_manage_posts, pages_read_user_content,publish_video' });
-    });
-    // , pages_show_list,read_page_mailboxes,pages_messaging,pages_read_engagement, pages_manage_metadata,pages_manage_posts,pages_read_engagement,pages_read_user_content,publish_video,pages_manage_cta,pages_manage_engagement,read_insights,user_likes, user_posts,user_photos
-    $('#logoutfb').click(function () {
-        FB.logout(function (response) {
-            console.log(response)
-            alert("User FB Logout")
-        });
-    });
-</script>
+  
 </body>
 
 </html>
