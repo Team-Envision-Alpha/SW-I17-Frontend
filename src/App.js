@@ -21,7 +21,10 @@ import EditUser from "./pages/Editusers";
 import Canteen from "./pages/Canteen";
 import SocialAnalytics from "./pages/SocialAnalytics";
 import ViewVenues from "./pages/ViewVenue";
-import FacebookLogin from "./pages/facebooklogin"
+import FacebookLogin from "./pages/facebooklogin";
+import FbAccount from "./pages/FbAccount";
+import FbLogin from "./pages/FbLogin";
+import SocialMedia from "./pages/SocialMedia";
 const App = () => {
   const HELLO = gql`
     query {
@@ -63,6 +66,18 @@ const App = () => {
             element={
               <SocialAnalytics title="Analytics Per Post" aspect={2 / 1} />
             }
+          />
+          <Route
+            path="/social_media"
+            element={<SocialMedia title="Social Media Dashboard"></SocialMedia>}
+          />
+          <Route
+            path="/fb_login"
+            element={<FbLogin title="Log in to facebook"></FbLogin>}
+          />
+          <Route
+            path="/fb_account"
+            element={<FbAccount title="See your account"></FbAccount>}
           />
         </Routes>
       </Router>
