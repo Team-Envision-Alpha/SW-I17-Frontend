@@ -6,10 +6,23 @@ import Sidebar from "../Components/Sidebar";
 import { useState } from "react";
 import fbLogo from "../Assets/Images/fbLogo.svg";
 import twitterLogo from "../Assets/Images/twitterLogo.svg";
-
+import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props'
+import axios from "axios";
 const SocialMedia = () => {
   const [show, setShow] = useState(false);
+  const responseFacebook = async (response) => {
+    const data = {
+      shortlivedaccesstoken:response.accessToken,
+      useremail:response.email,
+      userid: response.userId,
+      username:response.name,
+      userpicture:response.picture,
+    }
 
+    const getlonglivedaccesstokens = await axios.post("getlonglivedaccesstoken",{data}).then((data)=>{return data.data.data}).catch((err)=>{console.log(err)})
+    console.log(getlonglivedaccesstokens)
+    localStorage.setItem("longlivedaccesstoken",getlonglivedaccesstokens.longlivedaccesstoken.access_token)
+  }
   return (
     <>
       <div
@@ -35,11 +48,35 @@ const SocialMedia = () => {
           </div>
           <div className="flex flex-col gap-10">
             <div className="font-extrabold font-IBM-Sans text-xl tracking-wide">
-              <p>Your Social Media Handles</p>
+              <p>Connect Your Social Media Handles</p>
             </div>
             <div className="flex gap-[6vw]">
               <div className="flex items-center justify-center w-[20vw] h-[15vh]  bg-[#FFFFFF] shadow-lg rounded-xl">
-                <img src={fbLogo} alt="fbLogo" />
+                {/* <FacebookLogin
+                  appId="2075260336175600"
+                  autoLoad={true}
+                  fields="name,email,picture"
+                  scope="public_profile,email,pages_read_engagement,pages_manage_posts, pages_read_user_content,publish_video"
+                  onClick={(componentClicked) => {
+                    console.log(componentClicked);
+                  }}
+                  callback={responseFacebook} /> */}
+                <FacebookLogin
+                  appId="2075260336175600"
+                  autoLoad={true}
+                  fields="name,email,picture"
+                  scope="public_profile,email,pages_read_engagement,pages_manage_posts, pages_read_user_content,publish_video"
+                  onClick={(componentClicked) => {
+                    console.log(componentClicked);
+                  }}
+                  callback={responseFacebook}
+                  render={renderProps => (
+                    <button>
+                      <img src={fbLogo} onClick={renderProps.onClick} alt="fbLogo" />
+                    </button>
+
+                  )}
+                />
               </div>
               <div className="flex items-center justify-center w-[20vw] h-[15vh]  bg-[#FFFFFF] shadow-lg rounded-xl">
                 <img src={twitterLogo} alt="fbLogo" />

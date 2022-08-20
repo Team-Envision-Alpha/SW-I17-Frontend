@@ -3,18 +3,27 @@ import bg from "../Assets/Images/Group.svg";
 import Burger from "../Components/burger";
 import Navbar from "../Components/NewNavbar";
 import Sidebar from "../Components/Sidebar";
-import { useState } from "react";
-import fbLogo from "../Assets/Images/fbLogo.svg";
-import twitterLogo from "../Assets/Images/twitterLogo.svg";
-import dp from "../Assets/Images/ico.svg";
-import Button from "@mui/material/Button";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import logo from "../Assets/Images/aicte.png";
-
+import axios from 'axios'
 const FbAccount = () => {
   const [show, setShow] = useState(false);
   const navigate = useNavigate();
-  const user = { name: "Rishit", role: "admin" };
+  const [userData, setUserData] = useState();
+  const longlivedaccesstoken = localStorage.getItem("longlivedaccesstoken");
+  console.log(userData);
+
+  useEffect(() => {
+    const getUserData = async () => {
+      const userdata = await axios.get(`/getuserpages/${longlivedaccesstoken}`).then((data) => { return data.data.userdata; }).catch((err) => { console.log(err) })
+      setUserData(userdata)
+      userdata.accounts.data.map((data, idx) => (
+        localStorage.setItem(`${data.id}`, data.access_token)
+      )
+      )
+    }
+    getUserData()
+  }, [longlivedaccesstoken]);
 
   return (
     <>
@@ -44,27 +53,30 @@ const FbAccount = () => {
             <div>
               <div className="flex items-center px-8 w-[20vw] h-[15vh]  bg-[#FFFFFF] shadow-lg rounded-xl">
                 <div className="flex flex-col">
-                  <div className="flex gap-6">
-                    <div>
-                      <img src={dp} alt="dp" width={55} />
+                  {userData &&
+                  <>
+                    <div className="flex gap-6">
+                      <div>
+                        <img src={userData.picture.data.url} alt="dp" width={55} />
+                      </div>
+                      <div className="font-IBM-Sans">
+                        <p className="text-lg capitalize font-IBM-Sans ">
+                          {userData.name}
+                        </p>
+                        <p
+                          className="text-base capitalize font-IBM-Sans "
+                          style={{ color: "#818181" }}
+                        >
+                          {userData.email}
+                        </p>
+                      </div>
                     </div>
-                    <div className="font-IBM-Sans">
-                      <p className="text-lg capitalize font-IBM-Sans ">
-                        {user.name}
-                      </p>
-                      <p
-                        className="text-base capitalize font-IBM-Sans "
-                        style={{ color: "#818181" }}
-                      >
-                        {user.role}
-                      </p>
-                    </div>
-                  </div>
+
                   <div className="flex justify-end ">
                     <a
                       href="/"
                       onClick={() => {
-                        localStorage.removeItem("aicteuser");
+                        localStorage.removeItem("longlivedaccesstoken");
                         navigate("/");
                       }}
                       className="underline text-[#A72314] font-IBM-Sans text-base font-semibold pl-48 "
@@ -72,6 +84,7 @@ const FbAccount = () => {
                       Logout
                     </a>
                   </div>
+                  </>}
                 </div>
               </div>
             </div>
@@ -82,43 +95,31 @@ const FbAccount = () => {
           </div>
 
           <div className="flex gap-16">
-            <div className="flex items-center px-4 w-[20vw] h-[15vh]  bg-[#FFFFFF] shadow-lg rounded-xl relative">
-              <div className="flex gap-6">
-                <div>
-                  <img src={logo} alt="logo" width={80} />
-                </div>
-                <div className="flex flex-col gap-2 font-IBM-Sans text-base font-semibold">
-                  <p>All India Council For Technical Education</p>
-                </div>
-              </div>
 
-              <div>
-                <a
-                  href="/"
-                  className="underline text-[#F0783B] font-IBM-Sans text-base font-semibold absolute bottom-[3vh] right-[3vh]"
-                >
-                  Visit
-                </a>
-              </div>
-            </div>
-            <div className="flex items-center px-4 w-[20vw] h-[15vh]  bg-[#FFFFFF] shadow-lg rounded-xl relative ">
-              <div className="flex gap-6">
-                <div>
-                  <img src={logo} alt="logo" width={60} />
+            {userData && userData.accounts.data.map((data, idx) => {
+              return (
+                <div className="flex items-center px-4 w-[20vw] h-[15vh]  bg-[#FFFFFF] shadow-lg rounded-xl relative" key={idx}>
+                  <div className="flex gap-6">
+                    <div>
+                      <img src={data.picture.data.url} alt="logo" width={80} />
+                    </div>
+                    <div className="flex flex-col gap-2 font-IBM-Sans text-base font-semibold">
+                      <p>{data.name}</p>
+                    </div>
+                  </div>
+
+                  <div>
+                    <a
+                      href={`/facebookpage/${data.id}`}
+                      className="underline text-[#F0783B] font-IBM-Sans text-base font-semibold absolute bottom-[3vh] right-[3vh]"
+                    >
+                      Visit
+                    </a>
+                  </div>
                 </div>
-                <div className="font-IBM-Sans text-base font-semibold">
-                  <p>Teachers council of India</p>
-                </div>
-              </div>
-              <div>
-                <a
-                  href="/"
-                  className="underline text-[#F0783B] font-IBM-Sans text-base font-semibold absolute bottom-[3vh] right-[3vh]"
-                >
-                  Visit
-                </a>
-              </div>
-            </div>
+              )
+            })}
+
           </div>
         </div>
       </div>

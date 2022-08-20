@@ -48,10 +48,18 @@ export default function select({
   } else {
     formoptions = dataobj.map((data) => {
       return {
-        label: `${data.name} - ${data.city} (${data.pincode})`,
+        label: `${data.name} - ${data.city} (${data.state})`,
         value: data.id,
       };
     });
+  }
+
+  function getName(name, formdata) {
+    if (dataobj) {
+      return formoptions.find((o) => o.value == formdata[name]);
+    } else {
+      return formdata[name];
+    }
   }
 
   return (
@@ -62,7 +70,7 @@ export default function select({
       name={name}
       styles={customStyles}
       options={formoptions}
-      value={formdata.name}
+      value={getName(name, formdata)}
       onChange={(e) => {
         if (e.value) {
           setFormData({ ...formdata, [name]: e.value });
