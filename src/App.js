@@ -2,7 +2,7 @@
 
 import React from "react";
 import Login from "./Components/Login";
-import { Routes, Route, BrowserRouter as Router  } from "react-router-dom";
+import { Routes, Route, BrowserRouter as Router } from "react-router-dom";
 // import FB from "./Components/Facebook/FBLogin";
 // import Twitter from "./Components/Twitter/twitter.js";
 import { gql, useQuery } from "@apollo/client";
@@ -31,8 +31,6 @@ const App = () => {
       hello
     }
   `;
-
-  
 
   return (
     <>
@@ -81,7 +79,12 @@ const App = () => {
             element={<FbAccount title="See your account"></FbAccount>}
           />
           <Route
-            exact path="/facebookpage/:id"
+            path="/fb_main"
+            element={<FbAccount title="Check Post"></FbAccount>}
+          />
+          <Route
+            exact
+            path="/facebookpage/:id"
             element={<FacebookPage title="Facebook Page"></FacebookPage>}
           />
         </Routes>
