@@ -7,6 +7,7 @@ import { Calendar } from "react-date-range";
 import { useState, useEffect } from "react";
 import Select from "../Select";
 // import TimePicker from "react-time-picker";
+import { gql, useMutation, useQuery } from "@apollo/client";
 
 import TimeKeeper from "react-timekeeper";
 import _ from "lodash";
@@ -26,10 +27,28 @@ export default function Details({
   setUserFile,
   userfile,
   user,
-  data,
   current,
   setCurrent,
 }) {
+  const VENUE_QUERY = gql`
+    query {
+      getVenues {
+        id
+        name
+        city
+        email
+        phone
+        state
+        address
+        capacity
+        website
+      }
+    }
+  `;
+
+  const { loading, err, data } = useQuery(VENUE_QUERY);
+  // console.log(venues);
+
   const [startdate, setStartDate] = useState(new Date());
   const [enddate, setEndDate] = useState(new Date());
   const [time, setTime] = useState("00:00am");
@@ -44,23 +63,7 @@ export default function Details({
     date.setDate(date.getDate() + days);
     return date.toDateString().split(",")[0];
   };
-  // const time = [
-  //   "9:00 AM-10:00 AM",
-  //   "10:00 AM-11:00 AM",
-  //   "11:00 AM-12:00 PM",
-  //   "12:00 PM-1:00 PM",
-  //   "1:00 PM-2:00 PM",
-  //   "2:00 PM-3:00 PM",
-  //   "3:00 PM-4:00 PM",
-  //   "4:00 PM-5:00 PM",
-  //   "5:00 PM-6:00 PM",
-  //   "6:00 PM-7:00 PM",
-  //   "7:00 PM-8:00 PM",
-  //   "8:00 PM-9:00 PM",
-  //   "9:00 PM-10:00 PM",
-  //   "10:00 PM-11:00 PM",
-  //   "11:00 PM-12:00 AM",
-  // ];
+
   function handleNext() {
     if (current < 3) {
       setCurrent(current + 1);
@@ -226,7 +229,7 @@ export default function Details({
           <h4>Venue</h4>
           {data ? (
             <Select
-              dataobj={data.getAllVenues}
+              dataobj={data.getVenues}
               name="venue"
               setFormData={setFormData}
               formdata={formdata}
