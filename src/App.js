@@ -25,6 +25,7 @@ import FacebookLogin from "./pages/facebooklogin";
 import FbAccount from "./pages/FbAccount";
 import FbLogin from "./pages/FbLogin";
 import SocialMedia from "./pages/SocialMedia";
+import FbMainPage from "./pages/FbMainPage";
 const App = () => {
   const HELLO = gql`
     query {
@@ -78,6 +79,10 @@ const App = () => {
           <Route
             path="/fb_account"
             element={<FbAccount title="See your account"></FbAccount>}
+          />
+          <Route
+            path="/fb_main"
+            element={<FbMainPage title="Check the posts"></FbMainPage>}
           />
         </Routes>
       </Router>
