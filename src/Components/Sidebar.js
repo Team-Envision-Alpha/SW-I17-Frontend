@@ -29,30 +29,44 @@ export default function Sidebar({ current, show, setShow }) {
 
       <p className="text-center font-bold">Dashboard</p>
       <div className="flex flex-col mt-5 justify-evenly ">
+      <a href="/invited_event">
         <div className="flex flex-row px-1 py-5">
           <img src={event} className="w-[2vw]" />
           <p className="ml-4 my-auto ">Invited/Upcoming Events</p>
         </div>
+        </a>
+        
         <div className="flex flex-row px-1 py-5">
           <img src={report} className="w-[2vw]" />
           <p className="ml-4 my-auto ">Report Generation</p>
         </div>
+      
         <div className="flex flex-row px-1 py-5">
           <img src={activity} className="w-[2vw]" />
           <p className="ml-4 my-auto ">Activity Log</p>
         </div>
+        
+        <a href="/user_registration">
         <div className="flex flex-row px-1 py-5">
           <img src={user} className="w-[2vw]" />
           <p className="ml-4 my-auto ">Create User</p>
         </div>
+         </a>
+
+        <a href="/edituser">
         <div className="flex flex-row px-1 py-5">
           <img src={editUser} className="w-[2vw]" />
           <p className="ml-4 my-auto ">Edit User</p>
         </div>
+        </a>
+        
+
+        <a href="/social_analytics">
         <div className="flex flex-row px-1 py-5">
           <img src={socialAnalytics} className="w-[2vw]" />
           <p className="ml-4 my-auto ">Social Analytics</p>
         </div>
+        </a>
         {/* <div className="flex flex-row px-1 py-5">
           <img src={socialAnalytics} className="w-[2vw]" />
           <p className="ml-4 my-auto ">Social Analytics</p>

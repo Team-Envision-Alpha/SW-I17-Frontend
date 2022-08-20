@@ -31,20 +31,20 @@ const Table = ({ status, statusHeader }) => {
       <section className="container  font-IBM-Sans ">
         <div className="w-[50vw]  rounded-lg shadow-lg">
           <div className="w-full">
-            <table className="w-full ">
+            <table className="w-full">
               <thead>
                 <tr
                   className="text-md font-semibold   text-gray-900   border-[#B9B9B9]  text-center border-3"
                   style={{ background: "rgba(0, 0, 0, 0.05)" }}
                 >
-                  <th className="py-3 border-[#B9B9B9] border-2 ">
+                  <th className="py-3  border-[#B9B9B9] border-2">
                     Event Name
                   </th>
-                  <th className="py-3  border-[#B9B9B9] border-2">Venue</th>
-                  <th className="py-3  border-[#B9B9B9] border-2">
+                  <th className="py-3 px-3 md:px-0  border-[#B9B9B9] border-2">Venue</th>
+                  <th className="py-3 px-3 md:px-0  border-[#B9B9B9] border-2">
                     Start Date
                   </th>
-                  <th className="py-3 border-[#B9B9B9] border-2">
+                  <th className="py-3 px-3 md:px-0  border-[#B9B9B9] border-2">
                     {statusHeader}
                   </th>
                 </tr>

@@ -26,14 +26,14 @@ const DashBoard = () => {
       className="bg-[#f8f7f8] min-h-[100vh] bg-cover"
     >
       <Navbar />
-      <div className="flex flex-col justify-center items-center my-10 gap-8 px-64">
+      <div className="flex flex-col justify-center items-center my-10 gap-8 px-64 ">
         <div>
           <p className="text-[4vh] font-IBM-Sans font-extrabold capitalize">
             {user.role} Dashboard
           </p>
         </div>
 
-        <div className="flex justify-center items-center gap-12  flex-wrap ">
+        <div className="flex justify-center items-center gap-12  flex-wrap  ">
           <a href="/events">
             <DashCard icon={calendar} name="Add Events" />
           </a>

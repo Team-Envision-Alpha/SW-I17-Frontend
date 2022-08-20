@@ -72,14 +72,14 @@ const EventReq = () => {
           <Burger open={show} setOpen={setShow}></Burger>
         </div>
         <Sidebar show={show} setShow={setShow} />
-        <div className="pt-24 md:ml-[20vw] mb-10 flex flex-col gap-20 items-center justify-center">
+        <div className="pt-24 md:ml-[20vw] mb-10 flex flex-col gap-20  items-center justify-center">
           <div>
             <p className="font-bold text-[4vh] tracking-wide">Venues</p>
           </div>
-          <div className="flex flex-col w-[50vw] md:flex-row gap-x-4 h-auto justify-center">
+          <div className="flex flex-col w-[50vw] md:flex-row gap-x-4 gap-y-4 h-auto justify-center min-w-max ">
             <input
               type="text"
-              className="w-[30vw] p-4 outline-none"
+              className="w-[30vw] p-4 outline-none min-w-max"
               style={{
                 color: "#818181",
                 background: "#F6F5F6",

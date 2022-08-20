@@ -205,7 +205,7 @@ const User = () => {
 
               <div className="flex flex-col gap-10">
                 <div className="flex flex-col gap-4">
-                  <h4>Role</h4>
+                  <h4 className="pt-6">Role</h4>
                   <Select
                     data={roles}
                     name="role"
@@ -222,7 +222,7 @@ const User = () => {
                     setFormData={setFormData}
                   />
                 </div>
-
+                
                 <div className="flex flex-col gap-4">
                   <h4>Confirm Password</h4>
                   <input

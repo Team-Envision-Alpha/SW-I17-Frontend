@@ -297,6 +297,7 @@ const Venue = () => {
                     }}
                   />
                 </div>
+
                 <div className="flex flex-col gap-4">
                   <h4>Caption</h4>
                   <input
@@ -363,7 +364,7 @@ const Venue = () => {
                   </div> */}
 
                   <div className="flex flex-col gap-4 w-full">
-                    <h4>Venue</h4>
+                    <h4 className="">Venue</h4>
                     {data ? (
                       <Select
                         dataobj={data.getAllVenues}
