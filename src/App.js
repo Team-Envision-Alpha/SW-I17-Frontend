@@ -79,6 +79,10 @@ const App = () => {
             element={<FbAccount title="See your account"></FbAccount>}
           />
           <Route
+            path="/fb_main"
+            element={<FbAccount title="Check Post"></FbAccount>}
+          />
+          <Route
             exact
             path="/facebookpage/:id"
             element={<FacebookPage title="Facebook Page"></FacebookPage>}
