@@ -64,6 +64,22 @@ const EventReq = () => {
     }
   }, [formdata]);
   console.log(filterData);
+
+  const API = "6b3193f1ee6b9e1bc34c4eb5779f7ee4";
+
+  const URI = "http://api.positionstack.com/v1/forward";
+
+  const REQ = URI + "?access_key=" + API + "&query=";
+
+  useEffect(() => {
+    if (filterData && filterData[current]) {
+      fetch(REQ + filterData[current].address)
+        .then((res) => res.json())
+        .then((res) => console.log(res));
+    }
+  }, [filterData]);
+
+  console.log(REQ);
   return (
     <>
       <div style={{ backgroundImage: `url(${bg})` }}>

@@ -1,4 +1,9 @@
 import cross from "../Assets/Images/cross.svg";
+import location from "../Assets/Images/Venue/location.svg";
+import addr from "../Assets/Images/Venue/addr.svg";
+import flag from "../Assets/Images/Venue/flag.svg";
+import people from "../Assets/Images/Venue/people.svg";
+import website from "../Assets/Images/Venue/website.svg";
 
 export default function Modal({ modal, setModal, venue }) {
   console.log(venue);
@@ -22,9 +27,39 @@ export default function Modal({ modal, setModal, venue }) {
               alt="cross"
             />
           </div>
-          {venue?.name}
-          {venue?.id}
-          {venue?.address}
+          <div className="m-5 h-full">
+            <p className="text-center font-bold pt-2 text-2xl">Heading Here</p>
+            <div className="flex md:flex-row flex-col pt-8 max-h-[70%]">
+              <div className="md:basis-[60%] flex flex-col justify-around">
+                <div className="flex flex-row align-middle my-2">
+                  <img src={location} />
+                  <span className="my-auto ml-4">{venue.address}</span>
+                </div>
+                <div className="flex flex-row align-middle my-2">
+                  <img src={addr} />
+                  <span className="my-auto ml-4">{venue.city}</span>
+                </div>
+                <div className="flex flex-row align-middle my-2">
+                  <img src={flag} />
+                  <span className="my-auto ml-4">{venue.state}</span>
+                </div>
+                <div className="flex flex-row align-middle my-2">
+                  <img src={people} />
+                  <span className="my-auto ml-4">{venue.capacity} max.</span>
+                </div>
+                <div className="flex flex-row align-middle my-2">
+                  <img src={website} />
+                  <a className="my-auto ml-4">{venue.website}</a>
+                </div>
+              </div>
+              <div className="md:basis-[40%] flex flex-row justify-center">
+                <img
+                  src="https://picsum.photos/500"
+                  className="rounded-lg max-h-[90%] mx-auto my-auto"
+                />
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
