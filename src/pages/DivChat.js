@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+
 import React from "react";
 import { gql, useMutation, useQuery } from "@apollo/client";
 import { useState } from "react";
@@ -149,10 +151,10 @@ const DivChat = () => {
                                         className="text-start"
                                         onClick={() =>
                                             openChatBox(
-                                                user.id == inbox.user1
+                                                user.id === inbox.user1
                                                     ? inbox.user2
                                                     : inbox.user1,
-                                                user.id == inbox.user1
+                                                user.id === inbox.user1
                                                     ? inbox.user2_name
                                                     : inbox.user1_name
                                             )
@@ -160,7 +162,7 @@ const DivChat = () => {
                                     >
                                         <div className="">
                                             <h3 className="">
-                                                {user.id == inbox.user1
+                                                {user.id === inbox.user1
                                                     ? inbox.user2_name
                                                     : inbox.user1_name}
                                             </h3>
@@ -241,7 +243,7 @@ const DivChat = () => {
                             {data?.getMessages.map((chat) => (
                                 <li key={chat._id} className=" bg-gray-150">
                                     <div className="">
-                                        {/* <h3 className="">{user.id==chat.user1 ? chat.user2_name : chat.user1_name}</h3> */}
+                                        {/* <h3 className="">{user.id===chat.user1 ? chat.user2_name : chat.user1_name}</h3> */}
                                         <div className="text-xs flex items-center justify-between space-x-3 last:">
                                             <span>{chat.message}</span>
                                             <span className="">
