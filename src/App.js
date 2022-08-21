@@ -32,6 +32,7 @@ import SocialMedia from "./pages/SocialMedia";
 import FacebookPage from "./pages/FacebookPage";
 import FacebookMain from "./pages/FbMainPage";
 import TwitterMainPage from "./pages/TwitterMainPage";
+import TwiChat from "./pages/TwiChat";
 const App = () => {
   // const [longlivedaccesstoken, setLonglivedaccesstoken] = useState(null);
 
@@ -102,6 +103,10 @@ const App = () => {
           <Route
             path="/twitter_main"
             element={<TwitterMainPage title="Twitter Page"></TwitterMainPage>}
+          />
+          <Route
+            path="/twitter_chat"
+            element={<TwiChat title="Twitter Chat"></TwiChat>}
           />
 
           {/* <Route
