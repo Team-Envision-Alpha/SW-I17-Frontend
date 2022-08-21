@@ -37,6 +37,7 @@ export default function Food({
   current,
   setCurrent,
   teams,
+  onSubmit,
 }) {
   function daysCount() {
     var start = new Date(formdata.fromdate);
@@ -226,9 +227,9 @@ export default function Food({
           </div>
           <div
             className=" bg-green-700 text-white px-10 py-3 rounded-lg cursor-pointer "
-            onClick={handleNext}
+            onClick={onSubmit}
           >
-            Next
+            Request Event
           </div>
         </div>
       </div>
