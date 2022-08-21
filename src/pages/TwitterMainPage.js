@@ -4,7 +4,7 @@ import Burger from "../Components/burger";
 import Navbar from "../Components/NewNavbar";
 import Sidebar from "../Components/Sidebar";
 import { useState } from "react";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import fbCover from "../Assets/Images/fbCover.svg";
 import logo from "../Assets/Images/aicte.png";

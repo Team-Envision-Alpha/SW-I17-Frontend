@@ -22,6 +22,7 @@ import { BsFillTelephoneFill } from "react-icons/bs";
 import { BsMessenger } from "react-icons/bs";
 import { BsFillClockFill } from "react-icons/bs";
 import { BiWorld } from "react-icons/bi";
+import { RiImageAddFill} from "react-icons/ri";
 import { useParams } from "react-router-dom";
 import { gql, useMutation } from "@apollo/client";
 import { ToastContainer, toast } from "react-toastify";
@@ -168,7 +169,7 @@ const FbMainPage = () => {
           <div className="flex flex-col gap-8">
             <div className="flex flex-col ">
               <div className="w-full">
-                <img src={pageData?.cover.source} alt="cover" className="w-full h-[40vh]" />
+                <img src={pageData?.cover.source} alt="cover" className="w-full h-[50vh] object-cover" />
               </div>
               <div className="flex justify-between items-center p-2">
                 <div className="flex gap-6 items-center">
@@ -292,6 +293,32 @@ const FbMainPage = () => {
 
 
               <div className="w-full h-[150vh] overflow-auto">
+
+                <div className="w-full h-fit bg-[#FFFFFF] rounded-xl shadow-sm flex flex-col gap-2 mb-5 p-3">
+                  <div className="flex p-4 items-center gap-2">
+                    <div className="w-[3vw] h-[6vh]">
+                      <img src={pageData.picture.data.url} alt="logo" className="rounded-full" />
+                    </div>
+                    <h1 className="text-lg font-bold">Create a Post</h1>
+                  </div>
+                  <div className="w-full flex justify-center align-center"><RiImageAddFill className="text-4xl text-[#818181]"/></div>
+                  <div className="flex p-4 items-center gap-2">
+                    <div>
+                      <input
+                        type="email"
+                        name="Post Caption"
+                        className="w-[30vw] px-4 py-2 outline-none"
+                        style={{
+                          color: "#818181",
+                          background: "#f6f5f6",
+
+                          borderRadius: "16px",
+                        }}
+                        placeholder="Post Caption"
+                      />
+                    </div>
+                  </div>
+                </div>
 
 
                 {pageData?.feed?.data?.filter((data) => {
@@ -451,14 +478,14 @@ const FbMainPage = () => {
       </div>
 
       <Modal
-        isOpen={true}
+        isOpen={modalIsOpen}
         // onAfterOpen={afterOpenModal}
         onRequestClose={() => { setModalIsOpen(false) }}
         style={customStyles}
         contentLabel="Example Modal"
       >
         {/* <button onClick={() => { setModalIsOpen(false) }}>close</button> */}
-        
+
 
 
 

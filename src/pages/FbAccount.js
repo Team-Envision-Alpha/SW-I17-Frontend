@@ -45,8 +45,8 @@ const FbAccount = () => {
   if (!loading) {
     console.log(JSON.parse(data.fbGetUserPages));
     userData = JSON.parse(data.fbGetUserPages);
-    if (JSON.parse(data.fbGetUserPages).accounts) {
-      JSON.parse(data.fbGetUserPages).accounts.data.map((data, idx) =>
+    if (JSON.parse(data.fbGetUserPages)?.accounts) {
+      JSON.parse(data.fbGetUserPages)?.accounts.data.map((data, idx) =>
         localStorage.setItem(`${data.id}`, data.access_token)
       );
     }
@@ -139,7 +139,7 @@ const FbAccount = () => {
           </div>
 
           <div className="flex gap-16">
-            {userData.accounts &&
+            {userData?.accounts &&
               userData?.accounts?.data.map((data, idx) => {
                 return (
                   <div
