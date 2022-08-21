@@ -24,6 +24,8 @@ import * as XLSX from "xlsx";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
+import axios from "axios";
+
 import { useNavigate } from "react-router-dom";
 
 export default function Event() {
@@ -50,10 +52,30 @@ export default function Event() {
   const [userfile, setUserFile] = useState();
   const teams = ["events", "hr", "finance", "c&m", "technical"];
 
-  console.log(formdata);
+  const [venuedata, setVenueData] = useState({});
+  const [eventid, setEventId] = useState(0);
+  // console.log(formdata);
+
+  const [image, setImage] = useState(null);
+
+  const handleImage = (e) => {
+    setImage(e.target.files[0]);
+  };
+
+  const getImageUrl = async (image) => {
+    const data = new FormData();
+    data.append("image", image);
+    // console.log(image);
+    const res = (
+      await axios.post("https://envisionalpha.aaruush.org/upload/venues", data)
+    ).data;
+    console.log(res);
+    return res.data;
+  };
+
   /////////////////////////////////////////////
 
-  console.log(formdata);
+  // console.log(formdata);
   const VENUE_QUERY = gql`
     query {
       getVenues {
@@ -61,43 +83,36 @@ export default function Event() {
         name
         email
         city
-        
+        venue_head
       }
     }
   `;
 
   const { loading, err, data } = useQuery(VENUE_QUERY);
-  console.log(data);
+
+  // console.log(data?.getVenues);
   const EVENT_MUTATION = gql`
     mutation createEvent(
-      $name: String
-      $description: String
-      $venue: ID
-      $organiser: String
-      $caption: String
-      $fromdate: String
-      $todate: String
-      $time: String
-      $image: String
-      $departmentInvited: [String]
-      $usersInvited: [InvitedUserInput]
-      $status: String
+      $name: String!
+      $description: String!
+      $organiser: String!
+      $caption: String!
+      $status: String!
+      $from_date: String!
+      $to_date: String!
+      $time: String!
+      $image: String!
     ) {
       createEvent(
-        eventInput: {
-          name: $name
-          description: $description
-          venue: $venue
-          organiser: $organiser
-          caption: $caption
-          fromdate: $fromdate
-          todate: $todate
-          time: $time
-          image: $image
-          departmentInvited: $departmentInvited
-          usersInvited: $usersInvited
-          status: $status
-        }
+        name: $name
+        description: $description
+        organiser: $organiser
+        caption: $caption
+        status: $status
+        from_date: $from_date
+        to_date: $to_date
+        time: $time
+        image: $image
       ) {
         id
         name
@@ -119,7 +134,7 @@ export default function Event() {
     },
     onCompleted: (data) => {
       console.log(data);
-
+      setEventId(data.createEvent.id);
       toast.success(`Event Added successfully!`, {
         position: "top-center",
         autoClose: 3000,
@@ -129,22 +144,53 @@ export default function Event() {
         draggable: true,
         progress: undefined,
       });
-      setFormData({});
+      // setFormData({});
     },
     variables: formdata,
   });
+
   const navigate = useNavigate();
 
-  const onSubmit = (e) => {
+  function getVenueHead(venue) {
+    const current = data?.getVenues.find((v) => v.id === venue);
+    return current.venue_head;
+  }
+
+  // console.log(getVenueHead("d628f966-ca4f-40b8-95dd-44c0525b12e8"));
+
+  const onSubmit = async (e) => {
     e.preventDefault();
+    // const url = await getImageUrl(image);
     setFormData({
       ...formdata,
+      // image: url,
       status: "pending",
-      time: JSON.stringify(formdata.time),
-      food: JSON.stringify(formdata.food),
+      time:
+        typeof formdata.time != "string"
+          ? JSON.stringify(formdata.time)
+          : formdata.time,
+      food:
+        typeof formdata.food != "string"
+          ? JSON.stringify(formdata.food)
+          : formdata.food,
     });
     console.log(formdata);
-    navigate("../requests", { replace: true });
+    if (eventid != 0) {
+      setVenueData({
+        ...venuedata,
+        venue: formdata.venue,
+        venue_head: getVenueHead(formdata.venue),
+        from_date: formdata.fromdate,
+        to_date: formdata.todate,
+        time: formdata.time,
+        event_id: eventid,
+      });
+    } else {
+      console.log("ID unavailable");
+    }
+
+    console.log(venuedata);
+    // navigate("../requests", { replace: true });
   };
 
   return (
@@ -211,6 +257,7 @@ export default function Event() {
               user={user}
               current={current}
               setCurrent={setCurrent}
+              handleImage={handleImage}
             />
           ) : null}
           {current === 1 ? (

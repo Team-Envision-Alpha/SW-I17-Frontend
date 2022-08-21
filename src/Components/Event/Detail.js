@@ -11,9 +11,8 @@ export default function Details({
   user,
   current,
   setCurrent,
+  handleImage,
 }) {
-  const [image, setImage] = useState(null);
-
   function handleNext() {
     if (current < 3) {
       setCurrent(current + 1);
@@ -31,9 +30,6 @@ export default function Details({
       return false;
     }
   }
-  const handleImage = (e) => {
-    setImage(e.target.files[0]);
-  };
 
   return (
     <div className="w-[80vw] md:w-[50vw] bg-[#f3b641] shadow-xl rounded-2xl overflow-hidden my-10">
@@ -111,8 +107,8 @@ export default function Details({
               type="file"
               name="image"
               accept="image/svg, image/png, image/jpeg, image/jpg, image/webp"
-              className="mt-8 ml-[35%] w-full text-sm text-slate-500 place-content-center justify-center flex flex-row
-      file:mr-4 file:py-2 file:px-4
+              className="mt-8 text-sm text-slate-500 place-content-center justify-center flex flex-row mx-auto my-auto
+      file:mr-8 file:py-2 file:px-4
       file:rounded-full file:border-0
       file:text-sm file:font-semibold
       file:bg-blue-50 file:text-blue-700
