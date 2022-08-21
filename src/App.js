@@ -2,7 +2,12 @@
 
 import React, { useState, useEffect } from "react";
 import Login from "./Components/Login";
-import { Routes, Route, BrowserRouter as Router, Navigate } from "react-router-dom";
+import {
+  Routes,
+  Route,
+  BrowserRouter as Router,
+  Navigate,
+} from "react-router-dom";
 // import FB from "./Components/Facebook/FBLogin";
 // import Twitter from "./Components/Twitter/twitter.js";
 import { gql, useQuery } from "@apollo/client";
@@ -25,9 +30,9 @@ import FbAccount from "./pages/FbAccount";
 import FbLogin from "./pages/FbLogin";
 import SocialMedia from "./pages/SocialMedia";
 import FacebookPage from "./pages/FacebookPage";
-import FacebookMain from "./pages/FbMainPage"
+import FacebookMain from "./pages/FbMainPage";
+import TwitterMainPage from "./pages/TwitterMainPage";
 const App = () => {
-
   // const [longlivedaccesstoken, setLonglivedaccesstoken] = useState(null);
 
   // useEffect(() => {
@@ -36,14 +41,11 @@ const App = () => {
   //   }
   // }, [])
 
-
-
   const HELLO = gql`
     query {
       hello
     }
   `;
-
 
   return (
     <>
@@ -52,8 +54,7 @@ const App = () => {
           <Route path="/" element={<Login />} />
 
           <Route path="/events" element={<Event />} />
-          <Route path="/dashboard" element={<DashBoard />
-          } />
+          <Route path="/dashboard" element={<DashBoard />} />
 
           <Route path="/user_registration" element={<User />} />
           <Route path="/requests" element={<EventReq />} />
@@ -71,9 +72,6 @@ const App = () => {
             element={<EventAndVenueDetails />}
           />
 
-
-
-
           <Route
             path="/social_media"
             element={<SocialMedia title="Social Media Dashboard"></SocialMedia>}
@@ -83,12 +81,11 @@ const App = () => {
             path="/fb_account"
             element={
               <>
-
-                {localStorage.getItem("longlivedaccesstoken") ?
+                {localStorage.getItem("longlivedaccesstoken") ? (
                   <FbAccount title="See your account"></FbAccount>
-                  :
+                ) : (
                   <Navigate to="/social_media" replace={true} />
-                }
+                )}
               </>
             }
           />
@@ -102,7 +99,10 @@ const App = () => {
             element={<FacebookPage title="Facebook Page"></FacebookPage>}
           />
 
-
+          <Route
+            path="/twitter_main"
+            element={<TwitterMainPage title="Twitter Page"></TwitterMainPage>}
+          />
 
           {/* <Route
             path="/social_analytics"
