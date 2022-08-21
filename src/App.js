@@ -26,6 +26,7 @@ import FbLogin from "./pages/FbLogin";
 import SocialMedia from "./pages/SocialMedia";
 import FacebookPage from "./pages/FacebookPage";
 import FacebookMain from "./pages/FbMainPage"
+import ActivityLog from "./pages/ActivityLog";
 const App = () => {
 
   // const [longlivedaccesstoken, setLonglivedaccesstoken] = useState(null);
@@ -70,6 +71,14 @@ const App = () => {
             path="/event_and_venue_details"
             element={<EventAndVenueDetails />}
           />
+
+
+          <Route
+            path="/activity_log"
+            element={<ActivityLog />}
+          />
+
+
 
 
 

@@ -46,6 +46,9 @@ const DashBoard = () => {
           <Link to="/requests">
             <DashCard icon={activity} name="User Requests" />
           </Link>
+          <Link to="/activity_log">
+            <DashCard icon={activity} name="Activity Log" />
+          </Link>
           {(user.role === "admin" || user.role === "social_media") ? (
             <Link to="/social_media">
               <DashCard icon={social} name="Social Media" />
