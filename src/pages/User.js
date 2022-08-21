@@ -23,6 +23,7 @@ const User = () => {
     "marketing",
     "sales",
     "tech",
+    "social_media"
   ];
 
   const [formdata, setFormData] = useState({});
@@ -222,7 +223,7 @@ const User = () => {
                     setFormData={setFormData}
                   />
                 </div>
-                
+
                 <div className="flex flex-col gap-4">
                   <h4>Confirm Password</h4>
                   <input
@@ -231,9 +232,8 @@ const User = () => {
                     style={{
                       color: "#818181",
                       background: "#F6F5F6",
-                      border: `${
-                        !submitstate ? "2px solid red" : "2px solid green"
-                      }`,
+                      border: `${!submitstate ? "2px solid red" : "2px solid green"
+                        }`,
                       borderRadius: "8px",
                     }}
                     value={confirmpassword ? confirmpassword : ""}

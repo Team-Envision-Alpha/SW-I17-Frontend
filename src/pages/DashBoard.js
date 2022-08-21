@@ -16,10 +16,10 @@ import DashCard from "../Components/DashCard";
 import Upcoming from "../Assets/Images/Dashboard/upcoming.svg";
 import social from "../Assets/Images/Dashboard/social.svg";
 import allvenues from "../Assets/Images/Dashboard/allvenues.svg";
-
+import { Link } from "react-router-dom"
 const DashBoard = () => {
-  // const user = JSON.parse(localStorage.getItem("aicteuser"));
-  const user = { name: "Rishit", role: "admin" };
+  const user = JSON.parse(localStorage.getItem("aicteuser"));
+  // const user = { name: "Rishit", role: "admin" };
   return (
     <div
       style={{ backgroundImage: `url(${bg})` }}
@@ -34,46 +34,51 @@ const DashBoard = () => {
         </div>
 
         <div className="flex justify-center items-center gap-12  flex-wrap  ">
-          <a href="/events">
+          <Link to="/events">
             <DashCard icon={calendar} name="Add Events" />
-          </a>
+          </Link>
+          <Link to="/invited_event">
+            <DashCard icon={Upcoming} name="Invited Events" />
+          </Link>
+          <Link to="/venues">
+            <DashCard icon={allvenues} name="View Venues" />
+          </Link>
+          <Link to="/requests">
+            <DashCard icon={activity} name="User Requests" />
+          </Link>
+          {(user.role === "admin" || user.role === "social_media") ? (
+            <Link to="/social_media">
+              <DashCard icon={social} name="Social Media" />
+            </Link>
+          ) : null}
           {user.role === "admin" ? (
             <DashCard icon={report} name="Generate Report" />
           ) : null}
-          <a href="/venues">
-            <DashCard icon={allvenues} name="View Venues" />
-          </a>
-          <a href="/requests">
-            <DashCard icon={activity} name="User Requests" />
-          </a>
+          
           {user.role === "admin" ? (
-            <a href="/user_registration">
+            <Link to="/user_registration">
               <DashCard icon={createuser} name="Create User" />
-            </a>
+            </Link>
           ) : null}
-          {/* {user.role == "admin" ? (
-            <a href="/edituser">
-              <DashCard icon={createuser} name="Edit User" />
-            </a>
-          ) : null} */}
+         
           {user.role === "admin" ? (
-            <a href="/edituser">
+            <Link to="/edituser">
               <DashCard icon={editUser} name="View/Edit Users" />
-            </a>
+            </Link>
           ) : null}
-          {user.role === "admin" ? (
-            <a href="/social_analytics">
+
+
+          {/* {user.role === "admin" ? (
+            <Link to="/social_analytics">
               <DashCard icon={socialAnalytics} name="Social Analytics" />
-            </a>
-          ) : null}
-          {user.role === "admin" ? (
-            <a href="/social">
-              <DashCard icon={social} name="Social Media" />
-            </a>
-          ) : null}
-          <a href="/invited_event">
-            <DashCard icon={Upcoming} name="Invited Events" />
-          </a>
+            </Link>
+          ) : null} */}
+          {/* {user.role === "admin" ? (
+            <Link to="/edituser">
+              <DashCard icon={createuser} name="Edit User" />
+            </Link>
+          ) : null} */}
+          
         </div>
 
         {/* <div  */}

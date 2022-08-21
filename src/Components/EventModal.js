@@ -43,7 +43,7 @@ const EventModal = ({ setIsOpen, event }) => {
             />
           </div>
           <div className="my-10">
-            <p className="text-[3vh] font-bold">{event.name}</p>
+            <p className="text-[3vh] font-bold">{event?.name}</p>
           </div>
           <div className="grid grid-cols-2 gap-20 px-20">
             <div className="flex flex-col gap-6">
@@ -51,7 +51,7 @@ const EventModal = ({ setIsOpen, event }) => {
                 <p className="text-[3vh] font-semibold">Description</p>
               </div>
               <div>
-                <p>{event.description}</p>
+                <p>{event?.description}</p>
               </div>
             </div>
             <div className="flex flex-col gap-6">
@@ -62,7 +62,7 @@ const EventModal = ({ setIsOpen, event }) => {
                 className="flex items-center gap-2"
                 style={{
                   filter: `${
-                    reqlevel(event.status) >= 0 ? "grayscale(100%)" : null
+                    reqlevel(event?.status) >= 0 ? "grayscale(100%)" : null
                   }`,
                 }}
               >
@@ -78,7 +78,7 @@ const EventModal = ({ setIsOpen, event }) => {
                 className="flex items center gap-2"
                 style={{
                   filter: `${
-                    reqlevel(event.status) >= 1 ? "null" : "grayscale(100%)"
+                    reqlevel(event?.status) >= 1 ? "null" : "grayscale(100%)"
                   }`,
                 }}
               >
@@ -88,7 +88,7 @@ const EventModal = ({ setIsOpen, event }) => {
                     Request Approved by Team Head
                   </p>
                   <p className="text-[#818181] text-[1.5vh] text-left">
-                    {reqlevel(event.status) >= 1
+                    {reqlevel(event?.status) >= 1
                       ? "Your request has been approved by team head and pending for approval from Venue head."
                       : null}
                   </p>
@@ -98,7 +98,7 @@ const EventModal = ({ setIsOpen, event }) => {
                 className="flex items center gap-2"
                 style={{
                   filter: `${
-                    reqlevel(event.status) >= 2 ? "null" : "grayscale(100%)"
+                    reqlevel(event?.status) >= 2 ? "null" : "grayscale(100%)"
                   }`,
                 }}
               >
@@ -106,7 +106,7 @@ const EventModal = ({ setIsOpen, event }) => {
                 <div className="flex flex-col justify-center items-start">
                   <p className="text-[2vh] text-left">Approved by Venue Head</p>
                   <p className="text-[rgb(129,129,129)] text-[1.5vh] text-left">
-                    {reqlevel(event.status) >= 1
+                    {reqlevel(event?.status) >= 1
                       ? " Your request has been approved by venue head and pending for social media details."
                       : null}
                   </p>
@@ -116,7 +116,7 @@ const EventModal = ({ setIsOpen, event }) => {
                 className="flex items center gap-2"
                 style={{
                   filter: `${
-                    reqlevel(event.status) >= 3 ? "null" : "grayscale(100%)"
+                    reqlevel(event?.status) >= 3 ? "null" : "grayscale(100%)"
                   }`,
                 }}
               >
@@ -134,7 +134,7 @@ const EventModal = ({ setIsOpen, event }) => {
                 className="flex items center gap-2"
                 style={{
                   filter: `${
-                    reqlevel(event.status) >= 4 ? "null" : "grayscale(100%)"
+                    reqlevel(event?.status) >= 4 ? "null" : "grayscale(100%)"
                   }`,
                 }}
               >
@@ -150,7 +150,7 @@ const EventModal = ({ setIsOpen, event }) => {
                 className="flex items center gap-2"
                 style={{
                   filter: `${
-                    reqlevel(event.status) >= 5 ? "null" : "grayscale(100%)"
+                    reqlevel(event?.status) >= 5 ? "null" : "grayscale(100%)"
                   }`,
                 }}
               >
@@ -158,7 +158,7 @@ const EventModal = ({ setIsOpen, event }) => {
                 <div className="flex flex-col justify-center items-start">
                   <p className="text-[2vh] text-left">Event registaration</p>
                   <p className="text-[#818181] text-[1.5vh] text-left">
-                    {reqlevel(event.status) >= 5
+                    {reqlevel(event?.status) >= 5
                       ? "Event registration is complete."
                       : null}
                   </p>

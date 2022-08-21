@@ -36,9 +36,8 @@ export default function Modal({ modal, setModal, venue }) {
   };
   return (
     <div
-      className={`${
-        modal ? "block" : "hidden"
-      } z-[100] bg-[#00000090] w-[100vw] h-[100vh] absolute top-0 left-0 flex flex-row transition-all duration-700`}
+      className={`${modal ? "block" : "hidden"
+        } z-[100] bg-[#00000090] w-[100vw] h-[100vh] absolute top-0 left-0 flex flex-row transition-all duration-700`}
     >
       <div className="w-[98%] md:w-[50%] md:h-[85%] justify-center rounded-xl overflow-hidden mx-auto my-auto bg-[#f3b641] animate-[ping_0.3s_ease-in-out_reverse_1]">
         <div className="w-full bg-[#f3f3f3] h-[95%] mt-8 relative">
@@ -58,30 +57,30 @@ export default function Modal({ modal, setModal, venue }) {
             <div className="flex md:flex-row flex-col pt-8 max-h-[70%]">
               <div className="md:basis-[60%] flex flex-col justify-around">
                 <div className="flex flex-row align-middle my-2">
-                  <img src={location} />
+                  <img src={location} alt="icon" />
                   <span className="my-auto ml-4">{venue?.address}</span>
                 </div>
                 <div className="flex flex-row align-middle my-2">
-                  <img src={addr} />
+                  <img src={addr} alt="icon" />
                   <span className="my-auto ml-4">{venue?.city}</span>
                 </div>
                 <div className="flex flex-row align-middle my-2">
-                  <img src={flag} />
+                  <img src={flag} alt="icon" />
                   <span className="my-auto ml-4">{venue?.state}</span>
                 </div>
                 <div className="flex flex-row align-middle my-2">
-                  <img src={people} />
+                  <img src={people} alt="icon" />
                   <span className="my-auto ml-4">{venue?.capacity} max.</span>
                 </div>
                 <div className="flex flex-row align-middle my-2">
-                  <img src={website} />
-                  <a className="my-auto ml-4">{venue?.website}</a>
+                  <img src={website} alt="icon" />
+                  <a className="my-auto ml-4" href={venue?.website} >{venue?.website}</a>
                 </div>
               </div>
               <div className="md:basis-[40%] flex flex-row justify-center">
                 <img
                   src="https://picsum.photos/500"
-                  className="rounded-lg max-h-[90%] mx-auto my-auto"
+                  className="rounded-lg max-h-[90%] mx-auto my-auto" alt="icon"
                 />
               </div>
             </div>
@@ -104,11 +103,11 @@ export default function Modal({ modal, setModal, venue }) {
               <div className="p-4 h-full w-[45%] rounded-lg bg-white mt-5">
                 <p className="font-bold">Contact Info</p>
                 <div className="flex flex-row align-middle my-4">
-                  <img src={mail} />
+                  <img src={mail} alt="icon" />
                   <span className="my-auto ml-4">{venue?.email}</span>
                 </div>
                 <div className="flex flex-row align-middle my-4">
-                  <img src={phone} />
+                  <img src={phone} alt="icon" />
                   <span className="my-auto ml-4">{venue?.phone}</span>
                 </div>
               </div>

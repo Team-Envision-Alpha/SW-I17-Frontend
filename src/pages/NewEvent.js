@@ -8,22 +8,18 @@ import Duration from "../Components/Event/Duration";
 import Invitations from "../Components/Event/Invitations";
 import Teams from "../Components/Event/Teams";
 import Food from "../Components/Event/Food";
-
 import Navbar from "../Components/NewNavbar";
-
 import React, { Component, Fragment, useState, useEffect } from "react";
 // import Navbar from "../Components/Navbar";
 // import bg from "../Assets/Images/Group.svg";
-import Select from "../Components/Select.js";
+// import Select from "../Components/Select.js";
 // import { DateRangePicker } from "react-date-range";
-
 import Button from "@mui/material/Button";
 import "react-date-range/dist/styles.css"; // main style file
 import "react-date-range/dist/theme/default.css"; // theme css file
-import { BsCheckLg, BsXLg, BsPlusLg } from "react-icons/bs";
-import states from "../Assets/Data/States.json";
+// import { BsCheckLg, BsXLg, BsPlusLg } from "react-icons/bs";
+// import states from "../Assets/Data/States.json";
 import { gql, useMutation, useQuery } from "@apollo/client";
-
 import * as XLSX from "xlsx";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -174,6 +170,8 @@ export default function Event() {
         <Burger open={show} setOpen={setShow}></Burger>
       </div>
       <Sidebar show={show} setShow={setShow} />
+
+      
       <section className="mt-12 mx-10 z-10 md:ml-[28vw] lg:ml-[25vw]">
         <h1 className="font-bold text-2xl">Book a Venue</h1>
         <p className="mt-8 text-blue-400 hover:text-blue-600 transition cursor-pointer mb-8">
