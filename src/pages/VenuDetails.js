@@ -87,7 +87,7 @@ const User = () => {
         draggable: true,
         progress: undefined,
       });
-      setFormData({});
+      setFormData({image:"",venue_head:user.id,name:"",email:"",phone:"",city:"",state:"",address:"",pincode:"",capacity:"",website:""});
     },
     // update(_, result) {
     //   console.log(result.data.registerUser);
