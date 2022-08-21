@@ -10,6 +10,8 @@ import { useNavigate } from "react-router-dom";
 import { gql, useQuery } from "@apollo/client";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+
+
 const FbAccount = () => {
   const [show, setShow] = useState(false);
   const navigate = useNavigate();
