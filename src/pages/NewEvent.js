@@ -24,13 +24,15 @@ import * as XLSX from "xlsx";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
+import { useNavigate } from "react-router-dom";
+
 export default function Event() {
   const steps = [
     "Event Details",
     "Event Duration",
+    "Food Requirements",
     "Select Teams",
     "Invitations",
-    "Food Requirements",
   ];
   const stepElements = [<Detail />, <Duration />];
   const [show, setShow] = useState(false);
@@ -131,34 +133,18 @@ export default function Event() {
     },
     variables: formdata,
   });
+  const navigate = useNavigate();
+
   const onSubmit = (e) => {
     e.preventDefault();
-    setFormData({ ...formdata, usersInvited: extrausers, status: "pending" });
-    console.log(formdata);
-    const localEvents = JSON.parse(localStorage.getItem("events"));
-    if (localEvents) {
-      localStorage.setItem(
-        "events",
-        JSON.stringify([...localEvents, { ...formdata, status: "pending" }])
-      );
-    } else {
-      localStorage.setItem(
-        "events",
-        JSON.stringify([{ ...formdata, status: "pending" }])
-      );
-    }
-    console.log(JSON.parse(localStorage.getItem("events")));
-    toast.success(`Event Added successfully!`, {
-      position: "top-center",
-      autoClose: 3000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
+    setFormData({
+      ...formdata,
+      status: "pending",
+      time: JSON.stringify(formdata.time),
+      food: JSON.stringify(formdata.food),
     });
-    setFormData({});
-    // console.log(loading);
+    console.log(formdata);
+    navigate("../requests", { replace: true });
   };
 
   return (
@@ -167,13 +153,10 @@ export default function Event() {
       style={{ backgroundImage: `url(${bg})` }}
     >
       <Navbar />
-      <div className="lg:hidden block absolute z-50">
-        <Burger open={show} setOpen={setShow}></Burger>
-      </div>
+      <Burger open={show} setOpen={setShow}></Burger>
       <Sidebar show={show} setShow={setShow} />
 
-      
-      <section className="mt-12 mx-10 z-10 md:ml-[28vw] lg:ml-[25vw]">
+      <section className="mt-12 z-10 mx-auto">
         <h1 className="font-bold text-2xl">Book a Venue</h1>
         <p className="mt-8 text-blue-400 hover:text-blue-600 transition cursor-pointer mb-8">
           Breadcrumb / breadcrumb / breadcrumb
@@ -248,7 +231,7 @@ export default function Event() {
           ) : null}
 
           {current === 2 ? (
-            <Teams
+            <Food
               current={current}
               setCurrent={setCurrent}
               setFormData={setFormData}
@@ -262,10 +245,11 @@ export default function Event() {
               user={user}
               data={data}
               teams={teams}
+              onSubmit={onSubmit}
             />
           ) : null}
 
-          {current === 3 ? (
+          {current === 4 ? (
             <Invitations
               current={current}
               setCurrent={setCurrent}
@@ -283,8 +267,8 @@ export default function Event() {
             />
           ) : null}
 
-          {current === 4 ? (
-            <Food
+          {current === 3 ? (
+            <Teams
               current={current}
               setCurrent={setCurrent}
               setFormData={setFormData}

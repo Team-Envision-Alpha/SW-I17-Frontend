@@ -85,17 +85,21 @@ export default function Details({
   // console.log(time);
 
   useEffect(() => {
-    setFormData({ ...formdata, times });
+    setFormData({ ...formdata, time: times });
   }, [times]);
 
   function checkTime() {
     // console.log(formdata);
-    if (formdata.times && Object.keys(formdata.times).length === daysCount()) {
+    if (
+      formdata.time &&
+      Object.keys(formdata.time).length === daysCount() &&
+      formdata.venue
+    ) {
       var check = false;
-      Object.keys(formdata.times).map((key) => {
+      Object.keys(formdata.time).map((key) => {
         // console.log(formdata.times[key]);
         // console.log(formdata.times);
-        if (Object.keys(formdata.times[key]).length !== 2) {
+        if (Object.keys(formdata.time[key]).length !== 2) {
           check = false;
         } else {
           check = true;
