@@ -36,15 +36,6 @@ const App = () => {
   //   }
   // }, [])
 
-
-
-  const HELLO = gql`
-    query {
-      hello
-    }
-  `;
-
-
   return (
     <>
       <Router>
