@@ -54,17 +54,18 @@ export default function Event() {
   console.log(formdata);
   const VENUE_QUERY = gql`
     query {
-      getAllVenues {
+      getVenues {
         id
         name
+        email
         city
-        pincode
+        
       }
     }
   `;
 
   const { loading, err, data } = useQuery(VENUE_QUERY);
-  // const data = [{ id: 1234 }, { id: 1234 }];
+  console.log(data);
   const EVENT_MUTATION = gql`
     mutation createEvent(
       $name: String
@@ -199,7 +200,7 @@ export default function Event() {
               {steps.map((step, index) => {
                 // console.log(current, index, current <= index);
                 return (
-                  <div className="text-center">
+                  <div key={index} className="text-center">
                     <div className={index <= current ? state2 : state1}>
                       {index + 1}
                     </div>
