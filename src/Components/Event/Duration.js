@@ -52,8 +52,8 @@ export default function Details({
   const [startdate, setStartDate] = useState(new Date());
   const [enddate, setEndDate] = useState(new Date());
   const [time, setTime] = useState("00:00am");
-  // const [times, setTimes] = useState({});
-  const [times, setTimes] = useState("11AM to 5PM");
+  const [times, setTimes] = useState({});
+  // const [times, setTimes] = useState([]);
   const disabled_dates = [
     new Date(2022, 3, 10),
     new Date(2022, 3, 11),

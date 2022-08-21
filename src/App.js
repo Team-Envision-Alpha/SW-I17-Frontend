@@ -26,6 +26,7 @@ import FbLogin from "./pages/FbLogin";
 import SocialMedia from "./pages/SocialMedia";
 import FacebookPage from "./pages/FacebookPage";
 import FacebookMain from "./pages/FbMainPage"
+import DivChat from "./pages/DivChat";
 const App = () => {
 
   // const [longlivedaccesstoken, setLonglivedaccesstoken] = useState(null);
@@ -92,7 +93,7 @@ const App = () => {
             path="/facebookpage/:id"
             element={<FacebookPage title="Facebook Page"></FacebookPage>}
           />
-
+          <Route exact path="divchats" element={<DivChat />} />
 
 
           {/* <Route
