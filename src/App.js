@@ -33,7 +33,7 @@ import FacebookPage from "./pages/FacebookPage";
 import FacebookMain from "./pages/FbMainPage";
 import TwitterMainPage from "./pages/TwitterMainPage";
 import ActivityLog from "./pages/ActivityLog";
-
+import TwiChat from "./pages/TwiChat";
 const App = () => {
   // const [longlivedaccesstoken, setLonglivedaccesstoken] = useState(null);
 
