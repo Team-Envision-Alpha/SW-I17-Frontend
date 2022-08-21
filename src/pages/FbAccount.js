@@ -10,6 +10,8 @@ import { useNavigate } from "react-router-dom";
 import { gql, useQuery } from "@apollo/client";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+
+
 const FbAccount = () => {
   const [show, setShow] = useState(false);
   const navigate = useNavigate();
@@ -45,8 +47,8 @@ const FbAccount = () => {
   if (!loading) {
     console.log(JSON.parse(data.fbGetUserPages));
     userData = JSON.parse(data.fbGetUserPages);
-    if (JSON.parse(data.fbGetUserPages).accounts) {
-      JSON.parse(data.fbGetUserPages).accounts.data.map((data, idx) =>
+    if (JSON.parse(data.fbGetUserPages)?.accounts) {
+      JSON.parse(data.fbGetUserPages)?.accounts.data.map((data, idx) =>
         localStorage.setItem(`${data.id}`, data.access_token)
       );
     }
@@ -139,7 +141,7 @@ const FbAccount = () => {
           </div>
 
           <div className="flex gap-16">
-            {userData.accounts &&
+            {userData?.accounts &&
               userData?.accounts?.data.map((data, idx) => {
                 return (
                   <div

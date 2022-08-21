@@ -30,10 +30,13 @@ import FbAccount from "./pages/FbAccount";
 import FbLogin from "./pages/FbLogin";
 import SocialMedia from "./pages/SocialMedia";
 import FacebookPage from "./pages/FacebookPage";
+import DivChat from "./pages/DivChat";
 import FacebookMain from "./pages/FbMainPage";
 import TwitterMainPage from "./pages/TwitterMainPage";
 import ActivityLog from "./pages/ActivityLog";
 import TwiChat from "./pages/TwiChat";
+import MassMailer from "./pages/MassMailer";
+
 const App = () => {
   // const [longlivedaccesstoken, setLonglivedaccesstoken] = useState(null);
 
@@ -42,6 +45,8 @@ const App = () => {
   //     setLonglivedaccesstoken(localStorage.getItem("longlivedaccesstoken"));
   //   }
   // }, [])
+
+  const aicteuser = localStorage.getItem("aicteuser");
 
   const HELLO = gql`
     query {
@@ -53,7 +58,12 @@ const App = () => {
     <>
       <Router>
         <Routes>
-          <Route path="/" element={<Login />} />
+          <Route path="/" element={
+            <>
+              {aicteuser ? <Navigate to="/dashboard" /> : <Login />}
+
+            </>
+          } />
 
           <Route path="/events" element={<Event />} />
           <Route path="/dashboard" element={<DashBoard />} />
@@ -75,6 +85,7 @@ const App = () => {
           />
 
           <Route path="/activity_log" element={<ActivityLog />} />
+          <Route path="/mass_mailer" element={<MassMailer />} />
 
           <Route
             path="/social_media"
@@ -102,6 +113,8 @@ const App = () => {
             path="/facebookpage/:id"
             element={<FacebookPage title="Facebook Page"></FacebookPage>}
           />
+          <Route exact path="divchats" element={<DivChat />} />
+
 
           <Route
             path="/twitter_main"
