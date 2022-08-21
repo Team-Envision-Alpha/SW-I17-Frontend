@@ -4,7 +4,7 @@ import bg from "../Assets/Images/Group.svg";
 import Burger from "../Components/burger";
 import Navbar from "../Components/NewNavbar";
 import Sidebar from "../Components/Sidebar";
-import { useState, useEffect } from "react";
+import { useState} from "react";
 import { useNavigate } from "react-router-dom";
 // import axios from 'axios'
 import { gql, useQuery } from "@apollo/client";
@@ -51,6 +51,7 @@ const FbAccount = () => {
       );
     }
   }
+
 
   return (
     <>

@@ -32,7 +32,8 @@ import SocialMedia from "./pages/SocialMedia";
 import FacebookPage from "./pages/FacebookPage";
 import FacebookMain from "./pages/FbMainPage";
 import TwitterMainPage from "./pages/TwitterMainPage";
-import TwiChat from "./pages/TwiChat";
+import ActivityLog from "./pages/ActivityLog";
+
 const App = () => {
   // const [longlivedaccesstoken, setLonglivedaccesstoken] = useState(null);
 
@@ -72,6 +73,8 @@ const App = () => {
             path="/event_and_venue_details"
             element={<EventAndVenueDetails />}
           />
+
+          <Route path="/activity_log" element={<ActivityLog />} />
 
           <Route
             path="/social_media"
