@@ -8,8 +8,7 @@ import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const navigate = useNavigate();
-  // const user = JSON.parse(localStorage.getItem("aicteuser"));
-  const user = { name: "Rishit", role: "admin" };
+  const user = JSON.parse(localStorage.getItem("aicteuser"));
   return (
     <>
       <div className="float-right absolute top-5 right-5 flex flex-row gap-x-7">

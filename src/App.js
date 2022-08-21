@@ -2,7 +2,12 @@
 
 import React, { useState, useEffect } from "react";
 import Login from "./Components/Login";
-import { Routes, Route, BrowserRouter as Router, Navigate } from "react-router-dom";
+import {
+  Routes,
+  Route,
+  BrowserRouter as Router,
+  Navigate,
+} from "react-router-dom";
 // import FB from "./Components/Facebook/FBLogin";
 // import Twitter from "./Components/Twitter/twitter.js";
 import { gql, useQuery } from "@apollo/client";
@@ -25,10 +30,14 @@ import FbAccount from "./pages/FbAccount";
 import FbLogin from "./pages/FbLogin";
 import SocialMedia from "./pages/SocialMedia";
 import FacebookPage from "./pages/FacebookPage";
-import FacebookMain from "./pages/FbMainPage"
 import DivChat from "./pages/DivChat";
-const App = () => {
+import FacebookMain from "./pages/FbMainPage";
+import TwitterMainPage from "./pages/TwitterMainPage";
+import ActivityLog from "./pages/ActivityLog";
+import TwiChat from "./pages/TwiChat";
+import MassMailer from "./pages/MassMailer";
 
+const App = () => {
   // const [longlivedaccesstoken, setLonglivedaccesstoken] = useState(null);
 
   // useEffect(() => {
@@ -37,15 +46,27 @@ const App = () => {
   //   }
   // }, [])
 
+  const aicteuser = localStorage.getItem("aicteuser");
+
+  const HELLO = gql`
+    query {
+      hello
+    }
+  `;
+
   return (
     <>
       <Router>
         <Routes>
-          <Route path="/" element={<Login />} />
+          <Route path="/" element={
+            <>
+              {aicteuser ? <Navigate to="/dashboard" /> : <Login />}
+
+            </>
+          } />
 
           <Route path="/events" element={<Event />} />
-          <Route path="/dashboard" element={<DashBoard />
-          } />
+          <Route path="/dashboard" element={<DashBoard />} />
 
           <Route path="/user_registration" element={<User />} />
           <Route path="/requests" element={<EventReq />} />
@@ -63,8 +84,8 @@ const App = () => {
             element={<EventAndVenueDetails />}
           />
 
-
-
+          <Route path="/activity_log" element={<ActivityLog />} />
+          <Route path="/mass_mailer" element={<MassMailer />} />
 
           <Route
             path="/social_media"
@@ -75,12 +96,11 @@ const App = () => {
             path="/fb_account"
             element={
               <>
-
-                {localStorage.getItem("longlivedaccesstoken") ?
+                {localStorage.getItem("longlivedaccesstoken") ? (
                   <FbAccount title="See your account"></FbAccount>
-                  :
+                ) : (
                   <Navigate to="/social_media" replace={true} />
-                }
+                )}
               </>
             }
           />
@@ -95,6 +115,15 @@ const App = () => {
           />
           <Route exact path="divchats" element={<DivChat />} />
 
+
+          <Route
+            path="/twitter_main"
+            element={<TwitterMainPage title="Twitter Page"></TwitterMainPage>}
+          />
+          <Route
+            path="/twitter_chat"
+            element={<TwiChat title="Twitter Chat"></TwiChat>}
+          />
 
           {/* <Route
             path="/social_analytics"
