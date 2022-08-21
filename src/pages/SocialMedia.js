@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React from "react";
 import bg from "../Assets/Images/Group.svg";
 import Burger from "../Components/burger";
@@ -7,22 +8,67 @@ import { useState } from "react";
 import fbLogo from "../Assets/Images/fbLogo.svg";
 import twitterLogo from "../Assets/Images/twitterLogo.svg";
 import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props'
-import axios from "axios";
+// import axios from "axios";
+import { gql, useMutation } from "@apollo/client";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 const SocialMedia = () => {
   const [show, setShow] = useState(false);
-  const responseFacebook = async (response) => {
-    const data = {
-      shortlivedaccesstoken:response.accessToken,
-      useremail:response.email,
-      userid: response.userId,
-      username:response.name,
-      userpicture:response.picture,
+  const [shortlivedaccesstoken, setShortlivedaccesstoken] = useState("")
+  const LONGLIVEACCESSTOKEN_MUTATION = gql`
+  mutation
+    fbGetLongLivedAccessToken(
+  $shortlivedaccesstoken: String!
+    ){
+      fbGetLongLivedAccessToken(
+        shortlivedaccesstoken: $shortlivedaccesstoken)
+    }
+  
+  
+`;
+
+  const [register, { loading }] = useMutation(LONGLIVEACCESSTOKEN_MUTATION, {
+    onError: (err) => {
+      console.log("err", err);
+      toast.error("Error: Cannot Login Facebook User", {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    },
+    onCompleted: (data) => {
+
+      localStorage.setItem("longlivedaccesstoken", JSON.parse(data.fbGetLongLivedAccessToken).longlivedaccesstoken.access_token)
+
+      toast.success(`Facebook user Logged in successfully`, {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+
+    },
+    variables:{
+      shortlivedaccesstoken
     }
 
-    const getlonglivedaccesstokens = await axios.post("getlonglivedaccesstoken",{data}).then((data)=>{return data.data.data}).catch((err)=>{console.log(err)})
-    console.log(getlonglivedaccesstokens)
-    localStorage.setItem("longlivedaccesstoken",getlonglivedaccesstokens.longlivedaccesstoken.access_token)
+  });
+
+
+  const responseFacebook = async (response) => {
+    console.log("response", response);
+    setShortlivedaccesstoken(response.accessToken)
+    register();
   }
+
   return (
     <>
       <div
@@ -35,8 +81,19 @@ const SocialMedia = () => {
             <Burger open={show} setOpen={setShow} />
           </div>
           <Sidebar show={show} setShow={setShow} />
+          <ToastContainer
+          position="top-center"
+          autoClose={3000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+        />
         </div>
-
+        
         <div className="flex flex-col gap-[12vh]">
           <div className="font-IBM-Sans flex flex-col gap-5 py-[2vh]">
             <p className="text-2xl font-extrabold tracking-wide">

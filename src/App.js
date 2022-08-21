@@ -1,8 +1,8 @@
 /* eslint-disable no-unused-vars */
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Login from "./Components/Login";
-import { Routes, Route, BrowserRouter as Router } from "react-router-dom";
+import { Routes, Route, BrowserRouter as Router, Navigate } from "react-router-dom";
 // import FB from "./Components/Facebook/FBLogin";
 // import Twitter from "./Components/Twitter/twitter.js";
 import { gql, useQuery } from "@apollo/client";
@@ -25,12 +25,24 @@ import FbAccount from "./pages/FbAccount";
 import FbLogin from "./pages/FbLogin";
 import SocialMedia from "./pages/SocialMedia";
 import FacebookPage from "./pages/FacebookPage";
+import FacebookMain from "./pages/FbMainPage"
 const App = () => {
+
+  // const [longlivedaccesstoken, setLonglivedaccesstoken] = useState(null);
+
+  // useEffect(() => {
+  //   if (localStorage.getItem("longlivedaccesstoken")) {
+  //     setLonglivedaccesstoken(localStorage.getItem("longlivedaccesstoken"));
+  //   }
+  // }, [])
+
+
   const HELLO = gql`
     query {
       hello
     }
   `;
+
 
   return (
     <>
@@ -70,17 +82,26 @@ const App = () => {
             path="/social_media"
             element={<SocialMedia title="Social Media Dashboard"></SocialMedia>}
           />
-          <Route
+          {/* <Route
             path="/fb_login"
             element={<FbLogin title="Log in to facebook"></FbLogin>}
-          />
+          /> */}
           <Route
             path="/fb_account"
-            element={<FbAccount title="See your account"></FbAccount>}
+            element={
+              <>
+
+                {localStorage.getItem("longlivedaccesstoken") ?
+                  <FbAccount title="See your account"></FbAccount>
+                  :
+                  <Navigate to="/social_media" replace={true} />
+                }
+              </>
+            }
           />
           <Route
-            path="/fb_main"
-            element={<FbAccount title="Check Post"></FbAccount>}
+            path="/fb_main/:id"
+            element={<FacebookMain title="Check Post"></FacebookMain>}
           />
           <Route
             exact

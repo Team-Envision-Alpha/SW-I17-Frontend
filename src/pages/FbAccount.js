@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React from "react";
 import bg from "../Assets/Images/Group.svg";
 import Burger from "../Components/burger";
@@ -5,24 +6,53 @@ import Navbar from "../Components/NewNavbar";
 import Sidebar from "../Components/Sidebar";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from 'axios'
+// import axios from 'axios'
+import { gql, useQuery } from "@apollo/client";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const FbAccount = () => {
   const [show, setShow] = useState(false);
   const navigate = useNavigate();
-  const [userData, setUserData] = useState();
+  // const [userData, setUserData] = useState();
+  var userData
   const longlivedaccesstoken = localStorage.getItem("longlivedaccesstoken");
   console.log(userData);
 
-  useEffect(() => {
-    const getUserData = async () => {
-      const userdata = await axios.get(`/getuserpages/${longlivedaccesstoken}`).then((data) => { return data.data.userdata; }).catch((err) => { console.log(err) })
-      setUserData(userdata)
-      userdata.accounts.data.map((data, idx) => (
-        localStorage.setItem(`${data.id}`, data.access_token)
-      )
-      )
+  const USERPAGES_QUERY = gql`
+  query fbGetUserPages($longlivedaccesstoken:String!) {
+    fbGetUserPages(longlivedaccesstoken:$longlivedaccesstoken)
+  }
+
+`;
+
+  const { loading, err, data } = useQuery(USERPAGES_QUERY, {
+    variables: {
+      longlivedaccesstoken
     }
-    getUserData()
+  });
+
+  if (err) {
+    console.log("err", err);
+    toast.error("Error: Cannot get user pages", {
+      position: "top-center",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  }
+  if (!loading) {
+    console.log(JSON.parse(data.fbGetUserPages))
+    userData = JSON.parse(data.fbGetUserPages)
+    JSON.parse(data.fbGetUserPages).accounts.data.map((data, idx) => (
+      localStorage.setItem(`${data.id}`, data.access_token)
+    ))
+  }
+
+
+  useEffect(() => {
   }, [longlivedaccesstoken]);
 
   return (
@@ -37,8 +67,19 @@ const FbAccount = () => {
             <Burger open={show} setOpen={setShow} />
           </div>
           <Sidebar show={show} setShow={setShow} />
+          <ToastContainer
+          position="top-center"
+          autoClose={3000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+        />
         </div>
-
+       
         <div className="flex flex-col gap-[8vh]">
           <div className="font-IBM-Sans flex flex-col gap-5 py-[2vh]">
             <p className="text-2xl font-extrabold tracking-wide">Facebook</p>
@@ -54,37 +95,37 @@ const FbAccount = () => {
               <div className="flex items-center px-8 w-[20vw] h-[15vh]  bg-[#FFFFFF] shadow-lg rounded-xl">
                 <div className="flex flex-col">
                   {userData &&
-                  <>
-                    <div className="flex gap-6">
-                      <div>
-                        <img src={userData.picture.data.url} alt="dp" width={55} />
+                    <>
+                      <div className="flex gap-6">
+                        <div>
+                          <img src={userData.picture.data.url} alt="dp" width={55} />
+                        </div>
+                        <div className="font-IBM-Sans">
+                          <p className="text-lg capitalize font-IBM-Sans ">
+                            {userData.name}
+                          </p>
+                          <p
+                            className="text-base capitalize font-IBM-Sans "
+                            style={{ color: "#818181" }}
+                          >
+                            {userData.email}
+                          </p>
+                        </div>
                       </div>
-                      <div className="font-IBM-Sans">
-                        <p className="text-lg capitalize font-IBM-Sans ">
-                          {userData.name}
-                        </p>
-                        <p
-                          className="text-base capitalize font-IBM-Sans "
-                          style={{ color: "#818181" }}
-                        >
-                          {userData.email}
-                        </p>
-                      </div>
-                    </div>
 
-                  <div className="flex justify-end ">
-                    <a
-                      href="/"
-                      onClick={() => {
-                        localStorage.removeItem("longlivedaccesstoken");
-                        navigate("/");
-                      }}
-                      className="underline text-[#A72314] font-IBM-Sans text-base font-semibold pl-48 "
-                    >
-                      Logout
-                    </a>
-                  </div>
-                  </>}
+                      <div className="flex justify-end ">
+                        <a
+                          href="/"
+                          onClick={() => {
+                            localStorage.removeItem("longlivedaccesstoken");
+                            navigate("/");
+                          }}
+                          className="underline text-[#A72314] font-IBM-Sans text-base font-semibold pl-48 "
+                        >
+                          Logout
+                        </a>
+                      </div>
+                    </>}
                 </div>
               </div>
             </div>
@@ -110,7 +151,7 @@ const FbAccount = () => {
 
                   <div>
                     <a
-                      href={`/facebookpage/${data.id}`}
+                      href={`/fb_main/${data.id}`}
                       className="underline text-[#F0783B] font-IBM-Sans text-base font-semibold absolute bottom-[3vh] right-[3vh]"
                     >
                       Visit

@@ -56,7 +56,7 @@ export default function select({
 
   function getName(name, formdata) {
     if (dataobj) {
-      return formoptions.find((o) => o.value == formdata[name]);
+      return formoptions.find((o) => o.value === formdata[name]);
     } else {
       return formdata[name];
     }

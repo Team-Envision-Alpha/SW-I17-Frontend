@@ -15,17 +15,6 @@ const FbAccount = () => {
 
     const { id } = useParams();
 
-    // useEffect(() => {
-    //     const getPageData = async () => {
-    //         const pageaccesstoken = localStorage.getItem(`${id}`);
-    //         const pagedata = await axios.post(`/pagedata/${id}`, {
-    //             pageaccesstoken
-    //         }).then((data) => { return data.data; }).catch((err) => { console.log(err) })
-    //         setPageData(pagedata)
-    //         console.log(pagedata);
-    //     }
-    //     getPageData()
-    // }, [id]);
 
     return (
         <>

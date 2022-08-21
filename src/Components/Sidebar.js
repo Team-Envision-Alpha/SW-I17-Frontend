@@ -17,7 +17,7 @@ export default function Sidebar({ current, show, setShow }) {
     <div
       className={`${
         show ? "translate-x-0 " : "translate-x-[-100vw]"
-      } md:translate-x-0 flex flex-col md:w-auto w-[100vw] align-middle h-[100vh] fixed overflow-y-scroll z-40 bg-white px-10 py-5 transition duration-500`}
+      } md:translate-x-0 flex flex-col md:w-auto w-[100vw] align-middle h-[100vh] fixed overflow-y-scroll bg-white px-10 py-5 transition duration-500`}
       //   style={{ transform: show ? "translateX(0)" : "translateX(-100%)" }}
     >
       {/* <div className=""> */}
