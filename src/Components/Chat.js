@@ -1,54 +1,129 @@
 import React from "react";
-import logo from "../Assets/Images/aicte.png";
+
+import ChatSecOne from "./ChatSecOne";
+import ChatSecTwo from "./ChatSecTwo";
+
+import { gql, useMutation, useQuery } from "@apollo/client";
+import { useState } from "react";
 
 const Chat = ({ title }) => {
+  const user = JSON.parse(localStorage.getItem("aicteuser"));
+
+  const [openchat, setOpenchat] = React.useState({
+    open: false,
+    seconduser: "",
+    name: "",
+  });
+  const [message, setMessage] = useState("");
+  const [newMessage, setNewMessage] = useState(true);
+  const [commonchat, setCommonChat] = useState(false);
+
+  const CHATS_QUERY = gql`
+    query Chats($seconduser: ID!) {
+      getInbox {
+        _id
+        user1
+        user2
+        user1_name
+        user2_name
+        lastmessage
+        createdAt
+        updatedAt
+      }
+      getMessages(seconduser: $seconduser) {
+        _id
+        from_user
+        to_user
+        by_user
+        message
+        createdAt
+      }
+      getUsers {
+        id
+        name
+      }
+      getCommonMessages {
+        user_name
+        message
+        _id
+        createdAt
+      }
+    }
+  `;
+
+  const openChatBox = (seconduser, name) => {
+    setOpenchat({
+      open: true,
+      seconduser,
+      name,
+    });
+    refetch({ seconduser });
+  };
+
+  const SEND_MSG_MUTATION = gql`
+    mutation sendMessage($to: ID!, $to_name: String!, $message: String!) {
+      sendMessage(to: $to, to_name: $to_name, message: $message)
+    }
+  `;
+  const [sendMsg, msgdata] = useMutation(SEND_MSG_MUTATION, {
+    onError: (err) => {
+      console.log(err);
+    },
+    onCompleted: (data) => {
+      console.log(data);
+      refetch();
+    },
+    variables: { to: openchat.seconduser, to_name: openchat.name, message },
+  });
+  const sendMessage = (e) => {
+    e.preventDefault();
+    sendMsg();
+    setMessage("");
+    refetch({ seconduser: openchat.seconduser });
+  };
+  const SEND_COMMON_MUTATION = gql`
+    mutation sendCommonMessage($message: String!) {
+      sendCommonMessage(message: $message)
+    }
+  `;
+  const [sendCommon, commonmsgdata] = useMutation(SEND_COMMON_MUTATION, {
+    onError: (err) => {
+      console.log(err);
+    },
+    onCompleted: (data) => {
+      console.log(data);
+      refetch();
+    },
+    variables: { message },
+  });
+  const sendCommonMessage = (e) => {
+    e.preventDefault();
+    sendCommon();
+    setMessage("");
+    refetch();
+  };
+
+  const { loading, err, data, refetch } = useQuery(CHATS_QUERY, {
+    variables: { seconduser: user.id },
+  });
+  if (loading) {
+    return <h3>Loading...</h3>;
+  }
+  console.log(data);
   return (
     <>
-      <div className="grid grid-cols-2 gap-4">
-        <div className="w-[30vw] bg-white shadow-md rounded-2xl p-4 flex flex-col gap-4 font-IBM-Sans h-fit ">
-          <div>
-            <p className="text-xl font-bold">{title}</p>
-          </div>
-          <div className="flex justify-between items-center ">
-            <div className="flex items-center gap-6">
-              <div className="w-[3vw] h-[6vh] rounded-full">
-                <img src={logo} alt="logo" />
-              </div>
-              <div>
-                <p className="font-bold text-lg">text</p>
-                <p className="font-md text-[#65676B]">text</p>
-              </div>
-            </div>
-            <div>
-              <p className="text-lg font-light">text</p>
-              <div className="rounded-full bg-red-600 w-[2vw] h-[4vh] text-white flex justify-center items-center">
-                <p>4</p>
-              </div>
-            </div>
-          </div>
-          <div className="border-b-2 border-b-[#B4ABABA8] w-full px-4"></div>
-        </div>
-
-        <div className=" bg-white shadow-md rounded-2xl font-IBM-Sans flex flex-col gap-10 w-[38vw] h-fit ">
-          <div className="p-4">
-            <div className="flex items-center gap-6">
-              <div className="w-[3vw] h-[6vh] rounded-full">
-                <img src={logo} alt="logo" />
-              </div>
-              <div>
-                <p className="font-bold ">text</p>
-                <p className="font-md text-[#65676B]">text</p>
-              </div>
-            </div>
-            <div className="border-b-2 border-b-[#B4ABABA8] w-full pt-2"></div>
-          </div>
-
-          <div className="h-[50vh] overflow-scroll-y">
-            <div className="w-[5vw] rounded-2xl bg-red-500 px-4 py-2 mx-4 fixed-right">
-              <p>Hello</p>
-            </div>
-          </div>
-        </div>
+      <div className="grid grid-cols-3 gap-4 w-[65vw]">
+        {/* chat sec-1 */}
+        <ChatSecOne
+          newMessage={newMessage}
+          data={data}
+          openChatBox={openChatBox}
+          setNewMessage={setNewMessage}
+          setCommonChat={setCommonChat}
+          user={user}
+        />
+        {/* chat-sec-2 */}
+        <ChatSecTwo />
       </div>
     </>
   );

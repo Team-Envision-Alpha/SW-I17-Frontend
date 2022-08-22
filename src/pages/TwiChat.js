@@ -5,15 +5,17 @@ import Navbar from "../Components/NewNavbar";
 import Sidebar from "../Components/Sidebar";
 import { useState } from "react";
 import Chat from "../Components/Chat";
+import { gql, useMutation, useQuery } from "@apollo/client";
+
 
 const TwiChat = () => {
   const [show, setShow] = useState(false);
-
+  
   return (
     <>
       <div
         style={{ backgroundImage: `url(${bg})` }}
-        className="flex gap-[24vw] h-[110vh]"
+        className="flex gap-[24vw] h-[120vh]"
       >
         <div>
           <Navbar />
@@ -34,7 +36,7 @@ const TwiChat = () => {
             <div className="font-extrabold font-IBM-Sans text-xl tracking-wide">
               <p>All India Council for technical Education</p>
             </div>
-            <div className="pr-40">
+            <div>
               <Chat title={"Twitter Chats"} />
             </div>
           </div>
