@@ -5,10 +5,12 @@ import Navbar from "../Components/NewNavbar";
 import Sidebar from "../Components/Sidebar";
 import { useState } from "react";
 import Chat from "../Components/Chat";
+import { gql, useMutation, useQuery } from "@apollo/client";
+
 
 const TwiChat = () => {
   const [show, setShow] = useState(false);
-
+  
   return (
     <>
       <div
