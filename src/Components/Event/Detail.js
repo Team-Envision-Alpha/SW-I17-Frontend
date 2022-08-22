@@ -80,6 +80,28 @@ export default function Details({
             }}
           />
         </div>
+        <div className="flex flex-col gap-4 mb-5">
+          <h4>Caption</h4>
+          <input
+            type="text"
+            className="w-full p-4 outline-none"
+            style={{
+              color: "#818181",
+              background: "#F6F5F6",
+              border: "2px solid grey",
+              borderRadius: "8px",
+            }}
+            value={formdata.caption ? formdata.caption : ""}
+            placeholder="Text here"
+            name="caption"
+            onChange={(e) => {
+              setFormData({
+                ...formdata,
+                caption: e.target.value,
+              });
+            }}
+          />
+        </div>
         <div className="flex flex-col gap-4">
           <h4>Organiser</h4>
           <input

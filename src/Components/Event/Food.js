@@ -40,13 +40,13 @@ export default function Food({
   onSubmit,
 }) {
   function daysCount() {
-    var start = new Date(formdata.fromdate);
-    var end = new Date(formdata.todate);
+    var start = new Date(formdata.from_date);
+    var end = new Date(formdata.to_date);
     const diffTime = Math.abs(end - start);
     const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
     return diffDays + 1;
   }
-  console.log(daysCount());
+  // console.log(daysCount());
   function handleNext() {
     if (current < 4) {
       setCurrent(current + 1);
@@ -137,7 +137,10 @@ export default function Food({
         Food Details
         {_.times(daysCount(), (i) => {
           return (
-            <div className="flex flex-col w-full gap-y-4 my-5 shadow-lg hover:shadow-xl transition">
+            <div
+              className="flex flex-col w-full gap-y-4 my-5 shadow-lg hover:shadow-xl transition"
+              key={i}
+            >
               <Accordion>
                 <AccordionSummary
                   expandIcon={<ExpandMoreIcon />}
@@ -145,7 +148,7 @@ export default function Food({
                   id="panel1a-header"
                 >
                   <Typography>
-                    Day {i + 1} - {new Date(formdata.fromdate).addDays(i)}
+                    Day {i + 1} - {new Date(formdata.from_date).addDays(i)}
                   </Typography>
                 </AccordionSummary>
                 <AccordionDetails>

@@ -16,13 +16,15 @@ const Table = ({ status, statusHeader }) => {
         to_date
         status
         organiser
+        description
       }
     }
   `;
   const { loading, err, data } = useQuery(EVENT_QUERY);
   const [events, setEvents] = useState([]);
   useEffect(() => {
-    setEvents(data?.getEvents.find((event) => event.organiser === user.id));
+    console.log(data?.getEvents.filter((event) => event.organiser === user.id));
+    setEvents(data?.getEvents.filter((event) => event.organiser === user.id));
     // console.log(user, data?.getEvents);
   }, [data]);
   console.log(data);

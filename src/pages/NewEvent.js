@@ -54,6 +54,8 @@ export default function Event() {
 
   const [venuedata, setVenueData] = useState({});
   const [eventid, setEventId] = useState(0);
+  const [venueid, setVenueId] = useState(0);
+  const [status, setStatus] = useState(false);
   // console.log(formdata);
 
   const [image, setImage] = useState(null);
@@ -67,11 +69,13 @@ export default function Event() {
     data.append("image", image);
     // console.log(image);
     const res = (
-      await axios.post("https://envisionalpha.aaruush.org/upload/venues", data)
+      await axios.post("https://envisionalpha.aaruush.org/upload/events", data)
     ).data;
     console.log(res);
     return res.data;
   };
+
+  const navigate = useNavigate();
 
   /////////////////////////////////////////////
 
@@ -119,6 +123,60 @@ export default function Event() {
       }
     }
   `;
+
+  const VENUE_MUTATION = gql`
+    mutation requestVenue(
+      $event_id: ID!
+      $venue_id: ID!
+      $venue_head: ID!
+      $from_date: String!
+      $to_date: String!
+      $time: String!
+    ) {
+      requestVenue(
+        event_id: $event_id
+        venue_id: $venue_id
+        venue_head: $venue_head
+        from_date: $from_date
+        to_date: $to_date
+        time: $time
+      )
+    }
+  `;
+
+  const [venues, venues_loading] = useMutation(VENUE_MUTATION, {
+    onError: (err) => {
+      console.log(err.message);
+      toast.error("Error: Event Not Added!", {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    },
+    onCompleted: (data) => {
+      console.log(data);
+      setStatus(true);
+      // setEventId(data.createEvent.id);
+      // setVenueId(data.requestVenue.event_id);
+      toast.success(`Venue Requested successfully!`, {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+      setFormData({});
+      setVenueData({});
+    },
+    variables: venuedata,
+  });
+
   const [events, event_loading] = useMutation(EVENT_MUTATION, {
     onError: (err) => {
       console.log(err.message);
@@ -135,6 +193,8 @@ export default function Event() {
     onCompleted: (data) => {
       console.log(data);
       setEventId(data.createEvent.id);
+      setVenueData({ ...venuedata, event_id: data.createEvent.id });
+      venues();
       toast.success(`Event Added successfully!`, {
         position: "top-center",
         autoClose: 3000,
@@ -145,11 +205,10 @@ export default function Event() {
         progress: undefined,
       });
       // setFormData({});
+      // setEventId(data.createEvent.id);
     },
     variables: formdata,
   });
-
-  const navigate = useNavigate();
 
   function getVenueHead(venue) {
     const current = data?.getVenues.find((v) => v.id === venue);
@@ -164,6 +223,8 @@ export default function Event() {
     setFormData({
       ...formdata,
       // image: url,
+      image:
+        "https://aicte-storage.s3.ap-south-1.amazonaws.com/venues/aicte-1661152629031.webp",
       status: "pending",
       time:
         typeof formdata.time != "string"
@@ -175,22 +236,20 @@ export default function Event() {
           : formdata.food,
     });
     console.log(formdata);
-    if (eventid != 0) {
-      setVenueData({
-        ...venuedata,
-        venue: formdata.venue,
-        venue_head: getVenueHead(formdata.venue),
-        from_date: formdata.fromdate,
-        to_date: formdata.todate,
-        time: formdata.time,
-        event_id: eventid,
-      });
-    } else {
-      console.log("ID unavailable");
-    }
 
-    console.log(venuedata);
-    // navigate("../requests", { replace: true });
+    setVenueData({
+      ...venuedata,
+      venue_id: formdata.venue,
+      venue_head: getVenueHead(formdata.venue),
+      from_date: formdata.from_date,
+      to_date: formdata.to_date,
+      time: formdata.time,
+    });
+
+    await events();
+    // window.alert(`Request Successsful for ${venueid}`, venueid == eventid);
+    // console.log(venuedata);
+    if (status) navigate("../requests", { replace: true });
   };
 
   return (

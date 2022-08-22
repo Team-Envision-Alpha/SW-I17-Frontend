@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 
-import React from "react";
+import React, { useState } from "react";
 import Icon_1 from "../Assets/Images/Icon1_Modal.svg";
 import Icon_2 from "../Assets/Images/Icon2_Modal.svg";
 import Icon_3 from "../Assets/Images/Icon3_Modal.svg";
@@ -27,6 +27,8 @@ const EventModal = ({ setIsOpen, event }) => {
       return -1;
     }
   }
+  const [current, setCurrent] = useState("pending");
+  console.log(event);
   return (
     <>
       <div
@@ -42,11 +44,11 @@ const EventModal = ({ setIsOpen, event }) => {
               }}
             />
           </div>
-          <div className="my-10">
+          <div className="my-8">
             <p className="text-[3vh] font-bold">{event?.name}</p>
           </div>
           <div className="grid grid-cols-2 gap-20 px-20">
-            <div className="flex flex-col gap-6">
+            <div className="flex flex-col gap-3">
               <div>
                 <p className="text-[3vh] font-semibold">Description</p>
               </div>
@@ -54,15 +56,18 @@ const EventModal = ({ setIsOpen, event }) => {
                 <p>{event?.description}</p>
               </div>
             </div>
-            <div className="flex flex-col gap-6">
+            <div className="flex flex-col gap-2">
               <div>
                 <p className="text-[3vh] font-semibold">Track</p>
               </div>
               <div
-                className="flex items-center gap-2"
+                className="flex items-center gap-2 p-3 rounded-lg"
                 style={{
                   filter: `${
                     reqlevel(event?.status) >= 0 ? "grayscale(100%)" : null
+                  }`,
+                  backgroundColor: `${
+                    reqlevel(event?.status) == 0 ? "#22222230" : null
                   }`,
                 }}
               >
@@ -75,10 +80,13 @@ const EventModal = ({ setIsOpen, event }) => {
                 </div>
               </div>
               <div
-                className="flex items center gap-2"
+                className="flex items center gap-2 p-3 rounded-lg"
                 style={{
                   filter: `${
                     reqlevel(event?.status) >= 1 ? "null" : "grayscale(100%)"
+                  }`,
+                  backgroundColor: `${
+                    reqlevel(event?.status) == 0 ? "#aaff9930" : null
                   }`,
                 }}
               >
@@ -95,10 +103,13 @@ const EventModal = ({ setIsOpen, event }) => {
                 </div>
               </div>
               <div
-                className="flex items center gap-2"
+                className="flex items center gap-2 p-3 rounded-lg"
                 style={{
                   filter: `${
                     reqlevel(event?.status) >= 2 ? "null" : "grayscale(100%)"
+                  }`,
+                  backgroundColor: `${
+                    reqlevel(event?.status) == 0 ? "#aaff9930" : null
                   }`,
                 }}
               >
@@ -113,10 +124,13 @@ const EventModal = ({ setIsOpen, event }) => {
                 </div>
               </div>
               <div
-                className="flex items center gap-2"
+                className="flex items center gap-2 p-3 rounded-lg"
                 style={{
                   filter: `${
                     reqlevel(event?.status) >= 3 ? "null" : "grayscale(100%)"
+                  }`,
+                  backgroundColor: `${
+                    reqlevel(event?.status) == 0 ? "#aaff9930" : null
                   }`,
                 }}
               >
@@ -131,10 +145,13 @@ const EventModal = ({ setIsOpen, event }) => {
                 </div>
               </div>
               <div
-                className="flex items center gap-2"
+                className="flex items center gap-2 p-3 rounded-lg"
                 style={{
                   filter: `${
                     reqlevel(event?.status) >= 4 ? "null" : "grayscale(100%)"
+                  }`,
+                  backgroundColor: `${
+                    reqlevel(event?.status) == 0 ? "#aaff9930" : null
                   }`,
                 }}
               >
@@ -147,10 +164,13 @@ const EventModal = ({ setIsOpen, event }) => {
                 </div>
               </div>
               <div
-                className="flex items center gap-2"
+                className="flex items center gap-2 p-3 rounded-lg"
                 style={{
                   filter: `${
                     reqlevel(event?.status) >= 5 ? "null" : "grayscale(100%)"
+                  }`,
+                  backgroundColor: `${
+                    reqlevel(event?.status) == 0 ? "#aaff9930" : null
                   }`,
                 }}
               >
