@@ -91,7 +91,6 @@ export default function Details({
         <p className="text-center my-10 text-lg font-bold">
           Fill out the Following Details
         </p>
-
         <div className="flex flex-col justify-center">
           <h3 className="mx-auto text-center mb-5">
             Select Teams for Invite List
@@ -192,7 +191,17 @@ export default function Details({
             })}
           </div>
         </div>
-
+        <div className="flex flex-row mt-12 pb-10 justify-between">
+          <div className="font-bold py-3 cursor-pointer" onClick={handleBack}>
+            Go back
+          </div>
+          <div
+            className=" bg-green-700 text-white px-10 py-3 rounded-lg cursor-pointer"
+            onClick={handleNext}
+          >
+            Next
+          </div>
+        </div>{" "}
         <div className="flex flex-row mt-12 pb-10 justify-between">
           <div className="font-bold py-3 cursor-pointer" onClick={handleBack}>
             Go back

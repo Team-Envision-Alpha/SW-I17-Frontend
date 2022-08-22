@@ -16,7 +16,8 @@ import DashCard from "../Components/DashCard";
 import Upcoming from "../Assets/Images/Dashboard/upcoming.svg";
 import social from "../Assets/Images/Dashboard/social.svg";
 import allvenues from "../Assets/Images/Dashboard/allvenues.svg";
-import { Link } from "react-router-dom"
+import addvenues from "../Assets/Images/Dashboard/addvenue.svg";
+import { Link } from "react-router-dom";
 const DashBoard = () => {
   const user = JSON.parse(localStorage.getItem("aicteuser"));
   // const user = { name: "Rishit", role: "admin" };
@@ -43,13 +44,16 @@ const DashBoard = () => {
           <Link to="/venues">
             <DashCard icon={allvenues} name="View Venues" />
           </Link>
+          <Link to="/add_venues">
+            <DashCard icon={addvenues} name="Add Venues" />
+          </Link>
           <Link to="/requests">
             <DashCard icon={activity} name="User Requests" />
           </Link>
           <Link to="/activity_log">
             <DashCard icon={activity} name="Activity Log" />
           </Link>
-          {(user.role === "admin" || user.role === "social_media") ? (
+          {user.role === "admin" || user.role === "social_media" ? (
             <Link to="/social_media">
               <DashCard icon={social} name="Social Media" />
             </Link>
@@ -57,19 +61,18 @@ const DashBoard = () => {
           {user.role === "admin" ? (
             <DashCard icon={report} name="Generate Report" />
           ) : null}
-          
+
           {user.role === "admin" ? (
             <Link to="/user_registration">
               <DashCard icon={createuser} name="Create User" />
             </Link>
           ) : null}
-         
+
           {user.role === "admin" ? (
             <Link to="/edituser">
               <DashCard icon={editUser} name="View/Edit Users" />
             </Link>
           ) : null}
-
 
           {/* {user.role === "admin" ? (
             <Link to="/social_analytics">
@@ -81,7 +84,6 @@ const DashBoard = () => {
               <DashCard icon={createuser} name="Edit User" />
             </Link>
           ) : null} */}
-          
         </div>
 
         {/* <div  */}
