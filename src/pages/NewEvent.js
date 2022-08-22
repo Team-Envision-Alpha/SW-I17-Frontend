@@ -29,13 +29,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 export default function Event() {
-  const steps = [
-    "Event Details",
-    "Event Duration",
-    "Food Requirements",
-    "Select Teams",
-    "Invitations",
-  ];
+  const steps = ["Event Details", "Event Duration", "Food Requirements"];
   const stepElements = [<Detail />, <Duration />];
   const [show, setShow] = useState(false);
   const [current, setCurrent] = useState(0);
@@ -260,12 +254,22 @@ export default function Event() {
       <Navbar />
       <Burger open={show} setOpen={setShow}></Burger>
       <Sidebar show={show} setShow={setShow} />
-
+      <ToastContainer
+        position="top-center"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
       <section className="mt-12 z-10 mx-auto">
-        <h1 className="font-bold text-2xl">Book a Venue</h1>
-        <p className="mt-8 text-blue-400 hover:text-blue-600 transition cursor-pointer mb-8">
+        <h1 className="font-bold text-2xl">Request a Venue</h1>
+        {/* <p className="mt-8 text-blue-400 hover:text-blue-600 transition cursor-pointer mb-8">
           Breadcrumb / breadcrumb / breadcrumb
-        </p>
+        </p> */}
         <div className="flex flex-row mx-auto md:justify-center justify-between md:w-[70vw] w-max ">
           <div className="mx-auto w-[85vw] md:w-[50vw]  ">
             <div className="flex flex-row justify-between relative">
@@ -355,7 +359,7 @@ export default function Event() {
             />
           ) : null}
 
-          {current === 4 ? (
+          {/* {current === 4 ? (
             <Invitations
               current={current}
               setCurrent={setCurrent}
@@ -389,7 +393,7 @@ export default function Event() {
               data={data}
               teams={teams}
             />
-          ) : null}
+          ) : null} */}
         </div>
       </section>
     </main>

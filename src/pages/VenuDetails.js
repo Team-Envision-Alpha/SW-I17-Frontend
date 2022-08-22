@@ -13,23 +13,47 @@ import axios from "axios";
 
 const User = () => {
   const user = JSON.parse(localStorage.getItem("aicteuser"));
-  const [formdata, setFormData] = useState({image:"",venue_head:user.id,name:"",email:"",phone:"",city:"",state:"",address:"",pincode:"",capacity:"",website:""});
-  const fields = ['name','email','phone','city','state','address','pincode','capacity','website']
-  const [image,setImage] = useState(null);
+  const [formdata, setFormData] = useState({
+    image: "",
+    venue_head: user.id,
+    name: "",
+    email: "",
+    phone: "",
+    city: "",
+    state: "",
+    address: "",
+    pincode: "",
+    capacity: "",
+    website: "",
+  });
+  const fields = [
+    "name",
+    "email",
+    "phone",
+    "city",
+    "state",
+    "address",
+    "pincode",
+    "capacity",
+    "website",
+  ];
+  const [image, setImage] = useState(null);
   const handleChange = (e) => {
     setFormData({ ...formdata, [e.target.name]: e.target.value });
-  }
+  };
   const handleImage = (e) => {
     setImage(e.target.files[0]);
-  }
-  const getImageUrl = async(image) => {
+  };
+  const getImageUrl = async (image) => {
     const data = new FormData();
     data.append("image", image);
     // console.log(image);
-    const res = (await axios.post('https://envisionalpha.aaruush.org/upload/venues',data)).data
+    const res = (
+      await axios.post("https://envisionalpha.aaruush.org/upload/venues", data)
+    ).data;
     console.log(res);
     return res.data;
-  }
+  };
   const [show, setShow] = useState(false);
   const VENUE_MUTATION = gql`
     mutation registerVenue(
@@ -87,7 +111,19 @@ const User = () => {
         draggable: true,
         progress: undefined,
       });
-      setFormData({image:"",venue_head:user.id,name:"",email:"",phone:"",city:"",state:"",address:"",pincode:"",capacity:"",website:""});
+      setFormData({
+        image: "",
+        venue_head: user.id,
+        name: "",
+        email: "",
+        phone: "",
+        city: "",
+        state: "",
+        address: "",
+        pincode: "",
+        capacity: "",
+        website: "",
+      });
     },
     // update(_, result) {
     //   console.log(result.data.registerUser);
@@ -96,7 +132,7 @@ const User = () => {
     // },
     variables: formdata,
   });
-  const onSubmit = async(e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
     const url = await getImageUrl(image);
     setFormData({ ...formdata, image: url });
@@ -107,11 +143,9 @@ const User = () => {
 
   return (
     <>
-      <div style={{ backgroundImage: `url(${bg})` }}>
+      <div classname="" style={{ backgroundImage: `url(${bg})` }}>
         <Navbar />
-        <div className="md:hidden block absolute z-50">
-          <Burger open={show} setOpen={setShow}></Burger>
-        </div>
+        <Burger open={show} setOpen={setShow}></Burger>
         <Sidebar show={show} setShow={setShow} />
         <ToastContainer
           position="top-center"
@@ -124,9 +158,9 @@ const User = () => {
           draggable
           pauseOnHover
         />
-        <div className="flex flex-col gap-6 font-IBM-Sans px-8 py-10 md:ml-[28vw] lg:ml-[25vw]">
+        <div className="flex flex-col align-middle place-items-center gap-6 font-IBM-Sans px-8 py-10 mx-auto justify-center">
           <div>
-            <p className="text-[3vh] font-IBM-Sans ">Add New Venue</p>
+            <p className="mt-5 text-[3vh] font-IBM-Sans ">Add New Venue</p>
           </div>
           <div className="w-[80vw] md:w-[50vw] bg-[#f3b641] shadow-xl rounded-2xl overflow-y-hidden my-10 mx-auto lg:mx-[5vw]">
             <form
@@ -135,8 +169,7 @@ const User = () => {
             >
               {/* <div className="grid grid-cols-2 gap-20 items-center justify-center px-40"> */}
               <div className="flex flex-col gap-8">
-              {fields.map((field,index)=>
-
+                {fields.map((field, index) => (
                   <div className="flex flex-col gap-4">
                     <h4 className="capitalize">{field}</h4>
                     <input
@@ -154,24 +187,24 @@ const User = () => {
                       onChange={handleChange}
                     />
                   </div>
-            )}
-              {/* image  */}
-              <div className="flex flex-col gap-4">
-                    <h4 className="capitalize">Photo</h4>
-                    <input
-                      type="file"
-                      className="w-full p-4 outline-none"
-                      style={{
-                        color: "#818181",
-                        background: "#f6f5f6",
-                        border: "2px solid grey",
-                        borderRadius: "8px",
-                      }}
-                      name="image"  
-                      accept="image/*"
-                      onChange={handleImage}
-                    />
-                  </div>
+                ))}
+                {/* image  */}
+                <div className="flex flex-col gap-4">
+                  <h4 className="capitalize">Photo</h4>
+                  <input
+                    type="file"
+                    className="w-full p-4 outline-none"
+                    style={{
+                      color: "#818181",
+                      background: "#f6f5f6",
+                      border: "2px solid grey",
+                      borderRadius: "8px",
+                    }}
+                    name="image"
+                    accept="image/*"
+                    onChange={handleImage}
+                  />
+                </div>
                 <div className="flex flex-col gap-4 justify-center items-center">
                   {/* <h4 className="invisible">Department</h4> */}
                   <button

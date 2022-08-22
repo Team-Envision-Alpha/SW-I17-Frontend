@@ -9,6 +9,8 @@ import Icon_5 from "../Assets/Images/Icon5_Modal.svg";
 import Icon_6 from "../Assets/Images/Icon6_Modal.svg";
 import { ImCancelCircle } from "react-icons/im";
 
+import Modal from "./MoreDetails";
+
 const EventModal = ({ setIsOpen, event }) => {
   function reqlevel(e) {
     if (e === "pending") {
@@ -28,6 +30,7 @@ const EventModal = ({ setIsOpen, event }) => {
     }
   }
   const [current, setCurrent] = useState("pending");
+  const [show, setShow] = useState(false);
   console.log(event);
   return (
     <>
@@ -86,7 +89,7 @@ const EventModal = ({ setIsOpen, event }) => {
                     reqlevel(event?.status) >= 1 ? "null" : "grayscale(100%)"
                   }`,
                   backgroundColor: `${
-                    reqlevel(event?.status) == 0 ? "#aaff9930" : null
+                    reqlevel(event?.status) == 1 ? "#aaff9930" : null
                   }`,
                 }}
               >
@@ -109,7 +112,7 @@ const EventModal = ({ setIsOpen, event }) => {
                     reqlevel(event?.status) >= 2 ? "null" : "grayscale(100%)"
                   }`,
                   backgroundColor: `${
-                    reqlevel(event?.status) == 0 ? "#aaff9930" : null
+                    reqlevel(event?.status) == 2 ? "#aaff9930" : null
                   }`,
                 }}
               >
@@ -117,30 +120,37 @@ const EventModal = ({ setIsOpen, event }) => {
                 <div className="flex flex-col justify-center items-start">
                   <p className="text-[2vh] text-left">Approved by Venue Head</p>
                   <p className="text-[rgb(129,129,129)] text-[1.5vh] text-left">
-                    {reqlevel(event?.status) >= 1
-                      ? " Your request has been approved by venue head and pending for social media details."
+                    {reqlevel(event?.status) >= 2
+                      ? " Your request has been approved by venue head."
                       : null}
+
+                    {reqlevel(event?.status) >= 2 ? "Here" : null}
                   </p>
                 </div>
               </div>
               <div
-                className="flex items center gap-2 p-3 rounded-lg"
+                className="flex items center gap-2 p-3 rounded-lg hover:bg-green-200 cursor-pointer transition"
                 style={{
                   filter: `${
-                    reqlevel(event?.status) >= 3 ? "null" : "grayscale(100%)"
+                    reqlevel(event?.status) >= 2 ? "null" : "grayscale(100%)"
                   }`,
                   backgroundColor: `${
-                    reqlevel(event?.status) == 0 ? "#aaff9930" : null
+                    reqlevel(event?.status) == 3 ? "#aaff9930" : null
                   }`,
+                }}
+                onClick={(e) => {
+                  if (reqlevel(event?.status) >= 1) {
+                    setShow(true);
+                  }
                 }}
               >
                 <img src={Icon_4} alt="icon_1" />
                 <div className="flex flex-col justify-center items-start">
                   <p className="text-[2vh] text-left">
-                    Social Detalis required
+                    Invitation Details Required
                   </p>
                   <p className="text-[#818181] text-[1.5vh] text-left">
-                    Your social details are required to move further.
+                    Kindly Update Invitation Details. Click Here
                   </p>
                 </div>
               </div>
@@ -151,7 +161,7 @@ const EventModal = ({ setIsOpen, event }) => {
                     reqlevel(event?.status) >= 4 ? "null" : "grayscale(100%)"
                   }`,
                   backgroundColor: `${
-                    reqlevel(event?.status) == 0 ? "#aaff9930" : null
+                    reqlevel(event?.status) == 4 ? "#aaff9930" : null
                   }`,
                 }}
               >
@@ -170,7 +180,7 @@ const EventModal = ({ setIsOpen, event }) => {
                     reqlevel(event?.status) >= 5 ? "null" : "grayscale(100%)"
                   }`,
                   backgroundColor: `${
-                    reqlevel(event?.status) == 0 ? "#aaff9930" : null
+                    reqlevel(event?.status) == 5 ? "#aaff9930" : null
                   }`,
                 }}
               >
@@ -187,6 +197,7 @@ const EventModal = ({ setIsOpen, event }) => {
             </div>
           </div>
         </div>
+        <Modal event={event} setModal={setShow} modal={show} />
       </div>
     </>
   );

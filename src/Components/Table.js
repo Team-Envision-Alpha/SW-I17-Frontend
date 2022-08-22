@@ -17,6 +17,9 @@ const Table = ({ status, statusHeader }) => {
         status
         organiser
         description
+        time
+        caption
+        image
       }
     }
   `;
