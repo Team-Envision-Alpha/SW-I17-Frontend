@@ -55,7 +55,14 @@ export default function Event() {
   const [image, setImage] = useState(null);
 
   const handleImage = (e) => {
-    setImage(e.target.files[0]);
+    var filesize = (e.target.files[0].size / 1024 / 1024).toFixed(4);
+    if (filesize <= 5) {
+      setImage(e.target.files[0]);
+      // toast.success("Image Accepted");
+    } else {
+      toast.error("File size should be less than 5MB");
+      // e.target.files[0] = "";
+    }
   };
 
   const getImageUrl = async (image) => {
