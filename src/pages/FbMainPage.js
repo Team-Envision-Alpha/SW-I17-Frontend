@@ -22,7 +22,6 @@ import { BsFillTelephoneFill } from "react-icons/bs";
 import { BsMessenger } from "react-icons/bs";
 import { BsFillClockFill } from "react-icons/bs";
 import { BiWorld } from "react-icons/bi";
-import { RiImageAddFill } from "react-icons/ri";
 import { useParams } from "react-router-dom";
 import { gql, useMutation } from "@apollo/client";
 import { ToastContainer, toast } from "react-toastify";
@@ -31,7 +30,6 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
 import ReactPlayer from 'react-player';
 import Modal from 'react-modal';
-import DragandDrop from "../Components/DragandDrop";
 
 
 
@@ -39,10 +37,6 @@ import DragandDrop from "../Components/DragandDrop";
 const FbMainPage = () => {
   const [show, setShow] = useState(false);
   const [modalIsOpen, setModalIsOpen] = React.useState(false);
-  const [url, seturl] = useState("");
-  const [caption, setcaption] = useState("");
-  let postuploaded
-  console.log(url)
 
   const customStyles = {
     content: {
@@ -99,13 +93,6 @@ const FbMainPage = () => {
   const [pageData, setPageData] = useState()
   const pageaccesstoken = localStorage.getItem(`${id}`);
   console.log(pageData)
-
-
-  const UPLOAD_POST_MUTATION = gql`
-    mutation fbUploadPost($caption: String, $url: String , $pageaccesstoken: String! , $pageid: String!) {
-      fbUploadPost(caption: $caption, url: $url, pageaccesstoken: $pageaccesstoken, pageid: $pageid)
-    }`
-
   const PAGEDATA_MUTATION = gql`
   mutation
     fbPageData(
@@ -138,51 +125,13 @@ const FbMainPage = () => {
 
   });
 
-  const [postupload, { uploadloading }] = useMutation(UPLOAD_POST_MUTATION, {
-    onError: (err) => {
-      console.log("err", err);
-      toast.error("Error: Cannot Upload Post", {
-        position: "top-center",
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
-    },
-    onCompleted: (data) => {
-      console.log(data)
-     postuploaded = data
-
-        toast.success("Success: Post Uploaded Successfull", {
-          position: "top-center",
-          autoClose: 3000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
-    
-    },
-    variables: {
-     pageid: id, pageaccesstoken, url, caption
-    }
-
-  });
-
 
 
 
   useEffect(() => {
     register();
-  }, [pageaccesstoken , postuploaded])
 
-  const uploadPost = (e) => {
-    e.preventDefault();
-    postupload()
-  }
+  }, [pageaccesstoken])
 
   return (
     <>
@@ -219,7 +168,7 @@ const FbMainPage = () => {
           <div className="flex flex-col gap-8">
             <div className="flex flex-col ">
               <div className="w-full">
-                <img src={pageData?.cover.source} alt="cover" className="w-full h-[50vh] object-cover" />
+                <img src={pageData?.cover.source} alt="cover" className="w-full h-[40vh]" />
               </div>
               <div className="flex justify-between items-center p-2">
                 <div className="flex gap-6 items-center">
@@ -343,36 +292,6 @@ const FbMainPage = () => {
 
 
               <div className="w-full h-[150vh] overflow-auto">
-
-                <div className="w-full h-fit bg-[#FFFFFF] rounded-xl shadow-sm flex flex-col gap-2 mb-5 p-3">
-                  <div className="flex p-4 items-center gap-2">
-                    <div className="w-[3vw] h-[6vh]">
-                      <img src={pageData?.picture?.data.url} alt="logo" className="rounded-full" />
-                    </div>
-                    <h1 className="text-lg font-bold">Create a Post</h1>
-                  </div>
-                  <div className="w-full flex justify-center align-center"><RiImageAddFill className="text-4xl text-[#818181]" />
-                    <DragandDrop url={url} seturl={seturl} />
-                  </div>
-                  <div className="flex p-4 items-center gap-2">
-                    <div>
-                      <input
-                        type="text"
-                        name="Post Caption"
-                        className="w-[20vw] px-4 py-2 outline-none"
-                        style={{
-                          color: "#818181",
-                          background: "#f6f5f6",
-
-                          borderRadius: "16px",
-                        }}
-                        placeholder="Post Caption"
-                        onChange={(e) => { setcaption(e.target.value) }}
-                      />
-                    </div>
-                    <button onClick={(e) => { uploadPost(e) }}>Send</button>
-                  </div>
-                </div>
 
 
                 {pageData?.feed?.data?.filter((data) => {
@@ -532,14 +451,14 @@ const FbMainPage = () => {
       </div>
 
       <Modal
-        isOpen={modalIsOpen}
+        isOpen={true}
         // onAfterOpen={afterOpenModal}
         onRequestClose={() => { setModalIsOpen(false) }}
         style={customStyles}
         contentLabel="Example Modal"
       >
         {/* <button onClick={() => { setModalIsOpen(false) }}>close</button> */}
-
+        
 
 
 

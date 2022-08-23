@@ -102,90 +102,82 @@ const Venue = () => {
   console.log(formdata);
   const VENUE_QUERY = gql`
     query {
-      getVenues{
+      getAllVenues {
         id
         name
-        email
         city
-      }
-      getUsers {
-        id
-        name
-        email
-        phone
-        role
+        pincode
       }
     }
   `;
 
   const { loading, err, data } = useQuery(VENUE_QUERY);
-  console.log(data);
   // const data = [{ id: 1234 }, { id: 1234 }];
-  // const EVENT_MUTATION = gql`
-  //   mutation createEvent(
-  //     $name: String
-  //     $description: String
-  //     $venue: ID
-  //     $organiser: String
-  //     $caption: String
-  //     $fromdate: String
-  //     $todate: String
-  //     $time: String
-  //     $image: String
-  //     $departmentInvited: [String]
-  //     $usersInvited: [InvitedUserInput]
-  //     $status: String
-  //   ) {
-  //     createEvent(
-  //       eventInput: {
-  //         name: $name
-  //         description: $description
-  //         venue: $venue
-  //         organiser: $organiser
-  //         caption: $caption
-  //         fromdate: $fromdate
-  //         todate: $todate
-  //         time: $time
-  //         image: $image
-  //         departmentInvited: $departmentInvited
-  //         usersInvited: $usersInvited
-  //         status: $status
-  //       }
-  //     ) {
-  //       id
-  //       name
-  //     }
-  //   }
-  // `;
-  // const [events, event_loading] = useMutation(EVENT_MUTATION, {
-  //   onError: (err) => {
-  //     console.log(err.message);
-  //     toast.error("Error: Event Not Added!", {
-  //       position: "top-center",
-  //       autoClose: 3000,
-  //       hideProgressBar: false,
-  //       closeOnClick: true,
-  //       pauseOnHover: true,
-  //       draggable: true,
-  //       progress: undefined,
-  //     });
-  //   },
-  //   onCompleted: (data) => {
-  //     console.log(data);
+  const EVENT_MUTATION = gql`
+    mutation createEvent(
+      $name: String
+      $description: String
+      $venue: ID
+      $organiser: String
+      $caption: String
+      $fromdate: String
+      $todate: String
+      $time: String
+      $image: String
+      $departmentInvited: [String]
+      $usersInvited: [InvitedUserInput]
+      $status: String
+    ) {
+      createEvent(
+        eventInput: {
+          name: $name
+          description: $description
+          venue: $venue
+          organiser: $organiser
+          caption: $caption
+          fromdate: $fromdate
+          todate: $todate
+          time: $time
+          image: $image
+          departmentInvited: $departmentInvited
+          usersInvited: $usersInvited
+          status: $status
+        }
+      ) {
+        id
+        name
+      }
+    }
+  `;
+  const [events, event_loading] = useMutation(EVENT_MUTATION, {
+    onError: (err) => {
+      console.log(err.message);
+      toast.error("Error: Event Not Added!", {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    },
+    onCompleted: (data) => {
+      console.log(data);
 
-  //     toast.success(`Event Added successfully!`, {
-  //       position: "top-center",
-  //       autoClose: 3000,
-  //       hideProgressBar: false,
-  //       closeOnClick: true,
-  //       pauseOnHover: true,
-  //       draggable: true,
-  //       progress: undefined,
-  //     });
-  //     setFormData({});
-  //   },
-  //   variables: formdata,
-  // });
+      toast.success(`Event Added successfully!`, {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+      setFormData({});
+    },
+    variables: formdata,
+  });
   const onSubmit = (e) => {
     e.preventDefault();
     setFormData({ ...formdata, usersInvited: extrausers, status: "pending" });

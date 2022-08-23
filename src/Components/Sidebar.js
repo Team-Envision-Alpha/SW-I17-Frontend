@@ -17,19 +17,14 @@ import { Link } from "react-router-dom";
 export default function Sidebar({ current, show, setShow }) {
   return (
     <div
-      className={`${
-        show ? "translate-x-0 " : "translate-x-[-100vw]"
-      }  flex flex-col md:w-auto w-[100vw] align-middle h-[100vh] fixed overflow-y-scroll bg-white px-10 py-5 transition duration-500 z-30`}
-      //   style={{ transform: show ? "translateX(0)" : "translateX(-100%)" }}
+      className={`${show ? "translate-x-0 " : "translate-x-[-100vw]"
+        } md:translate-x-0 flex flex-col md:w-auto w-[100vw] align-middle h-[100vh] fixed overflow-y-scroll bg-white px-10 py-5 transition duration-500`}
+    //   style={{ transform: show ? "translateX(0)" : "translateX(-100%)" }}
     >
       {/* <div className=""> */}
       <Link to="/dashboard">
         <img src={logo} className="w-[12vw] md:w-[8vw] mx-auto" alt="aicte" />
-        <img
-          src={text}
-          className="w-[20vw] md:w-[12vw] mx-auto"
-          alt="text aicte"
-        />
+        <img src={text} className="w-[20vw] md:w-[12vw] mx-auto" alt="text aicte" />
       </Link>
       <div className="bg-[#00000050] my-6 h-[1px]" />
       <Link to="/dashboard">
@@ -44,12 +39,14 @@ export default function Sidebar({ current, show, setShow }) {
           </div>
         </Link>
         <Link to="/report_generation">
+
           <div className="flex flex-row px-1 py-5">
             <img src={report} className="w-[2vw]" />
             <p className="ml-4 my-auto ">Report Generation</p>
           </div>
         </Link>
         <Link to="/activity_log">
+
           <div className="flex flex-row px-1 py-5">
             <img src={activity} className="w-[2vw]" />
             <p className="ml-4 my-auto ">Activity Log</p>
@@ -69,6 +66,7 @@ export default function Sidebar({ current, show, setShow }) {
             <p className="ml-4 my-auto ">Edit User</p>
           </div>
         </Link>
+
 
         <Link to="/social_media">
           <div className="flex flex-row px-1 py-5">

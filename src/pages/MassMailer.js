@@ -10,6 +10,7 @@ import Navbar from "../Components/NewNavbar";
 import Burger from "../Components/burger";
 import CreatableSelect from "react-select/creatable";
 import makeAnimated from "react-select/animated";
+import * as XLSX from "xlsx";
 
 const MassMailer = () => {
     const roles = ["admin", "user", "team-head", "venue-head", "social-team"];
@@ -18,6 +19,56 @@ const MassMailer = () => {
 
     const animatedComponents = makeAnimated();
     const allemails = []
+
+    const [addemail, setaddemail] = useState("")
+
+    const [extraemails, setExtraEmails] = useState([]);
+    console.log(extraemails);
+
+
+    function readAppendFile(f) {
+        var name = f.name;
+        const reader = new FileReader();
+        reader.onload = (evt) => {
+            /* Parse data */
+            const bstr = evt.target.result;
+            const wb = XLSX.read(bstr, { type: "binary" });
+            /* Get first worksheet */
+            const wsname = wb.SheetNames[0];
+            const ws = wb.Sheets[wsname];
+            /* Convert array of arrays */
+            const data = XLSX.utils.sheet_to_csv(ws, { header: 1 });
+            setExtraEmails([...extraemails, ...convertToJson(data)]); // shows data in json format
+        };
+        reader.readAsBinaryString(f);
+    }
+
+    function convertToJson(csv) {
+        var lines = csv.split("\n");
+        var result = [];
+        for (var i = 1; i < lines.length; i++) {
+            result.push(lines[i]);
+        }
+        return result;
+    }
+
+    function arrayRemove(arr, value) {
+        if (arr.length === 1) {
+            return "empty";
+        } else {
+            return arr.filter(function (ele) {
+                return ele !== value;
+            });
+        }
+    }
+
+
+
+
+
+
+
+
 
     const USER_QUERY = gql`
     query {
@@ -29,7 +80,6 @@ const MassMailer = () => {
 
     const users = useQuery(USER_QUERY);
     if (!users.loading) {
-        console.log(users.data.getUsers);
         users?.data?.getUsers.map((user) => (
             allemails.push(user.email)
         ))
@@ -80,9 +130,10 @@ const MassMailer = () => {
                 progress: undefined,
             });
             setFormData({});
+            setExtraEmails([])
 
         },
-        variables: formdata,
+        variables: { subject: formdata.subject, text: formdata.text, emails: extraemails },
     });
     const onSubmit = (e) => {
         e.preventDefault();
@@ -171,30 +222,15 @@ const MassMailer = () => {
                                         }}
                                     />
                                 </div>
-                                <div className="flex flex-col gap-4">
-                                    <h4>Select Email address</h4>
-                                    {/* <input
-                                        type="email"
-                                        className="w-full p-4 outline-none"
-                                        style={{
-                                            color: "#818181",
-                                            background: "#F6F5F6",
-                                            border: "2px solid grey",
-                                            borderRadius: "8px",
-                                        }}
-                                        placeholder="Text here"
-                                        value={formdata.email ? formdata.email : ""}
-                                        onChange={(e) => {
-                                            setFormData({ ...formdata, email: e.target.value });
-                                        }}
-                                    /> */}
 
+                                {/* <div className="flex flex-col gap-4">
+                                    <h4>Select Email address</h4>
                                     <CreatableSelect
                                         closeMenuOnSelect={false}
                                         isMulti
                                         components={animatedComponents}
                                         options={getobjects(allemails)}
-                                      
+
                                         className="w-full p-4 outline-none"
                                         styles={{
                                             color: "#818181",
@@ -207,11 +243,115 @@ const MassMailer = () => {
                                             setFormData({ ...formdata, emails: getstring(e) });
                                         }}
                                     />
+                                </div> */}
 
+
+                                <div>
+                                    <h3 className="mx-auto text-left mb-5">
+                                        Add Email to Mass Email List
+                                    </h3>
+
+                                    <div className="grid grid-cols-2 gap-3">
+                                        <div className="flex flex-col gap-4">
+                                            <input
+                                                type="email"
+                                                className="w-[full] p-4 outline-none"
+                                                style={{
+                                                    color: "#818181",
+                                                    background: "#F6F5F6",
+                                                    border: "2px solid grey",
+                                                    borderRadius: "8px",
+                                                }}
+                                                placeholder="Email"
+                                                name="email"
+                                                value={addemail}
+                                                onChange={(e) => {
+                                                    setaddemail(e.target.value);
+                                                }}
+                                            />
+                                        </div>
+                                        <div className="flex flex-col gap-4">
+                                            <div
+                                                className="w-[full] p-4 outline-none text-center rounded-[8px] bg-black text-white cursor-pointer"
+                                                onClick={(e) => {
+                                                    e.preventDefault();
+                                                    if (addemail) {
+                                                        setExtraEmails([...extraemails, addemail]);
+                                                        setaddemail("")
+                                                    }
+                                                }}
+                                            >
+                                                Submit
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div className=" mt-4 flex flex-col justify-center text-center object-center mx-auto place-content-center">
+                                        Upload file for email list<br></br>
+                                        <input
+                                            type="file"
+                                            className="mt-8 block w-full text-sm text-slate-500 place-content-center ml-[35%]
+                                            file:mr-4 file:py-2 file:px-4
+                                            file:rounded-full file:border-0
+                                            file:text-sm file:font-semibold
+                                            file:bg-blue-50 file:text-blue-700
+                                            hover:file:bg-violet-100"
+                                            onChange={(e) => {
+                                                readAppendFile(e.target.files[0]);
+                                            }}
+                                        />
+                                    </div>
+                                    <hr className="mt-5"></hr>
+                                    <table className="w-full mt-5 ">
+                                        <thead>
+                                            <tr
+                                                className="text-md font-semibold   text-gray-900   border-[#B9B9B9]  text-center border-3"
+                                                style={{ background: "rgba(0, 0, 0, 0.05)" }}
+                                            >
+                                                <th className="py-3  border-[#B9B9B9] border-2">Email</th>
+                                                <th className="py-3 border-[#B9B9B9] border-2">Modify</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody
+                                            className=" max-h-[40vh] overflow-scroll"
+                                            style={{ maxHeight: "30vh", overflowY: "scroll" }}
+                                        >
+                                            {extraemails &&
+                                                extraemails.reverse().map((email, idx) => {
+                                                    return (
+                                                        <tr className="text-[#000000] odd:bg-white even:bg-slate-100">
+
+                                                            <td className="text-center py-3 text-md  border-[#B9B9B9] border-2">
+                                                                <div>
+                                                                    <p>{email}</p>
+                                                                </div>
+                                                            </td>
+
+                                                            <td className="text-center py-3 text-md border-[#B9B9B9] border-2 ">
+                                                                <div>
+                                                                    <p
+                                                                        className="text-[#874439] font-bold cursor-pointer hover:underline transition"
+                                                                        onClick={() => {
+                                                                            const resp = arrayRemove(extraemails, email);
+                                                                            if (resp !== "empty") {
+                                                                                setExtraEmails(resp);
+                                                                            } else {
+                                                                                setExtraEmails([]);
+                                                                            }
+                                                                        }}
+                                                                    >
+                                                                        Delete
+                                                                    </p>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    );
+                                                })}
+                                        </tbody>
+                                    </table>
 
 
                                 </div>
-
                                 <div className="flex flex-col gap-4 justify-center items-center">
                                     <h4 className="invisible">Submit</h4>
                                     <button
