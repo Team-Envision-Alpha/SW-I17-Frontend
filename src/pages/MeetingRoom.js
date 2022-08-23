@@ -36,57 +36,116 @@ const MeetingRoom = () => {
 
         <div className="flex flex-wrap justify-center items-center gap-10">
           <div>
-            <div className="w-[25vw] h-[30vh] rounded-xl bg-[#DEDEDE80] shadow-sm">
+            <div className="w-[25vw] h-[30vh] rounded-xl bg-[#DEDEDE80] shadow-sm flex justify-center items-center">
               {/* integ ref: video, if on  */}
 
               {/* if not */}
 
-              {/* <div className="w-[5vw] h-[10vh] bg-white">
-                <img src={userMeet} alt="userMeet" />
-              </div> */}
+              <div className="w-[10vw] h-[20vh] bg-white flex justify-center items-center rounded-full">
+                <img
+                  src={userMeet}
+                  alt="userMeet"
+                  className="w-[10vw] h-[20vh] rounded-full"
+                />
+              </div>
             </div>
             <div className="bg-[#00000080] w-[5vw] rounded-bl-xl rounded-tr-xl relative bottom-7">
               <p className="text-white text-sm text-center py-1 ">text</p>
             </div>
           </div>
+
           <div>
-            <div className="w-[25vw] h-[30vh] rounded-xl bg-[#DEDEDE80] shadow-sm">
-              {/* video */}
+            <div className="w-[25vw] h-[30vh] rounded-xl bg-[#DEDEDE80] shadow-sm flex justify-center items-center">
+              {/* integ ref: video, if on  */}
+
+              {/* if not */}
+
+              <div className="w-[10vw] h-[20vh] bg-white flex justify-center items-center rounded-full">
+                <img
+                  src={userMeet}
+                  alt="userMeet"
+                  className="w-[10vw] h-[20vh] rounded-full"
+                />
+              </div>
             </div>
             <div className="bg-[#00000080] w-[5vw] rounded-bl-xl rounded-tr-xl relative bottom-7">
               <p className="text-white text-sm text-center py-1 ">text</p>
             </div>
           </div>
+
           <div>
-            <div className="w-[25vw] h-[30vh] rounded-xl bg-[#DEDEDE80] shadow-sm">
-              {/* video */}
+            <div className="w-[25vw] h-[30vh] rounded-xl bg-[#DEDEDE80] shadow-sm flex justify-center items-center">
+              {/* integ ref: video, if on  */}
+
+              {/* if not */}
+
+              <div className="w-[10vw] h-[20vh] bg-white flex justify-center items-center rounded-full">
+                <img
+                  src={userMeet}
+                  alt="userMeet"
+                  className="w-[10vw] h-[20vh] rounded-full"
+                />
+              </div>
             </div>
             <div className="bg-[#00000080] w-[5vw] rounded-bl-xl rounded-tr-xl relative bottom-7">
               <p className="text-white text-sm text-center py-1 ">text</p>
             </div>
           </div>
+
           <div>
-            <div className="w-[25vw] h-[30vh] rounded-xl bg-[#DEDEDE80] shadow-sm">
-              {/* video */}
+            <div className="w-[25vw] h-[30vh] rounded-xl bg-[#DEDEDE80] shadow-sm flex justify-center items-center">
+              {/* integ ref: video, if on  */}
+
+              {/* if not */}
+
+              <div className="w-[10vw] h-[20vh] bg-white flex justify-center items-center rounded-full">
+                <img
+                  src={userMeet}
+                  alt="userMeet"
+                  className="w-[10vw] h-[20vh] rounded-full"
+                />
+              </div>
             </div>
             <div className="bg-[#00000080] w-[5vw] rounded-bl-xl rounded-tr-xl relative bottom-7">
               <p className="text-white text-sm text-center py-1 ">text</p>
             </div>
           </div>
+
           <div>
-            <div className="w-[25vw] h-[30vh] rounded-xl bg-[#DEDEDE80] shadow-sm">
-              {/* video */}
+            <div className="w-[25vw] h-[30vh] rounded-xl bg-[#DEDEDE80] shadow-sm flex justify-center items-center">
+              {/* integ ref: video, if on  */}
+
+              {/* if not */}
+
+              <div className="w-[10vw] h-[20vh] bg-white flex justify-center items-center rounded-full">
+                <img
+                  src={userMeet}
+                  alt="userMeet"
+                  className="w-[10vw] h-[20vh] rounded-full"
+                />
+              </div>
             </div>
             <div className="bg-[#00000080] w-[5vw] rounded-bl-xl rounded-tr-xl relative bottom-7">
               <p className="text-white text-sm text-center py-1 ">text</p>
             </div>
           </div>
+
           <div>
-            <div className="w-[25vw] h-[30vh] rounded-xl bg-[#DEDEDE80] shadow-sm">
-              {/* video */}
+            <div className="w-[25vw] h-[30vh] rounded-xl bg-[#DEDEDE80] shadow-sm flex justify-center items-center">
+              {/* integ ref: video, if on  */}
+
+              {/* if not */}
+
+              <div className="w-[10vw] h-[20vh] bg-white flex justify-center items-center rounded-full">
+                <img
+                  src={userMeet}
+                  alt="userMeet"
+                  className="w-[10vw] h-[20vh] rounded-full"
+                />
+              </div>
             </div>
             <div className="bg-[#00000080] w-[5vw] rounded-bl-xl rounded-tr-xl relative bottom-7">
-              <p className="text-white text-sm text-center py-1  ">text</p>
+              <p className="text-white text-sm text-center py-1 ">text</p>
             </div>
           </div>
         </div>
@@ -109,10 +168,10 @@ const MeetingRoom = () => {
           </div>
 
           <div className="flex items-center gap-4">
-            <button className="w-[4vw] p-4 bg-[#DEDEDE80] rounded-xl border-2 border-[#4B556380] flex items-center justify-center">
+            <button className="w-[5vw] h-[4vw]  bg-[#DEDEDE80] rounded-xl border-2 border-[#4B556380] flex items-center justify-center">
               <img src={micIcon} alt="micIcon" />
             </button>
-            <button className="w-[4vw] p-4 bg-[#DEDEDE80] rounded-xl border-2 border-[#4B556380] flex items-center justify-center">
+            <button className="w-[5vw] h-[4vw] bg-[#DEDEDE80] rounded-xl border-2 border-[#4B556380] flex items-center justify-center">
               <img src={vidIcon} alt="vidIcon" />
             </button>
           </div>
