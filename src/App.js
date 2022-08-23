@@ -36,6 +36,7 @@ import TwitterMainPage from "./pages/TwitterMainPage";
 import ActivityLog from "./pages/ActivityLog";
 import TwiChat from "./pages/TwiChat";
 import MassMailer from "./pages/MassMailer";
+import MeetingRoom from "./pages/MeetingRoom";
 
 const App = () => {
   // const [longlivedaccesstoken, setLonglivedaccesstoken] = useState(null);
@@ -58,12 +59,12 @@ const App = () => {
     <>
       <Router>
         <Routes>
-          <Route path="/" element={
-            <>
-              {aicteuser ? <Navigate to="/dashboard" /> : <Login />}
-
-            </>
-          } />
+          <Route
+            path="/"
+            element={
+              <>{aicteuser ? <Navigate to="/dashboard" /> : <Login />}</>
+            }
+          />
 
           <Route path="/events" element={<Event />} />
           <Route path="/dashboard" element={<DashBoard />} />
@@ -115,14 +116,13 @@ const App = () => {
           />
           <Route exact path="divchats" element={<DivChat />} />
 
-
           <Route
             path="/twitter_main"
             element={<TwitterMainPage title="Twitter Page"></TwitterMainPage>}
           />
           <Route
-            path="/twitter_chat"
-            element={<TwiChat title="Twitter Chat"></TwiChat>}
+            path="/meeting_room"
+            element={<MeetingRoom title="Meeting Room"></MeetingRoom>}
           />
 
           {/* <Route

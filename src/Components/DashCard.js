@@ -10,7 +10,7 @@ const DashCard = ({ icon, name }) => {
             style={{ backgroundColor: "#efefef" }}
           >
             <div>
-              <img src={icon} alt="img" width={80}/>
+              <img src={icon} alt="img" width={80} />
             </div>
             <div>
               <p className="text font-IBM-Sans  font-bold ">{name}</p>
