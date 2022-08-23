@@ -153,7 +153,11 @@ $oauthtoken: String! $oauthverifier: String!
     localStorage.setItem('twitter_oauth_verifier', oauthverifier)
     getoauth2()
   }
-  
+
+ 
+if (loading) {
+    return <h3>Loading...</h3>;
+}  
   return (
     <>
       <div
@@ -184,9 +188,9 @@ $oauthtoken: String! $oauthverifier: String!
             <p className="text-2xl font-extrabold tracking-wide">
               Social Media
             </p>
-            <p className="text-[#0F56B3] text-base font-bold">
+         {/*   <p className="text-[#0F56B3] text-base font-bold">
               First Item / Second Item / Third Item
-            </p>
+            </p> */}
           </div>
           <div className="flex flex-col gap-10">
             <div className="font-extrabold font-IBM-Sans text-xl tracking-wide">

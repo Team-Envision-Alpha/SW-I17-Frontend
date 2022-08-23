@@ -65,6 +65,10 @@ const EventReq = () => {
   }, [formdata]);
   console.log(filterData);
 
+if (loading) {
+    return <h3>Loading...</h3>;
+}
+
   return (
     <>
       <div style={{ backgroundImage: `url(${bg})` }}>

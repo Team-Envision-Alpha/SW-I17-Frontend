@@ -5,6 +5,7 @@ import Navbar from '../Components/Navbar';
 import EventCard from '../Components/EventCard';
 
 const DashBoard = () => {
+  
   return (
     <>
       <div style={{ backgroundImage: `url(${bg})` }}>

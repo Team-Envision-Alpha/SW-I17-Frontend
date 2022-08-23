@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 
-import React from "react";
+import React, { Suspense } from "react";
 import bg from "../Assets/Images/Group.svg";
 import { BsCameraReels, BsCamera } from "react-icons/bs";
 import { AiFillDashboard, AiOutlineDown } from "react-icons/ai";
@@ -22,10 +22,12 @@ const DashBoard = () => {
   const user = JSON.parse(localStorage.getItem("aicteuser"));
   // const user = { name: "Rishit", role: "admin" };
   return (
+    
     <div
       style={{ backgroundImage: `url(${bg})` }}
       className="bg-[#f8f7f8] min-h-[100vh] bg-cover"
     >
+  
       <Navbar />
       <div className="flex flex-col justify-center items-center my-10 gap-8 px-64 ">
         <div>
@@ -48,11 +50,29 @@ const DashBoard = () => {
             <DashCard icon={addvenues} name="Add Venues" />
           </Link>
           <Link to="/requests">
-            <DashCard icon={activity} name="User Requests" />
+            <DashCard icon={activity} name="Event Requests" />
           </Link>
           <Link to="/activity_log">
             <DashCard icon={activity} name="Activity Log" />
           </Link>
+          <Link to="/divchats">
+            <DashCard icon={calendar} name="div chats" />
+          </Link>
+          <Link to="/edituser">
+          <DashCard icon={calendar} name="Edit Users" />
+          </Link>
+          <Link to="/mass_mailer">
+          <DashCard icon={calendar} name="Mass Mailer" />
+          </Link>
+          
+          <Link to="/meeting_room">
+          <DashCard icon={calendar} name="Meeting Room" />
+          </Link>
+        
+         
+          
+
+
           {user.role === "admin" || user.role === "social_media" ? (
             <Link to="/social_media">
               <DashCard icon={social} name="Social Media" />
@@ -93,6 +113,7 @@ const DashBoard = () => {
        
       </div> */}
       </div>
+      
     </div>
   );
 };

@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Suspense,lazy } from "react";
 import Login from "./Components/Login";
 import {
   Routes,
@@ -13,7 +13,7 @@ import {
 import { gql, useQuery } from "@apollo/client";
 import SocialPanel from "./pages/SocialPanel.js";
 import OldEvents from "./pages/Events";
-import DashBoard from "./pages/DashBoard.js";
+import DashBoard from "./pages/DashBoard";
 import User from "./pages/User";
 import EventReq from "./pages/EventReq";
 import Event from "./pages/NewEvent";
@@ -67,8 +67,9 @@ const App = () => {
           />
 
           <Route path="/events" element={<Event />} />
+          
           <Route path="/dashboard" element={<DashBoard />} />
-
+        
           <Route path="/user_registration" element={<User />} />
           <Route path="/requests" element={<EventReq />} />
           <Route path="/edituser" element={<EditUser />} />
@@ -114,7 +115,7 @@ const App = () => {
             path="/facebookpage/:id"
             element={<FacebookPage title="Facebook Page"></FacebookPage>}
           />
-          <Route exact path="divchats" element={<DivChat />} />
+          <Route exact path="/divchats" element={<DivChat />} />
 
           <Route
             path="/twitter_main"

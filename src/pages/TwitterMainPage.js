@@ -155,9 +155,11 @@ const TwitterMainPage = () => {
           <div className="flex flex-col gap-[6vh]">
             <div className="font-IBM-Sans flex flex-col gap-5 py-[2vh]">
               <p className="text-2xl font-extrabold tracking-wide">Twitter</p>
-              <p className="text-[#0F56B3] text-base font-bold">
+         {/*      <p className="text-[#0F56B3] text-base font-bold">
                 First Item / Second Item / Third Item
               </p>
+              */}
+              
             </div>
             <div className="flex flex-col gap-10">
               <div className="flex flex-col ml-[10vw]">
