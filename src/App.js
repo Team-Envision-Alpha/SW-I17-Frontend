@@ -138,7 +138,7 @@ const App = () => {
           {/* <Route path="/fb" element={<FB />} /> */}
           {/*        <Route path="/twitter" element={<Twitter />} /> */}
           {/* <Route path="/social" element={<SocialPanel />} /> */}
-          {/* <Route path="/oldevents" element={<OldEvents />} /> */}
+          <Route path="/oldevents" element={<OldEvents />} />
           {/* <Route path="/venue_head_dashboard" element={<VenuHeadDashboard />} /> */}
         </Routes>
       </Router>

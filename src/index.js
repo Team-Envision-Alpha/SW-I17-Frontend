@@ -10,7 +10,7 @@ const token = JSON.parse(localStorage.getItem("aicteuser"))
   ? JSON.parse(localStorage.getItem("aicteuser")).token
   : "";
 
-// const graphURL = "http://localhost:4000/graphql";
+// const graphURL = "http://192.168.172.115:4000/graphql";
 const graphURL = "https://envisionalpha.aaruush.org/graphql";
 const client = new ApolloClient({
   uri: graphURL,

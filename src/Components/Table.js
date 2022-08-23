@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable no-unused-vars */
 import { useState, React, useEffect } from "react";
 import EventModal from "./EventModal";
 import { gql, useMutation, useQuery } from "@apollo/client";

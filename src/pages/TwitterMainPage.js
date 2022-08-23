@@ -19,8 +19,20 @@ import {
   AiTwotoneHeart,
 } from "react-icons/ai";
 
+
+
 const TwitterMainPage = () => {
   const [show, setShow] = useState(false);
+
+  const user_id = localStorage.getItem('twitter_user_id')
+  const username = localStorage.getItem('twitter_screen_name')
+
+
+
+
+
+
+
 
   return (
     <>
@@ -46,7 +58,6 @@ const TwitterMainPage = () => {
             pauseOnHover
           />
         </div>
-
         <div className="flex flex-col gap-[6vh]">
           <div className="font-IBM-Sans flex flex-col gap-5 py-[2vh]">
             <p className="text-2xl font-extrabold tracking-wide">Twitter</p>

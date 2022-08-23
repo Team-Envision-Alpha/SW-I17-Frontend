@@ -70,7 +70,7 @@ const EventModal = ({ setIsOpen, event }) => {
                     reqlevel(event?.status) >= 0 ? "grayscale(100%)" : null
                   }`,
                   backgroundColor: `${
-                    reqlevel(event?.status) == 0 ? "#22222230" : null
+                    reqlevel(event?.status) === 0 ? "#22222230" : null
                   }`,
                 }}
               >
@@ -89,7 +89,7 @@ const EventModal = ({ setIsOpen, event }) => {
                     reqlevel(event?.status) >= 1 ? "null" : "grayscale(100%)"
                   }`,
                   backgroundColor: `${
-                    reqlevel(event?.status) == 1 ? "#aaff9930" : null
+                    reqlevel(event?.status) === 1 ? "#aaff9930" : null
                   }`,
                 }}
               >
@@ -112,7 +112,7 @@ const EventModal = ({ setIsOpen, event }) => {
                     reqlevel(event?.status) >= 2 ? "null" : "grayscale(100%)"
                   }`,
                   backgroundColor: `${
-                    reqlevel(event?.status) == 2 ? "#aaff9930" : null
+                    reqlevel(event?.status) === 2 ? "#aaff9930" : null
                   }`,
                 }}
               >
@@ -135,7 +135,7 @@ const EventModal = ({ setIsOpen, event }) => {
                     reqlevel(event?.status) >= 2 ? "null" : "grayscale(100%)"
                   }`,
                   backgroundColor: `${
-                    reqlevel(event?.status) == 3 ? "#aaff9930" : null
+                    reqlevel(event?.status) === 3 ? "#aaff9930" : null
                   }`,
                 }}
                 onClick={(e) => {
@@ -161,7 +161,7 @@ const EventModal = ({ setIsOpen, event }) => {
                     reqlevel(event?.status) >= 4 ? "null" : "grayscale(100%)"
                   }`,
                   backgroundColor: `${
-                    reqlevel(event?.status) == 4 ? "#aaff9930" : null
+                    reqlevel(event?.status) === 4 ? "#aaff9930" : null
                   }`,
                 }}
               >
@@ -180,7 +180,7 @@ const EventModal = ({ setIsOpen, event }) => {
                     reqlevel(event?.status) >= 5 ? "null" : "grayscale(100%)"
                   }`,
                   backgroundColor: `${
-                    reqlevel(event?.status) == 5 ? "#aaff9930" : null
+                    reqlevel(event?.status) === 5 ? "#aaff9930" : null
                   }`,
                 }}
               >

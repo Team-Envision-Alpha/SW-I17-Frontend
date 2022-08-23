@@ -433,7 +433,7 @@ const Venue = () => {
                     return (
                       <div className="mr-4 transition mt-3">
                         {formdata.departmentInvited &&
-                        formdata.departmentInvited.includes(team) ? (
+                          formdata.departmentInvited.includes(team) ? (
                           <Button
                             variant="outlined"
                             color="success"
@@ -689,6 +689,8 @@ const Venue = () => {
                       })}
                   </tbody>
                 </table>
+
+
               </div>
             </div>
             <div className="mt-8 mx-auto" onClick={onSubmit}>

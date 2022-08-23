@@ -22,7 +22,7 @@ export default function Invitations({
   }
   function readAppendFile(f) {
     // console.log(f);
-    var name = f.name;
+    // var name = f.name;
     const reader = new FileReader();
     reader.onload = (evt) => {
       // evt = on_file_select event
