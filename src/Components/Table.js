@@ -1,30 +1,41 @@
-import { useState, React } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable no-unused-vars */
+import { useState, React, useEffect } from "react";
 import EventModal from "./EventModal";
+import { gql, useMutation, useQuery } from "@apollo/client";
+import userEvent from "@testing-library/user-event";
 
 const Table = ({ status, statusHeader }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const user = JSON.parse(localStorage.getItem("aicteuser"));
   // const events = JSON.parse(localStorage.getItem("events"));
-  const events = [
-    {
-      name: "Event 1",
-      fromdate: "01/01/2020",
-      todate: "01/02/2020",
-      location: "Location 1",
-      status: "food",
-      description:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-    },
-    {
-      name: "Event 2",
-      fromdate: "01/01/2020",
-      todate: "02/02/2020",
-      location: "Location 2",
-      status: "Pending",
-      description:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-    },
-  ];
+  const EVENT_QUERY = gql`
+    query {
+      getEvents {
+        name
+        id
+        from_date
+        to_date
+        status
+        organiser
+        description
+        time
+        caption
+        image
+      }
+    }
+  `;
+  const { loading, err, data } = useQuery(EVENT_QUERY);
+  const [events, setEvents] = useState([]);
+  useEffect(() => {
+    console.log(data?.getEvents.filter((event) => event.organiser === user.id));
+    setEvents(data?.getEvents.filter((event) => event.organiser === user.id));
+    // console.log(user, data?.getEvents);
+  }, [data]);
+  console.log(data);
+  // const events = false/;
   const [pevent, setPevent] = useState({});
+  // console.log(events);
   // console.log(events);
   return (
     <>
@@ -40,7 +51,9 @@ const Table = ({ status, statusHeader }) => {
                   <th className="py-3  border-[#B9B9B9] border-2">
                     Event Name
                   </th>
-                  <th className="py-3 px-3 md:px-0  border-[#B9B9B9] border-2">Venue</th>
+                  <th className="py-3 px-3 md:px-0  border-[#B9B9B9] border-2">
+                    Venue
+                  </th>
                   <th className="py-3 px-3 md:px-0  border-[#B9B9B9] border-2">
                     Start Date
                   </th>
@@ -50,7 +63,7 @@ const Table = ({ status, statusHeader }) => {
                 </tr>
               </thead>
               <tbody className="bg-white">
-                {events.map((event, idx) => {
+                {events?.map((event, idx) => {
                   return (
                     <tr className="text-[#000000]" key={idx}>
                       <td
@@ -68,7 +81,7 @@ const Table = ({ status, statusHeader }) => {
                       </td>
                       <td className="text-center py-3 text-md border-[#B9B9B9] border-2">
                         <div>
-                          <p>{event.fromdate}</p>
+                          <p>{event.from_date}</p>
                         </div>
                       </td>
                       <td className="text-center py-3 text-md border-[#B9B9B9] border-2 ">
