@@ -26,7 +26,16 @@ export default function Modal({ modal, setModal, event }) {
   const [extrausers, setExtraUsers] = useState([]);
   const [userdata, setUserData] = useState({});
   const [userfile, setUserFile] = useState();
-  const teams = ["events", "hr", "finance", "c&m", "technical"];
+  const teams = [
+    "admin",
+    "hr",
+    "c&m",
+    "finance",
+    "marketing",
+    "sales",
+    "tech",
+    "social_media",
+  ];
   const [current, setCurrent] = useState(0);
 
   console.log(formdata);
