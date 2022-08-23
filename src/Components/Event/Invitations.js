@@ -28,7 +28,7 @@ export default function Details({
   teams,
 }) {
   function handleNext() {
-    if (current < 4) {
+    if (current < 1) {
       setCurrent(current + 1);
     }
   }
