@@ -77,12 +77,12 @@ const TwitterMainPage = () => {
   `;
 
   const { loading, err, data } = useQuery(TWITTERUSERDETAILS_QUERY, {
-    variables: { userid: user_id }
+    variables: { userid: user_id ? user_id: "1560199548907438080" }
   });
   if (!loading) {
-    userData = JSON.parse(data?.twGetUserDetails)?.user?.data[0]
-    timeline = JSON.parse(data?.twGetUserDetails)?.timeline?.data
-    media = JSON.parse(data?.twGetUserDetails)?.timeline?.includes.media
+      userData = JSON.parse(data?.twGetUserDetails)?.user?.data[0]
+      timeline = JSON.parse(data?.twGetUserDetails)?.timeline?.data
+      media = JSON.parse(data?.twGetUserDetails)?.timeline?.includes?.media
   }
   else {
     console.log(err)
@@ -106,7 +106,7 @@ const TwitterMainPage = () => {
  }`
 
 
-  const [twPostTweet] = useMutation(TWITTERPOSTTWEET_MUTATION, {
+  const [twPostTweet,{load}] = useMutation(TWITTERPOSTTWEET_MUTATION, {
     variables: {
       text: text,
       mediaids: mediaids,
