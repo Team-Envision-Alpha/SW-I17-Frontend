@@ -9,7 +9,7 @@ import fbLogo from "../Assets/Images/fbLogo.svg";
 import twitterLogo from "../Assets/Images/twitterLogo.svg";
 import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props'
 import axios from "axios";
-import { gql, useMutation } from "@apollo/client";
+import { gql, useMutation, useQuery } from "@apollo/client";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useSearchParams } from "react-router-dom"
@@ -24,7 +24,6 @@ const SocialMedia = () => {
 
 
 
-
   const [shortlivedaccesstoken, setShortlivedaccesstoken] = useState("")
   const LONGLIVEACCESSTOKEN_MUTATION = gql`
   mutation
@@ -34,11 +33,9 @@ const SocialMedia = () => {
       fbGetLongLivedAccessToken(
         shortlivedaccesstoken: $shortlivedaccesstoken)
     }
-  
-  
 `;
 
-  const [register, { loading }] = useMutation(LONGLIVEACCESSTOKEN_MUTATION, {
+  const [register] = useMutation(LONGLIVEACCESSTOKEN_MUTATION, {
     onError: (err) => {
       console.log("err", err);
       toast.error("Error: Cannot Login Facebook User", {
@@ -78,35 +75,43 @@ const SocialMedia = () => {
     register();
   }
 
-  const loginTwitter = async () => {
 
-    const res1 = await axios.get("twitter/oauth1")
-      .then(function (response) {
-        return response.data;
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-
-    if (res1) {
-      window.location.replace(`https://api.twitter.com/oauth/authorize?oauth_token=${res1.oauth_token}`)
-    }
-
+  const TWITTEROAUTH1_QUERY = gql`
+  query Oauth1{
+    twOauth1
   }
+`;
 
-  if (oauthverifier.length && oauthtoken.length) {
-    localStorage.setItem('twitter_oauth_verifier', oauthverifier)
-    const result2 = async () => {
-      const res2 = await axios.post("twitter/oauth2", { oauthtoken, oauthverifier })
-        .then(function (response) {
-          return response.data;
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
+  const TWITTEROAUTH2_MUTATION = gql`
+mutation
+  twOauth2(
+$oauthtoken: String! $oauthverifier: String!
+  ){
+    twOauth2(
+      oauthtoken: $oauthtoken oauthverifier: $oauthverifier)
+  }
+`
 
-      if (res2?.data) {
-        const splitdata = JSON.parse(res2?.data).split("&")
+
+  const [getoauth2, { loading }] = useMutation(TWITTEROAUTH2_MUTATION, {
+    onError: (err) => {
+      console.log("err", err);
+      toast.error("Error: Cannot Login Twitter User", {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    },
+    onCompleted: (data) => {
+
+      // localStorage.setItem("longlivedaccesstoken", JSON.parse(data.fbGetLongLivedAccessToken).longlivedaccesstoken.access_token)
+      console.log(JSON.parse(data.twOauth2))
+      if (data) {
+        const splitdata = JSON.parse(data.twOauth2).split("&")
         const oauth_token = splitdata[0].split("=")[1]
         const oauth_token_secret = splitdata[1].split("=")[1]
         const user_id = splitdata[2].split("=")[1]
@@ -117,10 +122,41 @@ const SocialMedia = () => {
         localStorage.setItem("twitter_screen_name", screen_name)
         window.location.replace("/social_media")
       }
+      toast.success(`Twitteruser Logged in successfully`, {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+
+    },
+    variables: {
+      oauthtoken, oauthverifier
     }
-    result2()
+
+  });
+
+  const Twitteroauth1 = useQuery(TWITTEROAUTH1_QUERY);
+
+
+
+
+
+  const loginTwitter = async () => {
+    if (!Twitteroauth1.loading && Twitteroauth1.data) {
+      window.location.replace(`https://api.twitter.com/oauth/authorize?oauth_token=${JSON.parse(Twitteroauth1?.data?.twOauth1).oauth_token}`)
+    }
+
   }
 
+  if (oauthverifier.length && oauthtoken.length) {
+    localStorage.setItem('twitter_oauth_verifier', oauthverifier)
+    getoauth2()
+  }
+  
   return (
     <>
       <div
