@@ -3,6 +3,7 @@ import logo from "../Assets/Images/aicte.png";
 import bg from "../Assets/Images/Group.svg";
 import micIcon from "../Assets/Images/micIcon.svg";
 import vidIcon from "../Assets/Images/vidIcon.svg";
+import userMeet from "../Assets/Images/userMeet.svg";
 
 const MeetingRoom = () => {
   return (
@@ -36,7 +37,13 @@ const MeetingRoom = () => {
         <div className="flex flex-wrap justify-center items-center gap-10">
           <div>
             <div className="w-[25vw] h-[30vh] rounded-xl bg-[#DEDEDE80] shadow-sm">
-              {/* video */}
+              {/* integ ref: video, if on  */}
+
+              {/* if not */}
+
+              {/* <div className="w-[5vw] h-[10vh] bg-white">
+                <img src={userMeet} alt="userMeet" />
+              </div> */}
             </div>
             <div className="bg-[#00000080] w-[5vw] rounded-bl-xl rounded-tr-xl relative bottom-7">
               <p className="text-white text-sm text-center py-1 ">text</p>
