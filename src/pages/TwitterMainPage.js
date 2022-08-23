@@ -19,8 +19,20 @@ import {
   AiTwotoneHeart,
 } from "react-icons/ai";
 
+
+
 const TwitterMainPage = () => {
   const [show, setShow] = useState(false);
+
+  const user_id = localStorage.getItem('twitter_user_id')
+  const username = localStorage.getItem('twitter_screen_name')
+
+
+
+  
+
+
+
 
   return (
     <>
@@ -58,84 +70,82 @@ const TwitterMainPage = () => {
             <div className="font-extrabold font-IBM-Sans text-xl tracking-wide">
               <p>All India Council for Technical Education</p>
             </div>
-            <div className="flex flex-col  mx-[10vw]">
+            <div className="flex flex-col">
               {/* Cover */}
-              <div>
-                <div>
-                  <img src={fbCover} alt="cover" className="w-full h-[40vh]" />
-                </div>
-              </div>
 
               {/* Description */}
 
-              <div className="mx-4 flex flex-col  font-IBM-Sans relative bottom-[6vh] gap-4">
-                <div className="w-[10vw] h-[20vh] rounded-full bg-white  mx-4">
-                  <img src={logo} alt="logo" />
-                </div>
+              <div className="flex flex-col font-IBM-Sans relative">
+                <div className="flex gap-4">
 
-                <div className="flex justify-between items-center">
-                  <div>
-                    <p className="font-bold text-xl">
-                      All India Council for Technical Education
-                    </p>
-                    <p className="font-light text-[#5B7083]">
-                      &#64;<span>aicte</span>
-                    </p>
+                  <div className="w-[10vw] h-[20vh] rounded-full bg-white  mx-4">
+                    <img src={logo} alt="logo" />
                   </div>
-
                   <div>
-                    <button className="w-[10vw] p-2 border-2 border-[#1DA1F2] text-lg text-[#1DA1F2] rounded-3xl font-bold">
-                      Messages
-                    </button>
-                  </div>
-                </div>
 
-                <div className="flex flex-col justify-center gap-2">
-                  <div>
-                    <p className="text-lg">Government Organization</p>
-                  </div>
 
-                  <div className="flex gap-10 text-md text-[#5B7083] items-center">
-                    <div className="flex items-center gap-2">
-                      <MdLocationOn />
-                      <p>Delhi</p>
+                    <div className="flex justify-between items-center">
+                      <div>
+                        <p className="font-bold text-xl">
+                          All India Council for Technical Education
+                        </p>
+                        <p className="font-light text-[#5B7083]">
+                          &#64;<span>aicte</span>
+                        </p>
+                      </div>
+
                     </div>
-                    <div className="flex items-center gap-2">
-                      <BsCalendar3 />
-                      <p>Joined September 2011</p>
+
+                    <div className="flex flex-col justify-center gap-2">
+                      <div>
+                        <p className="text-lg">Government Organization</p>
+                      </div>
+
+                      <div className="flex gap-10 text-md text-[#5B7083] items-center">
+                        <div className="flex items-center gap-2">
+                          <MdLocationOn />
+                          <p>Delhi</p>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <BsCalendar3 />
+                          <p>Joined September 2011</p>
+                        </div>
+                      </div>
+
+                      <div className="flex gap-4">
+                        <p className="font-bold">
+                          569{" "}
+                          <span className="font-light text-[#5B7083]">
+                            Following
+                          </span>
+                        </p>
+                        <p className="font-bold">
+                          72{" "}
+                          <span className="font-light text-[#5B7083]">
+                            Followers
+                          </span>
+                        </p>
+                      </div>
                     </div>
+
+
                   </div>
 
-                  <div className="flex gap-4">
-                    <p className="font-bold">
-                      569{" "}
-                      <span className="font-light text-[#5B7083]">
-                        Following
-                      </span>
-                    </p>
-                    <p className="font-bold">
-                      72{" "}
-                      <span className="font-light text-[#5B7083]">
-                        Followers
-                      </span>
-                    </p>
-                  </div>
                 </div>
+
+
 
                 {/* Tweets */}
 
                 <div className="flex flex-col gap-4 my-4">
-                  <div className="flex gap-3 items-center ">
-                    <div className="w-[4vw] h-[8vh] rounded-full bg-white  mx-4">
-                      <img src={logo} alt="logo" />
-                    </div>
+                  <div className="flex gap-3 items-center mt-5">
                     <input
-                      className="text-lg text-[#5B7083] p-2 outline-none"
+                      className="text-lg text-[#5B7083] p-2 outline-none w-full"
                       placeholder="What's happening? "
                     />
                   </div>
 
-                  <div className="ml-28 flex justify-between items-center">
+                  <div className="flex justify-between items-center">
                     <button className="flex gap-4 text-2xl text-[#1DA1F2]">
                       <AiOutlinePicture />
                       <AiOutlineFileGif />

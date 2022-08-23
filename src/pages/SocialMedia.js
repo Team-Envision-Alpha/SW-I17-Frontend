@@ -22,7 +22,6 @@ const SocialMedia = () => {
 
   const oauthtoken = searchParams.get('oauth_token') || ''
 
-  let bearer_token = "AAAAAAAAAAAAAAAAAAAAAHsMaQEAAAAAJuptBJ264%2FEDcmMXIfxMtijqaFU%3D7AAyGlh7EK5V7t7iK1JnVvs1yqkH3rGTZP3qr5P9Ki1HlLL1ta"
 
 
 
@@ -96,6 +95,7 @@ const SocialMedia = () => {
   }
 
   if (oauthverifier.length && oauthtoken.length) {
+    localStorage.setItem('twitter_oauth_verifier', oauthverifier)
     const result2 = async () => {
       const res2 = await axios.post("twitter/oauth2", { oauthtoken, oauthverifier })
         .then(function (response) {
