@@ -69,9 +69,11 @@ const EventReq = () => {
     <>
       <div style={{ backgroundImage: `url(${bg})` }}>
         <Navbar />
-        <Burger open={show} setOpen={setShow}></Burger>
+        <div className="lg:hidden block absolute z-50">
+          <Burger open={show} setOpen={setShow}></Burger>
+        </div>
         <Sidebar show={show} setShow={setShow} />
-        <div className="pt-24 mx-auto mb-10 flex flex-col gap-20  items-center justify-center">
+        <div className="pt-24 md:ml-[20vw] mb-10 flex flex-col gap-20  items-center justify-center">
           <div>
             <p className="font-bold text-[4vh] tracking-wide">Venues</p>
           </div>

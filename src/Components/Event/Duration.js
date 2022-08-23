@@ -53,7 +53,6 @@ export default function Details({
   const [enddate, setEndDate] = useState(new Date());
   const [time, setTime] = useState("00:00am");
   const [times, setTimes] = useState({});
-  // const [times, setTimes] = useState([]);
   const disabled_dates = [
     new Date(2022, 3, 10),
     new Date(2022, 3, 11),
@@ -76,8 +75,8 @@ export default function Details({
     }
   }
   function daysCount() {
-    var start = new Date(formdata.from_date);
-    var end = new Date(formdata.to_date);
+    var start = new Date(formdata.fromdate);
+    var end = new Date(formdata.todate);
     const diffTime = Math.abs(end - start);
     const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
     return diffDays + 1;
@@ -85,21 +84,17 @@ export default function Details({
   // console.log(time);
 
   useEffect(() => {
-    setFormData({ ...formdata, time: times });
+    setFormData({ ...formdata, times });
   }, [times]);
 
   function checkTime() {
     // console.log(formdata);
-    if (
-      formdata.time &&
-      Object.keys(formdata.time).length === daysCount() &&
-      formdata.venue
-    ) {
+    if (formdata.times && Object.keys(formdata.times).length === daysCount()) {
       var check = false;
-      Object.keys(formdata.time).map((key) => {
+      Object.keys(formdata.times).map((key) => {
         // console.log(formdata.times[key]);
         // console.log(formdata.times);
-        if (Object.keys(formdata.time[key]).length !== 2) {
+        if (Object.keys(formdata.times[key]).length !== 2) {
           check = false;
         } else {
           check = true;
@@ -110,7 +105,7 @@ export default function Details({
   }
   function checkData() {
     console.log(formdata);
-    if (formdata.from_date && formdata.to_date && checkTime()) {
+    if (formdata.fromdate && formdata.todate && checkTime()) {
       return true;
     } else {
       return false;
@@ -135,7 +130,7 @@ export default function Details({
                   setStartDate(e);
                   setFormData({
                     ...formdata,
-                    from_date: e.toLocaleString().split(",")[0],
+                    fromdate: e.toLocaleString().split(",")[0],
                   });
                 }}
               />
@@ -150,7 +145,7 @@ export default function Details({
                   setEndDate(e);
                   setFormData({
                     ...formdata,
-                    to_date: e.toLocaleString().split(",")[0],
+                    todate: e.toLocaleString().split(",")[0],
                   });
                 }}
               />
@@ -168,7 +163,7 @@ export default function Details({
                     id="panel1a-header"
                   >
                     <Typography>
-                      Day {i + 1} - {new Date(formdata.from_date).addDays(i)}
+                      Day {i + 1} - {new Date(formdata.fromdate).addDays(i)}
                     </Typography>
                   </AccordionSummary>
                   <AccordionDetails className="flex md:flex-row flex-col p-3 gap-x-2">
