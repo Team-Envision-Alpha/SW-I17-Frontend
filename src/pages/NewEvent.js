@@ -24,12 +24,14 @@ import * as XLSX from "xlsx";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-import axios from "axios";
-
-import { useNavigate } from "react-router-dom";
-
 export default function Event() {
-  const steps = ["Event Details", "Event Duration", "Food Requirements"];
+  const steps = [
+    "Event Details",
+    "Event Duration",
+    "Select Teams",
+    "Invitations",
+    "Food Requirements",
+  ];
   const stepElements = [<Detail />, <Duration />];
   const [show, setShow] = useState(false);
   const [current, setCurrent] = useState(0);
@@ -46,138 +48,59 @@ export default function Event() {
   const [userfile, setUserFile] = useState();
   const teams = ["events", "hr", "finance", "c&m", "technical"];
 
-  const [venuedata, setVenueData] = useState({});
-  const [eventid, setEventId] = useState(0);
-  const [venueid, setVenueId] = useState(0);
-  const [status, setStatus] = useState(false);
-  // console.log(formdata);
-
-  const [image, setImage] = useState(null);
-
-  const handleImage = (e) => {
-    var filesize = (e.target.files[0].size / 1024 / 1024).toFixed(4);
-    if (filesize <= 5) {
-      setImage(e.target.files[0]);
-      // toast.success("Image Accepted");
-    } else {
-      toast.error("File size should be less than 5MB");
-      // e.target.files[0] = "";
-    }
-  };
-
-  const getImageUrl = async (image) => {
-    const data = new FormData();
-    data.append("image", image);
-    // console.log(image);
-    const res = (
-      await axios.post("https://envisionalpha.aaruush.org/upload/events", data)
-    ).data;
-    console.log(res);
-    return res.data;
-  };
-
-  const navigate = useNavigate();
-
+  console.log(formdata);
   /////////////////////////////////////////////
 
-  // console.log(formdata);
+  console.log(formdata);
   const VENUE_QUERY = gql`
     query {
-      getVenues {
+      getAllVenues {
         id
         name
-        email
         city
-        venue_head
+        pincode
       }
     }
   `;
 
   const { loading, err, data } = useQuery(VENUE_QUERY);
-
-  // console.log(data?.getVenues);
+  // const data = [{ id: 1234 }, { id: 1234 }];
   const EVENT_MUTATION = gql`
     mutation createEvent(
-      $name: String!
-      $description: String!
-      $organiser: String!
-      $caption: String!
-      $status: String!
-      $from_date: String!
-      $to_date: String!
-      $time: String!
-      $image: String!
+      $name: String
+      $description: String
+      $venue: ID
+      $organiser: String
+      $caption: String
+      $fromdate: String
+      $todate: String
+      $time: String
+      $image: String
+      $departmentInvited: [String]
+      $usersInvited: [InvitedUserInput]
+      $status: String
     ) {
       createEvent(
-        name: $name
-        description: $description
-        organiser: $organiser
-        caption: $caption
-        status: $status
-        from_date: $from_date
-        to_date: $to_date
-        time: $time
-        image: $image
+        eventInput: {
+          name: $name
+          description: $description
+          venue: $venue
+          organiser: $organiser
+          caption: $caption
+          fromdate: $fromdate
+          todate: $todate
+          time: $time
+          image: $image
+          departmentInvited: $departmentInvited
+          usersInvited: $usersInvited
+          status: $status
+        }
       ) {
         id
         name
       }
     }
   `;
-
-  const VENUE_MUTATION = gql`
-    mutation requestVenue(
-      $event_id: ID!
-      $venue_id: ID!
-      $venue_head: ID!
-      $from_date: String!
-      $to_date: String!
-      $time: String!
-    ) {
-      requestVenue(
-        event_id: $event_id
-        venue_id: $venue_id
-        venue_head: $venue_head
-        from_date: $from_date
-        to_date: $to_date
-        time: $time
-      )
-    }
-  `;
-
-  const [venues, venues_loading] = useMutation(VENUE_MUTATION, {
-    onError: (err) => {
-      console.log(err.message);
-      toast.error("Error: Event Not Added!", {
-        position: "top-center",
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
-    },
-    onCompleted: (data) => {
-      console.log(data);
-      setStatus(true);
-      // setEventId(data.createEvent.id);
-      // setVenueId(data.requestVenue.event_id);
-      toast.success(`Venue Requested successfully!`, {
-        position: "top-center",
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
-      setFormData({});
-      setVenueData({});
-    },
-    variables: venuedata,
-  });
-
   const [events, event_loading] = useMutation(EVENT_MUTATION, {
     onError: (err) => {
       console.log(err.message);
@@ -193,9 +116,7 @@ export default function Event() {
     },
     onCompleted: (data) => {
       console.log(data);
-      setEventId(data.createEvent.id);
-      setVenueData({ ...venuedata, event_id: data.createEvent.id });
-      venues();
+
       toast.success(`Event Added successfully!`, {
         position: "top-center",
         autoClose: 3000,
@@ -205,52 +126,38 @@ export default function Event() {
         draggable: true,
         progress: undefined,
       });
-      // setFormData({});
-      // setEventId(data.createEvent.id);
+      setFormData({});
     },
     variables: formdata,
   });
-
-  function getVenueHead(venue) {
-    const current = data?.getVenues.find((v) => v.id === venue);
-    return current.venue_head;
-  }
-
-  // console.log(getVenueHead("d628f966-ca4f-40b8-95dd-44c0525b12e8"));
-
-  const onSubmit = async (e) => {
+  const onSubmit = (e) => {
     e.preventDefault();
-    // const url = await getImageUrl(image);
-    setFormData({
-      ...formdata,
-      // image: url,
-      image:
-        "https://aicte-storage.s3.ap-south-1.amazonaws.com/venues/aicte-1661152629031.webp",
-      status: "pending",
-      time:
-        typeof formdata.time != "string"
-          ? JSON.stringify(formdata.time)
-          : formdata.time,
-      food:
-        typeof formdata.food != "string"
-          ? JSON.stringify(formdata.food)
-          : formdata.food,
-    });
+    setFormData({ ...formdata, usersInvited: extrausers, status: "pending" });
     console.log(formdata);
-
-    setVenueData({
-      ...venuedata,
-      venue_id: formdata.venue,
-      venue_head: getVenueHead(formdata.venue),
-      from_date: formdata.from_date,
-      to_date: formdata.to_date,
-      time: formdata.time,
+    const localEvents = JSON.parse(localStorage.getItem("events"));
+    if (localEvents) {
+      localStorage.setItem(
+        "events",
+        JSON.stringify([...localEvents, { ...formdata, status: "pending" }])
+      );
+    } else {
+      localStorage.setItem(
+        "events",
+        JSON.stringify([{ ...formdata, status: "pending" }])
+      );
+    }
+    console.log(JSON.parse(localStorage.getItem("events")));
+    toast.success(`Event Added successfully!`, {
+      position: "top-center",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
     });
-
-    await events();
-    // window.alert(`Request Successsful for ${venueid}`, venueid == eventid);
-    // console.log(venuedata);
-    if (status) navigate("../requests", { replace: true });
+    setFormData({});
+    // console.log(loading);
   };
 
   return (
@@ -259,24 +166,17 @@ export default function Event() {
       style={{ backgroundImage: `url(${bg})` }}
     >
       <Navbar />
-      <Burger open={show} setOpen={setShow}></Burger>
+      <div className="lg:hidden block absolute z-50">
+        <Burger open={show} setOpen={setShow}></Burger>
+      </div>
       <Sidebar show={show} setShow={setShow} />
-      <ToastContainer
-        position="top-center"
-        autoClose={3000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-      />
-      <section className="mt-12 z-10 mx-auto">
-        <h1 className="font-bold text-2xl">Request a Venue</h1>
-        {/* <p className="mt-8 text-blue-400 hover:text-blue-600 transition cursor-pointer mb-8">
+
+      
+      <section className="mt-12 mx-10 z-10 md:ml-[28vw] lg:ml-[25vw]">
+        <h1 className="font-bold text-2xl">Book a Venue</h1>
+        <p className="mt-8 text-blue-400 hover:text-blue-600 transition cursor-pointer mb-8">
           Breadcrumb / breadcrumb / breadcrumb
-        </p> */}
+        </p>
         <div className="flex flex-row mx-auto md:justify-center justify-between md:w-[70vw] w-max ">
           <div className="mx-auto w-[85vw] md:w-[50vw]  ">
             <div className="flex flex-row justify-between relative">
@@ -299,7 +199,7 @@ export default function Event() {
               {steps.map((step, index) => {
                 // console.log(current, index, current <= index);
                 return (
-                  <div key={index} className="text-center">
+                  <div className="text-center">
                     <div className={index <= current ? state2 : state1}>
                       {index + 1}
                     </div>
@@ -327,7 +227,6 @@ export default function Event() {
               user={user}
               current={current}
               setCurrent={setCurrent}
-              handleImage={handleImage}
             />
           ) : null}
           {current === 1 ? (
@@ -348,26 +247,7 @@ export default function Event() {
           ) : null}
 
           {current === 2 ? (
-            <Food
-              current={current}
-              setCurrent={setCurrent}
-              setFormData={setFormData}
-              formdata={formdata}
-              extrausers={extrausers}
-              setExtraUsers={setExtraUsers}
-              setUserData={setUserData}
-              userdata={userdata}
-              setUserFile={setUserFile}
-              userfile={userfile}
-              user={user}
-              data={data}
-              teams={teams}
-              onSubmit={onSubmit}
-            />
-          ) : null}
-
-          {/* {current === 4 ? (
-            <Invitations
+            <Teams
               current={current}
               setCurrent={setCurrent}
               setFormData={setFormData}
@@ -385,7 +265,7 @@ export default function Event() {
           ) : null}
 
           {current === 3 ? (
-            <Teams
+            <Invitations
               current={current}
               setCurrent={setCurrent}
               setFormData={setFormData}
@@ -400,7 +280,25 @@ export default function Event() {
               data={data}
               teams={teams}
             />
-          ) : null} */}
+          ) : null}
+
+          {current === 4 ? (
+            <Food
+              current={current}
+              setCurrent={setCurrent}
+              setFormData={setFormData}
+              formdata={formdata}
+              extrausers={extrausers}
+              setExtraUsers={setExtraUsers}
+              setUserData={setUserData}
+              userdata={userdata}
+              setUserFile={setUserFile}
+              userfile={userfile}
+              user={user}
+              data={data}
+              teams={teams}
+            />
+          ) : null}
         </div>
       </section>
     </main>

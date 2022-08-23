@@ -37,16 +37,15 @@ export default function Food({
   current,
   setCurrent,
   teams,
-  onSubmit,
 }) {
   function daysCount() {
-    var start = new Date(formdata.from_date);
-    var end = new Date(formdata.to_date);
+    var start = new Date(formdata.fromdate);
+    var end = new Date(formdata.todate);
     const diffTime = Math.abs(end - start);
     const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
     return diffDays + 1;
   }
-  // console.log(daysCount());
+  console.log(daysCount());
   function handleNext() {
     if (current < 4) {
       setCurrent(current + 1);
@@ -137,10 +136,7 @@ export default function Food({
         Food Details
         {_.times(daysCount(), (i) => {
           return (
-            <div
-              className="flex flex-col w-full gap-y-4 my-5 shadow-lg hover:shadow-xl transition"
-              key={i}
-            >
+            <div className="flex flex-col w-full gap-y-4 my-5 shadow-lg hover:shadow-xl transition">
               <Accordion>
                 <AccordionSummary
                   expandIcon={<ExpandMoreIcon />}
@@ -148,7 +144,7 @@ export default function Food({
                   id="panel1a-header"
                 >
                   <Typography>
-                    Day {i + 1} - {new Date(formdata.from_date).addDays(i)}
+                    Day {i + 1} - {new Date(formdata.fromdate).addDays(i)}
                   </Typography>
                 </AccordionSummary>
                 <AccordionDetails>
@@ -230,9 +226,9 @@ export default function Food({
           </div>
           <div
             className=" bg-green-700 text-white px-10 py-3 rounded-lg cursor-pointer "
-            onClick={onSubmit}
+            onClick={handleNext}
           >
-            Request Event
+            Next
           </div>
         </div>
       </div>

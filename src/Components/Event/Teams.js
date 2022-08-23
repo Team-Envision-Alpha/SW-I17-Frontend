@@ -85,12 +85,22 @@ export default function Details({
     // return JSON.stringify(result); //JSON
   }
 
+  const handleImage = (e) => {
+    const file = e.target.files[0];
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = (e) => {
+      setFormData({ ...formdata, image: e.target.result });
+    };
+  };
+
   return (
     <div className="w-[80vw] md:w-[50vw] bg-[#f3b641] shadow-xl rounded-2xl overflow-y-hidden my-10">
       <div className="w-full h-full py-5 mt-5 bg-white px-10">
         <p className="text-center my-10 text-lg font-bold">
           Fill out the Following Details
         </p>
+
         <div className="flex flex-col justify-center">
           <h3 className="mx-auto text-center mb-5">
             Select Teams for Invite List
@@ -191,17 +201,29 @@ export default function Details({
             })}
           </div>
         </div>
-        <div className="flex flex-row mt-12 pb-10 justify-between">
-          <div className="font-bold py-3 cursor-pointer" onClick={handleBack}>
-            Go back
+        <div className="mt-10 mx-auto">
+          <div className="flex flex-col justify-center text-center align-middle object-center mx-auto place-content-center">
+            Upload Event Image<br></br>
+            <input
+              type="file"
+              name="image"
+              accept="image/svg, image/png, image/jpeg, image/jpg, image/webp"
+              className="mt-8  ml-12 w-full text-sm text-slate-500 place-content-center justify-center flex flex-row mx-auto
+      file:mr-4 file:py-2 file:px-4
+      file:rounded-full file:border-0
+      file:text-sm file:font-semibold
+      file:bg-blue-50 file:text-blue-700
+      hover:file:bg-violet-100"
+              onChange={handleImage}
+            />
+            {/* <div className="mt-8">
+                        <Button variant="outlined" color="primary">
+                          Upload Event Image
+                        </Button>
+                      </div> */}
           </div>
-          <div
-            className=" bg-green-700 text-white px-10 py-3 rounded-lg cursor-pointer"
-            onClick={handleNext}
-          >
-            Next
-          </div>
-        </div>{" "}
+        </div>
+
         <div className="flex flex-row mt-12 pb-10 justify-between">
           <div className="font-bold py-3 cursor-pointer" onClick={handleBack}>
             Go back
