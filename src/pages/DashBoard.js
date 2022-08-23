@@ -44,7 +44,7 @@ const DashBoard = () => {
           <Link to="/venues">
             <DashCard icon={allvenues} name="View Venues" />
           </Link>
-          <Link to="/add_venues">
+          <Link to="/add_venue">
             <DashCard icon={addvenues} name="Add Venues" />
           </Link>
           <Link to="/requests">
