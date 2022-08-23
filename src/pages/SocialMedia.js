@@ -142,9 +142,6 @@ $oauthtoken: String! $oauthverifier: String!
   const Twitteroauth1 = useQuery(TWITTEROAUTH1_QUERY);
 
 
-
-
-
   const loginTwitter = async () => {
     if (!Twitteroauth1.loading && Twitteroauth1.data) {
       window.location.replace(`https://api.twitter.com/oauth/authorize?oauth_token=${JSON.parse(Twitteroauth1?.data?.twOauth1).oauth_token}`)

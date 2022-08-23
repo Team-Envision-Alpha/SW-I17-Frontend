@@ -91,6 +91,7 @@ const Chat = ({ title }) => {
         message
         _id
         createdAt
+        user_id
       }
     }
   `;
