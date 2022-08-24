@@ -19,12 +19,10 @@ const EventModal = ({ setIsOpen, event }) => {
       return 1;
     } else if (e === "venuehead") {
       return 2;
-    } else if (e === "social") {
+    } else if (e === "invitation") {
       return 3;
-    } else if (e === "food") {
-      return 4;
     } else if (e === "complete") {
-      return 5;
+      return 4;
     } else {
       return -1;
     }
@@ -123,13 +121,15 @@ const EventModal = ({ setIsOpen, event }) => {
                     {reqlevel(event?.status) >= 2
                       ? " Your request has been approved by venue head."
                       : null}
-
-                    {reqlevel(event?.status) >= 2 ? "Here" : null}
                   </p>
                 </div>
               </div>
               <div
-                className="flex items center gap-2 p-3 rounded-lg hover:bg-green-200 cursor-pointer transition"
+                className={`flex items center gap-2 p-3 rounded-lg ${
+                  reqlevel(event?.status) === 2
+                    ? "hover:bg-green-200 cursor-pointer"
+                    : ""
+                } transition`}
                 style={{
                   filter: `${
                     reqlevel(event?.status) >= 2 ? "null" : "grayscale(100%)"
@@ -154,7 +154,7 @@ const EventModal = ({ setIsOpen, event }) => {
                   </p>
                 </div>
               </div>
-              <div
+              {/* <div
                 className="flex items center gap-2 p-3 rounded-lg"
                 style={{
                   filter: `${
@@ -172,15 +172,15 @@ const EventModal = ({ setIsOpen, event }) => {
                     Add Food Requirements are required to move further.
                   </p>
                 </div>
-              </div>
+              </div> */}
               <div
                 className="flex items center gap-2 p-3 rounded-lg"
                 style={{
                   filter: `${
-                    reqlevel(event?.status) >= 5 ? "null" : "grayscale(100%)"
+                    reqlevel(event?.status) >= 4 ? "null" : "grayscale(100%)"
                   }`,
                   backgroundColor: `${
-                    reqlevel(event?.status) === 5 ? "#aaff9930" : null
+                    reqlevel(event?.status) === 4 ? "#aaff9930" : null
                   }`,
                 }}
               >

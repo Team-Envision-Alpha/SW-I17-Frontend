@@ -46,7 +46,7 @@ export default function Invitations({
         <div className="flex justify-evenly">
           <div
             onClick={() => {
-              setFormData({ ...formdata, departmentInvited: teams });
+              setFormData({ ...formdata, departments: teams });
             }}
           >
             <Button variant="outlined" color="success">
@@ -62,7 +62,7 @@ export default function Invitations({
             onClick={() => {
               setFormData((formdata) => {
                 const newData = { ...formdata };
-                delete newData.departmentInvited;
+                delete newData.departments;
                 return newData;
               });
             }}
@@ -78,25 +78,21 @@ export default function Invitations({
           {teams.map((team, idx) => {
             return (
               <div className="mr-4 transition mt-3">
-                {formdata.departmentInvited &&
-                formdata.departmentInvited.includes(team) ? (
+                {formdata.departments && formdata.departments.includes(team) ? (
                   <Button
                     variant="outlined"
                     color="success"
                     onClick={() => {
-                      const resp = arrayRemove(
-                        formdata.departmentInvited,
-                        team
-                      );
+                      const resp = arrayRemove(formdata.departments, team);
                       if (resp !== "empty") {
                         setFormData({
                           ...formdata,
-                          departmentInvited: resp,
+                          departments: resp,
                         });
                       } else {
                         setFormData((formdata) => {
                           const newData = { ...formdata };
-                          delete newData.departmentInvited;
+                          delete newData.departments;
                           return newData;
                         });
                       }
@@ -112,18 +108,15 @@ export default function Invitations({
                     variant="outlined"
                     color="primary"
                     onClick={() => {
-                      if (formdata.departmentInvited) {
+                      if (formdata.departments) {
                         setFormData({
                           ...formdata,
-                          departmentInvited: [
-                            ...formdata.departmentInvited,
-                            team,
-                          ],
+                          departments: [...formdata.departments, team],
                         });
                       } else {
                         setFormData({
                           ...formdata,
-                          departmentInvited: [team],
+                          departments: [team],
                         });
                       }
                     }}

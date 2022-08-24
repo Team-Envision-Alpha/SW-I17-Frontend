@@ -37,6 +37,7 @@ import ActivityLog from "./pages/ActivityLog";
 import TwiChat from "./pages/TwiChat";
 import MassMailer from "./pages/MassMailer";
 import MeetingRoom from "./pages/MeetingRoom";
+import Home from "./pages/Home";
 
 const App = () => {
   // const [longlivedaccesstoken, setLonglivedaccesstoken] = useState(null);
@@ -109,6 +110,8 @@ const App = () => {
             path="/fb_main/:id"
             element={<FacebookMain title="Check Post"></FacebookMain>}
           />
+
+          <Route path="/home" element={<Home />} />
           <Route
             exact
             path="/facebookpage/:id"

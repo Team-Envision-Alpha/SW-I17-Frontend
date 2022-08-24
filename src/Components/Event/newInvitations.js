@@ -1,4 +1,7 @@
 import * as XLSX from "xlsx";
+import { gql, useMutation } from "@apollo/client";
+import { ToastContainer, toast } from "react-toastify";
+import { v4 } from "uuid";
 
 export default function Invitations({
   setUserData,
@@ -7,9 +10,9 @@ export default function Invitations({
   formdata,
   setExtraUsers,
   extrausers,
-  toast,
   current,
   setCurrent,
+  event,
 }) {
   function arrayRemove(arr, value) {
     if (arr.length === 1) {
@@ -20,6 +23,7 @@ export default function Invitations({
       });
     }
   }
+  // console.log(event.id);
   function readAppendFile(f) {
     // console.log(f);
     // var name = f.name;
@@ -53,7 +57,8 @@ export default function Invitations({
       if (
         data[i].name === undefined ||
         data[i].email === undefined ||
-        data[i].phone === undefined
+        data[i].phone === undefined ||
+        data[i].id === undefined
       ) {
         return false;
       }
@@ -69,7 +74,12 @@ export default function Invitations({
       var currentline = lines[i].split(",");
 
       for (var j = 0; j < headers.length; j++) {
-        obj[headers[j]] = currentline[j];
+        if (obj[headers[j]] === "id") {
+          obj[headers[j]] = currentline[j];
+        } else {
+          obj[headers[j]] = currentline[j];
+          obj["id"] = v4();
+        }
       }
 
       result.push(obj);
@@ -89,8 +99,72 @@ export default function Invitations({
     }
   }
 
+  const INVITE_MUTATION = gql`
+    mutation inviteUsers(
+      $eventId: ID!
+      $users: [InviteUser]
+      $departments: [String]
+    ) {
+      inviteUsers(eventId: $eventId, users: $users, departments: $departments)
+    }
+  `;
+
+  const [invites, loading] = useMutation(INVITE_MUTATION, {
+    onError: (err) => {
+      console.log(err);
+      toast.error("Error: Invites Not Sent!", {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    },
+    onCompleted: (data) => {
+      console.log(data);
+      // setStatus(true);
+      // setEventId(data.createEvent.id);
+      // setVenueId(data.requestVenue.event_id);
+      toast.success(`Invites Sent successfully!`, {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+      setFormData({});
+    },
+    variables: formdata,
+  });
+
+  const handleInvites = async (e) => {
+    e.preventDefault();
+    setFormData({
+      ...formdata,
+      event_id: event.id,
+    });
+    console.log(formdata);
+    invites();
+    // // console.log(event.id);
+  };
+
   return (
     <div className="w-full h-full py-5 mt-5 bg-white px-10">
+      <ToastContainer
+        position="top-center"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
       <p className="text-center my-10 text-lg font-bold">
         Fill out the Following Details
       </p>
@@ -160,7 +234,7 @@ export default function Invitations({
                   setExtraUsers([...extrausers, userdata]);
                   setFormData({
                     ...formdata,
-                    usersInvited: extrausers,
+                    users: extrausers,
                   });
                 }
                 // console.log(extrausers);
@@ -275,9 +349,9 @@ hover:file:bg-violet-100"
         </div>
         <div
           className=" bg-green-700 text-white px-10 py-3 rounded-lg cursor-pointer"
-          onClick={handleNext}
+          onClick={handleInvites}
         >
-          Next
+          Send Invites
         </div>
       </div>
       {/* <div className="flex flex-row mt-12 pb-10 justify-between">

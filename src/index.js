@@ -4,7 +4,12 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
-import { ApolloClient, InMemoryCache, ApolloProvider,createHttpLink } from "@apollo/client";
+import {
+  ApolloClient,
+  InMemoryCache,
+  ApolloProvider,
+  createHttpLink,
+} from "@apollo/client";
 
 const token = JSON.parse(localStorage.getItem("aicteuser"))
   ? JSON.parse(localStorage.getItem("aicteuser")).token
