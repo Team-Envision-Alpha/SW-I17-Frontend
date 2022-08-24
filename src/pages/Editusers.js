@@ -5,12 +5,37 @@ import React, { useEffect, useState } from "react";
 import Navbar from "../Components/NewNavbar";
 import Table from "../Components/Table";
 import bg from "../Assets/Images/Group.svg";
-import { gql, useQuery } from "@apollo/client";
+import { gql, useMutation, useQuery } from "@apollo/client";
 import Sidebar from "../Components/Sidebar";
 import Burger from "../Components/burger";
 import Select from "../Components/Select";
 
 const EventReq = () => {
+  const [user_id,setUserId] = useState("")
+  const DELETE_USER = gql`
+    mutation deleteUser($id:ID!){
+      deleteUser(id:$id)
+    }
+  `
+  const [deleteUser,userdata] = useMutation(DELETE_USER,{
+    onError: (err) => {
+      console.log(err);
+  },
+  onCompleted: (data) => {
+      console.log(data);
+      // toast.success(data, {
+      //     position: "top-center",
+      //     autoClose: 3000,
+      //     hideProgressBar: false,
+      //     closeOnClick: true,
+      //     pauseOnHover: true,
+      //     draggable: true,
+      //     progress: undefined,
+      //   });
+  },
+  variables: {id:user_id},
+  })
+ 
   const USER_QUERY = gql`
     query {
       getUsers {
@@ -24,7 +49,8 @@ const EventReq = () => {
   `;
   const types = ["Name", "Email", "Phone", "Role"];
 
-  const { loading, err, data } = useQuery(USER_QUERY);
+  const { loading, err, data,refetch } = useQuery(USER_QUERY);
+  console.log(data);
   const [formdata, setFormData] = useState({});
   const [show, setShow] = useState(false);
   console.log(data);
@@ -32,7 +58,11 @@ const EventReq = () => {
   useEffect(() => {
     setFilterData(data?.getUsers);
   }, [data]);
-
+  const delete_user = (id)=>{
+    setUserId(id)
+    deleteUser()
+    refetch()
+  }
   useEffect(() => {
     console.log(formdata);
     if (formdata.type && formdata.query) {
@@ -111,6 +141,7 @@ const EventReq = () => {
                           Phone
                         </th>
                         <th className="py-3 border-[#B9B9B9] border-2">Role</th>
+                        <th className="py-3 border-[#B9B9B9] border-2">Options</th>
                       </tr>
                     </thead>
                     <tbody className="bg-white">
@@ -150,6 +181,8 @@ const EventReq = () => {
 
                                 {/* {isOpen && <EventModal setIsOpen={setIsOpen} />} */}
                               </td>
+                              <td className="text-center py-3 border-[#B9B9B9] border-2 
+                    text-md"><button className="text-red-500" onClick={()=>delete_user(user.id)}>Delete</button></td>
                             </tr>
                           ))
                         : null}
