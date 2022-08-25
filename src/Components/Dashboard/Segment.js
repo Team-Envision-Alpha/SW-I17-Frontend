@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { gql, useQuery } from "@apollo/client";
 import Card from "./EventCard";
 export default function Segment({ color, textcolor, name, setShow, user }) {

@@ -13,9 +13,13 @@ import { FiSend } from "react-icons/fi";
 import { BsEmojiSmile, BsCamera } from "react-icons/bs";
 
 import { gql, useMutation, useQuery } from "@apollo/client";
-import { useState } from "react";
-
+import { useState, useRef, useEffect } from "react";
+import Loading from "../Components/Loading";
 const Chat = ({ title }) => {
+  const bottomRef1 = useRef(null);
+  const bottomRef2= useRef(null);
+  const bottomRef3 = useRef(null);
+  const bottomRef4 = useRef(null);
   const user = JSON.parse(localStorage.getItem("aicteuser"));
   const converttime = (time) => {
     const date1 = new Date(time);
@@ -68,6 +72,7 @@ const Chat = ({ title }) => {
   const [message, setMessage] = useState("");
   const [newMessage, setNewMessage] = useState(false);
   const [commonchat, setCommonChat] = useState(false);
+
 
   const CHATS_QUERY = gql`
     query Chats($seconduser: ID!) {
@@ -133,6 +138,7 @@ const Chat = ({ title }) => {
     setMessage("");
     refetch({ seconduser: openchat.seconduser });
   };
+
   const SEND_COMMON_MUTATION = gql`
     mutation sendCommonMessage($message: String!) {
       sendCommonMessage(message: $message)
@@ -148,6 +154,8 @@ const Chat = ({ title }) => {
     },
     variables: { message },
   });
+
+
   const sendCommonMessage = (e) => {
     e.preventDefault();
     sendCommon();
@@ -158,12 +166,21 @@ const Chat = ({ title }) => {
   const { loading, err, data, refetch } = useQuery(CHATS_QUERY, {
     variables: { seconduser: user.id },
   });
+
+  useEffect(() => {
+    // 👇️ scroll to bottom every time messages change
+    bottomRef1.current?.scrollIntoView({ behavior: 'smooth' });
+    bottomRef2.current?.scrollIntoView({ behavior: 'smooth' });
+    bottomRef3.current?.scrollIntoView({ behavior: 'smooth' });
+    bottomRef4.current?.scrollIntoView({ behavior: 'smooth' });
+  }, [data]);
+
   if (loading) {
-    return <h3>Loading...</h3>;
+    return <Loading />;
   }
-  console.log(data);
 
   let length = 10;
+
 
   return (
     <>
@@ -251,6 +268,7 @@ const Chat = ({ title }) => {
                       </li>
                     );
                   })}
+                  <div ref={bottomRef1}></div>
                 </ul>
               </div>
             ) : (
@@ -323,7 +341,9 @@ const Chat = ({ title }) => {
                       </div>
                       <div className="border-b-2 border-b-[#B4ABABA8] w-full py-1 px-4"></div>
                     </li>
+
                   ))}
+                  <div ref={bottomRef2}></div>
                 </ul>
               </div>
             )}
@@ -387,35 +407,7 @@ const Chat = ({ title }) => {
                     </>
                   ))}
 
-                  {/* my msg */}
-                  {/* <li className="flex flex-col gap-2 justify-center items-end ">
-                  <div className="text-white p-4 rounded-3xl bg-[#1DA1F2] max-w-[80%] text-base ">
-                    <p>
-                      Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                      Perferendis, eaque.
-                    </p>
-                  </div>
-
-                  <div className="flex items-center px-2 gap-2 text-[#1DA1F2]">
-                    <span className="text-black">10:10 AM, Today</span>
-                    <FaCircle />
-                  </div>
-                </li> */}
-
-                  {/* other msg */}
-                  {/* <li className="flex flex-col gap-2 justify-center items-start ">
-                  <div className=" p-4 rounded-3xl bg-[#E7E7E7] max-w-[80%] text-base ">
-                    <p>
-                      Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                      Perferendis, eaque.
-                    </p>
-                  </div>
-
-                  <div className="flex items-center px-2 gap-2 text-[#E7E7E7]">
-                    <FaCircle />
-                    <span className="text-black">10:10 AM, Today</span>
-                  </div>
-                </li> */}
+                  <div ref={bottomRef3}></div>
                 </ul>
               </div>
 
@@ -427,7 +419,7 @@ const Chat = ({ title }) => {
                       <button>
                         <GrAttachment className="text-[#333333] text-xl" />
                       </button>
-                      <textarea
+                      <input
                         name="msg"
                         id="msg"
                         cols="48"
@@ -436,7 +428,7 @@ const Chat = ({ title }) => {
                         onChange={(e) => setMessage(e.target.value)}
                         className="outline-none font-IBM-Sans text-base bg-transparent  "
                         placeholder="Type your message"
-                      ></textarea>
+                      ></input>
                     </div>
                     <div className="flex items-center gap-4">
                       <button type="submit">
@@ -514,35 +506,7 @@ const Chat = ({ title }) => {
                           </>
                         ))}
 
-                        {/* my msg */}
-                        {/* <li className="flex flex-col gap-2 justify-center items-end ">
-                  <div className="text-white p-4 rounded-3xl bg-[#1DA1F2] max-w-[80%] text-base ">
-                    <p>
-                      Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                      Perferendis, eaque.
-                    </p>
-                  </div>
-
-                  <div className="flex items-center px-2 gap-2 text-[#1DA1F2]">
-                    <span className="text-black">10:10 AM, Today</span>
-                    <FaCircle />
-                  </div>
-                </li> */}
-
-                        {/* other msg */}
-                        {/* <li className="flex flex-col gap-2 justify-center items-start ">
-                  <div className=" p-4 rounded-3xl bg-[#E7E7E7] max-w-[80%] text-base ">
-                    <p>
-                      Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                      Perferendis, eaque.
-                    </p>
-                  </div>
-
-                  <div className="flex items-center px-2 gap-2 text-[#E7E7E7]">
-                    <FaCircle />
-                    <span className="text-black">10:10 AM, Today</span>
-                  </div>
-                </li> */}
+                        <div ref={bottomRef4}></div>
                       </ul>
                     </div>
 
@@ -554,13 +518,13 @@ const Chat = ({ title }) => {
                             <button>
                               <GrAttachment className="text-[#333333] text-xl" />
                             </button>
-                            <textarea
+                            <input
                               name="msg"
                               id="msg"
                               cols="55"
                               rows="1"
                               value={message}
-                              onChange={(e) => {setMessage(e.target.value)}}
+                              onChange={(e) => { setMessage(e.target.value) }}
                               className="outline-none font-IBM-Sans text-base bg-transparent  "
                               placeholder="Type your message"
                               onKeyPress={(e) => {
@@ -571,7 +535,7 @@ const Chat = ({ title }) => {
                                   console.log(e.target.value);
                                 }
                               }}
-                            ></textarea>
+                            ></input>
                           </div>
                           <div className="flex items-center gap-4">
                             <button type="submit">

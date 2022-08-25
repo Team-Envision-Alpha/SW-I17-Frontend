@@ -27,6 +27,7 @@ const Login = () => {
         role
         token
         id
+        image
       }
     }
   `;

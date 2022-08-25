@@ -5,7 +5,7 @@ const DashCard = ({ icon, name }) => {
     <>
       <div className="flex flex-col gap-6 font-IBM-Sans sm:flex-row sm:bg-red">
         <div>
-          <div className="w-[14vw] bg-[#efefef] hover:bg-[#ffffff10] hover:backdrop-blur h-[26vh] rounded-xl flex flex-col justify-center items-center gap-6 shadow-lg hover:shadow-xl transition">
+          <div className="w-[14vw] bg-[#efefef] hover:bg-[#ffffff10] hover:backdrop-blur h-[20vh] rounded-xl flex flex-col justify-center items-center gap-6 shadow-lg hover:shadow-xl transition">
             <div>
               <img src={icon} alt="img" width={80} />
             </div>
