@@ -31,19 +31,19 @@ export default function Sidebar({ current, show, setShow }) {
       <div className="flex flex-col mt-5 justify-evenly ">
         <div className="flex flex-row px-1 py-5">
           <img src={event} className="w-[2vw]" />
-          <p className="ml-4 my-auto ">Invited/Upcoming Events</p>
+          <p className="ml-4 my-auto ">Add New Event</p>
         </div>
         <div className="flex flex-row px-1 py-5">
           <img src={report} className="w-[2vw]" />
-          <p className="ml-4 my-auto ">Report Generation</p>
+          <p className="ml-4 my-auto ">Your Invited Events</p>
         </div>
         <div className="flex flex-row px-1 py-5">
           <img src={activity} className="w-[2vw]" />
-          <p className="ml-4 my-auto ">Activity Log</p>
+          <p className="ml-4 my-auto ">Your Event Requests</p>
         </div>
         <div className="flex flex-row px-1 py-5">
           <img src={user} className="w-[2vw]" />
-          <p className="ml-4 my-auto ">Create User</p>
+          <p className="ml-4 my-auto ">View All venues</p>
         </div>
         <div className="flex flex-row px-1 py-5">
           <img src={editUser} className="w-[2vw]" />
