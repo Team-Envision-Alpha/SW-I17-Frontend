@@ -37,7 +37,11 @@ import ActivityLog from "./pages/ActivityLog";
 import TwiChat from "./pages/TwiChat";
 import MassMailer from "./pages/MassMailer";
 import MeetingRoom from "./pages/MeetingRoom";
+// <<<<<<< HEAD
 import Home from "./pages/Home";
+// =======
+import VenueDashboard from "./pages/VenueDashboard";
+// >>>>>>> divyanshu
 
 const App = () => {
   // const [longlivedaccesstoken, setLonglivedaccesstoken] = useState(null);
@@ -127,7 +131,7 @@ const App = () => {
             path="/meeting_room"
             element={<MeetingRoom title="Meeting Room"></MeetingRoom>}
           />
-
+          <Route path="/venue_dashboard" element={<VenueDashboard />} />
           {/* <Route
             path="/social_analytics"
             element={
