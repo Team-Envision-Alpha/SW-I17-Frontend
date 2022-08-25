@@ -18,18 +18,16 @@ const EventModal = ({ setIsOpen, event }) => {
       return 0;
     } else if (e === "teamhead") {
       return 1;
-    } else if (e === "venuehead") {
-      return 2;
     } else if (e === "invitation") {
-      return 3;
+      return 2;
     } else if (e === "complete") {
-      return 4;
+      return 3;
     } else {
       return -1;
     }
   }
   const [current, setCurrent] = useState("pending");
-  
+
   console.log(event);
   return (
     <>
@@ -57,8 +55,17 @@ const EventModal = ({ setIsOpen, event }) => {
               <div>
                 <p>{event?.description}</p>
               </div>
+              <div className="gap-3">
+                From - {event?.from_date}
+                <br />
+                To - {event?.to_date}
+                <br />
+                {event?.time}
+                <br />
+                {event?.id}
+              </div>
             </div>
-            <div className="flex flex-col gap-2">
+            <div className="flex flex-col gap-4">
               <div>
                 <p className="text-[3vh] font-semibold">Track</p>
               </div>
@@ -104,39 +111,19 @@ const EventModal = ({ setIsOpen, event }) => {
                   </p>
                 </div>
               </div>
-              <div
-                className="flex items center gap-2 p-3 rounded-lg"
-                style={{
-                  filter: `${
-                    reqlevel(event?.status) >= 2 ? "null" : "grayscale(100%)"
-                  }`,
-                  backgroundColor: `${
-                    reqlevel(event?.status) === 2 ? "#aaff9930" : null
-                  }`,
-                }}
-              >
-                <img src={Icon_3} alt="icon_1" />
-                <div className="flex flex-col justify-center items-start">
-                  <p className="text-[2vh] text-left">Approved by Venue Head</p>
-                  <p className="text-[rgb(129,129,129)] text-[1.5vh] text-left">
-                    {reqlevel(event?.status) >= 2
-                      ? " Your request has been approved by venue head."
-                      : null}
-                  </p>
-                </div>
-              </div>
+
               <div
                 className={`flex items center gap-2 p-3 rounded-lg ${
-                  reqlevel(event?.status) === 2
+                  reqlevel(event?.status) === 1
                     ? "hover:bg-green-200 cursor-pointer"
                     : ""
                 } transition`}
                 style={{
                   filter: `${
-                    reqlevel(event?.status) >= 2 ? "null" : "grayscale(100%)"
+                    reqlevel(event?.status) >= 1 ? "null" : "grayscale(100%)"
                   }`,
                   backgroundColor: `${
-                    reqlevel(event?.status) === 3 ? "#aaff9930" : null
+                    reqlevel(event?.status) === 2 ? "#aaff9930" : null
                   }`,
                 }}
                 onClick={(e) => {
@@ -178,10 +165,10 @@ const EventModal = ({ setIsOpen, event }) => {
                 className="flex items center gap-2 p-3 rounded-lg"
                 style={{
                   filter: `${
-                    reqlevel(event?.status) >= 4 ? "null" : "grayscale(100%)"
+                    reqlevel(event?.status) >= 3 ? "null" : "grayscale(100%)"
                   }`,
                   backgroundColor: `${
-                    reqlevel(event?.status) === 4 ? "#aaff9930" : null
+                    reqlevel(event?.status) === 3 ? "#aaff9930" : null
                   }`,
                 }}
               >
