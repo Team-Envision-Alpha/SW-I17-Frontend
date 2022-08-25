@@ -53,82 +53,82 @@ export default function Sidebar({ current, show, setShow }) {
         </Link>
         <Link to="/invited_event">
           <div className="flex flex-row px-1 py-5">
-            <img src={report} className="w-[2vw]" />
+            <img src={frame2} className="w-[2vw]" />
             <p className="ml-4 my-auto ">Your Invited Events</p>
           </div>
         </Link>
         <Link to="/requests">
           <div className="flex flex-row px-1 py-5">
-            <img src={activity} className="w-[2vw]" />
+            <img src={frame3} className="w-[2vw]" />
             <p className="ml-4 my-auto ">Your Event Requests</p>
           </div>
         </Link>
 
         <Link to="/venues">
           <div className="flex flex-row px-1 py-5">
-            <img src={user} className="w-[2vw]" />
+            <img src={frame4} className="w-[2vw]" />
             <p className="ml-4 my-auto ">View All Venues</p>
           </div>
         </Link>
 
         <Link to="/add_venue">
           <div className="flex flex-row px-1 py-5">
-            <img src={editUser} className="w-[2vw]" />
+            <img src={frame5} className="w-[2vw]" />
             <p className="ml-4 my-auto ">Add New Venues</p>
           </div>
         </Link>
 
         <Link to="/venue_dashboard">
           <div className="flex flex-row px-1 py-5">
-            <img src={social} className="w-[2vw]" />
+            <img src={frame6} className="w-[2vw]" />
             <p className="ml-4 my-auto ">View Venue Dashboard</p>
           </div>
         </Link>
         <Link to="/user_registration">
           <div className="flex flex-row px-1 py-5">
-            <img src={activity} className="w-[2vw]" />
+            <img src={frame7} className="w-[2vw]" />
             <p className="ml-4 my-auto ">Create New User</p>
           </div>
         </Link>
         <Link to="/edituser">
           <div className="flex flex-row px-1 py-5">
-            <img src={activity} className="w-[2vw]" />
+            <img src={frame8} className="w-[2vw]" />
             <p className="ml-4 my-auto ">View/Edit Users</p>
           </div>
         </Link>
         <Link to="/social_media">
           <div className="flex flex-row px-1 py-5">
-            <img src={activity} className="w-[2vw]" />
+            <img src={frame9} className="w-[2vw]" />
             <p className="ml-4 my-auto ">Social Media</p>
           </div>
         </Link>
         <Link to="/chat">
           <div className="flex flex-row px-1 py-5">
-            <img src={activity} className="w-[2vw]" />
+            <img src={frame10} className="w-[2vw]" />
             <p className="ml-4 my-auto ">AICTE Chats</p>
           </div>
         </Link>
         <Link to="/mass_mailer">
           <div className="flex flex-row px-1 py-5">
-            <img src={activity} className="w-[2vw]" />
+            <img src={frame11} className="w-[2vw]" />
             <p className="ml-4 my-auto ">Mass Mailer</p>
           </div>
         </Link>
         <Link to="/meeting_room">
           <div className="flex flex-row px-1 py-5">
-            <img src={activity} className="w-[2vw]" />
+            <img src={frame12} className="w-[2vw]" />
             <p className="ml-4 my-auto ">Online Meeting Room</p>
           </div>
         </Link>
         <Link to="/activity_log">
           <div className="flex flex-row px-1 py-5">
-            <img src={activity} className="w-[2vw]" />
+            <img src={frame13} className="w-[2vw]" />
             <p className="ml-4 my-auto ">Portal Activity Log</p>
           </div>
         </Link>
         <Link to="/report">
           <div className="flex flex-row px-1 py-5">
-            <img src={activity} className="w-[2vw]" />
+            <img src={frame14} className="w-[2vw]" />
             <p className="ml-4 my-auto ">Generate Events Report</p>
           </div>
         </Link>
