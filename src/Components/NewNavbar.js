@@ -6,7 +6,7 @@ import Button from "@mui/material/Button";
 import { useNavigate } from "react-router-dom";
 import '../Assets/styles.css'
 import axios from "axios";
-import { gql, useMutation ,useQuery} from "@apollo/client";
+import { gql, useMutation, useQuery } from "@apollo/client";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 const Navbar = () => {
@@ -22,14 +22,14 @@ const Navbar = () => {
   }
 }
 `
-const userData = useQuery(USER_QUERY, {
-  variables: { id: user?.id },
-}
-);
+  const userData = useQuery(USER_QUERY, {
+    variables: { id: user?.id },
+  }
+  );
 
-if (!userData.loading) {
-  image = userData?.data?.getUser.image
-}
+  if (!userData.loading) {
+    image = userData?.data?.getUser.image
+  }
 
 
   // const [image, setimage] = useState(user?.image ? user?.image : dp)
@@ -101,6 +101,7 @@ if (!userData.loading) {
 
   return (
 
+
     <div className="flex justify-between items-center">
       <ToastContainer
         position="top-center"
@@ -130,6 +131,7 @@ if (!userData.loading) {
           <p className="text-xs capitalize " style={{ color: "#818181" }}>
             {user.role}
           </p>
+
         </div>
       </div>
       <a

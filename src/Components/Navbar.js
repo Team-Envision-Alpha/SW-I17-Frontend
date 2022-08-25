@@ -4,11 +4,15 @@ import dp from "../Assets/Images/ico.svg";
 import logo from "../Assets/Images/logo.svg";
 import Button from "@mui/material/Button";
 import { useNavigate } from "react-router-dom";
+
 import '../Assets/styles.css'
 import axios from "axios";
 import { gql, useMutation, useQuery } from "@apollo/client";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+
+import bellIcon from "../Assets/Images/bellIcon.svg"
+
 const Navbar = () => {
   const navigate = useNavigate();
   const user = JSON.parse(localStorage.getItem("aicteuser"));
@@ -118,6 +122,7 @@ const Navbar = () => {
             <img src={logo} alt="logo" width={300} h={60} />
           </a>
         </div>
+
         {user &&
           <div className="flex gap-8 ">
             <div className="flex gap-2">
@@ -138,6 +143,7 @@ const Navbar = () => {
                   {user.role}
                 </p>
               </div>
+
             </div>
             <a
               href="/"
