@@ -19,7 +19,7 @@ import frame11 from "../Assets/Dashboardicons/Dashboard Icons/frame11.png"
 import frame12 from "../Assets/Dashboardicons/Dashboard Icons/frame12.png"
 import frame13 from "../Assets/Dashboardicons/Dashboard Icons/frame13.png"
 import frame14 from "../Assets/Dashboardicons/Dashboard Icons/frame14.png"
-
+import frame15 from "../Assets/Dashboardicons/Dashboard Icons/frame15.png"
 import Navbar from "../Components/Navbar";
 import DashCard from "../Components/DashCard";
 import { Link } from "react-router-dom";
