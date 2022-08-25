@@ -12,17 +12,18 @@ import logo from "../Assets/Images/aicte.png";
 import Burger from "../Components/burger";
 import Navbar from "../Components/NewNavbar";
 import Sidebar from "../Components/Sidebar";
+import uploadButtonIcon from "../Assets/Images/uploadButton.svg";
 import { useState, useEffect } from "react";
 import { FaInfoCircle } from "react-icons/fa";
 import { AiFillLike } from "react-icons/ai";
 import { GrMail } from "react-icons/gr";
 import { TbWorld } from "react-icons/tb";
 import { MdLocationOn } from "react-icons/md";
-import { BsFillTelephoneFill } from "react-icons/bs";
+import { BsFillTelephoneFill,  BsUpload } from "react-icons/bs";
 import { BsMessenger } from "react-icons/bs";
 import { BsFillClockFill } from "react-icons/bs";
 import { BiWorld } from "react-icons/bi";
-import { RiImageAddFill } from "react-icons/ri";
+import { RiImageAddFill, RiSendPlaneFill } from "react-icons/ri";
 import { useParams } from "react-router-dom";
 import { gql, useMutation } from "@apollo/client";
 import { ToastContainer, toast } from "react-toastify";
@@ -221,9 +222,9 @@ const FbMainPage = () => {
                 </div>
                 <div className="flex justify-between items-center p-2">
                   <div className="flex gap-6 items-center">
-                    <div className="w-[10vw] h-[20vh] rounded-full bg-white relative bottom-[4vh]">
-                      <img src={pageData?.picture.data.url} alt="logo" />
-                    </div>
+                  <div className="w-[10vw] h-[20vh] rounded-full  relative bottom-[4vh]">
+                    <img src={pageData?.picture.data.url} alt="logo" className="w-[10vw] h-[20vh] rounded-full " />
+                  </div>
                     <div className="font-IBM-Sans relative bottom-[2vh]">
                       <div className="flex gap-2">
                         <p className="font-bold text-xl tracking-wide ">
@@ -251,17 +252,17 @@ const FbMainPage = () => {
                     </div>
                   </div>
                   <div className="flex flex-col gap-2 relative bottom-[2vh]">
-                    <button className="font-IBM-Sans flex justify-center items-center gap-2 w-[20vw] bg-[#1877F2] text-white font-bold px-12 py-2 rounded-md" onClick={() => { setModalIsOpen(true) }}>
-                      <img src={msgIcon} alt="msgIcon" />
-                      <p className="tracking-wide">Messages</p>
-                    </button>
-                    <a href={pageData?.website} target="_blank" rel="noopener noreferrer">
-                      <div className="flex gap-2 justify-center  font-IBM-Sans">
-                        <img src={redirect} alt="redirect" />
-                        <p>{pageData?.website}</p>
-                      </div>
-                    </a>
-                  </div>
+                  <button className="font-IBM-Sans flex justify-center items-center gap-3 w-[20vw] bg-[#1877F2] text-white font-bold px-12 py-3 rounded-md" onClick={() => { setModalIsOpen(true) }}>
+                   <img src={uploadButtonIcon} alt="uploadButton" width={20} />
+                    <p className="tracking-wide">Upload Post</p>
+                  </button>
+                  <a href={pageData?.website} target="_blank" rel="noopener noreferrer" >
+                    <div className="flex gap-2 justify-center  font-IBM-Sans hover:text-[#1877F2] hover:underline">
+                      <img src={redirect} alt="redirect" />
+                      <p>{pageData?.website}</p>
+                    </div>
+                  </a>
+                </div>
                 </div>
                 <div className="border-b-2 border-b-[#CED0D4] relative bottom-[3vh]"></div>
               </div>
@@ -278,62 +279,62 @@ const FbMainPage = () => {
                     {/* MAP WILL COME HERE */}
                     <img src={pageData?.cover.source} alt="fbCover" className="w-full h-full" />
                   </div>
-                  <div className="flex flex-col gap-6 font-IBM-Sans">
-                    <div className="flex gap-6">
+                  <div className="flex flex-col gap-6 font-IBM-Sans justify-center">
+                    <div className="flex gap-66 items-center">
                       <FaInfoCircle className="text-[#8C939D] text-6xl" />
                       <p>{pageData?.about}
                       </p>
                     </div>
-                    <div className="flex gap-6">
+                    <div className="flex gap-66 items-center">
                       <AiFillLike className="text-[#8C939D] text-3xl" />
                       <p>
                         {pageData?.engagement.count} people like this
                       </p>
                     </div>
 
-                    <div className="flex gap-6">
+                    <div className="flex gap-66 items-center">
                       <MdLocationOn className="text-[#8C939D] text-3xl" />
                       <p>
                         {pageData?.followers_count} people follow this
                       </p>
                     </div>
-                    <div className="flex gap-6">
+                    <div className="flex gap-66 items-center">
                       <TbWorld className="text-[#8C939D] text-3xl" />
                       <a href={pageData?.website} target="_blank" rel="noopener noreferrer">
                         {pageData?.website}
                       </a>
                     </div>
-                    <div className="flex gap-6">
+                    <div className="flex gap-66 items-center">
                       <BsFillTelephoneFill className="text-[#8C939D] text-2xl" />
                       <p>
                         {pageData?.phone}
                       </p>
                     </div>
-                    <div className="flex gap-6">
+                    <div className="flex gap-66 items-center">
                       <GrMail className="text-[#8C939D] text-2xl" />
                       <p>
                         {pageData?.emails[0]}
                       </p>
                     </div>
-                    <div className="flex gap-6">
+                    <div className="flex gap-66 items-center">
                       <BsMessenger className="text-[#8C939D] text-2xl" />
                       <a href="/fb_messenger">
                         Send messages
                       </a>
                     </div>
                     {pageData?.is_always_open &&
-                      <div className="flex gap-6">
+                      <div className="flex gap-66 items-center">
                         <BsFillClockFill className="text-[#8d9d8c] text-2xl" />
                         <p className="text-[green] text-bold">
                           Always Open
                         </p>
                       </div>
                     }
-                    <div className="flex gap-6">
-                      <a href={pageData?.link} target="_blank" rel="noopener noreferrer">
-                        Visit this page on Facebook
-                      </a>
-                    </div>
+                    <div className="flex gap-6 items-center mb-2 ">
+                    <a href={pageData?.link} target="_blank" rel="noopener noreferrer" className="underline text-[#1877F2]">
+                      Visit this page on Facebook
+                    </a>
+                  </div>
                   </div>
                 </div>
 
@@ -343,15 +344,15 @@ const FbMainPage = () => {
                 <div className="w-full h-[150vh] overflow-auto">
 
                   <div className="w-full h-fit bg-[#FFFFFF] rounded-xl shadow-sm flex flex-col gap-2 mb-5 p-3">
-                    <div className="flex p-4 items-center gap-2">
+                    <div className="flex p-4 items-center gap-4">
                       <div className="w-[3vw] h-[6vh]">
                         <img src={pageData?.picture?.data.url} alt="logo" className="rounded-full" />
                       </div>
                       <h1 className="text-lg font-bold">Create a Post</h1>
                     </div>
-                    <div className="w-full flex justify-center align-center"><RiImageAddFill className="text-4xl text-[#818181]" />
-                      <DragandDrop url={url} seturl={seturl} />
-                    </div>
+                    <div className="w-full flex flex-col justify-center items-center gap-4 pt-20"><RiImageAddFill className="text-7xl text-[#818181] " />
+                    <DragandDrop url={url} seturl={seturl} />
+                  </div>
                     <div className="flex p-4 items-center gap-2">
                       <div>
                         <input
@@ -368,7 +369,7 @@ const FbMainPage = () => {
                           onChange={(e) => { setcaption(e.target.value) }}
                         />
                       </div>
-                      <button onClick={(e) => { uploadPost(e) }}>Send</button>
+                      <RiSendPlaneFill onClick={(e) => { uploadPost(e) }} className="text-[#1877F2] text-3xl"/>
                     </div>
                   </div>
 

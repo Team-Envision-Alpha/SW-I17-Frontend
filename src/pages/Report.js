@@ -19,7 +19,7 @@ const Report = () => {
     <>
       <div
         style={{ backgroundImage: `url(${bg})` }}
-        className="flex gap-[24vw] h-[200vh]"
+        className="flex gap-[24vw] h-fit mb-20"
       >
         <div>
           <Navbar />
@@ -28,6 +28,7 @@ const Report = () => {
           </div>
           <Sidebar show={show} setShow={setShow} />
         </div>
+
 
         <div className="flex flex-col gap-[6vh]">
           <div className="font-IBM-Sans flex flex-col gap-5 py-[2vh]">
@@ -42,6 +43,8 @@ const Report = () => {
             <div className="font-extrabold font-IBM-Sans text-2xl tracking-wide">
               <p>AICTE Event Report </p>
             </div>
+        
+
            <div className="flex justify-center w-[70vw]">
            <div className="w-[60vw] px-6 py-10 bg-[#EBEBEB] flex flex-col gap-10 justify-center items-center">
 
@@ -262,7 +265,10 @@ const Report = () => {
            </div>
           </div>
         </div>
+      
+
       </div>
+
     </>
   );
 };
