@@ -137,16 +137,16 @@ const Navbar = () => {
                     width={40}
                     className="mx-4"
                     onClick={() => {
-                      setIsOpen(true);
+                      setIsOpen(!setIsOpen);
                     }}
                   />
                 </button>
                 {isOpen && (
                   <NotifcationModal
                     isOpen={setIsOpen}
-                    onClickOutside={() => {
-                      setIsOpen(false);
-                    }}
+                    // onClickOutside={() => {
+                    //   setIsOpen(false);
+                    // }}
                   />
                 )}
                 <div>
