@@ -1,4 +1,6 @@
-import React, { useEffect, useState } from "react";
+/* eslint-disable no-unused-vars */
+
+import React, { useState } from "react";
 import { FaStar } from "react-icons/fa";
 const StarRating = () => {
     const [rating,setRating] = useState(null);

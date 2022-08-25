@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import bg from "../Assets/Images/Group.svg";
 import Starrating from "../Components/Starcomponent";
 import Test from "../Components/Test";

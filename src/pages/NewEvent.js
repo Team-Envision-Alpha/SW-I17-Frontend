@@ -133,6 +133,8 @@ export default function Event() {
       $from_date: String!
       $to_date: String!
       $time: String!
+      $food_req: String!
+      $expected_count: String!
     ) {
       requestVenue(
         event_id: $event_id
@@ -141,6 +143,8 @@ export default function Event() {
         from_date: $from_date
         to_date: $to_date
         time: $time
+        food_req: $food_req
+        expected_count: $expected_count
       )
     }
   `;
@@ -231,10 +235,10 @@ export default function Event() {
         typeof formdata.time != "string"
           ? JSON.stringify(formdata.time)
           : formdata.time,
-      food:
-        typeof formdata.food != "string"
-          ? JSON.stringify(formdata.food)
-          : formdata.food,
+      food_req:
+        typeof formdata.food_req != "string"
+          ? JSON.stringify(formdata.food_req)
+          : formdata.food_req,
     });
     console.log(formdata);
 

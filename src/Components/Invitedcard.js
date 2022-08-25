@@ -1,9 +1,7 @@
-/* eslint-disable no-unused-vars */
-
 import React, { useState } from "react";
-import calendar from "../../Assets/Images/calendar.png";
+import calendar from "../Assets/Images/calendar.png";
 
-const InviteCard = (props) => {
+const Invitedcard = (props) => {
   const [show, setShow] = useState(false);
   return (
     <>
@@ -20,7 +18,7 @@ const InviteCard = (props) => {
         </div>
         <a
           href="/"
-          className="underline text-red-600 font-bold py-1 mb-2 mt-2 px-2 float-right"
+          class="underline text-red-600 font-bold py-1 mb-2 mt-2 px-2 float-right"
         >
           view Event
         </a>
@@ -38,7 +36,7 @@ const InviteCard = (props) => {
         </div>
         <a
           href="/"
-          className="underline text-red-600 font-bold py-1 mb-2 mt-2 px-2 float-right"
+          class="underline text-red-600 font-bold py-1 mb-2 mt-2 px-2 float-right"
         >
           view Event
         </a>
@@ -56,7 +54,7 @@ const InviteCard = (props) => {
         </div>
         <a
           href="/"
-          className="underline text-red-600 font-bold py-1 mb-2 mt-2 px-2 float-right"
+          class="underline text-red-600 font-bold py-1 mb-2 mt-2 px-2 float-right"
         >
           view Event
         </a>
@@ -65,4 +63,4 @@ const InviteCard = (props) => {
   );
 };
 
-export default InviteCard;
+export default Invitedcard;

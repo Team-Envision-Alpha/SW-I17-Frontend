@@ -11,7 +11,10 @@ import Navbar from "../Components/NewNavbar";
 import Burger from "../Components/burger";
 import axios from "axios";
 
+import CreatableSelect from "react-select/creatable";
+import makeAnimated from "react-select/animated";
 const User = () => {
+  const animatedComponents = makeAnimated();
   const user = JSON.parse(localStorage.getItem("aicteuser"));
   const [formdata, setFormData] = useState({
     image: "",
@@ -87,6 +90,7 @@ const User = () => {
       }
     }
   `;
+  const [arr, setArr] = useState();
   const [venue, { loading }] = useMutation(VENUE_MUTATION, {
     onError: (err) => {
       toast.error("Error: Venue not added!", {
@@ -132,15 +136,60 @@ const User = () => {
     // },
     variables: formdata,
   });
+
+  const customStyles = {
+    option: (provided, state) => ({
+      ...provided,
+      // borderBottom: "1px dotted pink",
+      color: state.isSelected ? "white" : "blue",
+      padding: 10,
+    }),
+    control: (provided) => ({
+      // none of react-select's styles are passed to <Control />
+      ...provided,
+      width: "100%",
+      background: "#f6f5f6",
+      padding: "0.6rem",
+      marginTop: "0.1rem",
+      border: "2px solid #808080",
+      borderRadius: "8px",
+    }),
+    menu: (provided) => ({
+      ...provided,
+      width: "100%",
+    }),
+    singleValue: (provided, state) => {
+      const opacity = state.isDisabled ? 0.5 : 1;
+      const transition = "opacity 300ms";
+
+      return { ...provided, opacity, transition };
+    },
+  };
+
+  function convertToArray(arr) {
+    let newArr = [];
+    for (let i = 0; i < arr.length; i++) {
+      newArr.push(arr[i].value);
+    }
+    return newArr;
+  }
   const onSubmit = async (e) => {
     e.preventDefault();
     const url = await getImageUrl(image);
-    setFormData({ ...formdata, image: url });
+    setFormData({
+      ...formdata,
+      image: url,
+      canteen_menu: {
+        breakfast: convertToArray(formdata["canteen_menu"].breakfast),
+        lunch: convertToArray(formdata["canteen_menu"].lunch),
+        dinner: convertToArray(formdata["canteen_menu"].dinner),
+      },
+    });
     console.log(formdata);
     venue();
     // console.log(loading);
   };
-
+  console.log(formdata);
   return (
     <>
       <div classname="" style={{ backgroundImage: `url(${bg})` }}>
@@ -205,6 +254,66 @@ const User = () => {
                     onChange={handleImage}
                   />
                 </div>
+                <hr></hr>
+                <h4 className="capitalize">Canteen Details</h4>
+
+                <div className="flex flex-col gap-4">
+                  <h4 className="capitalize">Breakfast</h4>
+                  <CreatableSelect
+                    className="w-full outline-none"
+                    styles={customStyles}
+                    closeMenuOnSelect={false}
+                    isMulti
+                    components={animatedComponents}
+                    value={formdata.food}
+                    onChange={(e) => {
+                      setFormData({
+                        ...formdata,
+                        canteen_menu: {
+                          ...formdata.canteen_menu,
+                          breakfast: e,
+                        },
+                      });
+                    }}
+                  />
+                  <h4 className="capitalize">Lunch</h4>
+                  <CreatableSelect
+                    className="w-full outline-none"
+                    styles={customStyles}
+                    closeMenuOnSelect={false}
+                    isMulti
+                    components={animatedComponents}
+                    value={formdata.food}
+                    onChange={(e) => {
+                      setFormData({
+                        ...formdata,
+                        canteen_menu: {
+                          ...formdata.canteen_menu,
+                          lunch: e,
+                        },
+                      });
+                    }}
+                  />
+                  <h4 className="capitalize">Dinner</h4>
+                  <CreatableSelect
+                    className="w-full outline-none"
+                    styles={customStyles}
+                    closeMenuOnSelect={false}
+                    isMulti
+                    components={animatedComponents}
+                    value={formdata.food}
+                    onChange={(e) => {
+                      setFormData({
+                        ...formdata,
+                        canteen_menu: {
+                          ...formdata.canteen_menu,
+                          dinner: e,
+                        },
+                      });
+                    }}
+                  />
+                </div>
+
                 <div className="flex flex-col gap-4 justify-center items-center">
                   {/* <h4 className="invisible">Department</h4> */}
                   <button

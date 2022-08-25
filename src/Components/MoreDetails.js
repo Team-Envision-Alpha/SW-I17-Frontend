@@ -18,13 +18,14 @@ import { BsCheckLg, BsXLg, BsPlusLg } from "react-icons/bs";
 import * as XLSX from "xlsx";
 import { useEffect } from "react";
 import { ToastContainer, toast } from "react-toastify";
+import { v4 } from "uuid";
 
 export default function Modal({ modal, setModal, event }) {
   //   console.log(event);
 
   const [formdata, setFormData] = useState({});
   const [extrausers, setExtraUsers] = useState([]);
-  const [userdata, setUserData] = useState({});
+  const [userdata, setUserData] = useState({ id: v4() });
   const [userfile, setUserFile] = useState();
   const teams = [
     "admin",
@@ -40,7 +41,7 @@ export default function Modal({ modal, setModal, event }) {
 
   console.log(formdata);
   useEffect(() => {
-    setFormData({ ...formdata, usersInvited: extrausers });
+    setFormData({ ...formdata, users: extrausers });
   }, [extrausers]);
 
   return (
@@ -103,6 +104,7 @@ export default function Modal({ modal, setModal, event }) {
               teams={teams}
               current={current}
               setCurrent={setCurrent}
+              event={event}
             />
           ) : null}
         </div>

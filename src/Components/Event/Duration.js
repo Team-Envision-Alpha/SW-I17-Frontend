@@ -17,6 +17,8 @@ import AccordionDetails from "@mui/material/AccordionDetails";
 import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
+import VenueModal from "./VenueModal";
+
 export default function Details({
   setFormData,
   formdata,
@@ -53,6 +55,8 @@ export default function Details({
   const [enddate, setEndDate] = useState(new Date());
   const [time, setTime] = useState("00:00am");
   const [times, setTimes] = useState({});
+  const [show, setShow] = useState(false);
+  const [venueshow, setVenueshow] = useState("");
   // const [times, setTimes] = useState([]);
   const disabled_dates = [
     new Date(2022, 3, 10),
@@ -116,8 +120,17 @@ export default function Details({
       return false;
     }
   }
+
   return (
     <div className="w-[80vw] md:w-[50vw] bg-[#f3b641] rounded-2xl overflow-y-hidden my-10 transition">
+      <VenueModal
+        show={show}
+        setShow={setShow}
+        maindata={formdata}
+        setMainData={setFormData}
+        data={data}
+        setVenueShow={setVenueshow}
+      />
       <div className="w-full h-full py-5 mt-5 bg-white px-10">
         <p className="text-center my-10 text-lg font-bold">
           Fill out the Following Details
@@ -232,14 +245,6 @@ export default function Details({
         </div>
         <div className="flex flex-col gap-4 w-full my-4">
           <h4>Venue</h4>
-          {data ? (
-            <Select
-              dataobj={data.getVenues}
-              name="venue"
-              setFormData={setFormData}
-              formdata={formdata}
-            />
-          ) : null}
         </div>
         {/* </div> */}
         {/* <div className="flex flex-col gap-4 my-4">
@@ -251,7 +256,33 @@ export default function Details({
             formdata={formdata}
           />
         </div> */}
-
+        <p className=" flex flex-row justify-center mb-6">
+          <button
+            className=" cursor-pointer transition hover:border-[#1877f2] border hover:bg-white hover:text-[#1877f2] bg-[#1877f2] p-3 rounded-lg text-white"
+            onClick={() => {
+              setShow(!show);
+            }}
+          >
+            Click here to select a venue
+          </button>
+        </p>
+        <div className="flex flex-col gap-4 mb-5">
+          {/* <h4>Expected Count</h4> */}
+          <input
+            type="text"
+            className="w-full p-4 outline-none"
+            style={{
+              color: "#818181",
+              background: "#F6F5F6",
+              border: "2px solid grey",
+              borderRadius: "8px",
+            }}
+            value={formdata.venue ? venueshow : "Select a Venue to Continue"}
+            placeholder="Text here"
+            name="caption"
+            disabled
+          />
+        </div>
         <div className="flex flex-row mt-12 pb-10 justify-between">
           <div className="font-bold py-3 cursor-pointer" onClick={handleBack}>
             Go back

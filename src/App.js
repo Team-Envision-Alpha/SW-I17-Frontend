@@ -41,6 +41,7 @@ import Report from "./pages/Report";
 import Feedback from "./pages/Feedback";
 import Star from "./Components/Starcomponent";
 
+import Home from "./pages/Home";
 import VenueDashboard from "./pages/VenueDashboard";
 
 const App = () => {
@@ -117,6 +118,8 @@ const App = () => {
             path="/fb_main/:id"
             element={<FacebookMain title="Check Post"></FacebookMain>}
           />
+
+          <Route path="/home" element={<Home />} />
           <Route
             exact
             path="/facebookpage/:id"
@@ -140,21 +143,7 @@ const App = () => {
        
 
           <Route path="/venue_dashboard" element={<VenueDashboard />} />
-          {/* <Route
-            path="/social_analytics"
-            element={
-              <SocialAnalytics title="Analytics Per Post" aspect={2 / 1} />
-            }
-          /> */}
-          {/* <Route
-            path="/fb_login"
-            element={<FbLogin title="Log in to facebook"></FbLogin>}
-          /> */}
-          {/* <Route path="/fb" element={<FB />} /> */}
-          {/*        <Route path="/twitter" element={<Twitter />} /> */}
-          {/* <Route path="/social" element={<SocialPanel />} /> */}
           <Route path="/oldevents" element={<OldEvents />} />
-          {/* <Route path="/venue_head_dashboard" element={<VenuHeadDashboard />} /> */}
         </Routes>
       </Router>
     </>

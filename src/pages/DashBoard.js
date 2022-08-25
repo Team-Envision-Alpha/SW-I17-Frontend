@@ -79,7 +79,11 @@ const DashBoard = () => {
             </Link>
           ) : null}
           {user.role === "admin" ? (
+            <Link to="/report">
+
             <DashCard icon={report} name="Generate Report" />
+            </Link>
+
           ) : null}
 
           {user.role === "admin" ? (
