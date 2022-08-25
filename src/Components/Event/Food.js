@@ -156,11 +156,11 @@ export default function Food({
     newFood[str] = target;
     return newFood;
   }
-  function arrayRemove(arr, value) {
-    return arr.filter(function (ele) {
-      return ele !== value;
-    });
-  }
+  // function arrayRemove(arr, value) {
+  //   return arr.filter(function (ele) {
+  //     return ele !== value;
+  //   });
+  // }
 
   function editMenu(str, i, index, value) {
     var newMenu = { ...formdata.food_req };

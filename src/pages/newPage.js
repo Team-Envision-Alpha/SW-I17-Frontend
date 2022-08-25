@@ -6,7 +6,6 @@ import bg from "../Assets/Images/Group.svg";
 import Invitedcard from "../Components/Invitedcard";
 import RequestCard from "../Components/RequestCard";
 import { gql, useQuery } from "@apollo/client";
-
 const Activity = () => {
   const [show, setShow] = useState(false);
   return (

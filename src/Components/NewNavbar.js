@@ -13,23 +13,23 @@ const Navbar = () => {
   const navigate = useNavigate();
   const user = JSON.parse(localStorage.getItem("aicteuser"));
   const [file, setfile] = useState()
-  let image = dp
+  let image = user.image
 
-  const USER_QUERY = gql`
-  query user($id: ID!) {
-    getUser(id:$id){
-      image
-  }
-}
-`
-  const userData = useQuery(USER_QUERY, {
-    variables: { id: user?.id },
-  }
-  );
+//   const USER_QUERY = gql`
+//   query user($id: ID!) {
+//     getUser(id:$id){
+//       image
+//   }
+// }
+// `
+//   const userData = useQuery(USER_QUERY, {
+//     variables: { id: user?.id },
+//   }
+//   );
 
-  if (!userData.loading) {
-    image = userData?.data?.getUser.image
-  }
+//   if (!userData.loading) {
+//     image = userData?.data?.getUser.image
+//   }
 
 
   // const [image, setimage] = useState(user?.image ? user?.image : dp)
