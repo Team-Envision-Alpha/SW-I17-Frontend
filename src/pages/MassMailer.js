@@ -178,6 +178,7 @@ const MassMailer = () => {
                 <div className="flex flex-col gap-10 font-IBM-Sans px-8 py-10">
                
                     <div className="w-[80vw] md:w-[50vw] bg-[#f3b641] shadow-xl rounded-2xl overflow-y-hidden my-10 mx-auto lg:mx-[5vw]">
+
                         <form
                             onSubmit={onSubmit}
                             className="w-full h-full py-5 mt-5 bg-white px-10 pb-20"
@@ -185,10 +186,10 @@ const MassMailer = () => {
                             {/* <div className="grid grid-cols-2 gap-20 items-center justify-center px-40"> */}
                             <div className="flex flex-col gap-10">
                                 <div className="flex flex-col gap-4">
-                                    <h4>Subject</h4>
+                                    <h4 className="font-bold">Subject</h4>
                                     <input
                                         type="text"
-                                        className="w-full p-4 outline-none"
+                                        className="w-full p-2 outline-none"
                                         style={{
                                             color: "#818181",
                                             background: "#F6F5F6",
@@ -203,10 +204,10 @@ const MassMailer = () => {
                                     />
                                 </div>
                                 <div className="flex flex-col gap-4">
-                                    <h4>Text</h4>
+                                    <h4 className="font-bold">Text</h4>
                                     <input
                                         type="text"
-                                        className="w-full p-4 outline-none"
+                                        className="w-full p-2 outline-none"
                                         style={{
                                             color: "#818181",
                                             background: "#F6F5F6",
@@ -245,7 +246,7 @@ const MassMailer = () => {
 
 
                                 <div>
-                                    <h3 className="mx-auto text-left mb-5">
+                                    <h3 className="mx-auto text-left mb-5 font-bold">
                                         Add Email to Mass Email List
                                     </h3>
 
@@ -253,7 +254,7 @@ const MassMailer = () => {
                                         <div className="flex flex-col gap-4">
                                             <input
                                                 type="email"
-                                                className="w-[full] p-4 outline-none"
+                                                className="w-[full] p-2 outline-none"
                                                 style={{
                                                     color: "#818181",
                                                     background: "#F6F5F6",
@@ -270,7 +271,7 @@ const MassMailer = () => {
                                         </div>
                                         <div className="flex flex-col gap-4">
                                             <div
-                                                className="w-[full] p-4 outline-none text-center rounded-[8px] bg-black text-white cursor-pointer"
+                                                className="w-[full] p-2 outline-none text-center rounded-[8px] bg-black text-white cursor-pointer"
                                                 onClick={(e) => {
                                                     e.preventDefault();
                                                     if (addemail) {
@@ -306,8 +307,8 @@ const MassMailer = () => {
                                                 className="text-md font-semibold   text-gray-900   border-[#B9B9B9]  text-center border-3"
                                                 style={{ background: "rgba(0, 0, 0, 0.05)" }}
                                             >
-                                                <th className="py-3  border-[#B9B9B9] border-2">Email</th>
-                                                <th className="py-3 border-[#B9B9B9] border-2">Modify</th>
+                                                <th className="py-3  border-[#B9B9B9] border-2 bg-gradient-to-r from-gray-100 to-gray-200">Email</th>
+                                                <th className="py-3 border-[#B9B9B9] border-2 bg-gradient-to-r from-gray-100 to-gray-200">Modify</th>
                                             </tr>
                                         </thead>
                                         <tbody
@@ -353,7 +354,7 @@ const MassMailer = () => {
                                 <div className="flex flex-col gap-4 justify-center items-center">
                                     <h4 className="invisible">Submit</h4>
                                     <button
-                                        className="w-full p-4 outline-none disabled:bg-red-200 text-2xl text-white bg-green-700 transition-all duration-500 ease-out"
+                                        className="w-full p-4 outline-none disabled:bg-red-200 text-2xl text-white bg-green-700 hover:bg-green-600 transition-all duration-500 ease-out"
                                         style={{
                                             borderRadius: "8px",
                                         }}
