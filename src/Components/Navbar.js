@@ -3,6 +3,8 @@ import dp from "../Assets/Images/ico.svg";
 import logo from "../Assets/Images/logo.svg";
 import Button from "@mui/material/Button";
 import { useNavigate } from "react-router-dom";
+import bellIcon from "../Assets/Images/bellIcon.svg"
+
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -17,6 +19,9 @@ const Navbar = () => {
           </a>
         </div>
         <div className="flex gap-8 ">
+        <button>
+            <img src={bellIcon} alt="bellIcon" width={35} />
+          </button>
           <div className="flex gap-2">
             <div>
               <img src={dp} alt="dp" width={35} />

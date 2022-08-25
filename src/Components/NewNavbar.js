@@ -13,6 +13,7 @@ const Navbar = () => {
     <>
       <div className="float-right absolute top-5 right-5 flex flex-row gap-x-7">
         <div className="flex gap-2">
+          
           <div>
             <img src={dp} alt="dp" width={35} />
           </div>
