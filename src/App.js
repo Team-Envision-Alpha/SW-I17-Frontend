@@ -37,6 +37,8 @@ import ActivityLog from "./pages/ActivityLog";
 import TwiChat from "./pages/TwiChat";
 import MassMailer from "./pages/MassMailer";
 import MeetingRoom from "./pages/MeetingRoom";
+import Feedback from "./pages/Feedback";
+import Star from "./Components/Starcomponent";
 
 const App = () => {
   // const [longlivedaccesstoken, setLonglivedaccesstoken] = useState(null);
@@ -77,6 +79,8 @@ const App = () => {
           <Route path="/event_modal" element={<EventModal />} />
           <Route path="/invited_event" element={<InvitedEvent />} />
           <Route path="/add_venue" element={<VenueDetails />} />
+          <Route path="/feedback" element={<Feedback />} />
+          <Route path="/star" element={<Star />}/>
           <Route
             path="/canteen"
             element={<Canteen eventName="Blockchain Workshop" />}
