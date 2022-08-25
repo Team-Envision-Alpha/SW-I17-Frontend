@@ -37,9 +37,15 @@ export default function Event() {
     return diffDays + 1;
   }
   function getDate(date) {
-    var day = new Date(date);
-    return day.toDateString();
+    // var day = new Date(date);
+    return date;
   }
+  Date.prototype.addDays = function (days) {
+    var date = new Date(this.valueOf());
+    date.setDate(date.getDate() + days);
+    return date.toDateString().split(",")[0];
+  };
+
   return (
     <div>
       {data ? (
@@ -58,17 +64,19 @@ export default function Event() {
                 </p>
               </div>
               <div>
-                <div className=" bg-[#f0783b] rounded-lg w-[22.5vw] mt-9 overflow-y-hidden text-center shadow-lg">
+                <div className=" bg-[#f0783b] rounded-lg w-[25.5vw] mt-9 overflow-y-hidden text-center shadow-lg hover:shadow-2xl transition">
                   <p className="text-white mx-auto text-center py-1">
                     Event Timing
                   </p>
-                  <div className="bg-white h-[15vh] text-black">
+                  <div className="bg-white h-[18vh] text-black">
                     <div className="flex flex-row overflow-x-scroll h-full">
                       {_.times(daysCount(), (i) => {
                         return (
-                          <div className="flex flex-col justify-around border-r-2 px-10">
+                          <div className="flex flex-col justify-around border-r-2 px-10 min-w-[10vw]">
                             <p className="text-md font-bold">
-                              {getDate(data.getEvent.from_date)}
+                              {getDate(
+                                new Date(data.getEvent.from_date).addDays(i)
+                              )}
                             </p>
                             {/* {i} */}
                             <p className="font-bold text-sm">
@@ -78,13 +86,6 @@ export default function Event() {
                           </div>
                         );
                       })}
-                      <div className="flex flex-col justify-around border-r-2 px-10">
-                        <p className="text-md font-bold">
-                          {getDate(data.getEvent.from_date)}
-                        </p>
-                        {/* {i} */}
-                        <p className="font-bold text-sm">10:00 - 11:00</p>
-                      </div>
                     </div>
                   </div>
                 </div>

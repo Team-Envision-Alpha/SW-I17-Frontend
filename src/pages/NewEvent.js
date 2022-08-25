@@ -178,6 +178,7 @@ export default function Event() {
       });
       setFormData({});
       setVenueData({});
+      navigate("../requests", { replace: true });
     },
     variables: venuedata,
   });
@@ -254,7 +255,7 @@ export default function Event() {
     events();
     // window.alert(`Request Successsful for ${venueid}`, venueid == eventid);
     // console.log(venuedata);
-    if (status) navigate("../requests", { replace: true });
+    // if (status)
   };
 
   return (
