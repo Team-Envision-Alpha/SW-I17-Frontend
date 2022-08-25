@@ -31,13 +31,13 @@ import MeetingRoom from "./pages/MeetingRoom";
 import Report from "./pages/Report";
 import Feedback from "./pages/Feedback";
 import Star from "./Components/Starcomponent";
-
 import Home from "./pages/Home";
 import VenueDashboard from "./pages/VenueDashboard";
 
 import ErrorPage from "./pages/Errorpage";
 import Global from "./pages/Global";
 import Temp from "./Components/Temp";
+import Requests from "./pages/Request";
 
 const App = () => {
   const aicteuser = localStorage.getItem("aicteuser");
@@ -171,6 +171,13 @@ const App = () => {
                   <Global heading="Your Twitter Page">
                     {" "}
                     <TwitterMainPage title="Twitter Page"></TwitterMainPage>
+                  </Global>
+                }
+              />
+              <Route path="/req"  element={
+                  <Global heading="Your Twitter Page">
+                    {" "}
+                    <Requests title="Activity log"></Requests>
                   </Global>
                 }
               />
