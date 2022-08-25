@@ -19,7 +19,7 @@ import frame11 from "../Assets/Dashboardicons/Dashboard Icons/frame11.png"
 import frame12 from "../Assets/Dashboardicons/Dashboard Icons/frame12.png"
 import frame13 from "../Assets/Dashboardicons/Dashboard Icons/frame13.png"
 import frame14 from "../Assets/Dashboardicons/Dashboard Icons/frame14.png"
-
+import frame15 from "../Assets/Dashboardicons/Dashboard Icons/frame15.png"
 // import socialAnalytics from "../Assets/Images/Dashboard/socialAnalytics.svg";
 import social from "../Assets/Images/Dashboard/social.svg";
 
@@ -130,6 +130,12 @@ export default function Sidebar({ current, show, setShow }) {
           <div className="flex flex-row px-1 py-5">
             <img src={frame14} className="w-[2vw]" />
             <p className="ml-4 my-auto ">Generate Events Report</p>
+          </div>
+        </Link>
+        <Link to="/department_registration">
+          <div className="flex flex-row px-1 py-5">
+            <img src={frame15} className="w-[2vw]" />
+            <p className="ml-4 my-auto ">Portal Activity Log</p>
           </div>
         </Link>
        
