@@ -19,11 +19,7 @@ import frame11 from "../Assets/Dashboardicons/Dashboard Icons/frame11.png"
 import frame12 from "../Assets/Dashboardicons/Dashboard Icons/frame12.png"
 import frame13 from "../Assets/Dashboardicons/Dashboard Icons/frame13.png"
 import frame14 from "../Assets/Dashboardicons/Dashboard Icons/frame14.png"
-import activity from "../Assets/Dashboardicons/activity.png"
-import communication from "../Assets/Dashboardicons/communication.png"
-import events from "../Assets/Dashboardicons/events.png"
-import usericon from "../Assets/Dashboardicons/user.png"
-import venue from "../Assets/Dashboardicons/venue.png"
+import frame15 from "../Assets/Dashboardicons/Dashboard Icons/frame15.png"
 import Navbar from "../Components/Navbar";
 import DashCard from "../Components/DashCard";
 import { Link } from "react-router-dom";
@@ -45,58 +41,10 @@ const DashBoard = () => {
           </p>
         </div>
 
-        <div className="flex justify-center items-center gap-8 flex-wrap h-[70vh] w-[60vw]  ">
-          <Link to="/eventdashboard">
-            <DashCard icon={events} name="Events" />
-          </Link>
-          <Link to="/userdashboard">
-            <DashCard icon={usericon} name="Users" />
-          </Link>
-          <Link to="/venuedashboard">
-            <DashCard icon={venue} name="Venue" />
-          </Link>
-          <Link to="/activitydashboard">
-            <DashCard icon={activity} name="Activiy" />
-          </Link>
-          <Link to="/communicationdashboard">
-            <DashCard icon={communication} name="Communication" />
-          </Link>
-          {/* <Link to="/events">
-            <DashCard icon={frame1} name="Add New Event" />
-          </Link>
-          <Link to="/invited_event">
-            <DashCard icon={frame3} name="Your Invited Events" />
-          </Link>
-
-          <Link to="/requests">
-            <DashCard icon={frame2} name="Your Event Requests" />
-          </Link>
-
-
-          <Link to="/venues">
-            <DashCard icon={frame4} name="View All Venues" />
-          </Link>
-          <Link to="/add_venue">
-            <DashCard icon={frame5} name="Add New Venues" />
-          </Link>
-          <Link to="/venue_dashboard">
-            <DashCard icon={frame6} name="View Venue Dashboard" />
-          </Link>
-
-
-          {user.role === "admin" ? (
-            <Link to="/user_registration">
-              <DashCard icon={frame7} name="Create New User" />
-            </Link>
-          ) : null}
+        <div className="flex justify-center items-center gap-8 flex-wrap h-[70vh] w-[60vw] ">
 
 
 
-          {user.role === "admin" ? (
-            <Link to="/edituser">
-              <DashCard icon={frame8} name="View/Edit Users" />
-            </Link>
-          ) : null}
 
 
           {user.role === "admin" || user.role === "social_media" ? (
@@ -117,21 +65,9 @@ const DashBoard = () => {
             <DashCard icon={frame12} name="Online Meeting Room" />
           </Link>
 
-          <Link to="/activity_log">
-            <DashCard icon={frame13} name="Portal Activity Log" />
-          </Link>
+    
 
 
-          {user.role === "admin" ? (
-            <Link to="/report">
-              <DashCard icon={frame14} name="Generate Events Report" />
-            </Link>
-          ) : null}
-
-
-          <Link to="/department_registration">
-            <DashCard icon={frame15} name="Portal Activity Log" />
-          </Link> */}
 
 
 
