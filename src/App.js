@@ -37,7 +37,7 @@ import VenueDashboard from "./pages/VenueDashboard";
 import ErrorPage from "./pages/Errorpage";
 import Global from "./pages/Global";
 import Temp from "./Components/Temp";
-
+import SingleEvent from "./pages/singleEvent";
 const App = () => {
   const aicteuser = localStorage.getItem("aicteuser");
 
@@ -76,6 +76,14 @@ const App = () => {
                 element={
                   <Global heading="Add New Department">
                     <Department />
+                  </Global>
+                }
+              />
+              <Route
+                path="/getevent/:id"
+                element={
+                  <Global heading="View Event Detail">
+                    <SingleEvent />
                   </Global>
                 }
               />
