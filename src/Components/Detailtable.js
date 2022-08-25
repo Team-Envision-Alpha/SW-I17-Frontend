@@ -1,4 +1,6 @@
-import { useState, React } from "react";
+/* eslint-disable no-unused-vars */
+
+import { React } from "react";
 
 const DetailTable = () => {
 // console.log(events);

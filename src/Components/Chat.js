@@ -563,7 +563,7 @@ const Chat = ({ title }) => {
                               className="outline-none font-IBM-Sans text-base bg-transparent  "
                               placeholder="Type your message"
                               onKeyPress={(e) => {
-                                if (e.key == "Enter") {
+                                if (e.key === "Enter") {
                                   // <>
                                   //   <p>{e.target.value}</p>
                                   // </>;

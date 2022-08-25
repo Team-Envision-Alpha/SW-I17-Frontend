@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from "react";
 import bg from "../Assets/Images/Group.svg";
 import Sidebar from "../Components/Sidebar";
@@ -95,7 +96,7 @@ const VenueDashboard = () => {
                             {data.getVenueBookings.map(({event,booking})=>
                             <li className="" key={event.id}>
                                 <h3> { event.name}</h3>
-                                {booking.status == "booked"? 
+                                {booking.status === "booked"? 
                                 <span>{booking.status}</span>:
                                 <div className="">
                                     <p className="">Venue Requested</p>
