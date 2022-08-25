@@ -180,8 +180,8 @@ const EventReq = ({
                                     className="text-center py-3 text-md border-[#B9B9B9] border-2"
                                     style={{
                                       color: `${
-                                        venue.capacity >=
-                                        maindata.expected_count
+                                        parseInt(venue.capacity) <
+                                        parseInt(maindata.expected_count)
                                           ? "red"
                                           : "green"
                                       }`,
@@ -191,7 +191,8 @@ const EventReq = ({
                                       <p>{venue.capacity}</p>
                                     </div>
                                   </td>
-                                  {venue.capacity >= maindata.expected_count ? (
+                                  {parseInt(venue.capacity) <
+                                  parseInt(maindata.expected_count) ? (
                                     <td className="text-center py-3 text-md text-gray-300 border-[#B9B9B9] border-2 ">
                                       <div>
                                         -

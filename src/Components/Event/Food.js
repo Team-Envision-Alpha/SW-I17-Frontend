@@ -5,6 +5,7 @@
 import Select from "../Select.js";
 // import { DateRangePicker } from "react-date-range";
 import * as React from "react";
+import { useState, useEffect } from "react";
 import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
@@ -50,6 +51,21 @@ export default function Food({
       }
     }
   `;
+
+  const { loading, err, data } = useQuery(VENUE_QUERY, {
+    variables: {
+      id: formdata.venue,
+    },
+  });
+  const [menu, setMenu] = useState();
+
+  useEffect(() => {
+    if (data) {
+      setMenu(JSON.parse(data.getVenue.canteen_menu));
+    }
+  }, [data]);
+
+  console.log(menu);
 
   function daysCount() {
     var start = new Date(formdata.from_date);
