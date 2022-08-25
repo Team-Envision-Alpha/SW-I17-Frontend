@@ -53,7 +53,7 @@ const App = () => {
             }
           />
           {aicteuser ? (
-            <>+
+            <>
               <Route path="/dashboard" element={<DashBoard />} />
               <Route path="/home" element={<Home />} />
               <Route
@@ -124,7 +124,7 @@ const App = () => {
                 path="/activity_log"
                 element={
                   <Global heading="Activity Log">
-                    <ActivityLog />
+                    <Temp />
                   </Global>
                 }
               />
@@ -174,7 +174,7 @@ const App = () => {
                   </Global>
                 }
               />
-{/* 
+              {/* 
           <Route path="/events" element={<Event />} />
           
           <Route path="/dashboard" element={<DashBoard />} />
