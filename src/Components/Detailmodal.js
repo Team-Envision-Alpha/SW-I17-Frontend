@@ -21,6 +21,7 @@ const DetailModal = ({ isOpen, setIsOpen, event }) => {
       return -1;
     }
   }
+  console.log(event);
   return (
     <>
       <div
@@ -40,7 +41,7 @@ const DetailModal = ({ isOpen, setIsOpen, event }) => {
               />
             </div>
             <div className="my-5">
-              <p className="text-[3vh] font-bold">EVENT NAME DETAILS</p>
+              <p className="text-[3vh] font-bold">{event.name}</p>
             </div>
 
             {/* LEFT SIDE */}
@@ -61,10 +62,10 @@ const DetailModal = ({ isOpen, setIsOpen, event }) => {
 
                   <div className="flex flex-col justify-center items-start ml-4">
                     <p className="text-[2vh] text-left">
-                      12 March 2022 (6:00AM - 12:00PM){" "}
+                      Start Date - 12 March 2022 (6:00AM - 12:00PM){" "}
                     </p>
                     <p className="text-[2vh] text-left">
-                      15 March 2022 (6:00AM - 12:00PM)
+                      End Date = 15 March 2022 (6:00AM - 12:00PM)
                     </p>
                   </div>
                 </div>

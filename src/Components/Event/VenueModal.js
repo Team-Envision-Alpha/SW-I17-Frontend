@@ -10,6 +10,9 @@ import { gql, useQuery } from "@apollo/client";
 import Select from "../../Components/Select";
 // import Modal from "../Components/VenueModal";
 import cross from "../../Assets/Images/cross.svg";
+
+import Modal from "../VenueModal";
+
 const EventReq = ({
   show,
   setShow,
@@ -39,7 +42,7 @@ const EventReq = ({
   const [formdata, setFormData] = useState({});
   //   const [show, setShow] = useState(false);
   const [modal, setModal] = useState(false);
-
+  const [viewVenue, setViewVenue] = useState({});
   //   console.log(data);
   const [filterData, setFilterData] = useState([]);
   const [current, setCurrent] = useState(0);
@@ -71,7 +74,6 @@ const EventReq = ({
     }
   }, [formdata]);
   //   console.log(filterData);
-
   return (
     <>
       <div
@@ -79,10 +81,11 @@ const EventReq = ({
           show ? "block" : "hidden"
         } z-[110] bg-[#00000090] w-[100vw] h-[100vh] justify-center fixed top-0 left-0 flex flex-row transition-all duration-700`}
       >
+        <Modal modal={modal} setModal={setModal} venue={viewVenue} />
         {/* <Navbar />
         <Burger open={show} setOpen={setShow}></Burger>
         <Sidebar show={show} setShow={setShow} /> */}
-        <div className="w-[98%] md:w-[80%] md:h-[85%] justify-center rounded-xl overflow-hidden mx-auto my-auto bg-[#f3b641] animate-[ping_0.3s_ease-in-out_reverse_1]">
+        <div className="w-[98%] md:w-[80%] md:h-[93%] justify-center rounded-xl overflow-hidden mx-auto my-auto bg-[#f3b641] animate-[ping_0.3s_ease-in-out_reverse_1]">
           <div className="w-full bg-[#f3f3f3] h-[95%] mx-auto mt-8 relative">
             <div
               onClick={() => {
@@ -149,6 +152,9 @@ const EventReq = ({
                             <th className="py-3  border-[#B9B9B9] border-2">
                               Capacity
                             </th>
+                            <th className="py-3  border-[#B9B9B9] border-2">
+                              View Venue
+                            </th>
                             <th className="py-3 border-[#B9B9B9] border-2">
                               Action
                             </th>
@@ -176,6 +182,7 @@ const EventReq = ({
                                       <p>{venue.state}</p>
                                     </div>
                                   </td>
+
                                   <td
                                     className="text-center py-3 text-md border-[#B9B9B9] border-2"
                                     style={{
@@ -189,6 +196,16 @@ const EventReq = ({
                                   >
                                     <div>
                                       <p>{venue.capacity}</p>
+                                    </div>
+                                  </td>
+                                  <td className="text-center py-3 text-md border-[#B9B9B9] border-2 hover:text-red-800 cursor-pointer transition">
+                                    <div
+                                      onClick={(e) => {
+                                        setViewVenue(venue);
+                                        setModal(true);
+                                      }}
+                                    >
+                                      <p>View</p>
                                     </div>
                                   </td>
                                   {parseInt(venue.capacity) <

@@ -40,7 +40,7 @@ export default function Modal({ modal, setModal, venue }) {
         modal ? "block" : "hidden"
       } z-[100] bg-[#00000090] w-[100vw] h-[100vh] absolute top-0 left-0 flex flex-row transition-all duration-700`}
     >
-      <div className="w-[98%] md:w-[50%] md:h-[85%] justify-center rounded-xl overflow-hidden mx-auto my-auto bg-[#f3b641] animate-[ping_0.3s_ease-in-out_reverse_1]">
+      <div className="w-[98%] md:w-[50%] md:h-[90%] justify-center rounded-xl overflow-hidden mx-auto my-auto bg-[#f3b641] animate-[ping_0.3s_ease-in-out_reverse_1]">
         <div className="w-full bg-[#f3f3f3] h-[95%] mt-8 relative">
           <div
             onClick={() => {
@@ -53,7 +53,7 @@ export default function Modal({ modal, setModal, venue }) {
               alt="cross"
             />
           </div>
-          <div className="m-5 h-full">
+          <div className="m-4 h-full">
             <p className="text-center font-bold pt-2 text-2xl">{venue?.name}</p>
             <div className="flex md:flex-row flex-col pt-8 max-h-[70%]">
               <div className="md:basis-[60%] flex flex-col justify-around">

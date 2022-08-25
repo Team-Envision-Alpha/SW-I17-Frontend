@@ -6,20 +6,19 @@ import bellIcon from "../Assets/Images/bellIcon.svg";
 import Button from "@mui/material/Button";
 import { useNavigate } from "react-router-dom";
 
-import '../Assets/styles.css'
+import "../Assets/styles.css";
 import axios from "axios";
 import { gql, useMutation, useQuery } from "@apollo/client";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import NotifcationModal from "./notifcationModal";
 
-
 const Navbar = () => {
-  const [isOpen, setIsOpen]=useState(false)
+  const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
   const user = JSON.parse(localStorage.getItem("aicteuser"));
   const [file, setfile] = useState();
-  let image = user.image
+  let image = user.image;
   // const [image, setimage] = useState();
 
   // const USER_QUERY = gql`
@@ -38,7 +37,7 @@ const Navbar = () => {
   //   image = userData?.data?.getUser.image
   // }
 
-  const [url, seturl] = useState()
+  const [url, seturl] = useState();
   // const user = { name: "Rishit", role: "admin" };
   const PROFILE_MUTATION = gql`
     mutation updateProfileImage($id: ID!, $image: String!) {
@@ -76,126 +75,161 @@ const Navbar = () => {
     },
 
     variables: {
-      id: user?.id, image: url
+      id: user?.id,
+      image: url,
     },
   });
 
-  const photoUpload = e => {
+  const photoUpload = (e) => {
     e.preventDefault();
     const reader = new FileReader();
     const file = e.target.files[0];
     const data = new FormData();
     data.append("image", file);
     reader.onloadend = async () => {
-      setfile(file)
+      setfile(file);
       // setimage(reader.result)
       const url = await axios
         .post("https://envisionalpha.aaruush.org/upload/fbpageupload", data)
         .then((res) => {
           console.log(res.data.data);
           seturl(res.data.data);
-          return res.data.data
+          return res.data.data;
         });
       if (url) {
-        login()
+        login();
       }
-    }
+    };
     reader.readAsDataURL(file);
-  }
+  };
 
   // console.log(userData?.data?.getUser)
 
   return (
-    <><ToastContainer
-      position="top-center"
-      autoClose={3000}
-      hideProgressBar={false}
-      newestOnTop={false}
-      closeOnClick
-      rtl={false}
-      pauseOnFocusLoss
-      draggable
-      pauseOnHover
-    />
+    <>
+      <ToastContainer
+        position="top-center"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
 
-      {(window.location.pathname === '/dashboard') ? <div className="flex justify-between p-6 h-[12vh] items-center">
-        <div>
-          <a href="/dashboard">
-            <img src={logo} alt="logo" width={300} h={60} />
-          </a>
+      {window.location.pathname === "/dashboard" ? (
+        <div className="flex justify-between p-6 h-[12vh] items-center">
+          <div>
+            <a href="/dashboard">
+              <img src={logo} alt="logo" width={300} h={60} />
+            </a>
+          </div>
+
+          {user && (
+            <div className="flex gap-8 ">
+              <div className="flex gap-2">
+                <button>
+                  <img
+                    src={bellIcon}
+                    alt="bellIcon"
+                    width={40}
+                    className="mx-4"
+                    onClick={() => {
+                      setIsOpen(true);
+                    }}
+                  />
+                </button>
+                {isOpen && (
+                  <NotifcationModal
+                    isOpen={setIsOpen}
+                    onClickOutside={() => {
+                      setIsOpen(false);
+                    }}
+                  />
+                )}
+                <div>
+                  {/* <img src={dp} alt="dp" width={35} /> */}
+                  <label
+                    htmlFor="photo-upload"
+                    className="custom-file-upload fas"
+                  >
+                    <div className="img-wrap img-upload">
+                      <img
+                        for="photo-upload"
+                        src={image}
+                        alt="hello"
+                        className="h-[40px] w-[40px] rounded-full"
+                      />
+                    </div>
+                    <input
+                      id="photo-upload"
+                      type="file"
+                      onChange={photoUpload}
+                      hidden
+                    />
+                  </label>
+
+                  <input type="file" hidden />
+                </div>
+                <div className="font-IBM-Sans">
+                  <p className="text-sm capitalize">{user.name}</p>
+                  <p
+                    className="text-xs capitalize "
+                    style={{ color: "#818181" }}
+                  >
+                    {user.role}
+                  </p>
+                </div>
+              </div>
+              <a
+                href="/"
+                onClick={() => {
+                  localStorage.removeItem("aicteuser");
+                  navigate("/");
+                }}
+              >
+                <Button variant="outlined" color="error" size="small">
+                  Logout
+                </Button>
+              </a>
+            </div>
+          )}
         </div>
-
-        {user &&
-          <div className="flex gap-8 ">
-            <div className="flex gap-2">
-              <button >
-              <img src={bellIcon} alt="bellIcon" width={40} className="mx-4" onClick={()=>{setIsOpen(true)}} />
-              </button>
-              {isOpen && (<NotifcationModal isOpen={setIsOpen} onClickOutside={()=> {setIsOpen(false)}} />)}
-              <div>
-                {/* <img src={dp} alt="dp" width={35} /> */}
-                <label htmlFor="photo-upload" className="custom-file-upload fas">
-                  <div className="img-wrap img-upload" >
-                    <img for="photo-upload" src={image} alt="hello" className="h-[40px] w-[40px] rounded-full" />
-                  </div>
-                  <input id="photo-upload" type="file" onChange={photoUpload} hidden />
-                </label>
-
-                <input type="file" hidden />
+      ) : (
+        <>
+          {user && (
+            <div className="float-right absolute top-5 right-5 flex flex-row gap-x-7">
+              <div className="flex gap-2">
+                <div>
+                  <img src={dp} alt="dp" width={35} />
+                </div>
+                <div className="font-IBM-Sans">
+                  <p className="text-sm capitalize">{user.name}</p>
+                  <p
+                    className="text-xs capitalize "
+                    style={{ color: "#818181" }}
+                  >
+                    {user.role}
+                  </p>
+                </div>
               </div>
-              <div className="font-IBM-Sans">
-                <p className="text-sm capitalize">{user.name}</p>
-                <p className="text-xs capitalize " style={{ color: "#818181" }}>
-                  {user.role}
-                </p>
-              </div>
-
+              <a
+                href="/"
+                onClick={() => {
+                  localStorage.removeItem("aicteuser");
+                  navigate("/");
+                }}
+              >
+                <Button variant="outlined" color="error" size="small">
+                  Logout
+                </Button>
+              </a>
             </div>
-            <a
-              href="/"
-              onClick={() => {
-                localStorage.removeItem("aicteuser");
-                navigate("/");
-              }}
-            >
-              <Button variant="outlined" color="error" size="small">
-                Logout
-              </Button>
-            </a>
-          </div>
-        }
-      </div> : <>
-        {user &&
-          <div className="float-right absolute top-5 right-5 flex flex-row gap-x-7">
-            <div className="flex gap-2">
-              <div>
-                <img src={dp} alt="dp" width={35} />
-              </div>
-              <div className="font-IBM-Sans">
-                <p className="text-sm capitalize">{user.name}</p>
-                <p className="text-xs capitalize " style={{ color: "#818181" }}>
-                  {user.role}
-                </p>
-              </div>
-            </div>
-            <a
-              href="/"
-              onClick={() => {
-                localStorage.removeItem("aicteuser");
-                navigate("/");
-              }}
-            >
-              <Button variant="outlined" color="error" size="small">
-                Logout
-              </Button>
-            </a>
-          </div>
-
-        }
-      </>}
-
-
-
+          )}
+        </>
+      )}
     </>
   );
 };
