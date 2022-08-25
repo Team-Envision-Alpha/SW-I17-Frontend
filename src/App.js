@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, Suspense, lazy } from "react";
 import Login from "./Components/Login";
+
 import {
   Routes,
   Route,
@@ -131,7 +132,7 @@ const App = () => {
                 path="/activity_log"
                 element={
                   <Global heading="Activity Log">
-                    <ActivityLog />
+                    <Temp />
                   </Global>
                 }
               />
@@ -171,6 +172,7 @@ const App = () => {
                 }
               />
 
+
               <Route
                 path="/twitter_main"
                 element={
@@ -180,6 +182,30 @@ const App = () => {
                   </Global>
                 }
               />
+              {/* 
+          <Route path="/events" element={<Event />} />
+          
+          <Route path="/dashboard" element={<DashBoard />} />
+        
+          <Route path="/user_registration" element={<User />} />
+          <Route path="/requests" element={<EventReq />} />
+          <Route path="/edituser" element={<EditUser />} />
+          <Route path="/venues" element={<ViewVenues />} />
+          <Route path="/event_modal" element={<EventModal />} />
+          <Route path="/invited_event" element={<InvitedEvent />} />
+          <Route path="/add_venue" element={<VenueDetails />} />
+          <Route path="/feedback" element={<Feedback />} />
+          <Route path="/star" element={<Star />}/>
+      
+          <Route
+            path="/canteen"
+            element={<Canteen eventName="Blockchain Workshop" />}
+          />
+          <Route
+            path="/event_and_venue_details"
+            element={<EventAndVenueDetails />}
+          />
+ */}
 
               {/*  */}
 
