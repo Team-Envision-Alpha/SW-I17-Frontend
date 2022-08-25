@@ -23,6 +23,7 @@ const EventReq = () => {
         address
         capacity
         website
+        image
       }
     }
   `;
