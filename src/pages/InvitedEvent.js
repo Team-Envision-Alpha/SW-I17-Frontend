@@ -27,7 +27,7 @@ const DashBoard = () => {
     variables:{user_id:user.id}
   });
   if(!loading){
-    console.log(data.getInvitedEvents);
+    console.log(data?.getInvitedEvents);
 
   }
   return (

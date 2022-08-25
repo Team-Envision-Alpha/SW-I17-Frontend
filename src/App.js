@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Suspense,lazy } from "react";
 import Login from "./Components/Login";
 import {
   Routes,
@@ -13,7 +13,7 @@ import {
 import { gql, useQuery } from "@apollo/client";
 import SocialPanel from "./pages/SocialPanel.js";
 import OldEvents from "./pages/Events";
-import DashBoard from "./pages/DashBoard.js";
+import DashBoard from "./pages/DashBoard";
 import User from "./pages/User";
 import EventReq from "./pages/EventReq";
 import Event from "./pages/NewEvent";
@@ -38,6 +38,9 @@ import TwiChat from "./pages/TwiChat";
 import MassMailer from "./pages/MassMailer";
 import MeetingRoom from "./pages/MeetingRoom";
 import Report from "./pages/Report";
+import Feedback from "./pages/Feedback";
+import Star from "./Components/Starcomponent";
+
 
 const App = () => {
   // const [longlivedaccesstoken, setLonglivedaccesstoken] = useState(null);
@@ -68,8 +71,9 @@ const App = () => {
           />
 
           <Route path="/events" element={<Event />} />
+          
           <Route path="/dashboard" element={<DashBoard />} />
-
+        
           <Route path="/user_registration" element={<User />} />
           <Route path="/requests" element={<EventReq />} />
           <Route path="/edituser" element={<EditUser />} />
@@ -77,6 +81,8 @@ const App = () => {
           <Route path="/event_modal" element={<EventModal />} />
           <Route path="/invited_event" element={<InvitedEvent />} />
           <Route path="/add_venue" element={<VenueDetails />} />
+          <Route path="/feedback" element={<Feedback />} />
+          <Route path="/star" element={<Star />}/>
           <Route
             path="/canteen"
             element={<Canteen eventName="Blockchain Workshop" />}
@@ -115,7 +121,7 @@ const App = () => {
             path="/facebookpage/:id"
             element={<FacebookPage title="Facebook Page"></FacebookPage>}
           />
-          <Route exact path="divchats" element={<DivChat />} />
+          <Route exact path="/divchats" element={<DivChat />} />
 
           <Route
             path="/twitter_main"

@@ -76,6 +76,49 @@ export default function Sidebar({ current, show, setShow }) {
             <p className="ml-4 my-auto ">Social Media</p>
           </div>
         </Link>
+        <Link to="/events">
+          <div className="flex flex-row px-1 py-5">
+            <img src={activity} className="w-[2vw]" />
+            <p className="ml-4 my-auto ">Add Event</p>
+          </div>
+        </Link>
+        <Link to="/venues">
+          <div className="flex flex-row px-1 py-5">
+            <img src={activity} className="w-[2vw]" />
+            <p className="ml-4 my-auto ">View Venues</p>
+          </div>
+        </Link>
+        <Link to="/add_venues">
+          <div className="flex flex-row px-1 py-5">
+            <img src={activity} className="w-[2vw]" />
+            <p className="ml-4 my-auto ">Add Venues</p>
+          </div>
+        </Link>
+        <Link to="/requests">
+          <div className="flex flex-row px-1 py-5">
+            <img src={activity} className="w-[2vw]" />
+            <p className="ml-4 my-auto ">Requests</p>
+          </div>
+        </Link>
+        <Link to="/divchats">
+          <div className="flex flex-row px-1 py-5">
+            <img src={activity} className="w-[2vw]" />
+            <p className="ml-4 my-auto ">Div Chats</p>
+          </div>
+        </Link>
+        <Link to="/mass_mailer">
+          <div className="flex flex-row px-1 py-5">
+            <img src={activity} className="w-[2vw]" />
+            <p className="ml-4 my-auto ">Mass Mailer</p>
+          </div>
+        </Link>
+        <Link to="/meeting_room">
+          <div className="flex flex-row px-1 py-5">
+            <img src={activity} className="w-[2vw]" />
+            <p className="ml-4 my-auto ">Meeting Room</p>
+          </div>
+        </Link>
+       
         {/* <div className="flex flex-row px-1 py-5">
           <img src={socialAnalytics} className="w-[2vw]" />
           <p className="ml-4 my-auto ">Social Analytics</p>
