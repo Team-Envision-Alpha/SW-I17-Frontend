@@ -70,10 +70,10 @@ const App = () => {
               
               <Route path="/add_venue" element={<Global heading="Add Venues"><VenueDetails /></Global>} />
               
-              <Route path="/activity_log" element={<Global heading="Activity Log" ><ActivityLog /></Global>} />
+              {/* <Route path="/activity_log" element={<Global heading="Activity Log" ><ActivityLog /></Global>} /> */}
               
               <Route path="/mass_mailer" element={<Global heading="Mass Mailer"><MassMailer /></Global>} />
-              <Route path="/temp" element={<Global heading="temp"><Temp /></Global>} />
+              <Route path="/activity_log" element={<Global heading="Activity Log"><Temp /></Global>} />
               <Route
                 path="/social_media"
                 element={<Global heading="Social Media"><SocialMedia title="Social Media Dashboard" /></Global>}
