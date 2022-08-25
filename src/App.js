@@ -41,6 +41,7 @@ import Report from "./pages/Report";
 import Feedback from "./pages/Feedback";
 import Star from "./Components/Starcomponent";
 
+import VenueDashboard from "./pages/VenueDashboard";
 
 const App = () => {
   // const [longlivedaccesstoken, setLonglivedaccesstoken] = useState(null);
@@ -138,6 +139,7 @@ const App = () => {
           />
        
 
+          <Route path="/venue_dashboard" element={<VenueDashboard />} />
           {/* <Route
             path="/social_analytics"
             element={
