@@ -38,6 +38,12 @@ import VenueDashboard from "./pages/VenueDashboard";
 import ErrorPage from "./pages/Errorpage";
 import Global from "./pages/Global";
 import Temp from "./Components/Temp";
+import ActivityDash from "./pages/ActivityDashboard";
+import CommunicationDash from "./pages/CommunicationDashboard";
+import EventDash from "./pages/EventDashboard";
+import VenueDash from "./pages/VenueDashboardcomp";
+import UserDash from "./pages/UserDashboard";
+
 
 const App = () => {
   const aicteuser = localStorage.getItem("aicteuser");
@@ -52,6 +58,11 @@ const App = () => {
               <>{aicteuser ? <Navigate to="/dashboard" /> : <Login />}</>
             }
           />
+              <Route path="/eventdashboard" element={<EventDash />} />
+              <Route path="/activitydashboard" element={<ActivityDash />} />
+              <Route path="/communicationdashboard" element={<CommunicationDash />} />
+              <Route path="/userdashboard" element={<UserDash />} />
+              <Route path="/venuedashboard" element={<VenueDash />} />
           {aicteuser ? (
             <>
               <Route path="/dashboard" element={<DashBoard />} />
