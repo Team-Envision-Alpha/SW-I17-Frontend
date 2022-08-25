@@ -1,0 +1,14 @@
+.custom-file-upload {
+    cursor: pointer;
+  }
+
+  
+.img-wrap{
+    width: 40px;
+    height: 40px;
+    margin-top:-25px;
+  }
+  .img-upload:before{
+    content: "\f093";
+    opacity:0;
+  }

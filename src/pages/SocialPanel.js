@@ -15,8 +15,8 @@ import PostCard from "../Components/PostCard";
 
 const SocialPanel = () => {
   return (
-    <div style={{ backgroundImage: `url(${bg})` }}>
-      <Navbar />
+    <div >
+      {/* <Navbar /> */}
 
       <div className="flex flex-col my-12 gap-8 px-10">
         <div className="flex justify-center my-10 gap-10">

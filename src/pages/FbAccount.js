@@ -1,11 +1,11 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React from "react";
-import bg from "../Assets/Images/Group.svg";
-import Burger from "../Components/burger";
-import Navbar from "../Components/NewNavbar";
-import Sidebar from "../Components/Sidebar";
-import { useState} from "react";
-import { useNavigate } from "react-router-dom";
+// import bg from "../Assets/Images/Group.svg";
+// import Burger from "../Components/burger";
+// import Navbar from "../Components/NewNavbar";
+// import Sidebar from "../Components/Sidebar";
+// import { useState} from "react";
+import { useNavigate,Link } from "react-router-dom";
 // import axios from 'axios'
 import { gql, useQuery } from "@apollo/client";
 import { ToastContainer, toast } from "react-toastify";
@@ -13,11 +13,15 @@ import "react-toastify/dist/ReactToastify.css";
 
 
 const FbAccount = () => {
-  const [show, setShow] = useState(false);
+  
   const navigate = useNavigate();
   // const [userData, setUserData] = useState();
   var userData;
   const longlivedaccesstoken = localStorage.getItem("longlivedaccesstoken");
+  console.log(longlivedaccesstoken);
+  if(!longlivedaccesstoken){
+    navigate('/social_media')
+  }
   console.log(userData);
 
   const USERPAGES_QUERY = gql`
@@ -58,15 +62,15 @@ const FbAccount = () => {
   return (
     <>
       <div
-        style={{ backgroundImage: `url(${bg})` }}
-        className="flex gap-[24vw] h-[100vh]"
+        // style={{ backgroundImage: `url(${bg})` }}
+        className="flex pl-3 h-[100vh]"
       >
         <div>
-          <Navbar />
+          {/* <Navbar />
           <div className="md:hidden block absolute z-50">
             <Burger open={show} setOpen={setShow} />
           </div>
-          <Sidebar show={show} setShow={setShow} />
+          <Sidebar show={show} setShow={setShow} /> */}
           <ToastContainer
             position="top-center"
             autoClose={3000}
@@ -81,27 +85,22 @@ const FbAccount = () => {
         </div>
 
         <div className="flex flex-col gap-[8vh]">
-          <div className="font-IBM-Sans flex flex-col gap-5 py-[2vh]">
-            <p className="text-2xl font-extrabold tracking-wide">Facebook</p>
-            <p className="text-[#0F56B3] text-base font-bold">
-              First Item / Second Item / Third Item
-            </p>
-          </div>
+          
           <div className="flex flex-col gap-10">
             <div className="font-extrabold font-IBM-Sans text-xl tracking-wide">
               <p>You are logged in as:</p>
             </div>
             <div>
-              <div className="flex items-center px-8 w-[20vw] h-[15vh]  bg-[#FFFFFF] shadow-lg rounded-xl">
+              <div className="flex items-center px-8 w-[22vw] h-[18vh]  bg-[#FFFFFF] shadow-lg rounded-xl py-10">
                 <div className="flex flex-col">
                   {userData && (
                     <>
-                      <div className="flex gap-6">
-                        <div>
+                      <div className="flex gap-6 items-center">
+                        <div className="w-[5vw] h-[10vh] rounded-full">
                           <img
                             src={userData.picture.data.url}
                             alt="dp"
-                            width={55}
+                            className="w-[5vw] h-[10vh] rounded-full"
                           />
                         </div>
                         <div className="font-IBM-Sans">
@@ -122,7 +121,7 @@ const FbAccount = () => {
                           href="/"
                           onClick={() => {
                             localStorage.removeItem("longlivedaccesstoken");
-                            navigate("/");
+                            navigate("/social_media");
                           }}
                           className="underline text-[#A72314] font-IBM-Sans text-base font-semibold pl-48 "
                         >
@@ -148,12 +147,12 @@ const FbAccount = () => {
                     className="flex items-center px-4 w-[20vw] h-[15vh]  bg-[#FFFFFF] shadow-lg rounded-xl relative"
                     key={idx}
                   >
-                    <div className="flex gap-6">
-                      <div>
+                    <div className="flex gap-6 items-center">
+                      <div className="w-[7vw] h-[10vh] rounded-full">
                         <img
                           src={data.picture.data.url}
                           alt="logo"
-                          width={80}
+                          className="w-[7vw] h-[10vh] rounded-full"
                         />
                       </div>
                       <div className="flex flex-col gap-2 font-IBM-Sans text-base font-semibold">
@@ -162,12 +161,13 @@ const FbAccount = () => {
                     </div>
 
                     <div>
-                      <a
-                        href={`/fb_main/${data.id}`}
+
+                      <Link
+                        to={`/fb_page/${data.id}`}
                         className="underline text-[#F0783B] font-IBM-Sans text-base font-semibold absolute bottom-[3vh] right-[3vh]"
                       >
                         Visit
-                      </a>
+                      </Link>
                     </div>
                   </div>
                 );

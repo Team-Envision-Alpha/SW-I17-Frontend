@@ -27,13 +27,13 @@ const DashBoard = () => {
     variables:{user_id:user.id}
   });
   if(!loading){
-    console.log(data.getInvitedEvents);
+    console.log(data?.getInvitedEvents);
 
   }
   return (
     <>
-      <div style={{ backgroundImage: `url(${bg})` }}>
-        <Navbar />
+      <div >
+        {/* <Navbar /> */}
         <div className="flex flex-row mt-5">
           <p className="px-10 font-bold decoration -[3px]">
             <span className="underline decoration-2 ...">Inv</span>ited Events

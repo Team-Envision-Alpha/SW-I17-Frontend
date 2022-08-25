@@ -4,7 +4,7 @@ export default function Card({ event, setShow }) {
   return (
     <div className="bg-[#f3f3f3] w-[250px] h-[150px] p-4 m-1">
       <div className="flex flex-row">
-        <img src={eventicon} className="mr-2" />
+        <img src={eventicon} className="mr-2" alt="event"/>
         <p className="font-bold text-lg">Event Request</p>
       </div>
       <p className="truncate mt-3">

@@ -18,11 +18,9 @@ export default function Sidebar({ current, show, setShow }) {
   return (
     <div
       className={`${
-        !show ? "translate-x-0 " : "translate-x-[-100vw]"
-      }  flex flex-col md:w-auto w-[100vw] align-middle h-[100vh] fixed overflow-y-scroll bg-white px-10 py-5 transition duration-500 z-30`}
-      //   style={{ transform: show ? "translateX(0)" : "translateX(-100%)" }}
+        !show ? "hidden " : " "
+      }  flex flex-col md:w-[25vw] w-[100vw] align-middle h-[100vh] flxed overflow-y-scroll bg-white px-10 py-5 transition duration-500`}
     >
-      {/* <div className=""> */}
       <Link to="/dashboard">
         <img src={logo} className="w-[12vw] md:w-[8vw] mx-auto" alt="aicte" />
         <img
@@ -76,6 +74,49 @@ export default function Sidebar({ current, show, setShow }) {
             <p className="ml-4 my-auto ">Social Media</p>
           </div>
         </Link>
+        <Link to="/events">
+          <div className="flex flex-row px-1 py-5">
+            <img src={activity} className="w-[2vw]" />
+            <p className="ml-4 my-auto ">Add Event</p>
+          </div>
+        </Link>
+        <Link to="/venues">
+          <div className="flex flex-row px-1 py-5">
+            <img src={activity} className="w-[2vw]" />
+            <p className="ml-4 my-auto ">View Venues</p>
+          </div>
+        </Link>
+        <Link to="/add_venues">
+          <div className="flex flex-row px-1 py-5">
+            <img src={activity} className="w-[2vw]" />
+            <p className="ml-4 my-auto ">Add Venues</p>
+          </div>
+        </Link>
+        <Link to="/requests">
+          <div className="flex flex-row px-1 py-5">
+            <img src={activity} className="w-[2vw]" />
+            <p className="ml-4 my-auto ">Requests</p>
+          </div>
+        </Link>
+        <Link to="/divchats">
+          <div className="flex flex-row px-1 py-5">
+            <img src={activity} className="w-[2vw]" />
+            <p className="ml-4 my-auto ">Div Chats</p>
+          </div>
+        </Link>
+        <Link to="/mass_mailer">
+          <div className="flex flex-row px-1 py-5">
+            <img src={activity} className="w-[2vw]" />
+            <p className="ml-4 my-auto ">Mass Mailer</p>
+          </div>
+        </Link>
+        <Link to="/meeting_room">
+          <div className="flex flex-row px-1 py-5">
+            <img src={activity} className="w-[2vw]" />
+            <p className="ml-4 my-auto ">Meeting Room</p>
+          </div>
+        </Link>
+       
         {/* <div className="flex flex-row px-1 py-5">
           <img src={socialAnalytics} className="w-[2vw]" />
           <p className="ml-4 my-auto ">Social Analytics</p>

@@ -225,8 +225,8 @@ const Venue = () => {
   };
   return (
     <>
-      <div className="h-full" style={{ backgroundImage: `url(${bg})` }}>
-        <Navbar />
+      <div className="h-full">
+        {/* <Navbar /> */}
         <ToastContainer
           position="top-center"
           autoClose={3000}

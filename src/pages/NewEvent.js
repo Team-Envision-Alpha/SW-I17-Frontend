@@ -31,7 +31,7 @@ import { useNavigate } from "react-router-dom";
 export default function Event() {
   const steps = ["Event Details", "Event Duration", "Food Requirements"];
   const stepElements = [<Detail />, <Duration />];
-  const [show, setShow] = useState(false);
+  
   const [current, setCurrent] = useState(0);
   const state1 =
     " border-2 bg-[#f3f3f3] border-green-500 rounded-full h-[50px] w-[50px] mx-auto my-auto pt-[10px]  md:scale-100 scale-50";
@@ -259,12 +259,12 @@ export default function Event() {
 
   return (
     <main
-      className="flex flex-row bg-[#f3f3f3]"
-      style={{ backgroundImage: `url(${bg})` }}
+      className="flex flex-row"
+      // style={{ backgroundImage: `url(${bg})` }}
     >
-      <Navbar />
+      {/* <Navbar />
       <Burger open={show} setOpen={setShow}></Burger>
-      <Sidebar show={show} setShow={setShow} />
+      <Sidebar show={show} setShow={setShow} /> */}
       <ToastContainer
         position="top-center"
         autoClose={3000}
@@ -277,7 +277,7 @@ export default function Event() {
         pauseOnHover
       />
       <section className="mt-12 z-10 mx-auto">
-        <h1 className="font-bold text-2xl">Request a Venue</h1>
+        {/* <h1 className="font-bold text-2xl">Request a Venue</h1> */}
         {/* <p className="mt-8 text-blue-400 hover:text-blue-600 transition cursor-pointer mb-8">
           Breadcrumb / breadcrumb / breadcrumb
         </p> */}
