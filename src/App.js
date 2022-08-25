@@ -46,7 +46,6 @@ const App = () => {
     <>
       <Router>
         <Routes>
-          <Route path="/global" element={<Global />} />
           <Route
             path="/"
             element={
@@ -54,22 +53,31 @@ const App = () => {
             }
           />
 
+          <Route path="/dashboard" element={!aicteuser ? <Navigate to="/" /> : <DashBoard />} />
           {aicteuser ?
             <>
-              <Route path="/dashboard" element={<DashBoard />} />
               <Route path="/events" element={<Global heading="Add Events"><Event /></Global>} />
+
               <Route path="/user_registration" element={<Global heading="User Registration"><User /></Global>} />
+
               <Route path="/requests" element={<Global heading="Event Requests"><EventReq /></Global>} />
+              
               <Route path="/edituser" element={<Global heading="Edit User" ><EditUser /></Global>} />
+              
               <Route path="/venues" element={<Global heading="View Venues"><ViewVenues /></Global>} />
+              
               <Route path="/invited_event" element={<Global heading="Invited Events"><InvitedEvent /></Global>} />
+              
               <Route path="/add_venue" element={<Global heading="Add Venues"><VenueDetails /></Global>} />
+              
               <Route path="/activity_log" element={<Global heading="Activity Log" ><ActivityLog /></Global>} />
+              
               <Route path="/mass_mailer" element={<Global heading="Mass Mailer"><MassMailer /></Global>} />
               <Route
                 path="/social_media"
                 element={<Global heading="Social Media"><SocialMedia title="Social Media Dashboard" /></Global>}
               />
+              {/* social media internal */}
               <Route
                 path="/fb_account"
                 element={
@@ -82,12 +90,14 @@ const App = () => {
                 element={<Global heading="Your Facebook Page"> <FacebookMain title="Check Post"></FacebookMain></Global>}
               />
 
-              <Route path="/feedback" element={<Feedback />} />
-              <Route path="/star" element={<Star />} />
               <Route
                 path="/twitter_main"
                 element={<Global heading="Your Twitter Page"> <TwitterMainPage title="Twitter Page"></TwitterMainPage></Global>}
               />
+
+              {/*  */}
+
+
               <Route
                 path="/meeting_room"
                 element={<MeetingRoom title="Meeting Room"></MeetingRoom>}
@@ -101,6 +111,7 @@ const App = () => {
                 element={<Report title="see report"></Report>}
               />
 
+              <Route path="/feedback" element={<Feedback />} />
 
               <Route path="/venue_dashboard" element={<VenueDashboard />} />
             </>

@@ -17,24 +17,24 @@ const Navbar = () => {
   const navigate = useNavigate();
   const user = JSON.parse(localStorage.getItem("aicteuser"));
   const [file, setfile] = useState();
-  let image = dp
+  let image = user.image
   // const [image, setimage] = useState();
 
-  const USER_QUERY = gql`
-    query user($id: ID!) {
-      getUser(id:$id){
-        image
-    }
-  }
-  `
-  const userData = useQuery(USER_QUERY, {
-    variables: { id: user?.id },
-  }
-  );
+  // const USER_QUERY = gql`
+  //   query user($id: ID!) {
+  //     getUser(id:$id){
+  //       image
+  //   }
+  // }
+  // `
+  // const userData = useQuery(USER_QUERY, {
+  //   variables: { id: user?.id },
+  // }
+  // );
 
-  if (!userData.loading) {
-    image = userData?.data?.getUser.image
-  }
+  // if (!userData.loading) {
+  //   image = userData?.data?.getUser.image
+  // }
 
   const [url, seturl] = useState()
   // const user = { name: "Rishit", role: "admin" };
@@ -101,7 +101,7 @@ const Navbar = () => {
     reader.readAsDataURL(file);
   }
 
-  console.log(userData?.data?.getUser)
+  // console.log(userData?.data?.getUser)
 
   return (
     <><ToastContainer
