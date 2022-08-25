@@ -44,7 +44,7 @@ export default function Event() {
     <div>
       {data ? (
         <div className=" mt-10 mx-16 overflow-x-hidden relative">
-          <div className="flex flex-col md:flex-row justify-around bg-[#00000015] shadow-lg backdrop-blur-sm rounded-xl">
+          <div className="flex flex-col md:flex-row justify-around bg-[#ffffff80] shadow-2xl backdrop-blur-sm rounded-xl">
             <div className="py-12 px-6 flex flex-col">
               <p className="font-bold text-2xl">{data.getEvent.name}</p>
               <div className="mt-10">
@@ -58,7 +58,7 @@ export default function Event() {
                 </p>
               </div>
               <div>
-                <div className=" bg-[#f0783b] rounded-lg w-[22.5vw] mt-9 overflow-y-hidden text-center">
+                <div className=" bg-[#f0783b] rounded-lg w-[22.5vw] mt-9 overflow-y-hidden text-center shadow-lg">
                   <p className="text-white mx-auto text-center py-1">
                     Event Timing
                   </p>
