@@ -36,7 +36,7 @@ import VenueDashboard from "./pages/VenueDashboard";
 
 import ErrorPage from "./pages/Errorpage"
 import Global from "./pages/Global"
-
+import Temp from "./Components/Temp";
 
 const App = () => {
   const aicteuser = localStorage.getItem("aicteuser");
@@ -66,6 +66,7 @@ const App = () => {
               <Route path="/add_venue" element={<Global heading="Add Venues"><VenueDetails /></Global>} />
               <Route path="/activity_log" element={<Global heading="Activity Log" ><ActivityLog /></Global>} />
               <Route path="/mass_mailer" element={<Global heading="Mass Mailer"><MassMailer /></Global>} />
+              <Route path="/temp" element={<Global heading="temp"><Temp /></Global>} />
               <Route
                 path="/social_media"
                 element={<Global heading="Social Media"><SocialMedia title="Social Media Dashboard" /></Global>}
