@@ -4,6 +4,12 @@
 
 body {
     background-color: #F8F7F8;
+    background-image: url('../src/Assets/Images/Group.svg');
+    background-repeat: no-repeat;
+    background-position:fixed;
+    background-size:cover;
+    background-attachment: fixed;
+    
 }
 
 ::-webkit-scrollbar {

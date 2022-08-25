@@ -23,8 +23,8 @@ const DashBoard = () => {
   // const user = { name: "Rishit", role: "admin" };
   return (
     <div
-      style={{ backgroundImage: `url(${bg})` }}
-      className="bg-[#f8f7f8] min-h-[100vh] bg-cover"
+      
+      className="min-h-[100vh] bg-cover"
     >
       <Navbar />
       <div className="flex flex-col justify-center items-center my-10 gap-8 px-64 ">
@@ -48,7 +48,7 @@ const DashBoard = () => {
             <DashCard icon={addvenues} name="Add Venues" />
           </Link>
           <Link to="/requests">
-            <DashCard icon={activity} name="User Requests" />
+            <DashCard icon={activity} name="Event Requests" />
           </Link>
           <Link to="/activity_log">
             <DashCard icon={activity} name="Activity Log" />

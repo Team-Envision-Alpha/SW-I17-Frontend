@@ -30,7 +30,7 @@ const EventReq = () => {
 
   const { loading, err, data } = useQuery(VENUE_QUERY);
   const [formdata, setFormData] = useState({});
-  const [show, setShow] = useState(false);
+  
   const [modal, setModal] = useState(false);
 
   console.log(data);
@@ -67,14 +67,11 @@ const EventReq = () => {
 
   return (
     <>
-      <div style={{ backgroundImage: `url(${bg})` }}>
-        <Navbar />
+      <div >
+        {/* <Navbar />
         <Burger open={show} setOpen={setShow}></Burger>
-        <Sidebar show={show} setShow={setShow} />
-        <div className="pt-24 mx-auto mb-10 flex flex-col gap-20  items-center justify-center">
-          <div>
-            <p className="font-bold text-[4vh] tracking-wide">Venues</p>
-          </div>
+        <Sidebar show={show} setShow={setShow} /> */}
+        <div className="my-10 mx-auto flex flex-col gap-20  items-center justify-center">
           <div className="flex flex-col w-[50vw] md:flex-row gap-x-4 gap-y-4 h-auto justify-center min-w-max ">
             <input
               type="text"

@@ -48,7 +48,7 @@ const Login = () => {
       console.log(result);
       setUser(result.loginUser);
       localStorage.setItem("aicteuser", JSON.stringify(result.loginUser));
-      navigate("/dashboard");
+      window.location.reload()
     },
 
     variables: userData,
@@ -80,7 +80,7 @@ const Login = () => {
       <div
         className="flex flex-col gap-[5vh] h-[100vh] justify-center items-center -mt-12"
         style={{
-          backgroundImage: `url(${loginBg})`,
+          // backgroundImage: `url(${loginBg})`,
         }}
       >
         <ToastContainer

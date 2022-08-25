@@ -8,57 +8,36 @@ import {
   BrowserRouter as Router,
   Navigate,
 } from "react-router-dom";
-// import FB from "./Components/Facebook/FBLogin";
-// import Twitter from "./Components/Twitter/twitter.js";
-import { gql, useQuery } from "@apollo/client";
-import SocialPanel from "./pages/SocialPanel.js";
-import OldEvents from "./pages/Events";
+
 import DashBoard from "./pages/DashBoard.js";
 import User from "./pages/User";
 import EventReq from "./pages/EventReq";
 import Event from "./pages/NewEvent";
 import InvitedEvent from "./pages/InvitedEvent";
-import EventModal from "./Components/EventModal";
-import VenuHeadDashboard from "./pages/VenuHeadDashboard";
 import VenueDetails from "./pages/VenuDetails";
-import EventAndVenueDetails from "./pages/EventAndVenueDetails";
 import EditUser from "./pages/Editusers";
-import Canteen from "./pages/Canteen";
-import SocialAnalytics from "./pages/SocialAnalytics";
 import ViewVenues from "./pages/ViewVenue";
 import FbAccount from "./pages/FbAccount";
-import FbLogin from "./pages/FbLogin";
 import SocialMedia from "./pages/SocialMedia";
-import FacebookPage from "./pages/FacebookPage";
-import DivChat from "./pages/DivChat";
 import FacebookMain from "./pages/FbMainPage";
 import TwitterMainPage from "./pages/TwitterMainPage";
 import ActivityLog from "./pages/ActivityLog";
-import TwiChat from "./pages/TwiChat";
+import Chat from "./Components/Chat";
 import MassMailer from "./pages/MassMailer";
 import MeetingRoom from "./pages/MeetingRoom";
+import ErrorPage from "./pages/Errorpage"
+import Global from "./pages/Global"
+
 
 const App = () => {
-  // const [longlivedaccesstoken, setLonglivedaccesstoken] = useState(null);
-
-  // useEffect(() => {
-  //   if (localStorage.getItem("longlivedaccesstoken")) {
-  //     setLonglivedaccesstoken(localStorage.getItem("longlivedaccesstoken"));
-  //   }
-  // }, [])
-
   const aicteuser = localStorage.getItem("aicteuser");
 
-  const HELLO = gql`
-    query {
-      hello
-    }
-  `;
 
   return (
     <>
       <Router>
         <Routes>
+          <Route path="/global" element={<Global />} />
           <Route
             path="/"
             element={
@@ -66,80 +45,54 @@ const App = () => {
             }
           />
 
-          <Route path="/events" element={<Event />} />
-          <Route path="/dashboard" element={<DashBoard />} />
+          {aicteuser ?
+            <>
+              <Route path="/dashboard" element={<DashBoard />} />
+              <Route path="/events" element={<Global heading="Add Events"><Event /></Global>} />
+              <Route path="/user_registration" element={<Global heading="User Registration"><User /></Global>} />
+              <Route path="/requests" element={<Global heading="Event Requests"><EventReq /></Global>} />
+              <Route path="/edituser" element={<Global heading="Edit User" ><EditUser /></Global>} />
+              <Route path="/venues" element={<Global heading="View Venues"><ViewVenues /></Global>} />
+              <Route path="/invited_event" element={<Global heading="Invited Events"><InvitedEvent /></Global>} />
+              <Route path="/add_venue" element={<Global heading="Add Venues"><VenueDetails /></Global>} />
+              <Route path="/activity_log" element={<Global heading="Activity Log" ><ActivityLog /></Global>} />
+              <Route path="/mass_mailer" element={<Global heading="Mass Mailer"><MassMailer /></Global>} />
+              <Route
+                path="/social_media"
+                element={<Global heading="Social Media"><SocialMedia title="Social Media Dashboard" /></Global>}
+              />
+              <Route
+                path="/fb_account"
+                element={
+                  <Global heading="Your Facebook Account"> <FbAccount title="See your account" /></Global>
 
-          <Route path="/user_registration" element={<User />} />
-          <Route path="/requests" element={<EventReq />} />
-          <Route path="/edituser" element={<EditUser />} />
-          <Route path="/venues" element={<ViewVenues />} />
-          <Route path="/event_modal" element={<EventModal />} />
-          <Route path="/invited_event" element={<InvitedEvent />} />
-          <Route path="/add_venue" element={<VenueDetails />} />
-          <Route
-            path="/canteen"
-            element={<Canteen eventName="Blockchain Workshop" />}
-          />
-          <Route
-            path="/event_and_venue_details"
-            element={<EventAndVenueDetails />}
-          />
+                }
+              />
+              <Route
+                path="/fb_page/:id"
+                element={<Global heading="Your Facebook Page"> <FacebookMain title="Check Post"></FacebookMain></Global>}
+              />
 
-          <Route path="/activity_log" element={<ActivityLog />} />
-          <Route path="/mass_mailer" element={<MassMailer />} />
 
-          <Route
-            path="/social_media"
-            element={<SocialMedia title="Social Media Dashboard"></SocialMedia>}
-          />
+              <Route
+                path="/twitter_main"
+                element={<Global heading="Your Twitter Page"> <TwitterMainPage title="Twitter Page"></TwitterMainPage></Global>}
+              />
+              <Route
+                path="/meeting_room"
+                element={<MeetingRoom title="Meeting Room"></MeetingRoom>}
+              />
+              <Route
+                path="/chat"
+                element={<Global heading="AICTE Chat Room"><Chat title="Chat Room" /></Global>}
+              />
+            </>
 
-          <Route
-            path="/fb_account"
-            element={
-              <>
-                {localStorage.getItem("longlivedaccesstoken") ? (
-                  <FbAccount title="See your account"></FbAccount>
-                ) : (
-                  <Navigate to="/social_media" replace={true} />
-                )}
-              </>
-            }
-          />
-          <Route
-            path="/fb_main/:id"
-            element={<FacebookMain title="Check Post"></FacebookMain>}
-          />
-          <Route
-            exact
-            path="/facebookpage/:id"
-            element={<FacebookPage title="Facebook Page"></FacebookPage>}
-          />
-          <Route exact path="divchats" element={<DivChat />} />
+            : <Route path="*" element={<Navigate to="/404" />} />
+          }
 
-          <Route
-            path="/twitter_main"
-            element={<TwitterMainPage title="Twitter Page"></TwitterMainPage>}
-          />
-          <Route
-            path="/meeting_room"
-            element={<MeetingRoom title="Meeting Room"></MeetingRoom>}
-          />
-
-          {/* <Route
-            path="/social_analytics"
-            element={
-              <SocialAnalytics title="Analytics Per Post" aspect={2 / 1} />
-            }
-          /> */}
-          {/* <Route
-            path="/fb_login"
-            element={<FbLogin title="Log in to facebook"></FbLogin>}
-          /> */}
-          {/* <Route path="/fb" element={<FB />} /> */}
-          {/*        <Route path="/twitter" element={<Twitter />} /> */}
-          {/* <Route path="/social" element={<SocialPanel />} /> */}
-          <Route path="/oldevents" element={<OldEvents />} />
-          {/* <Route path="/venue_head_dashboard" element={<VenuHeadDashboard />} /> */}
+          <Route path="*" element={<Navigate to="/404" />} />
+          <Route exact path="/404" element={<ErrorPage />} />
         </Routes>
       </Router>
     </>

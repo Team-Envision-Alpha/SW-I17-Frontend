@@ -24,7 +24,7 @@ import DragandDropTwitter from "../Components/DragandDropTwitter";
 import { gql, useMutation, useQuery } from "@apollo/client";
 
 const TwitterMainPage = () => {
-  const [show, setShow] = useState(false);
+  
   const [text, setText] = useState("");
   const [mediaids, setMediaIds] = useState([]);
   let userData
@@ -130,15 +130,15 @@ const TwitterMainPage = () => {
   return (
     <>
       <div
-        style={{ backgroundImage: `url(${bg})` }}
-        className="flex gap-[24vw] h-[200vh]"
+        // style={{ backgroundImage: `url(${bg})` }}
+        className="flex h-[200vh]"
       >
         <div>
-          <Navbar />
+          {/* <Navbar />
           <div className="md:hidden block absolute z-50">
             <Burger open={show} setOpen={setShow} />
           </div>
-          <Sidebar show={show} setShow={setShow} />
+          <Sidebar show={show} setShow={setShow} /> */}
           <ToastContainer
             position="top-center"
             autoClose={3000}
@@ -152,15 +152,10 @@ const TwitterMainPage = () => {
           />
         </div>
         {data ?
-          <div className="flex flex-col gap-[6vh]">
-            <div className="font-IBM-Sans flex flex-col gap-5 py-[2vh]">
-              <p className="text-2xl font-extrabold tracking-wide">Twitter</p>
-              <p className="text-[#0F56B3] text-base font-bold">
-                First Item / Second Item / Third Item
-              </p>
-            </div>
+          <div className="flex flex-col pl-3">
+           
             <div className="flex flex-col gap-10">
-              <div className="flex flex-col ml-[10vw]">
+              <div className="flex flex-col ">
                 {/* Description */}
                 <div className="flex flex-col font-IBM-Sans relative">
                   <div className="flex gap-4">

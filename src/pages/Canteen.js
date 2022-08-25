@@ -1,5 +1,5 @@
-import Navbar from "../Components/Navbar";
-import bg from "../Assets/Images/Group.svg";
+// import Navbar from "../Components/Navbar";
+// import bg from "../Assets/Images/Group.svg";
 import { BsChevronDown } from "react-icons/bs";
 import Accordian from "../Components/Accordian";
 import breakfast from "../Assets/Images/breakfast.svg";
@@ -9,8 +9,8 @@ import dinner from "../Assets/Images/dinner.svg";
 const Canteen = ({ eventName }) => {
   return (
     <>
-      <div style={{ backgroundImage: `url(${bg})` }}>
-        <Navbar />
+      <div >
+        {/* <Navbar /> */}
         <div className="flex flex-col gap-10 font-IBM-Sans px-8 my-10 items-center justify-center">
           <div>
             <p className="text-[3vh] font-IBM-Sans ">Food Details</p>

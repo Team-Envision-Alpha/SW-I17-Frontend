@@ -12,6 +12,7 @@ import { ImCancelCircle } from "react-icons/im";
 import Modal from "./MoreDetails";
 
 const EventModal = ({ setIsOpen, event }) => {
+  const [show, setShow] = useState(false);
   function reqlevel(e) {
     if (e === "pending") {
       return 0;
@@ -30,7 +31,7 @@ const EventModal = ({ setIsOpen, event }) => {
     }
   }
   const [current, setCurrent] = useState("pending");
-  const [show, setShow] = useState(false);
+  
   console.log(event);
   return (
     <>

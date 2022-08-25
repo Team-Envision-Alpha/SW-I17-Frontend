@@ -54,7 +54,7 @@ const User = () => {
     console.log(res);
     return res.data;
   };
-  const [show, setShow] = useState(false);
+  
   const VENUE_MUTATION = gql`
     mutation registerVenue(
       $name: String!
@@ -143,10 +143,10 @@ const User = () => {
 
   return (
     <>
-      <div classname="" style={{ backgroundImage: `url(${bg})` }}>
-        <Navbar />
+      <div classname="" >
+        {/* <Navbar />
         <Burger open={show} setOpen={setShow}></Burger>
-        <Sidebar show={show} setShow={setShow} />
+        <Sidebar show={show} setShow={setShow} /> */}
         <ToastContainer
           position="top-center"
           autoClose={3000}
@@ -159,9 +159,6 @@ const User = () => {
           pauseOnHover
         />
         <div className="flex flex-col align-middle place-items-center gap-6 font-IBM-Sans px-8 py-10 mx-auto justify-center">
-          <div>
-            <p className="mt-5 text-[3vh] font-IBM-Sans ">Add New Venue</p>
-          </div>
           <div className="w-[80vw] md:w-[50vw] bg-[#f3b641] shadow-xl rounded-2xl overflow-y-hidden my-10 mx-auto lg:mx-[5vw]">
             <form
               onSubmit={onSubmit}

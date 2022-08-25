@@ -4,7 +4,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 import React, { useState } from "react";
-import Navbar from "../Components/NewNavbar";
+import Navbar from "../Components/Navbar";
 // import Table from "../Components/Table";
 import bg from "../Assets/Images/Group.svg";
 import Sidebar from "../Components/Sidebar";
@@ -24,7 +24,7 @@ const ActivityLog = () => {
     const [year, setyearData] = useState(new Date().getFullYear());
     const [month, setmonthData] = useState(new Date().getMonth());
     const [date, setdateData] = useState(new Date().getDate());
-    const [show, setShow] = useState(false);
+    
 
 
 
@@ -70,13 +70,9 @@ const ActivityLog = () => {
                 draggable
                 pauseOnHover
             />
-            <div style={{ backgroundImage: `url(${bg})` }}>
-                <Navbar />
-                <div className="lg:hidden block absolute z-50">
-                    <Burger open={show} setOpen={setShow}></Burger>
-                </div>
-                <Sidebar show={show} setShow={setShow} />
-                <div className="pt-24 md:ml-[20vw] mb-10 flex flex-col gap-20 items-center justify-center">
+            <div>
+               
+                <div className="pt-24 mb-10 flex flex-col gap-20 items-center justify-center">
                     <div>
                         <p className="font-bold text-[4vh] tracking-wide">Activity Logs</p>
                     </div>
