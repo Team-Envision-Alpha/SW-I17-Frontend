@@ -22,75 +22,51 @@ const DashBoard = () => {
   const user = JSON.parse(localStorage.getItem("aicteuser"));
   // const user = { name: "Rishit", role: "admin" };
   return (
-    
+
     <div
-      
+
       className="min-h-[100vh] bg-cover"
     >
-  
+
       <Navbar />
-      <div className="flex flex-col justify-center items-center my-10 gap-8 px-64 ">
+      <div className="flex flex-col justify-center items-center px-20 gap-8">
         <div>
-          <p className="text-[4vh] font-IBM-Sans font-extrabold capitalize">
+          <p className="text-[6vh] font-IBM-Sans font-extrabold capitalize">
             {user.role} Dashboard
           </p>
         </div>
 
-        <div className="flex justify-center items-center gap-12  flex-wrap  ">
+        <div className="flex justify-center items-center gap-8 flex-wrap  ">
           <Link to="/events">
-            <DashCard icon={calendar} name="Add Events" />
+            <DashCard icon={calendar} name="Add New Event" />
           </Link>
           <Link to="/invited_event">
-            <DashCard icon={Upcoming} name="Invited Events" />
+            <DashCard icon={Upcoming} name="Your Invited Events" />
           </Link>
+
+          <Link to="/requests">
+            <DashCard icon={activity} name="Your Event Requests" />
+          </Link>
+
+
           <Link to="/venues">
-            <DashCard icon={allvenues} name="View Venues" />
+            <DashCard icon={allvenues} name="View All Venues" />
           </Link>
           <Link to="/add_venue">
-            <DashCard icon={addvenues} name="Add Venues" />
+            <DashCard icon={addvenues} name="Add New Venues" />
           </Link>
-          <Link to="/requests">
-            <DashCard icon={activity} name="Event Requests" />
+          <Link to="//venue_dashboard">
+            <DashCard icon={addvenues} name="View Venue Dashboard" />
           </Link>
-          <Link to="/activity_log">
-            <DashCard icon={activity} name="Activity Log" />
-          </Link>
-          <Link to="/divchats">
-            <DashCard icon={calendar} name="div chats" />
-          </Link>
-          <Link to="/edituser">
-          <DashCard icon={calendar} name="Edit Users" />
-          </Link>
-          <Link to="/mass_mailer">
-          <DashCard icon={calendar} name="Mass Mailer" />
-          </Link>
-          
-          <Link to="/meeting_room">
-          <DashCard icon={calendar} name="Meeting Room" />
-          </Link>
-        
-         
-          
 
-
-          {user.role === "admin" || user.role === "social_media" ? (
-            <Link to="/social_media">
-              <DashCard icon={social} name="Social Media" />
-            </Link>
-          ) : null}
-          {user.role === "admin" ? (
-            <Link to="/report">
-
-            <DashCard icon={report} name="Generate Report" />
-            </Link>
-
-          ) : null}
 
           {user.role === "admin" ? (
             <Link to="/user_registration">
-              <DashCard icon={createuser} name="Create User" />
+              <DashCard icon={createuser} name="Create New User" />
             </Link>
           ) : null}
+
+
 
           {user.role === "admin" ? (
             <Link to="/edituser">
@@ -98,26 +74,44 @@ const DashBoard = () => {
             </Link>
           ) : null}
 
-          {/* {user.role === "admin" ? (
-            <Link to="/social_analytics">
-              <DashCard icon={socialAnalytics} name="Social Analytics" />
+
+          {user.role === "admin" || user.role === "social_media" ? (
+            <Link to="/social_media">
+              <DashCard icon={social} name="Social Media" />
             </Link>
-          ) : null} */}
-          {/* {user.role === "admin" ? (
-            <Link to="/edituser">
-              <DashCard icon={createuser} name="Edit User" />
+          ) : null}
+
+          <Link to="/chat">
+            <DashCard icon={calendar} name="AICTE Chats" />
+          </Link>
+
+          <Link to="/mass_mailer">
+            <DashCard icon={calendar} name="Mass Mailer" />
+          </Link>
+
+          <Link to="/meeting_room">
+            <DashCard icon={calendar} name="Online Meeting Room" />
+          </Link>
+
+          <Link to="/activity_log">
+            <DashCard icon={activity} name="Portal Activity Log" />
+          </Link>
+
+
+          {user.role === "admin" ? (
+            <Link to="/report">
+              <DashCard icon={report} name="Generate Events Report" />
             </Link>
-          ) : null} */}
+          ) : null}
+
+
+
+
+
+
         </div>
-
-        {/* <div  */}
-
-        {/* </div> */}
-        {/* <div className="flex flex-row my-5 gap-8 px-10 justify-center items-center mb-10">
-       
-      </div> */}
       </div>
-      
+
     </div>
   );
 };

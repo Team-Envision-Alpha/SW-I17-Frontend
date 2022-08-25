@@ -2,13 +2,7 @@
 import { gql, useQuery } from "@apollo/client";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
 import React, { useState } from "react";
-import Navbar from "../Components/Navbar";
-// import Table from "../Components/Table";
-import bg from "../Assets/Images/Group.svg";
-import Sidebar from "../Components/Sidebar";
-import Burger from "../Components/burger";
 import SelectTag from "../Components/SelectTag";
 
 const ActivityLog = () => {

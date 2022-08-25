@@ -118,7 +118,7 @@ const User = () => {
     //   // localStorage.setItem("aicteuser", JSON.stringify(result.data.loginUser));
     //   setFormData({});
     // },
-    variables: formdata,
+    variables: {...formdata,image:"https://envisionalpha.aaruush.org/upload/fbpageupload"},
   });
   const onSubmit = (e) => {
     console.log(formdata);

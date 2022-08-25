@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import * as XLSX from "xlsx";
 import { gql, useMutation } from "@apollo/client";
 import { ToastContainer, toast } from "react-toastify";
@@ -88,11 +89,7 @@ export default function Invitations({
     return result; //JavaScript object
     // return JSON.stringify(result); //JSON
   }
-  function handleNext() {
-    if (current < 1) {
-      setCurrent(current + 1);
-    }
-  }
+
   function handleBack() {
     if (current > 0) {
       setCurrent(current - 1);

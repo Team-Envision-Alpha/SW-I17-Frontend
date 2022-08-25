@@ -36,6 +36,7 @@ import VenueDashboard from "./pages/VenueDashboard";
 
 import ErrorPage from "./pages/Errorpage";
 import Global from "./pages/Global";
+import Temp from "./Components/Temp";
 
 const App = () => {
   const aicteuser = localStorage.getItem("aicteuser");
@@ -44,14 +45,12 @@ const App = () => {
     <>
       <Router>
         <Routes>
-          <Route path="/global" element={<Global />} />
           <Route
             path="/"
             element={
               <>{aicteuser ? <Navigate to="/dashboard" /> : <Login />}</>
             }
           />
-
           {aicteuser ? (
             <>
               <Route path="/dashboard" element={<DashBoard />} />
@@ -144,6 +143,7 @@ const App = () => {
                   </Global>
                 }
               />
+              {/* social media internal */}
               <Route
                 path="/fb_account"
                 element={
@@ -163,8 +163,6 @@ const App = () => {
                 }
               />
 
-              <Route path="/feedback" element={<Feedback />} />
-              <Route path="/star" element={<Star />} />
               <Route
                 path="/twitter_main"
                 element={
@@ -174,6 +172,9 @@ const App = () => {
                   </Global>
                 }
               />
+
+              {/*  */}
+
               <Route
                 path="/meeting_room"
                 element={<MeetingRoom title="Meeting Room"></MeetingRoom>}
@@ -190,6 +191,8 @@ const App = () => {
                 path="/report"
                 element={<Report title="see report"></Report>}
               />
+
+              <Route path="/feedback" element={<Feedback />} />
 
               <Route path="/venue_dashboard" element={<VenueDashboard />} />
             </>
