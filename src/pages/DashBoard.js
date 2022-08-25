@@ -5,18 +5,23 @@ import bg from "../Assets/Images/Group.svg";
 import { BsCameraReels, BsCamera } from "react-icons/bs";
 import { AiFillDashboard, AiOutlineDown } from "react-icons/ai";
 import Button from "@mui/material/Button";
-import activity from "../Assets/Images/Dashboard/activity.svg";
-import calendar from "../Assets/Images/Dashboard/calendar.svg";
-import editUser from "../Assets/Images/Dashboard/editUser.svg";
-import report from "../Assets/Images/Dashboard/report.svg";
-import socialAnalytics from "../Assets/Images/Dashboard/socialAnalytics.svg";
-import createuser from "../Assets/Images/Dashboard/user.svg";
+import frame1 from "../Assets/Dashboardicons/Dashboard Icons/frame1.png"
+import frame2 from "../Assets/Dashboardicons/Dashboard Icons/frame2.png"
+import frame3 from "../Assets/Dashboardicons/Dashboard Icons/frame3.png"
+import frame4 from "../Assets/Dashboardicons/Dashboard Icons/frame4.png"
+import frame5 from "../Assets/Dashboardicons/Dashboard Icons/frame5.png"
+import frame6 from "../Assets/Dashboardicons/Dashboard Icons/frame6.png"
+import frame7 from "../Assets/Dashboardicons/Dashboard Icons/frame7.png"
+import frame8 from "../Assets/Dashboardicons/Dashboard Icons/frame8.png"
+import frame9 from "../Assets/Dashboardicons/Dashboard Icons/frame9.png"
+import frame10 from "../Assets/Dashboardicons/Dashboard Icons/frame10.png"
+import frame11 from "../Assets/Dashboardicons/Dashboard Icons/frame11.png"
+import frame12 from "../Assets/Dashboardicons/Dashboard Icons/frame12.png"
+import frame13 from "../Assets/Dashboardicons/Dashboard Icons/frame13.png"
+import frame14 from "../Assets/Dashboardicons/Dashboard Icons/frame14.png"
+
 import Navbar from "../Components/Navbar";
 import DashCard from "../Components/DashCard";
-import Upcoming from "../Assets/Images/Dashboard/upcoming.svg";
-import social from "../Assets/Images/Dashboard/social.svg";
-import allvenues from "../Assets/Images/Dashboard/allvenues.svg";
-import addvenues from "../Assets/Images/Dashboard/addvenue.svg";
 import { Link } from "react-router-dom";
 const DashBoard = () => {
   const user = JSON.parse(localStorage.getItem("aicteuser"));
@@ -38,31 +43,31 @@ const DashBoard = () => {
 
         <div className="flex justify-center items-center gap-8 flex-wrap  ">
           <Link to="/events">
-            <DashCard icon={calendar} name="Add New Event" />
+            <DashCard icon={frame1} name="Add New Event" />
           </Link>
           <Link to="/invited_event">
-            <DashCard icon={Upcoming} name="Your Invited Events" />
+            <DashCard icon={frame3} name="Your Invited Events" />
           </Link>
 
           <Link to="/requests">
-            <DashCard icon={activity} name="Your Event Requests" />
+            <DashCard icon={frame2} name="Your Event Requests" />
           </Link>
 
 
           <Link to="/venues">
-            <DashCard icon={allvenues} name="View All Venues" />
+            <DashCard icon={frame4} name="View All Venues" />
           </Link>
           <Link to="/add_venue">
-            <DashCard icon={addvenues} name="Add New Venues" />
+            <DashCard icon={frame5} name="Add New Venues" />
           </Link>
-          <Link to="//venue_dashboard">
-            <DashCard icon={addvenues} name="View Venue Dashboard" />
+          <Link to="/venue_dashboard">
+            <DashCard icon={frame6} name="View Venue Dashboard" />
           </Link>
 
 
           {user.role === "admin" ? (
             <Link to="/user_registration">
-              <DashCard icon={createuser} name="Create New User" />
+              <DashCard icon={frame7} name="Create New User" />
             </Link>
           ) : null}
 
@@ -70,42 +75,44 @@ const DashBoard = () => {
 
           {user.role === "admin" ? (
             <Link to="/edituser">
-              <DashCard icon={editUser} name="View/Edit Users" />
+              <DashCard icon={frame8} name="View/Edit Users" />
             </Link>
           ) : null}
 
 
           {user.role === "admin" || user.role === "social_media" ? (
             <Link to="/social_media">
-              <DashCard icon={social} name="Social Media" />
+              <DashCard icon={frame9} name="Social Media" />
             </Link>
           ) : null}
 
           <Link to="/chat">
-            <DashCard icon={calendar} name="AICTE Chats" />
+            <DashCard icon={frame10} name="AICTE Chats" />
           </Link>
 
           <Link to="/mass_mailer">
-            <DashCard icon={calendar} name="Mass Mailer" />
+            <DashCard icon={frame11} name="Mass Mailer" />
           </Link>
 
           <Link to="/meeting_room">
-            <DashCard icon={calendar} name="Online Meeting Room" />
+            <DashCard icon={frame12} name="Online Meeting Room" />
           </Link>
 
           <Link to="/activity_log">
-            <DashCard icon={activity} name="Portal Activity Log" />
+            <DashCard icon={frame13} name="Portal Activity Log" />
           </Link>
 
 
           {user.role === "admin" ? (
             <Link to="/report">
-              <DashCard icon={report} name="Generate Events Report" />
+              <DashCard icon={frame14} name="Generate Events Report" />
             </Link>
           ) : null}
 
 
-
+          <Link to="/department_registration">
+            <DashCard icon={frame15} name="Portal Activity Log" />
+          </Link>
 
 
 

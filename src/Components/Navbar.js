@@ -11,7 +11,7 @@ import axios from "axios";
 import { gql, useMutation, useQuery } from "@apollo/client";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import NotifcationModal from "./NotifcationModal";
+import NotifcationModal from "./notifcationModal";
 
 
 const Navbar = () => {
