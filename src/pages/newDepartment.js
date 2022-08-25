@@ -156,6 +156,26 @@ const User = () => {
               {/* <div className="grid grid-cols-2 gap-20 items-center justify-center px-40"> */}
               <div className="flex flex-col gap-10">
                 <div className="flex flex-col gap-4">
+                  <h4>Department Name</h4>
+                  <input
+                    type="text"
+                    className="w-full p-4 outline-none"
+                    style={{
+                      color: "#818181",
+                      background: "#F6F5F6",
+                      border: "2px solid grey",
+                      borderRadius: "8px",
+                    }}
+                    value={formdata.department ? formdata.department : ""}
+                    placeholder="Text here"
+                    onChange={(e) => {
+                      setFormData({ ...formdata, department: e.target.value });
+                    }}
+                  />
+                </div>
+                <hr></hr>
+                <h4>Enter User Details</h4>
+                <div className="flex flex-col gap-4">
                   <h4>Name</h4>
                   <input
                     type="text"
@@ -273,11 +293,18 @@ const User = () => {
                 </div>
                 <div className="flex flex-col gap-4">
                   <h4>Department</h4>
-                  <Select
-                    data={departments}
-                    name="department"
-                    formdata={formdata}
-                    setFormData={setFormData}
+                  <input
+                    type="text"
+                    className="w-full p-4 outline-none"
+                    style={{
+                      color: "#818181",
+                      background: "#F6F5F6",
+                      border: "2px solid grey",
+                      borderRadius: "8px",
+                    }}
+                    value={formdata.department ? formdata.department : ""}
+                    placeholder="Text here"
+                    disabled
                   />
                 </div>
 

@@ -31,7 +31,7 @@ import { useNavigate } from "react-router-dom";
 export default function Event() {
   const steps = ["Event Details", "Event Duration", "Food Requirements"];
   const stepElements = [<Detail />, <Duration />];
-  
+
   const [current, setCurrent] = useState(0);
   const state1 =
     " border-2 bg-[#f3f3f3] border-green-500 rounded-full h-[50px] w-[50px] mx-auto my-auto pt-[10px]  md:scale-100 scale-50";
@@ -107,6 +107,8 @@ export default function Event() {
       $to_date: String!
       $time: String!
       $image: String!
+      $food_req: String!
+      $expected_count: String!
     ) {
       createEvent(
         name: $name
@@ -118,6 +120,8 @@ export default function Event() {
         to_date: $to_date
         time: $time
         image: $image
+        food_req: $food_req
+        expected_count: $expected_count
       ) {
         id
         name
@@ -185,7 +189,7 @@ export default function Event() {
   const [events, event_loading] = useMutation(EVENT_MUTATION, {
     onError: (err) => {
       console.log(err.message);
-      toast.error("Error: Event Not Added!", {
+      toast.error(err.message, {
         position: "top-center",
         autoClose: 3000,
         hideProgressBar: false,
@@ -251,7 +255,7 @@ export default function Event() {
       time: formdata.time,
     });
 
-    await events();
+    events();
     // window.alert(`Request Successsful for ${venueid}`, venueid == eventid);
     // console.log(venuedata);
     if (status) navigate("../requests", { replace: true });
