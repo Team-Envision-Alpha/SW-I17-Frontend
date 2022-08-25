@@ -41,6 +41,7 @@ import Report from "./pages/Report";
 import Feedback from "./pages/Feedback";
 import Star from "./Components/Starcomponent";
 
+import Home from "./pages/Home";
 import VenueDashboard from "./pages/VenueDashboard";
 
 const App = () => {
@@ -117,6 +118,8 @@ const App = () => {
             path="/fb_main/:id"
             element={<FacebookMain title="Check Post"></FacebookMain>}
           />
+
+          <Route path="/home" element={<Home />} />
           <Route
             exact
             path="/facebookpage/:id"

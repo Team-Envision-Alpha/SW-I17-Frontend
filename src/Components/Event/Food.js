@@ -5,6 +5,7 @@
 import Select from "../Select.js";
 // import { DateRangePicker } from "react-date-range";
 import * as React from "react";
+import { useState, useEffect } from "react";
 import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
@@ -24,6 +25,8 @@ import breakfast from "../../Assets/Images/Event/breakfast.svg";
 import lunch from "../../Assets/Images/Event/lunch.svg";
 import dinner from "../../Assets/Images/Event/dinner.svg";
 
+import { gql, useMutation, useQuery } from "@apollo/client";
+
 export default function Food({
   setFormData,
   formdata,
@@ -39,6 +42,31 @@ export default function Food({
   teams,
   onSubmit,
 }) {
+  const VENUE_QUERY = gql`
+    query getVenue($id: ID!) {
+      getVenue(id: $id) {
+        id
+        name
+        canteen_menu
+      }
+    }
+  `;
+
+  const { loading, err, data } = useQuery(VENUE_QUERY, {
+    variables: {
+      id: formdata.venue,
+    },
+  });
+  const [menu, setMenu] = useState();
+
+  useEffect(() => {
+    if (data) {
+      setMenu(JSON.parse(data.getVenue.canteen_menu));
+    }
+  }, [data]);
+
+  console.log(menu);
+
   function daysCount() {
     var start = new Date(formdata.from_date);
     var end = new Date(formdata.to_date);
@@ -128,6 +156,43 @@ export default function Food({
     newFood[str] = target;
     return newFood;
   }
+  function arrayRemove(arr, value) {
+    return arr.filter(function (ele) {
+      return ele !== value;
+    });
+  }
+  const dummymenu = {
+    breakfast: ["Juice", "Sandwiches", "Coffee", "Tea"],
+    lunch: ["Pizza", "Pasta", "Burger", "Sandwiches"],
+    dinner: ["Lasagna", "Rolls", "Curry", "Fries"],
+  };
+  function editMenu(str, i, index, value) {
+    var newMenu = { ...formdata.food_req };
+    var target = { ...newMenu[str] };
+    // if (value) {
+    //   if (target[i]) {
+    //     target[i] = [...target[i], dummymenu[str][index]];
+    //   } else {
+    //     target[i] = [dummymenu[str][index]];
+    //   }
+    // } else {
+    //   arrayRemove(target[i], dummymenu[str][index]);
+    // }
+    if (value) {
+      if (target[i]) {
+        target[i].push(dummymenu[str][index]);
+      } else {
+        target[i] = [dummymenu[str][index]];
+      }
+    } else {
+      target[i] = arrayRemove(target[i], dummymenu[str][index]);
+    }
+    // target[i][index] = value;
+    newMenu[str] = target;
+    return newMenu;
+  }
+  console.log(formdata);
+
   return (
     <div className="w-[80vw] md:w-[50vw] bg-[#f3b641] shadow-xl rounded-2xl overflow-y-hidden my-10">
       <div className="w-full h-full py-5 mt-5 bg-white px-10">
@@ -156,66 +221,96 @@ export default function Food({
                     <div className=" gap-y-4 flex flex-col w-[30%] hover:shadow-lg transition rounded-sm hover:border-[0.1px] border-[#00000020] p-5">
                       <div className="flex flex-row justify-between">
                         <span className="text-xl font-bold">Breakfast</span>
-                        <input
-                          type="checkbox"
-                          className="ml-auto my-auto mt-[0.6rem] "
-                          onChange={(e) => {
-                            setFormData({
-                              ...formdata,
-                              food: editFood("breakfast", i, e.target.checked),
-                            });
-                          }}
-                        ></input>
                       </div>
                       <img src={breakfast} className="w-[40%] mx-auto"></img>
                       <Typography className="text-justify">
-                        Lorem Ipsum is simply dummy text of the printing and
-                        typesetting industry. Lorem Ipsum has been the
-                        industry's standard dummy text ever since the 1500s
+                        {dummymenu?.breakfast?.map((item, index) => {
+                          return (
+                            <div key={index}>
+                              <input
+                                type="checkbox"
+                                onChange={(e) => {
+                                  setFormData({
+                                    ...formdata,
+                                    food_req: editMenu(
+                                      "breakfast",
+                                      i,
+                                      index,
+                                      e.target.checked
+                                    ),
+                                  });
+
+                                  // console.log(e.target.checked);
+                                }}
+                              ></input>{" "}
+                              {item}
+                            </div>
+                          );
+                        })}
                       </Typography>
                     </div>
 
                     <div className="flex gap-y-4 flex-col w-[30%] hover:shadow-lg transition rounded-sm hover:border-[0.1px] border-[#00000020] p-5">
                       <div className="flex flex-row justify-between">
                         <span className="text-xl font-bold">Lunch</span>
-                        <input
-                          type="checkbox"
-                          className="ml-auto my-auto mt-[0.6rem] "
-                          onChange={(e) => {
-                            setFormData({
-                              ...formdata,
-                              food: editFood("lunch", i, e.target.checked),
-                            });
-                          }}
-                        ></input>
                       </div>
                       <img src={lunch} className="w-[40%] mx-auto"></img>
                       <Typography className="text-justify">
-                        Lorem Ipsum is simply dummy text of the printing and
-                        typesetting industry. Lorem Ipsum has been the
-                        industry's standard dummy text ever since the 1500s
+                        {dummymenu?.lunch?.map((item, index) => {
+                          return (
+                            <div key={index}>
+                              <input
+                                type="checkbox"
+                                onChange={(e) => {
+                                  setFormData({
+                                    ...formdata,
+                                    food_req: editMenu(
+                                      "lunch",
+                                      i,
+                                      index,
+                                      e.target.checked
+                                    ),
+                                  });
+
+                                  // console.log(e.target.checked);
+                                }}
+                              ></input>{" "}
+                              {item}
+                            </div>
+                          );
+                        })}
                       </Typography>
                     </div>
 
                     <div className="flex gap-y-4 flex-col w-[30%] hover:shadow-lg transition rounded-sm hover:border-[0.1px] border-[#00000020] p-5">
                       <div className="flex flex-row justify-between">
                         <span className="text-xl font-bold">Dinner</span>
-                        <input
-                          type="checkbox"
-                          className="ml-auto my-auto mt-[0.6rem] "
-                          onChange={(e) => {
-                            setFormData({
-                              ...formdata,
-                              food: editFood("dinner", i, e.target.checked),
-                            });
-                          }}
-                        ></input>
                       </div>
                       <img src={dinner} className="w-[40%] mx-auto"></img>
                       <Typography className="text-justify">
-                        Lorem Ipsum is simply dummy text of the printing and
-                        typesetting industry. Lorem Ipsum has been the
-                        industry's standard dummy text ever since the 1500s
+                        {dummymenu?.dinner?.map((item, index) => {
+                          return (
+                            <div key={index}>
+                              <input
+                                type="checkbox"
+                                onChange={(e) => {
+                                  setFormData({
+                                    ...formdata,
+                                    food_req: editMenu(
+                                      "dinner",
+                                      i,
+                                      index,
+                                      e.target.checked
+                                    ),
+                                  });
+
+                                  // console.log(e.target.checked);
+                                }}
+                              ></input>{" "}
+                              {item}
+                            </div>
+                          );
+                        })}
                       </Typography>
                     </div>
                   </div>

@@ -24,7 +24,7 @@ export default function Details({
     }
   }
   function checkData() {
-    if (formdata.name && formdata.description) {
+    if (formdata.name && formdata.description && formdata.caption) {
       return true;
     } else {
       return false;
@@ -98,6 +98,28 @@ export default function Details({
               setFormData({
                 ...formdata,
                 caption: e.target.value,
+              });
+            }}
+          />
+        </div>
+        <div className="flex flex-col gap-4 mb-5">
+          <h4>Expected Count</h4>
+          <input
+            type="text"
+            className="w-full p-4 outline-none"
+            style={{
+              color: "#818181",
+              background: "#F6F5F6",
+              border: "2px solid grey",
+              borderRadius: "8px",
+            }}
+            value={formdata.expected_count ? formdata.expected_count : ""}
+            placeholder="Text here"
+            name="caption"
+            onChange={(e) => {
+              setFormData({
+                ...formdata,
+                expected_count: e.target.value,
               });
             }}
           />
