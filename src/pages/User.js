@@ -129,6 +129,7 @@ const User = () => {
               className="w-full h-full py-5 mt-5 bg-white px-10"
             >
               {/* <div className="grid grid-cols-2 gap-20 items-center justify-center px-40"> */}
+              
               <div className="flex flex-col gap-10">
                 <div className="flex flex-col gap-4">
                   <h4>Name</h4>
@@ -166,24 +167,7 @@ const User = () => {
                     }}
                   />
                 </div>
-                <div className="flex flex-col gap-4">
-                  <h4>Password</h4>
-                  <input
-                    type="password"
-                    className="w-full p-4 outline-none"
-                    style={{
-                      color: "#818181",
-                      background: "#F6F5F6",
-                      border: "2px solid grey",
-                      borderRadius: "8px",
-                    }}
-                    value={formdata.password ? formdata.password : ""}
-                    placeholder="Text here"
-                    onChange={(e) => {
-                      setFormData({ ...formdata, password: e.target.value });
-                    }}
-                  />
-                </div>
+               
                 <div className="flex flex-col gap-4">
                   <h4>Phone</h4>
                   <input
@@ -223,7 +207,24 @@ const User = () => {
                     setFormData={setFormData}
                   />
                 </div>
-
+                <div className="flex flex-col gap-4">
+                  <h4>Password</h4>
+                  <input
+                    type="password"
+                    className="w-full p-4 outline-none"
+                    style={{
+                      color: "#818181",
+                      background: "#F6F5F6",
+                      border: "2px solid grey",
+                      borderRadius: "8px",
+                    }}
+                    value={formdata.password ? formdata.password : ""}
+                    placeholder="Text here"
+                    onChange={(e) => {
+                      setFormData({ ...formdata, password: e.target.value });
+                    }}
+                  />
+                </div>
                 <div className="flex flex-col gap-4">
                   <h4>Confirm Password</h4>
                   <input

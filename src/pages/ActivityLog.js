@@ -138,7 +138,7 @@ const ActivityLog = () => {
                                         <thead>
                                             <tr
                                                 className="text-md font-semibold   text-gray-900   border-[#B9B9B9]  text-center border-3"
-                                                style={{ background: "rgba(0, 0, 0, 0.05)" }}
+                                                style={{ background: "#f0c541" }}
                                             >
                                                 <th className="py-3 border-[#B9B9B9] border-2 ">
                                                     ID
@@ -156,7 +156,8 @@ const ActivityLog = () => {
                                         </thead>
                                         <tbody className="bg-white">
                                             {(filterdata === "Year" ? data?.getLogsByYear : filterdata === "Month" ? data?.getLogsByMonth : filterdata === "Day" ? data?.getLogsByDay : data?.getLogs)?.map((log) => (
-                                                <tr key={log.id} className="text-[#000000]">
+                                                <tr key={log.id} className="text-[#000000]"
+                                                 >
                                                     <td
                                                         className="text-center py-3 border-[#B9B9B9] border-2 text-md">
                                                         <div>

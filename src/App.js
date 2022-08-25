@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, Suspense,lazy } from "react";
 import Login from "./Components/Login";
+
 import {
   Routes,
   Route,
@@ -39,6 +40,8 @@ import MassMailer from "./pages/MassMailer";
 import MeetingRoom from "./pages/MeetingRoom";
 import Feedback from "./pages/Feedback";
 import Star from "./Components/Starcomponent";
+
+
 
 const App = () => {
   // const [longlivedaccesstoken, setLonglivedaccesstoken] = useState(null);
@@ -81,6 +84,7 @@ const App = () => {
           <Route path="/add_venue" element={<VenueDetails />} />
           <Route path="/feedback" element={<Feedback />} />
           <Route path="/star" element={<Star />}/>
+      
           <Route
             path="/canteen"
             element={<Canteen eventName="Blockchain Workshop" />}
