@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import dp from "../Assets/Images/ico.svg";
 import logo from "../Assets/Images/logo.svg";
+import bellIcon from "../Assets/Images/bellIcon.svg";
 import Button from "@mui/material/Button";
 import { useNavigate } from "react-router-dom";
 
@@ -10,10 +11,11 @@ import axios from "axios";
 import { gql, useMutation, useQuery } from "@apollo/client";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import NotifcationModal from "./NotifcationModal";
 
-import bellIcon from "../Assets/Images/bellIcon.svg"
 
 const Navbar = () => {
+  const [isOpen, setIsOpen]=useState(false)
   const navigate = useNavigate();
   const user = JSON.parse(localStorage.getItem("aicteuser"));
   const [file, setfile] = useState();
@@ -101,6 +103,8 @@ const Navbar = () => {
     reader.readAsDataURL(file);
   }
 
+  // const [pevent, setPevent] = useState({});
+
   console.log(userData?.data?.getUser)
 
   return (
@@ -126,6 +130,10 @@ const Navbar = () => {
         {user &&
           <div className="flex gap-8 ">
             <div className="flex gap-2">
+              <button >
+              <img src={bellIcon} alt="bellIcon" width={40} className="mx-4" onClick={()=>{setIsOpen(true)}} />
+              </button>
+              {isOpen && (<NotifcationModal isOpen={setIsOpen} onClickOutside={()=> {setIsOpen(false)}} />)}
               <div>
                 {/* <img src={dp} alt="dp" width={35} /> */}
                 <label htmlFor="photo-upload" className="custom-file-upload fas">
