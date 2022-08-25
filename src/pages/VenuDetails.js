@@ -71,6 +71,8 @@ const User = () => {
       $capacity: String!
       $image: String!
       $website: String!
+      $canteen_menu: String!
+      $canteen_contact: String!
     ) {
       registerVenue(
         name: $name
@@ -84,6 +86,8 @@ const User = () => {
         capacity: $capacity
         image: $image
         website: $website
+        canteen_menu: $canteen_menu
+        canteen_contact: $canteen_contact
       ) {
         id
         name
@@ -127,6 +131,8 @@ const User = () => {
         pincode: "",
         capacity: "",
         website: "",
+        canteen_contact: {},
+        canteen_menu: {},
       });
     },
     // update(_, result) {
@@ -176,20 +182,35 @@ const User = () => {
   const onSubmit = async (e) => {
     e.preventDefault();
     const url = await getImageUrl(image);
-    setFormData({
-      ...formdata,
-      image: url,
-      canteen_menu: {
+    var tempmenu = {};
+    if (typeof formdata["canteen_menu"] != "string") {
+      tempmenu = JSON.stringify({
         breakfast: convertToArray(formdata["canteen_menu"].breakfast),
         lunch: convertToArray(formdata["canteen_menu"].lunch),
         dinner: convertToArray(formdata["canteen_menu"].dinner),
-      },
+      });
+    } else {
+      tempmenu = formdata.canteen_menu;
+    }
+    console.log(typeof formdata.canteen_contact === "object");
+    // if (typeof formdata.canteen_contact === "object") {
+    //   // console.log('Run ho rha hai')
+    //   setFormData({
+    //     ...formdata,
+    //     canteen_contact: JSON.stringify(formdata.canteen_contact),
+    //   });
+    // }
+    setFormData({
+      ...formdata,
+      image: url,
+      canteen_menu: tempmenu,
+      canteen_contact: "rishitshivesh@gmail.com",
     });
     console.log(formdata);
     venue();
     // console.log(loading);
   };
-  console.log(formdata);
+  // console.log(formdata);
   return (
     <>
       <div classname="" style={{ backgroundImage: `url(${bg})` }}>
@@ -255,7 +276,96 @@ const User = () => {
                   />
                 </div>
                 <hr></hr>
-                <h4 className="capitalize">Canteen Details</h4>
+                <h4 className="capitalize">Canteen Contact Details</h4>
+                <div className="flex flex-col gap-4">
+                  <h4 className="capitalize">Name</h4>
+                  <input
+                    type="text"
+                    className="w-full p-4 outline-none"
+                    style={{
+                      color: "#818181",
+                      background: "#f6f5f6",
+                      border: "2px solid grey",
+                      borderRadius: "8px",
+                    }}
+                    name="name"
+                    placeholder="Text here"
+                    value={
+                      formdata.canteen_contact?.name
+                        ? formdata.canteen_contact["name"]
+                        : ""
+                    }
+                    onChange={(e) => {
+                      setFormData({
+                        ...formdata,
+                        canteen_contact: {
+                          ...formdata.canteen_contact,
+                          name: e.target.value,
+                        },
+                      });
+                    }}
+                  />
+                </div>
+                <div className="flex flex-col gap-4">
+                  <h4 className="capitalize">Email</h4>
+                  <input
+                    type="email"
+                    className="w-full p-4 outline-none"
+                    style={{
+                      color: "#818181",
+                      background: "#f6f5f6",
+                      border: "2px solid grey",
+                      borderRadius: "8px",
+                    }}
+                    name="name"
+                    placeholder="Text here"
+                    value={
+                      formdata.canteen_contact?.email
+                        ? formdata.canteen_contact["email"]
+                        : ""
+                    }
+                    onChange={(e) => {
+                      setFormData({
+                        ...formdata,
+                        canteen_contact: {
+                          ...formdata.canteen_contact,
+                          email: e.target.value,
+                        },
+                      });
+                    }}
+                  />
+                </div>
+                <div className="flex flex-col gap-4">
+                  <h4 className="capitalize">Phone</h4>
+                  <input
+                    type="text"
+                    className="w-full p-4 outline-none"
+                    style={{
+                      color: "#818181",
+                      background: "#f6f5f6",
+                      border: "2px solid grey",
+                      borderRadius: "8px",
+                    }}
+                    name="name"
+                    placeholder="Text here"
+                    value={
+                      formdata.canteen_contact?.phone
+                        ? formdata.canteen_contact["phone"]
+                        : ""
+                    }
+                    onChange={(e) => {
+                      setFormData({
+                        ...formdata,
+                        canteen_contact: {
+                          ...formdata.canteen_contact,
+                          phone: e.target.value,
+                        },
+                      });
+                    }}
+                  />
+                </div>
+                <hr></hr>
+                <h4 className="capitalize">Canteen Menu Details</h4>
 
                 <div className="flex flex-col gap-4">
                   <h4 className="capitalize">Breakfast</h4>

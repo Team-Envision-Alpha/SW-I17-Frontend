@@ -161,31 +161,27 @@ export default function Food({
       return ele !== value;
     });
   }
-  const dummymenu = {
-    breakfast: ["Juice", "Sandwiches", "Coffee", "Tea"],
-    lunch: ["Pizza", "Pasta", "Burger", "Sandwiches"],
-    dinner: ["Lasagna", "Rolls", "Curry", "Fries"],
-  };
+
   function editMenu(str, i, index, value) {
     var newMenu = { ...formdata.food_req };
     var target = { ...newMenu[str] };
     // if (value) {
     //   if (target[i]) {
-    //     target[i] = [...target[i], dummymenu[str][index]];
+    //     target[i] = [...target[i], menu[str][index]];
     //   } else {
-    //     target[i] = [dummymenu[str][index]];
+    //     target[i] = [menu[str][index]];
     //   }
     // } else {
-    //   arrayRemove(target[i], dummymenu[str][index]);
+    //   arrayRemove(target[i], menu[str][index]);
     // }
     if (value) {
       if (target[i]) {
-        target[i].push(dummymenu[str][index]);
+        target[i].push(menu[str][index]);
       } else {
-        target[i] = [dummymenu[str][index]];
+        target[i] = [menu[str][index]];
       }
     } else {
-      target[i] = arrayRemove(target[i], dummymenu[str][index]);
+      target[i] = arrayRemove(target[i], menu[str][index]);
     }
     // target[i][index] = value;
     newMenu[str] = target;
@@ -224,7 +220,7 @@ export default function Food({
                       </div>
                       <img src={breakfast} className="w-[40%] mx-auto"></img>
                       <Typography className="text-justify">
-                        {dummymenu?.breakfast?.map((item, index) => {
+                        {menu?.breakfast?.map((item, index) => {
                           return (
                             <div key={index}>
                               <input
@@ -256,7 +252,7 @@ export default function Food({
                       </div>
                       <img src={lunch} className="w-[40%] mx-auto"></img>
                       <Typography className="text-justify">
-                        {dummymenu?.lunch?.map((item, index) => {
+                        {menu?.lunch?.map((item, index) => {
                           return (
                             <div key={index}>
                               <input
@@ -288,7 +284,7 @@ export default function Food({
                       </div>
                       <img src={dinner} className="w-[40%] mx-auto"></img>
                       <Typography className="text-justify">
-                        {dummymenu?.dinner?.map((item, index) => {
+                        {menu?.dinner?.map((item, index) => {
                           return (
                             <div key={index}>
                               <input

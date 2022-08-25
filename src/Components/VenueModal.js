@@ -36,8 +36,9 @@ export default function Modal({ modal, setModal, venue }) {
   };
   return (
     <div
-      className={`${modal ? "block" : "hidden"
-        } z-[100] bg-[#00000090] w-[100vw] h-[100vh] absolute top-0 left-0 flex flex-row transition-all duration-700`}
+      className={`${
+        modal ? "block" : "hidden"
+      } z-[100] bg-[#00000090] w-[100vw] h-[100vh] absolute top-0 left-0 flex flex-row transition-all duration-700`}
     >
       <div className="w-[98%] md:w-[50%] md:h-[85%] justify-center rounded-xl overflow-hidden mx-auto my-auto bg-[#f3b641] animate-[ping_0.3s_ease-in-out_reverse_1]">
         <div className="w-full bg-[#f3f3f3] h-[95%] mt-8 relative">
@@ -74,13 +75,16 @@ export default function Modal({ modal, setModal, venue }) {
                 </div>
                 <div className="flex flex-row align-middle my-2">
                   <img src={website} alt="icon" />
-                  <a className="my-auto ml-4" href={venue?.website} >{venue?.website}</a>
+                  <a className="my-auto ml-4" href={venue?.website}>
+                    {venue?.website}
+                  </a>
                 </div>
               </div>
               <div className="md:basis-[40%] flex flex-row justify-center">
                 <img
-                  src="https://picsum.photos/500"
-                  className="rounded-lg max-h-[90%] mx-auto my-auto" alt="icon"
+                  src={venue?.image ? venue.image : "https://picsum.photos/500"}
+                  className="rounded-lg max-h-[90%] mx-auto my-auto"
+                  alt="icon"
                 />
               </div>
             </div>
