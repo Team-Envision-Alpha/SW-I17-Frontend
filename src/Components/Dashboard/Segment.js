@@ -1,5 +1,5 @@
 import Card from "./EventCard";
-export default function Segment({ color, name, data }) {
+export default function Segment({ color, textcolor, name, data }) {
   return (
     <div
       className={`w-[50vw] pt-2 rounded-xl m-5`}
@@ -7,7 +7,11 @@ export default function Segment({ color, name, data }) {
         backgroundColor: color,
       }}
     >
-      <div className="bg-white mt-5 p-3 flex flex-row overflow-x-scroll">
+      <p className="text-center font-bold" style={{ color: textcolor }}>
+        {name}
+      </p>
+      <div className="bg-white mt-3 p-3 flex flex-row overflow-x-scroll">
+        <Card />
         <Card />
         <Card />
         <Card />

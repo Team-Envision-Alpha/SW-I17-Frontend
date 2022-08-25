@@ -24,6 +24,8 @@ import breakfast from "../../Assets/Images/Event/breakfast.svg";
 import lunch from "../../Assets/Images/Event/lunch.svg";
 import dinner from "../../Assets/Images/Event/dinner.svg";
 
+import { gql, useMutation, useQuery } from "@apollo/client";
+
 export default function Food({
   setFormData,
   formdata,
@@ -39,6 +41,16 @@ export default function Food({
   teams,
   onSubmit,
 }) {
+  const VENUE_QUERY = gql`
+    query getVenue($id: ID!) {
+      getVenue(id: $id) {
+        id
+        name
+        canteen_menu
+      }
+    }
+  `;
+
   function daysCount() {
     var start = new Date(formdata.from_date);
     var end = new Date(formdata.to_date);
@@ -162,7 +174,11 @@ export default function Food({
                           onChange={(e) => {
                             setFormData({
                               ...formdata,
-                              food: editFood("breakfast", i, e.target.checked),
+                              food_req: editFood(
+                                "breakfast",
+                                i,
+                                e.target.checked
+                              ),
                             });
                           }}
                         ></input>
@@ -184,7 +200,7 @@ export default function Food({
                           onChange={(e) => {
                             setFormData({
                               ...formdata,
-                              food: editFood("lunch", i, e.target.checked),
+                              food_req: editFood("lunch", i, e.target.checked),
                             });
                           }}
                         ></input>
@@ -206,7 +222,7 @@ export default function Food({
                           onChange={(e) => {
                             setFormData({
                               ...formdata,
-                              food: editFood("dinner", i, e.target.checked),
+                              food_req: editFood("dinner", i, e.target.checked),
                             });
                           }}
                         ></input>
