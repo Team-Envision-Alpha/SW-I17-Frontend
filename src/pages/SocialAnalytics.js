@@ -8,8 +8,8 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
-import Navbar from "../Components/Navbar";
-import bg from "../Assets/Images/Group.svg";
+// import Navbar from "../Components/Navbar";
+// import bg from "../Assets/Images/Group.svg";
 
 const data = [
   { name: "January", Total: 1200 },
@@ -23,8 +23,8 @@ const data = [
 const SocialAnalytics = ({ title, aspect }) => {
   return (
     <>
-      <div style={{ backgroundImage: `url(${bg})` }}>
-        <Navbar />
+      <div >
+        {/* <Navbar /> */}
         <div>
           <div className="flex flex-col gap-10 font-IBM-Sans px-8 my-10">
             <div>

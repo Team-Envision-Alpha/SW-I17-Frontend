@@ -24,8 +24,8 @@ const DashBoard = () => {
   return (
     
     <div
-      style={{ backgroundImage: `url(${bg})` }}
-      className="bg-[#f8f7f8] min-h-[100vh] bg-cover"
+      
+      className="min-h-[100vh] bg-cover"
     >
   
       <Navbar />

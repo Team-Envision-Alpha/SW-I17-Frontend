@@ -8,7 +8,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 // import axios from 'axios'
 const FbAccount = () => {
-    const [show, setShow] = useState(false);
+    
     //   const navigate = useNavigate();
     const [pageData, setPageData] = useState();
     console.log(pageData);
@@ -30,16 +30,16 @@ const FbAccount = () => {
     return (
         <>
             <div
-                style={{ backgroundImage: `url(${bg})` }}
-                className="flex gap-[24vw] h-[100vh]"
+                
+                className="flex pl-3 h-[100vh]"
             >
-                <div>
+                {/* <div>
                     <Navbar />
                     <div className="md:hidden block absolute z-50">
                         <Burger open={show} setOpen={setShow} />
                     </div>
                     <Sidebar show={show} setShow={setShow} />
-                </div>
+                </div> */}
 
                 <div className="flex flex-col gap-[8vh]">
                     <div className="font-IBM-Sans flex flex-col gap-5 py-[2vh]">

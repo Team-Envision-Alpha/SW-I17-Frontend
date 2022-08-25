@@ -2,7 +2,7 @@
 /* eslint-disable no-unused-vars */
 
 import React, { useEffect, useState } from "react";
-import Navbar from "../Components/NewNavbar";
+import Navbar from "../Components/Navbar";
 import Table from "../Components/Table";
 import bg from "../Assets/Images/Group.svg";
 import { gql, useMutation, useQuery } from "@apollo/client";
@@ -52,7 +52,7 @@ const EventReq = () => {
   const { loading, err, data,refetch } = useQuery(USER_QUERY);
   console.log(data);
   const [formdata, setFormData] = useState({});
-  const [show, setShow] = useState(false);
+  
   console.log(data);
   const [filterData, setFilterData] = useState([]);
   useEffect(() => {
@@ -88,16 +88,16 @@ const EventReq = () => {
   console.log(filterData);
   return (
     <>
-      <div style={{ backgroundImage: `url(${bg})` }}>
-        <Navbar />
+      <div >
+        {/* <Navbar />
         <div className="lg:hidden block absolute z-50">
           <Burger open={show} setOpen={setShow}></Burger>
         </div>
-        <Sidebar show={show} setShow={setShow} />
-        <div className="pt-24 md:ml-[20vw] mb-10 flex flex-col gap-20 items-center justify-center">
-          <div>
+        <Sidebar show={show} setShow={setShow} /> */}
+        <div className="my-20 flex flex-col gap-20  items-center justify-center">
+          {/* <div>
             <p className="font-bold text-[4vh] tracking-wide">Select User</p>
-          </div>
+          </div> */}
           <div className="flex flex-col w-[50vw] min-w-max md:flex-row gap-x-4 gap-y-4 h-auto justify-center">
             <input
               type="text"

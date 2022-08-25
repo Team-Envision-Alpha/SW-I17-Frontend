@@ -167,7 +167,8 @@ const Chat = ({ title }) => {
 
   return (
     <>
-      <div className="grid grid-cols-3 gap-4 w-[70vw]">
+
+      <div className="grid grid-cols-3 gap-4 w-[65vw] pl-3 pt-10">
         {/* chat sec-1 */}
         <div className="col-span-1 bg-white shadow-md rounded-2xl  h-fit">
           <div className="flex flex-col gap-4 font-IBM-Sans p-4">

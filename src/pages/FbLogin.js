@@ -1,12 +1,6 @@
 import React from "react";
-import bg from "../Assets/Images/Group.svg";
-import Burger from "../Components/burger";
-import Navbar from "../Components/NewNavbar";
-import Sidebar from "../Components/Sidebar";
-import { useState } from "react";
-
 const FbLogin = () => {
-  const [show, setShow] = useState(false);
+  
 
   const onSubmit = (e) => {
     console.log("Successfull");
@@ -16,16 +10,16 @@ const FbLogin = () => {
   return (
     <>
       <div
-        style={{ backgroundImage: `url${bg})` }}
+        // style={{ backgroundImage: `url${bg})` }}
         className="flex gap-[24vw] h-[100vh]"
       >
-        <div>
+        {/* <div>
           <Navbar />
           <div className="md:hidden block absolute z-50">
             <Burger open={show} setOpen={setShow} />
           </div>
           <Sidebar show={show} setShow={setShow} />
-        </div>
+        </div> */}
 
         <div className="flex flex-col gap-[6vh]">
           <div className="font-IBM-Sans flex flex-col gap-5 py-[2vh]">

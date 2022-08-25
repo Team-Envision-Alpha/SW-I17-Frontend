@@ -7,8 +7,8 @@ import EventCard from '../Components/EventCard';
 const DashBoard = () => {
   return (
     <>
-      <div style={{ backgroundImage: `url(${bg})` }}>
-        <Navbar />
+      <div >
+        {/* <Navbar /> */}
         <div className="flex flex-row mt-5">
           <p className="px-10">Invited Events</p>
           <p className="px-10 font-bold decoration -[3px]">

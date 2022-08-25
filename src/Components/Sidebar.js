@@ -18,11 +18,9 @@ export default function Sidebar({ current, show, setShow }) {
   return (
     <div
       className={`${
-        !show ? "translate-x-0 " : "translate-x-[-100vw]"
-      }  flex flex-col md:w-auto w-[100vw] align-middle h-[100vh] fixed overflow-y-scroll bg-white px-10 py-5 transition duration-500 z-30`}
-      //   style={{ transform: show ? "translateX(0)" : "translateX(-100%)" }}
+        !show ? "hidden " : " "
+      }  flex flex-col md:w-[25vw] w-[100vw] align-middle h-[100vh] flxed overflow-y-scroll bg-white px-10 py-5 transition duration-500`}
     >
-      {/* <div className=""> */}
       <Link to="/dashboard">
         <img src={logo} className="w-[12vw] md:w-[8vw] mx-auto" alt="aicte" />
         <img
