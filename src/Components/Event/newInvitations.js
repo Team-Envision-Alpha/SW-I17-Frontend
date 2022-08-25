@@ -106,6 +106,47 @@ export default function Invitations({
     }
   `;
 
+  const EVENT_MUTATION = gql`
+    mutation UpdateEventStatus($updateEventStatusId: ID!, $status: String!) {
+      updateEventStatus(id: $updateEventStatusId, status: $status)
+    }
+  `;
+
+  const [update, ldg] = useMutation(EVENT_MUTATION, {
+    onError: (err) => {
+      console.log(err);
+      toast.error(err.message, {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    },
+    onCompleted: (data) => {
+      console.log(data);
+      // setStatus(true);
+      // setEventId(data.createEvent.id);
+      // setVenueId(data.requestVenue.event_id);
+      toast.success(`Event Request Complete!`, {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+      // setFormData({});
+    },
+    variables: {
+      updateEventStatusId: event.id,
+      status: "complete",
+    },
+  });
+
   const [invites, loading] = useMutation(INVITE_MUTATION, {
     onError: (err) => {
       console.log(err);
@@ -133,6 +174,7 @@ export default function Invitations({
         draggable: true,
         progress: undefined,
       });
+      update();
       setFormData({});
     },
     variables: formdata,
@@ -143,6 +185,10 @@ export default function Invitations({
     setFormData({
       ...formdata,
       event_id: event.id,
+      users:
+        typeof formdata.users != "string"
+          ? JSON.stringify(formdata.users)
+          : formdata.users,
     });
     console.log(formdata);
     invites();
