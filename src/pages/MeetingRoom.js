@@ -34,8 +34,9 @@ const MeetingRoom = () => {
 
         {/* Main */}
 
-        <div className="flex flex-wrap justify-center items-center gap-10">
-          <div>
+        <ul className="flex flex-wrap justify-center items-center gap-10">
+          <li>
+
             <div className="w-[25vw] h-[30vh] rounded-xl bg-[#DEDEDE80] shadow-sm flex justify-center items-center">
               {/* integ ref: video, if on  */}
 
@@ -52,9 +53,12 @@ const MeetingRoom = () => {
             <div className="bg-[#00000080] w-[5vw] rounded-bl-xl rounded-tr-xl relative bottom-7">
               <p className="text-white text-sm text-center py-1 ">text</p>
             </div>
-          </div>
 
-          <div>
+          </li>
+
+          
+          <li>
+
             <div className="w-[25vw] h-[30vh] rounded-xl bg-[#DEDEDE80] shadow-sm flex justify-center items-center">
               {/* integ ref: video, if on  */}
 
@@ -71,9 +75,13 @@ const MeetingRoom = () => {
             <div className="bg-[#00000080] w-[5vw] rounded-bl-xl rounded-tr-xl relative bottom-7">
               <p className="text-white text-sm text-center py-1 ">text</p>
             </div>
-          </div>
 
-          <div>
+          </li>
+
+
+
+          <li>
+
             <div className="w-[25vw] h-[30vh] rounded-xl bg-[#DEDEDE80] shadow-sm flex justify-center items-center">
               {/* integ ref: video, if on  */}
 
@@ -90,9 +98,13 @@ const MeetingRoom = () => {
             <div className="bg-[#00000080] w-[5vw] rounded-bl-xl rounded-tr-xl relative bottom-7">
               <p className="text-white text-sm text-center py-1 ">text</p>
             </div>
-          </div>
 
-          <div>
+          </li>
+
+
+
+          <li>
+
             <div className="w-[25vw] h-[30vh] rounded-xl bg-[#DEDEDE80] shadow-sm flex justify-center items-center">
               {/* integ ref: video, if on  */}
 
@@ -109,9 +121,13 @@ const MeetingRoom = () => {
             <div className="bg-[#00000080] w-[5vw] rounded-bl-xl rounded-tr-xl relative bottom-7">
               <p className="text-white text-sm text-center py-1 ">text</p>
             </div>
-          </div>
 
-          <div>
+          </li>
+
+
+
+          <li>
+
             <div className="w-[25vw] h-[30vh] rounded-xl bg-[#DEDEDE80] shadow-sm flex justify-center items-center">
               {/* integ ref: video, if on  */}
 
@@ -128,9 +144,12 @@ const MeetingRoom = () => {
             <div className="bg-[#00000080] w-[5vw] rounded-bl-xl rounded-tr-xl relative bottom-7">
               <p className="text-white text-sm text-center py-1 ">text</p>
             </div>
-          </div>
 
-          <div>
+          </li>
+
+
+          <li>
+
             <div className="w-[25vw] h-[30vh] rounded-xl bg-[#DEDEDE80] shadow-sm flex justify-center items-center">
               {/* integ ref: video, if on  */}
 
@@ -147,8 +166,11 @@ const MeetingRoom = () => {
             <div className="bg-[#00000080] w-[5vw] rounded-bl-xl rounded-tr-xl relative bottom-7">
               <p className="text-white text-sm text-center py-1 ">text</p>
             </div>
-          </div>
-        </div>
+
+          </li>
+
+          
+        </ul>
 
         {/* Controls */}
 

@@ -7,33 +7,28 @@ import Sidebar from "../Components/Sidebar";
 import { useState } from "react";
 import fbLogo from "../Assets/Images/fbLogo.svg";
 import twitterLogo from "../Assets/Images/twitterLogo.svg";
-import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props'
+import FacebookLogin from "react-facebook-login/dist/facebook-login-render-props";
 import axios from "axios";
 import { gql, useMutation, useQuery } from "@apollo/client";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useSearchParams } from "react-router-dom"
+import { useSearchParams } from "react-router-dom";
+import BothHandlePost from "../Components/BothHandlePost";
 
 const SocialMedia = () => {
   const [show, setShow] = useState(false);
 
   const [searchParams, setSearchParams] = useSearchParams();
-  const oauthverifier = searchParams.get('oauth_verifier') || ''
+  const oauthverifier = searchParams.get("oauth_verifier") || "";
 
-  const oauthtoken = searchParams.get('oauth_token') || ''
+  const oauthtoken = searchParams.get("oauth_token") || "";
 
-
-
-  const [shortlivedaccesstoken, setShortlivedaccesstoken] = useState("")
+  const [shortlivedaccesstoken, setShortlivedaccesstoken] = useState("");
   const LONGLIVEACCESSTOKEN_MUTATION = gql`
-  mutation
-    fbGetLongLivedAccessToken(
-  $shortlivedaccesstoken: String!
-    ){
-      fbGetLongLivedAccessToken(
-        shortlivedaccesstoken: $shortlivedaccesstoken)
+    mutation fbGetLongLivedAccessToken($shortlivedaccesstoken: String!) {
+      fbGetLongLivedAccessToken(shortlivedaccesstoken: $shortlivedaccesstoken)
     }
-`;
+  `;
 
   const [register] = useMutation(LONGLIVEACCESSTOKEN_MUTATION, {
     onError: (err) => {
@@ -49,8 +44,11 @@ const SocialMedia = () => {
       });
     },
     onCompleted: (data) => {
-
-      localStorage.setItem("longlivedaccesstoken", JSON.parse(data.fbGetLongLivedAccessToken).longlivedaccesstoken.access_token)
+      localStorage.setItem(
+        "longlivedaccesstoken",
+        JSON.parse(data.fbGetLongLivedAccessToken).longlivedaccesstoken
+          .access_token
+      );
 
       toast.success(`Facebook user Logged in successfully`, {
         position: "top-center",
@@ -61,37 +59,28 @@ const SocialMedia = () => {
         draggable: true,
         progress: undefined,
       });
-
     },
     variables: {
-      shortlivedaccesstoken
-    }
-
+      shortlivedaccesstoken,
+    },
   });
 
-
   const responseFacebook = async (response) => {
-    setShortlivedaccesstoken(response.accessToken)
+    setShortlivedaccesstoken(response.accessToken);
     register();
-  }
-
+  };
 
   const TWITTEROAUTH1_QUERY = gql`
-  query Oauth1{
-    twOauth1
-  }
-`;
+    query Oauth1 {
+      twOauth1
+    }
+  `;
 
   const TWITTEROAUTH2_MUTATION = gql`
-mutation
-  twOauth2(
-$oauthtoken: String! $oauthverifier: String!
-  ){
-    twOauth2(
-      oauthtoken: $oauthtoken oauthverifier: $oauthverifier)
-  }
-`
-
+    mutation twOauth2($oauthtoken: String!, $oauthverifier: String!) {
+      twOauth2(oauthtoken: $oauthtoken, oauthverifier: $oauthverifier)
+    }
+  `;
 
   const [getoauth2, { loading }] = useMutation(TWITTEROAUTH2_MUTATION, {
     onError: (err) => {
@@ -107,20 +96,19 @@ $oauthtoken: String! $oauthverifier: String!
       });
     },
     onCompleted: (data) => {
-
       // localStorage.setItem("longlivedaccesstoken", JSON.parse(data.fbGetLongLivedAccessToken).longlivedaccesstoken.access_token)
-      console.log(JSON.parse(data.twOauth2))
+      console.log(JSON.parse(data.twOauth2));
       if (data) {
-        const splitdata = JSON.parse(data.twOauth2).split("&")
-        const oauth_token = splitdata[0].split("=")[1]
-        const oauth_token_secret = splitdata[1].split("=")[1]
-        const user_id = splitdata[2].split("=")[1]
-        const screen_name = splitdata[3].split("=")[1]
-        localStorage.setItem("twitter_oauth_token", oauth_token)
-        localStorage.setItem("twitter_oauth_token_secret", oauth_token_secret)
-        localStorage.setItem("twitter_user_id", user_id)
-        localStorage.setItem("twitter_screen_name", screen_name)
-        window.location.replace("/social_media")
+        const splitdata = JSON.parse(data.twOauth2).split("&");
+        const oauth_token = splitdata[0].split("=")[1];
+        const oauth_token_secret = splitdata[1].split("=")[1];
+        const user_id = splitdata[2].split("=")[1];
+        const screen_name = splitdata[3].split("=")[1];
+        localStorage.setItem("twitter_oauth_token", oauth_token);
+        localStorage.setItem("twitter_oauth_token_secret", oauth_token_secret);
+        localStorage.setItem("twitter_user_id", user_id);
+        localStorage.setItem("twitter_screen_name", screen_name);
+        window.location.replace("/social_media");
       }
       toast.success(`Twitteruser Logged in successfully`, {
         position: "top-center",
@@ -131,34 +119,35 @@ $oauthtoken: String! $oauthverifier: String!
         draggable: true,
         progress: undefined,
       });
-
     },
     variables: {
-      oauthtoken, oauthverifier
-    }
-
+      oauthtoken,
+      oauthverifier,
+    },
   });
 
   const Twitteroauth1 = useQuery(TWITTEROAUTH1_QUERY);
 
-
   const loginTwitter = async () => {
     if (!Twitteroauth1.loading && Twitteroauth1.data) {
-      window.location.replace(`https://api.twitter.com/oauth/authorize?oauth_token=${JSON.parse(Twitteroauth1?.data?.twOauth1).oauth_token}`)
+      window.location.replace(
+        `https://api.twitter.com/oauth/authorize?oauth_token=${
+          JSON.parse(Twitteroauth1?.data?.twOauth1).oauth_token
+        }`
+      );
     }
-
-  }
+  };
 
   if (oauthverifier.length && oauthtoken.length) {
-    localStorage.setItem('twitter_oauth_verifier', oauthverifier)
-    getoauth2()
+    localStorage.setItem("twitter_oauth_verifier", oauthverifier);
+    getoauth2();
   }
-  
+
   return (
     <>
       <div
         style={{ backgroundImage: `url(${bg})` }}
-        className="flex gap-[24vw] h-[100vh]"
+        className="flex gap-[24vw] h-fit pb-20"
       >
         <div>
           <Navbar />
@@ -199,14 +188,19 @@ $oauthtoken: String! $oauthverifier: String!
                   fields="name,email,picture"
                   scope="public_profile,email,pages_read_engagement,pages_manage_posts, pages_read_user_content,publish_video"
                   callback={responseFacebook}
-                  render={renderProps => (
+                  render={(renderProps) => (
                     <button onClick={renderProps.onClick}>
                       <img src={fbLogo} alt="fbLogo" />
                     </button>
                   )}
                 />
               </div>
-              <div className="flex items-center justify-center w-[20vw] h-[15vh] cursor-pointer bg-[#FFFFFF] shadow-lg rounded-xl" onClick={() => { loginTwitter() }}>
+              <div
+                className="flex items-center justify-center w-[20vw] h-[15vh] cursor-pointer bg-[#FFFFFF] shadow-lg rounded-xl"
+                onClick={() => {
+                  loginTwitter();
+                }}
+              >
                 <img src={twitterLogo} alt="fbLogo" />
               </div>
             </div>

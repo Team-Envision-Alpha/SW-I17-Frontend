@@ -92,16 +92,16 @@ const FbAccount = () => {
               <p>You are logged in as:</p>
             </div>
             <div>
-              <div className="flex items-center px-8 w-[20vw] h-[15vh]  bg-[#FFFFFF] shadow-lg rounded-xl">
+              <div className="flex items-center px-8 w-[22vw] h-[18vh]  bg-[#FFFFFF] shadow-lg rounded-xl py-10">
                 <div className="flex flex-col">
                   {userData && (
                     <>
-                      <div className="flex gap-6">
-                        <div>
+                      <div className="flex gap-6 items-center">
+                        <div className="w-[5vw] h-[10vh] rounded-full">
                           <img
                             src={userData.picture.data.url}
                             alt="dp"
-                            width={55}
+                            className="w-[5vw] h-[10vh] rounded-full"
                           />
                         </div>
                         <div className="font-IBM-Sans">
@@ -148,12 +148,12 @@ const FbAccount = () => {
                     className="flex items-center px-4 w-[20vw] h-[15vh]  bg-[#FFFFFF] shadow-lg rounded-xl relative"
                     key={idx}
                   >
-                    <div className="flex gap-6">
-                      <div>
+                    <div className="flex gap-6 items-center">
+                      <div className="w-[7vw] h-[10vh] rounded-full">
                         <img
                           src={data.picture.data.url}
                           alt="logo"
-                          width={80}
+                          className="w-[7vw] h-[10vh] rounded-full"
                         />
                       </div>
                       <div className="flex flex-col gap-2 font-IBM-Sans text-base font-semibold">
@@ -164,7 +164,7 @@ const FbAccount = () => {
                     <div>
                       <a
                         href={`/fb_main/${data.id}`}
-                        className="underline text-[#F0783B] font-IBM-Sans text-base font-semibold absolute bottom-[3vh] right-[3vh]"
+                        className="underline text-[#F0783B] font-IBM-Sans text-base font-semibold absolute bottom-[1vh] right-[3vh]"
                       >
                         Visit
                       </a>

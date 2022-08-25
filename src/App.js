@@ -37,6 +37,7 @@ import ActivityLog from "./pages/ActivityLog";
 import TwiChat from "./pages/TwiChat";
 import MassMailer from "./pages/MassMailer";
 import MeetingRoom from "./pages/MeetingRoom";
+import Report from "./pages/Report";
 
 const App = () => {
   // const [longlivedaccesstoken, setLonglivedaccesstoken] = useState(null);
@@ -124,6 +125,12 @@ const App = () => {
             path="/meeting_room"
             element={<MeetingRoom title="Meeting Room"></MeetingRoom>}
           />
+          <Route path="/chat" element={<TwiChat title="chats"></TwiChat>} />
+          <Route
+            path="/report"
+            element={<Report title="see report"></Report>}
+          />
+       
 
           {/* <Route
             path="/social_analytics"
