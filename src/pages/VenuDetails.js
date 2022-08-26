@@ -28,6 +28,9 @@ const User = () => {
     pincode: "",
     capacity: "",
     website: "",
+    canteen_contact: "",
+    canteen_menu: "",
+    resources: [],
   });
   const fields = [
     "name",
@@ -58,8 +61,47 @@ const User = () => {
     return res.data;
   };
 
+  // const VENUE_MUTATION = gql`
+  //   mutation registerVenue(
+  //     $name: String!
+  //     $email: String!
+  //     $venue_head: ID!
+  //     $phone: String!
+  //     $city: String!
+  //     $state: String!
+  //     $address: String!
+  //     $pincode: String!
+  //     $capacity: String!
+  //     $image: String!
+  //     $website: String!
+  //     $canteen_menu: String!
+  //     $canteen_contact: String!
+  //     $resources: [String]
+  //   ) {
+  //     registerVenue(
+  //       name: $name
+  //       email: $email
+  //       venue_head: $venue_head
+  //       phone: $phone
+  //       city: $city
+  //       state: $state
+  //       address: $address
+  //       pincode: $pincode
+  //       capacity: $capacity
+  //       image: $image
+  //       website: $website
+  //       canteen_menu: $canteen_menu
+  //       canteen_contact: $canteen_contact
+  //       resources: $resources
+  //     ) {
+  //       id
+  //       name
+  //     }
+  //   }
+  // `;
+
   const VENUE_MUTATION = gql`
-    mutation registerVenue(
+    mutation RegisterVenue(
       $name: String!
       $email: String!
       $venue_head: ID!
@@ -68,11 +110,12 @@ const User = () => {
       $state: String!
       $address: String!
       $pincode: String!
-      $capacity: String!
       $image: String!
-      $website: String!
+      $capacity: String!
       $canteen_menu: String!
       $canteen_contact: String!
+      $resources: [String]!
+      $website: String
     ) {
       registerVenue(
         name: $name
@@ -83,11 +126,12 @@ const User = () => {
         state: $state
         address: $address
         pincode: $pincode
-        capacity: $capacity
         image: $image
-        website: $website
+        capacity: $capacity
         canteen_menu: $canteen_menu
         canteen_contact: $canteen_contact
+        resources: $resources
+        website: $website
       ) {
         id
         name
@@ -97,6 +141,7 @@ const User = () => {
   const [arr, setArr] = useState();
   const [venue, { loading }] = useMutation(VENUE_MUTATION, {
     onError: (err) => {
+      console.log(err);
       toast.error("Error: Venue not added!", {
         position: "top-center",
         autoClose: 3000,
