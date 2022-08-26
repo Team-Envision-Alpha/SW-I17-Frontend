@@ -66,7 +66,7 @@ export default function Event() {
                 </p>
               </div>
               <div>
-                <div className=" bg-[#f0783b] rounded-lg w-[25.5vw] mt-9 overflow-y-hidden text-center shadow-lg hover:shadow-2xl transition">
+                <div className=" bg-[#f0783b] rounded-lg  mt-9 overflow-y-hidden text-center shadow-lg hover:shadow-2xl transition">
                   <p className="text-white mx-auto text-center py-1">
                     Event Timing
                   </p>
