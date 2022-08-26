@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import logo from "../Assets/Images/logo.svg";
 import hands from "../Assets/Images/hands.svg";
+import {useNavigate} from "react-router-dom";
 
 const Welcome = () => {
+    const navigate = useNavigate()
     return (
         <>
      <div className="flex flex-col gap-4 items-center justify-center">
@@ -26,16 +28,19 @@ Norms and Standards.</p>
 </div>
 <div className="flex items-center gap-16">
 <div>
-<button class="float-left px-8 ml-10 bg-white text-red-600 border-red-600 border-2 font-bold p-1 mt-2 rounded-lg h">
-                      decline
+<button class="float-left px-8 ml-10 bg-white text-red-600 border-red-600 border-2 font-bold p-1 mt-2 rounded-lg h"
+onClick={()=>navigate("/login")}>
+                      Log In
                     </button>
                     </div>
                     <div>
+
                    <button
-                      class="hover:bg-green-700 px-8 text-white font-bold p-1 pb-2 mb-2 mt-2 px-2 rounded-lg h"
+                      class="hover:bg-green-700 px-8 text-white font-bold p-1 pb-2 mb-2 mt-2 rounded-lg h"
                       style={{ backgroundColor: "#1F8B24" }}
+                      onClick={()=>navigate("/tour")}
                     >
-                      accept
+                      Next
                     </button>
                     </div>
 </div>
