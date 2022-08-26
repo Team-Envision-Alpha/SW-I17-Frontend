@@ -39,6 +39,8 @@ import Global from "./pages/Global";
 import Temp from "./Components/Temp";
 import Requests from "./pages/Request";
 import Welcome from "./pages/Welcome";
+
+import SingleEvent from "./pages/singleEvent";
 const App = () => {
   const aicteuser = localStorage.getItem("aicteuser");
 
@@ -53,7 +55,8 @@ const App = () => {
             }
           />
           {aicteuser ? (
-            <>+
+            <>
+              +
               <Route path="/dashboard" element={<DashBoard />} />
               <Route path="/home" element={<Home />} />
               <Route
@@ -85,6 +88,14 @@ const App = () => {
                 element={
                   <Global heading="Event Requests">
                     <EventReq />
+                  </Global>
+                }
+              />
+              <Route
+                path="/getevent/:id"
+                element={
+                  <Global heading="Event Requests">
+                    <SingleEvent />
                   </Global>
                 }
               />
@@ -163,8 +174,6 @@ const App = () => {
                   </Global>
                 }
               />
-
-
               <Route
                 path="/twitter_main"
                 element={
@@ -174,15 +183,17 @@ const App = () => {
                   </Global>
                 }
               />
-              <Route path="/req"  element={
+              <Route
+                path="/req"
+                element={
                   <Global heading="Your Twitter Page">
                     {" "}
                     <Requests title="Activity log"></Requests>
                   </Global>
                 }
               />
-               <Route path="/welcome" element={<Welcome />} />
-{/* 
+              <Route path="/welcome" element={<Welcome />} />
+              {/* 
           <Route path="/events" element={<Event />} />
           
           <Route path="/dashboard" element={<DashBoard />} />
@@ -206,9 +217,7 @@ const App = () => {
             element={<EventAndVenueDetails />}
           />
  */}
-
               {/*  */}
-
               <Route
                 path="/meeting_room"
                 element={<MeetingRoom title="Meeting Room"></MeetingRoom>}
@@ -225,9 +234,7 @@ const App = () => {
                 path="/report"
                 element={<Report title="see report"></Report>}
               />
-
               <Route path="/feedback" element={<Feedback />} />
-
               <Route path="/venue_dashboard" element={<VenueDashboard />} />
             </>
           ) : (
