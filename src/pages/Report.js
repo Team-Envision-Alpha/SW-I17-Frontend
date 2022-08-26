@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 // import bg from "../Assets/Images/Group.svg";
 import Burger from "../Components/burger";
 import Navbar from "../Components/NewNavbar";
@@ -12,17 +12,38 @@ import mailReportIcon from "../Assets/Images/mailReportIcon.svg";
 import Icon3 from "../Assets/Images/Icon3_Modal.svg";
 import DetailTable from "../Components/Detailtable";
 import ReportResTable from "../Components/ReportResTable";
+// import React2Pdf from "react2pdf";
+import html2canvas from "html2canvas";
+// const options = {};
+// const reactToPdf = new React2Pdf(options);
+import { useReactToPrint } from "react-to-print";
 
 const Report = () => {
   const [show, setShow] = useState(false);
-  const [heading, setHeading] = useState()
-  const [message, setMessage] = useState()
-  const [newelement, setNewElement] = useState([])
+  const [heading, setHeading] = useState();
+  const [message, setMessage] = useState();
+  const [newelement, setNewElement] = useState([]);
+  // const handleReport = async (e) => {
+  //   reactToPdf.addPage(document.querySelector("#capture").innerHTML);
+  //   const date = new Date();
+  //   const pdfStream = await reactToPdf.render(
+  //     `./report${date.getSeconds()}`,
+  //     "A4"
+  //   );
+  // };
+
+  const componentRef = useRef();
+  const handlePrint = useReactToPrint({
+    content: () => componentRef.current,
+  });
+
+  // const handleReport = async (e) => {
+  //   // html2canvas(document.querySelector("#capture")).then((canvas) => {
+  //   // });
+  // };
   return (
     <>
-      <div
-        className="flex h-fit mb-20 pl-3"
-      >
+      <div className="flex h-fit mb-20 pl-3">
         {/* <div>
           <Navbar />
           <div className="md:hidden block absolute z-50">
@@ -30,7 +51,6 @@ const Report = () => {
           </div>
           <Sidebar show={show} setShow={setShow} />
         </div> */}
-
 
         <div className="flex flex-col gap-[6vh] items-center">
           {/* <div className="font-IBM-Sans flex flex-col gap-5 py-[2vh]">
@@ -41,23 +61,27 @@ const Report = () => {
               First Item / Second Item / Third Item
             </p>
           </div> */}
-          <div className="flex flex-col gap-10">
+          <div className="flex flex-col gap-10" id="capture">
             <div className="font-extrabold font-IBM-Sans text-2xl tracking-wide">
               <p>AICTE Event Report </p>
             </div>
 
-
-            <div className="flex justify-center w-[70vw]">
+            <div className="flex justify-center w-[70vw]" ref={componentRef}>
+              <style type="text/css" media="print">
+                {"\
+  @page { size: landscape; }\
+"}
+              </style>
               <div className="w-[60vw] px-6 py-10 bg-[#EBEBEB] flex flex-col gap-10 justify-center items-center">
-
                 {/* header */}
 
                 <div className="flex flex-col justify-center items-center gap-6  ">
-                  <p className="font-IBM-Sans font-extrabold text-3xl tracking-wide">Event Report</p>
+                  <p className="font-IBM-Sans font-extrabold text-3xl tracking-wide">
+                    Event Report
+                  </p>
                 </div>
 
                 <div className="border-b-2 border-b-[#B4ABABA8] w-full "></div>
-
 
                 {/* main report */}
 
@@ -136,9 +160,7 @@ const Report = () => {
                           />
                         </div>
                         <div>
-                          <p className="font-IBM-Sans text-base">
-                            200 People
-                          </p>
+                          <p className="font-IBM-Sans text-base">200 People</p>
                         </div>
                       </div>
                     </div>
@@ -161,10 +183,11 @@ const Report = () => {
                         </p>
                       </div>
                       <div className="max-w-md bg-white border-2 border-black px-6 py-4 rounded-xl ">
-                        <p className="font-IBM-Sans text-lg tracking-wider">SRM Catering Service - Chennai</p>
+                        <p className="font-IBM-Sans text-lg tracking-wider">
+                          SRM Catering Service - Chennai
+                        </p>
                       </div>
                     </div>
-
                   </div>
 
                   {/* right-sec */}
@@ -177,20 +200,15 @@ const Report = () => {
                       </div>
                       <div className="flex gap-6 items-center">
                         <div>
-                          <img
-                            src={Icon3}
-                            alt="userReportIcon"
-                            width={50}
-                          />
+                          <img src={Icon3} alt="userReportIcon" width={50} />
                         </div>
                         <div>
-
                           <p className="text-sm font-IBM-Sans max-w-[15vw]">
-                            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quia, voluptatibus!
+                            Lorem ipsum dolor sit, amet consectetur adipisicing
+                            elit. Quia, voluptatibus!
                           </p>
                         </div>
                       </div>
-
 
                       <div className="flex gap-6 items-center">
                         <div>
@@ -222,10 +240,6 @@ const Report = () => {
                         </div>
                       </div>
 
-
-
-
-
                       <div className="flex gap-6 items-center">
                         <div>
                           <img
@@ -242,11 +256,6 @@ const Report = () => {
                       </div>
                     </div>
 
-
-
-
-
-
                     <div className=" flex flex-col justify-center gap-6 ">
                       <div>
                         <p className="font-IBM-Sans text-xl font-extrabold">
@@ -258,20 +267,16 @@ const Report = () => {
                       </div>
                     </div>
 
-
-
                     {newelement.map((data) => (
                       <div className="flex flex-col gap-3">
-                        <h1 className="font-IBM-Sans text-xl font-extrabold">{data.heading}</h1>
+                        <h1 className="font-IBM-Sans text-xl font-extrabold">
+                          {data.heading}
+                        </h1>
                         <p>{data.message}</p>
                       </div>
                     ))}
-
-
-
                   </div>
                 </div>
-
               </div>
             </div>
           </div>
@@ -319,16 +324,25 @@ const Report = () => {
             </div>
             <div
               className=" bg-green-700 text-white px-5 py-3 rounded-lg cursor-pointer w-[20vw] text-center"
-              onClick={() => { if (heading && message) { setNewElement([...newelement, { heading, message }]); setHeading(""); setMessage(""); } }}
+              onClick={() => {
+                if (heading && message) {
+                  setNewElement([...newelement, { heading, message }]);
+                  setHeading("");
+                  setMessage("");
+                }
+              }}
             >
               Add Component
             </div>
           </div>
+          <div
+            className=" bg-green-700 text-white px-5 py-3 rounded-lg cursor-pointer w-[20vw] text-center"
+            onClick={handlePrint}
+          >
+            Save Report
+          </div>
         </div>
-
-
       </div>
-
     </>
   );
 };
