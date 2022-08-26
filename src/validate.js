@@ -16,6 +16,7 @@ export function validatePhone(phone) {
 
 export function validatePassword(password) {
   return String(password).match(
+    // eslint-disable-next-line no-useless-escape
     /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/
   )
     ? true
