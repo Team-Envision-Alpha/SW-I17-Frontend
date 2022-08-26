@@ -4,7 +4,7 @@ import { useDropzone } from "react-dropzone";
 import axios from "axios";
 import { gql, useQuery } from "@apollo/client";
 
-function DragAndDrop({ url, seturl }) {
+function DragAndDrop({ url, seturl , hashtag,sethashtag }) {
 
     const EVENT_QUERY = gql`
     query Query($image: String!) {
@@ -18,6 +18,7 @@ function DragAndDrop({ url, seturl }) {
     });
     if (!loading) {
         console.log(data?.getHashtags);
+        sethashtag(data?.getHashtags);
 
     }
     const { acceptedFiles, fileRejections, getRootProps, getInputProps } =

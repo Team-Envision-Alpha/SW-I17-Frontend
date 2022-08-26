@@ -7,11 +7,11 @@ import tickIcon from "../Assets/Images/tickIcon.svg";
 import msgIcon from "../Assets/Images/msgIcon.svg";
 import redirect from "../Assets/Images/redirect.svg";
 import fbLike from "../Assets/Images/fbLike.svg";
-import fbHeart from "../Assets/Images/fbHeart.svg";
-import logo from "../Assets/Images/aicte.png";
-import Burger from "../Components/burger";
-import Navbar from "../Components/NewNavbar";
-import Sidebar from "../Components/Sidebar";
+// import fbHeart from "../Assets/Images/fbHeart.svg";
+// import logo from "../Assets/Images/aicte.png";
+// import Burger from "../Components/burger";
+// import Navbar from "../Components/NewNavbar";
+// import Sidebar from "../Components/Sidebar";
 import uploadButtonIcon from "../Assets/Images/uploadButton.svg";
 import { useState, useEffect } from "react";
 import { FaInfoCircle } from "react-icons/fa";
@@ -42,6 +42,7 @@ const FbMainPage = () => {
   const [modalIsOpen, setModalIsOpen] = React.useState(false);
   const [url, seturl] = useState("");
   const [caption, setcaption] = useState("");
+  const [hashtag,sethashtag]=useState("");
   const [pageloading, setPageloading] = useState(true);
   let postuploaded
   console.log(url)
@@ -60,10 +61,6 @@ const FbMainPage = () => {
   const converttime = (time) => {
     const date1 = new Date(time);
     const date2 = new Date();
-    // console.log(getDifferenceInHours(date1, date2));
-    // console.log(getDifferenceInMinutes(date1, date2));
-    // console.log(getDifferenceInSeconds(date1, date2));
-
     function getDifferenceInDays(date1, date2) {
       const diffInMs = Math.abs(date2 - date1);
       return Math.ceil(diffInMs / (1000 * 60 * 60 * 24));
@@ -351,7 +348,7 @@ const FbMainPage = () => {
                       <h1 className="text-lg font-bold">Create a Post</h1>
                     </div>
                     <div className="w-full flex flex-col justify-center items-center gap-4 pt-20"><RiImageAddFill className="text-7xl text-[#818181] " />
-                    <DragandDrop url={url} seturl={seturl} />
+                    <DragandDrop url={url} seturl={seturl} hashtag={hashtag} sethashtag={sethashtag}/>
                   </div>
                     <div className="flex p-4 items-center gap-2">
                       <div>
