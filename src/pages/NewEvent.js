@@ -223,7 +223,7 @@ export default function Event() {
   }
 
   // console.log(getVenueHead("d628f966-ca4f-40b8-95dd-44c0525b12e8"));
-
+  console.log(formdata);
   const onSubmit = async (e) => {
     e.preventDefault();
     // const url = await getImageUrl(image);

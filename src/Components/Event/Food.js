@@ -243,6 +243,16 @@ export default function Food({
     var target = { ...newFood[str] };
     target[index] = convertToArray(value);
     newFood[str] = target;
+    setFormData({
+      ...formdata,
+      food_req: {
+        ...formdata.food_req,
+        [str]: {
+          ...formdata.food_req[str],
+          [index]: [...formdata.food_req[str][index], ...convertToArray(value)],
+        },
+      },
+    });
     return newFood[str];
   }
   // console.log(formdata);
