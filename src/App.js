@@ -87,18 +87,17 @@ const App = () => {
               <>{aicteuser ? <Navigate to="/dashboard" /> : <Welcome />}</>
             }
           />
+          <Route
+            pat="/create_organisation"
+            element={
+              <Global heading="Create Organization" user={aicteuser}>
+                <CreateOrg />
+              </Global>
+            }
+          />
           {aicteuser ? (
             <>
-              {checkPermission(["aicte"]) && (
-                <Route
-                  pat="/create_organisation"
-                  element={
-                    <Global heading="Create Organization" user={aicteuser}>
-                      <CreateOrg />
-                    </Global>
-                  }
-                />
-              )}
+
               <Route
                 path="/dashboard"
                 element={<DashBoard user={aicteuser} />}
