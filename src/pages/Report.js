@@ -1,8 +1,8 @@
 import React from "react";
 // import bg from "../Assets/Images/Group.svg";
-import Burger from "../Components/burger";
-import Navbar from "../Components/NewNavbar";
-import Sidebar from "../Components/Sidebar";
+// import Burger from "../Components/burger";
+// import Navbar from "../Components/NewNavbar";
+// import Sidebar from "../Components/Sidebar";
 import { useState } from "react";
 import calIcon from "../Assets/Images/calIcon.svg";
 import userReportIcon from "../Assets/Images/userReportIcon.svg";
@@ -14,7 +14,7 @@ import DetailTable from "../Components/Detailtable";
 import ReportResTable from "../Components/ReportResTable";
 
 const Report = () => {
-  const [show, setShow] = useState(false);
+  // const [show, setShow] = useState(false);
   const [heading, setHeading] = useState()
   const [message, setMessage] = useState()
   const [newelement, setNewElement] = useState([])

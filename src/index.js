@@ -16,6 +16,7 @@ const token = JSON.parse(localStorage.getItem("aicteuser"))
   : "";
 
 // const graphURL = "http://localhost:4000/graphql";
+// const graphURL = "http://192.168.220.59:4000/graphql";
 const graphURL = "https://envisionalpha.aaruush.org/graphql";
 const client = new ApolloClient({
   uri: graphURL,

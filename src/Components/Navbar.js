@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React, { useState } from "react";
+import React, { useState ,useEffect} from "react";
 import dp from "../Assets/Images/ico.svg";
 import logo from "../Assets/Images/logo.svg";
 import bellIcon from "../Assets/Images/bellIcon.svg";
@@ -18,7 +18,14 @@ const Navbar = () => {
   const navigate = useNavigate();
   const user = JSON.parse(localStorage.getItem("aicteuser"));
   const [file, setfile] = useState();
+  
   let image = user.image;
+  const [ userdata,setUserdata]= useState();
+
+  useEffect(()=>{
+  setUserdata(user)
+  },[user])
+  
   // const [image, setimage] = useState();
 
   // const USER_QUERY = gql`

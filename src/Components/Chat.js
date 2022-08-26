@@ -71,7 +71,7 @@ const Chat = ({ title }) => {
   });
   const [message, setMessage] = useState("");
   const [newMessage, setNewMessage] = useState(false);
-  const [commonchat, setCommonChat] = useState(false);
+  const [commonchat, setCommonChat] = useState(true);
 
 
   const CHATS_QUERY = gql`

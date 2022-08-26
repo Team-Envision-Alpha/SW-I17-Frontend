@@ -227,9 +227,9 @@ const SocialMedia = () => {
               }
 
             </div >
-            {(twconnected && fbconnected) &&
-              <BothHandlePost twconnected={twconnected} fbconnected={fbconnected} />
-            }
+            {/* {(twconnected && fbconnected) && */}
+            <BothHandlePost twconnected={twconnected} fbconnected={fbconnected} />
+            {/* } */}
 
           </div >
         </div >

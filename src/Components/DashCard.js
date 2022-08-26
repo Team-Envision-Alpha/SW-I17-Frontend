@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/alt-text */
 import React from "react";
 import arrow from "../Assets/Images/arrowdown.svg";
 import frame1 from "../Assets/Dashboardicons/Dashboard Icons/frame1.png";
