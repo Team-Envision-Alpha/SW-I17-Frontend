@@ -38,7 +38,7 @@ import ErrorPage from "./pages/Errorpage";
 import Global from "./pages/Global";
 import Temp from "./Components/Temp";
 import Requests from "./pages/Request";
-
+import Welcome from "./pages/Welcome";
 const App = () => {
   const aicteuser = localStorage.getItem("aicteuser");
 
@@ -181,6 +181,7 @@ const App = () => {
                   </Global>
                 }
               />
+               <Route path="/welcome" element={<Welcome />} />
 {/* 
           <Route path="/events" element={<Event />} />
           
