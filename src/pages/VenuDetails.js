@@ -57,7 +57,7 @@ const User = () => {
     console.log(res);
     return res.data;
   };
-  
+
   const VENUE_MUTATION = gql`
     mutation registerVenue(
       $name: String!
@@ -210,10 +210,10 @@ const User = () => {
     venue();
     // console.log(loading);
   };
-  // console.log(formdata);
+  console.log(formdata);
   return (
     <>
-      <div classname="" >
+      <div classname="">
         {/* <Navbar />
         <Burger open={show} setOpen={setShow}></Burger>
         <Sidebar show={show} setShow={setShow} /> */}
@@ -361,6 +361,21 @@ const User = () => {
                     }}
                   />
                 </div>
+                <h4 className="capitalize">Resources</h4>
+                <CreatableSelect
+                  className="w-full outline-none"
+                  styles={customStyles}
+                  closeMenuOnSelect={false}
+                  isMulti
+                  components={animatedComponents}
+                  value={formdata.food}
+                  onChange={(e) => {
+                    setFormData({
+                      ...formdata,
+                      resources: convertToArray(e),
+                    });
+                  }}
+                />
                 <hr></hr>
                 <h4 className="capitalize">Canteen Menu Details</h4>
 
