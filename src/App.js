@@ -41,6 +41,7 @@ import Requests from "./pages/Request";
 import Welcome from "./pages/Welcome";
 
 import SingleEvent from "./pages/singleEvent";
+import TourPage from "./pages/Tourpage";
 const App = () => {
   const aicteuser = localStorage.getItem("aicteuser");
 
@@ -49,14 +50,19 @@ const App = () => {
       <Router>
         <Routes>
           <Route
-            path="/"
+            path="/login"
             element={
               <>{aicteuser ? <Navigate to="/dashboard" /> : <Login />}</>
             }
           />
+          <Route
+            path="/"
+            element={
+              <>{aicteuser ? <Navigate to="/dashboard" /> : <Welcome />}</>
+            }
+          />
           {aicteuser ? (
             <>
-              +
               <Route path="/dashboard" element={<DashBoard />} />
               <Route path="/home" element={<Home />} />
               <Route
@@ -193,31 +199,7 @@ const App = () => {
                 }
               />
               <Route path="/welcome" element={<Welcome />} />
-              {/* 
-          <Route path="/events" element={<Event />} />
-          
-          <Route path="/dashboard" element={<DashBoard />} />
-        
-          <Route path="/user_registration" element={<User />} />
-          <Route path="/requests" element={<EventReq />} />
-          <Route path="/edituser" element={<EditUser />} />
-          <Route path="/venues" element={<ViewVenues />} />
-          <Route path="/event_modal" element={<EventModal />} />
-          <Route path="/invited_event" element={<InvitedEvent />} />
-          <Route path="/add_venue" element={<VenueDetails />} />
-          <Route path="/feedback" element={<Feedback />} />
-          <Route path="/star" element={<Star />}/>
-      
-          <Route
-            path="/canteen"
-            element={<Canteen eventName="Blockchain Workshop" />}
-          />
-          <Route
-            path="/event_and_venue_details"
-            element={<EventAndVenueDetails />}
-          />
- */}
-              {/*  */}
+
               <Route
                 path="/meeting_room"
                 element={<MeetingRoom title="Meeting Room"></MeetingRoom>}
