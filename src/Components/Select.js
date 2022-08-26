@@ -55,10 +55,11 @@ export default function select({
   }
 
   function getName(name, formdata) {
+    console.log(name,formdata,dataobj)
     if (dataobj) {
       return formoptions.find((o) => o.value === formdata[name]);
     } else {
-      return formdata[name];
+      return {label:formdata[name], value:formdata[name]};
     }
   }
 

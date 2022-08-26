@@ -64,6 +64,7 @@ const App = () => {
     ['aicte', 'poc', 'admin', 'venue'],
     ['aicte', 'poc', 'admin', 'social', 'venue'],
     ['aicte', 'poc', 'admin', 'venue', 'social', 'user'],
+    ['aicte']
   ]
 
   // console.log(checkPermission(groups[0]))
@@ -88,7 +89,7 @@ const App = () => {
             <>
 
               {
-                checkPermission(["aicte"]) && (<Route pat="/create_organisation" element={<Global heading="Create Organization" user={aicteuser} ><CreateOrg /></Global>} />)
+                checkPermission(groups[6]) && (<Route path="/create_organisation" element={<Global heading="Create Organization" user={aicteuser} ><CreateOrg /></Global>} />)
               }
               <Route path="/dashboard" element={<DashBoard user={aicteuser} />} />
 
