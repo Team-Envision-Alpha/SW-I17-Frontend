@@ -24,26 +24,21 @@ import FbAccount from "./pages/FbAccount";
 import SocialMedia from "./pages/SocialMedia";
 import FacebookMain from "./pages/FbMainPage";
 import TwitterMainPage from "./pages/TwitterMainPage";
-// import ActivityLog from "./pages/ActivityLog";
+import ActivityLog from "./pages/ActivityLog";
 import Chat from "./Components/Chat";
 import MassMailer from "./pages/MassMailer";
 import MeetingRoom from "./pages/MeetingRoom";
 import Report from "./pages/Report";
 import Feedback from "./pages/Feedback";
-// import Star from "./Components/Starcomponent";
+import Star from "./Components/Starcomponent";
 import Home from "./pages/Home";
 import VenueDashboard from "./pages/VenueDashboard";
+
 import ErrorPage from "./pages/Errorpage";
 import Global from "./pages/Global";
 import Temp from "./Components/Temp";
-import ActivityDash from "./pages/ActivityDashboard";
-import CommunicationDash from "./pages/CommunicationDashboard";
-import EventDash from "./pages/EventDashboard";
-import VenueDash from "./pages/VenueDashboardcomp";
-import UserDash from "./pages/UserDashboard";
-
-
-import SingleEvent from "./pages/singleEvent";
+import Requests from "./pages/Request";
+import Welcome from "./pages/Welcome";
 const App = () => {
   const aicteuser = localStorage.getItem("aicteuser");
 
@@ -57,13 +52,8 @@ const App = () => {
               <>{aicteuser ? <Navigate to="/dashboard" /> : <Login />}</>
             }
           />
-          <Route path="/eventdashboard" element={<EventDash />} />
-          <Route path="/activitydashboard" element={<ActivityDash />} />
-          <Route path="/communicationdashboard" element={<CommunicationDash />} />
-          <Route path="/userdashboard" element={<UserDash />} />
-          <Route path="/venuedashboard" element={<VenueDash />} />
           {aicteuser ? (
-            <>
+            <>+
               <Route path="/dashboard" element={<DashBoard />} />
               <Route path="/home" element={<Home />} />
               <Route
@@ -87,14 +77,6 @@ const App = () => {
                 element={
                   <Global heading="Add New Department">
                     <Department />
-                  </Global>
-                }
-              />
-              <Route
-                path="/getevent/:id"
-                element={
-                  <Global heading="View Event Detail">
-                    <SingleEvent />
                   </Global>
                 }
               />
@@ -142,7 +124,7 @@ const App = () => {
                 path="/activity_log"
                 element={
                   <Global heading="Activity Log">
-                    <Temp />
+                    <ActivityLog />
                   </Global>
                 }
               />
@@ -192,7 +174,15 @@ const App = () => {
                   </Global>
                 }
               />
-              {/* 
+              <Route path="/req"  element={
+                  <Global heading="Your Twitter Page">
+                    {" "}
+                    <Requests title="Activity log"></Requests>
+                  </Global>
+                }
+              />
+               <Route path="/welcome" element={<Welcome />} />
+{/* 
           <Route path="/events" element={<Event />} />
           
           <Route path="/dashboard" element={<DashBoard />} />
@@ -233,7 +223,7 @@ const App = () => {
               />
               <Route
                 path="/report"
-                element={<Global heading="Event Reports"><Report title="see report"/></Global>}
+                element={<Report title="see report"></Report>}
               />
 
               <Route path="/feedback" element={<Feedback />} />
