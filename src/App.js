@@ -39,6 +39,7 @@ import Global from "./pages/Global";
 import Temp from "./Components/Temp";
 import Requests from "./pages/Request";
 import Welcome from "./pages/Welcome";
+import TourPage from "./pages/Tourpage";
 const App = () => {
   const aicteuser = localStorage.getItem("aicteuser");
 
@@ -47,9 +48,15 @@ const App = () => {
       <Router>
         <Routes>
           <Route
-            path="/"
+            path="/login"
             element={
               <>{aicteuser ? <Navigate to="/dashboard" /> : <Login />}</>
+            }
+          />
+          <Route
+            path="/"
+            element={
+              <>{aicteuser ? <Navigate to="/dashboard" /> : <Welcome />}</>
             }
           />
           {aicteuser ? (
@@ -181,7 +188,13 @@ const App = () => {
                   </Global>
                 }
               />
-               <Route path="/welcome" element={<Welcome />} />
+               
+
+               <Route path="/tour"  element={
+                  <TourPage />
+                }
+              />
+
 {/* 
           <Route path="/events" element={<Event />} />
           
