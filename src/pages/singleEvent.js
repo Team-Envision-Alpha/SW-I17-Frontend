@@ -1,5 +1,7 @@
+/* eslint-disable no-extend-native */
+/* eslint-disable no-unused-vars */
 import { gql, useQuery } from "@apollo/client";
-import { request } from "twitter-api-sdk/dist/request";
+// import { request } from "twitter-api-sdk/dist/request";
 import { useParams } from "react-router-dom";
 import polygon from "../Assets/Images/errorimg.png";
 import _ from "lodash";
@@ -106,7 +108,7 @@ export default function Event() {
         </div>
       ) : (
         <div className="text-lg mx-auto my-auto mt-10 w-max">
-          <img src={polygon}></img>
+          <img src={polygon} alt="polygon"></img>
           <p className="text-center">Event Not Found</p>
         </div>
       )}
