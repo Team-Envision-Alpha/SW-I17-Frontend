@@ -197,29 +197,6 @@ const SocialMedia = () => {
               <p>Connect Your Social Media Handles</p>
             </div>
             <div className="flex gap-[6vw]">
-
-              {/* <div className="flex items-center justify-center w-[20vw] h-[15vh]  bg-[#FFFFFF] shadow-lg rounded-xl">
-                <FacebookLogin
-                  appId="2075260336175600"
-                  fields="name,email,picture"
-                  scope="public_profile,email,pages_read_engagement,pages_manage_posts, pages_read_user_content,publish_video"
-                  callback={responseFacebook}
-                  render={(renderProps) => (
-                    <button onClick={renderProps.onClick}>
-                      <img src={fbLogo} alt="fbLogo" />
-                    </button>
-                  )}
-                />
-              </div>
-              <div
-                className="flex items-center justify-center w-[20vw] h-[15vh] cursor-pointer bg-[#FFFFFF] shadow-lg rounded-xl"
-                onClick={() => {
-                  loginTwitter();
-                }}
-              >
-                <img src={twitterLogo} alt="fbLogo" />
-              </div> */}
-
               {!fbconnected ?
                 <div className="flex items-center justify-center w-[20vw] h-[15vh]  bg-[#FFFFFF] shadow-lg rounded-xl">
                   <FacebookLogin
@@ -250,6 +227,10 @@ const SocialMedia = () => {
               }
 
             </div >
+            {(twconnected && fbconnected) &&
+              <BothHandlePost twconnected={twconnected} fbconnected={fbconnected} />
+            }
+
           </div >
         </div >
       </div >
