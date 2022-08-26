@@ -24,6 +24,7 @@ const EventReq = () => {
         capacity
         website
         image
+        resources
       }
     }
   `;
@@ -31,7 +32,7 @@ const EventReq = () => {
 
   const { loading, err, data } = useQuery(VENUE_QUERY);
   const [formdata, setFormData] = useState({});
-  
+
   const [modal, setModal] = useState(false);
 
   console.log(data);
@@ -66,13 +67,13 @@ const EventReq = () => {
   }, [formdata]);
   console.log(filterData);
 
-if (loading) {
+  if (loading) {
     return <h3>Loading...</h3>;
-}
+  }
 
   return (
     <>
-      <div >
+      <div>
         {/* <Navbar />
         <Burger open={show} setOpen={setShow}></Burger>
         <Sidebar show={show} setShow={setShow} /> */}

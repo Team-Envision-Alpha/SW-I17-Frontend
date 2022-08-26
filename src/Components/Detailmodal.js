@@ -10,6 +10,7 @@ import icon8 from "../Assets/Images/icon8.png";
 import banquet from "../Assets/Images/banquet.png";
 import Table from "../Components/Detailtable";
 import { ImCancelCircle } from "react-icons/im";
+import _ from "lodash";
 
 const DetailModal = ({ isOpen, setIsOpen, event }) => {
   function reqlevel(e) {
@@ -21,6 +22,23 @@ const DetailModal = ({ isOpen, setIsOpen, event }) => {
       return -1;
     }
   }
+  function daysCount() {
+    var start = new Date(event?.from_date);
+    var end = new Date(event?.to_date);
+    const diffTime = Math.abs(end - start);
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+    return diffDays + 1;
+  }
+  function getDate(date) {
+    // var day = new Date(date);
+    return date;
+  }
+  Date.prototype.addDays = function (days) {
+    var date = new Date(this.valueOf());
+    date.setDate(date.getDate() + days);
+    return date.toDateString().split(",")[0];
+  };
+
   console.log(event);
   return (
     <>
@@ -41,7 +59,7 @@ const DetailModal = ({ isOpen, setIsOpen, event }) => {
               />
             </div>
             <div className="my-5">
-              <p className="text-[3vh] font-bold">{event.name}</p>
+              <p className="text-[3vh] font-bold">{event?.name}</p>
             </div>
 
             {/* LEFT SIDE */}
@@ -50,7 +68,7 @@ const DetailModal = ({ isOpen, setIsOpen, event }) => {
                 <div>
                   <p className="text-[1.5vh] font-semibold">Date and Time</p>
                 </div>
-                <div
+                {/* <div
                   className="flex items-center gap-2"
                   style={{
                     filter: `${
@@ -68,7 +86,29 @@ const DetailModal = ({ isOpen, setIsOpen, event }) => {
                       End Date = 15 March 2022 (6:00AM - 12:00PM)
                     </p>
                   </div>
-                </div>
+                </div> */}
+                {/* <div className=" bg-[#f0783b] rounded-lg  mt-9 overflow-y-hidden text-center shadow-lg hover:shadow-2xl transition">
+                  <p className="text-white mx-auto text-center py-1">
+                    Event Timing
+                  </p>
+                  <div className="bg-white h-[18vh] text-black">
+                    <div className="flex flex-row overflow-x-scroll h-full">
+                      {_.times(daysCount(), (i) => {
+                        return (
+                          <div className="flex flex-col justify-around border-r-2 px-10 min-w-[10vw]">
+                            <p className="text-md font-bold">
+                              {getDate(new Date(event?.from_date).addDays(i))}
+                            </p>
+                            <p className="font-bold text-sm">
+                              {JSON.parse(event?.time)[i].from} -{" "}
+                              {JSON.parse(event?.time)[i].to}
+                            </p>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+                </div> */}
                 <div>
                   <p className="text-[1.5vh] font-semibold">Organized by </p>
                 </div>

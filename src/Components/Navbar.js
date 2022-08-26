@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React, { useState ,useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import dp from "../Assets/Images/ico.svg";
 import logo from "../Assets/Images/logo.svg";
 import bellIcon from "../Assets/Images/bellIcon.svg";
@@ -12,6 +12,21 @@ import { gql, useMutation, useQuery } from "@apollo/client";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import NotifcationModal from "./notifcationModal";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+import Modal from "@mui/material/Modal";
+
+const style = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: 400,
+  bgcolor: "background.paper",
+  border: "2px solid #000",
+  boxShadow: 24,
+  p: 4,
+};
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -20,13 +35,12 @@ const Navbar = () => {
   const [file, setfile] = useState();
   let image = user?.image;
 
-
   // const [ userdata,setUserdata]= useState();
 
   // useEffect(()=>{
   //   image=user.image
   // },[user])
-  
+
   // const [image, setimage] = useState();
 
   // const USER_QUERY = gql`
@@ -44,7 +58,9 @@ const Navbar = () => {
   // if (!userData.loading) {
   //   image = userData?.data?.getUser.image
   // }
-
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
   const [url, seturl] = useState();
   // const user = { name: "Rishit", role: "admin" };
   const PROFILE_MUTATION = gql`
@@ -110,7 +126,23 @@ const Navbar = () => {
     };
     reader.readAsDataURL(file);
   };
-
+  const NOTIFY = gql`
+    query notify($id: ID!) {
+      getNotifications(user_id: $id) {
+        id
+        user_id
+        message
+        createdat
+      }
+    }
+  `;
+  console.log(user);
+  const notify = useQuery(NOTIFY, {
+    variables: { id: user.id },
+  });
+  if (!notify?.loading) {
+    console.log(notify?.data);
+  }
   // console.log(userData?.data?.getUser)
 
   return (
@@ -137,27 +169,43 @@ const Navbar = () => {
 
           {user && (
             <div className="flex gap-8 ">
+              <div>
+                {/* <Button onClick={handleOpen}>Open modal</Button> */}
+                <Modal
+                  open={open}
+                  onClose={handleClose}
+                  aria-labelledby="modal-modal-title"
+                  aria-describedby="modal-modal-description"
+                >
+                  <Box sx={style}>
+                    <div className="flex  flex-col gap-2">
+                      <div>
+                        <p className="font-bold text-xl">Notifications</p>
+                      </div>
+                      {notify?.data?.getNotifications.map((notify) => (
+                        <div className="flex justify-between items-center ">
+                          <div className=" font-IBM-Sans">
+                            <p className="text-base text-[#F0783B] font-bold ">
+                              {notify.message}
+                              <span className="text-3xl relative bottom-1">
+                                .
+                              </span>
+                            </p>
+                          </div>
+                          <div>
+                            <p className="text-sm text-[#696969] ">
+                              {new Date(notify.createdat).toLocaleDateString()}
+                            </p>
+                          </div>
+                        </div>
+                      ))}
+                      <div className="border-b-2 border-b-[#B4ABABA8] w-full py-1 px-4"></div>
+                    </div>
+                  </Box>
+                </Modal>
+              </div>
               <div className="flex gap-2">
-              <button>
-                  <img
-                    src={bellIcon}
-                    alt="bellIcon"
-                    width={40}
-                    className="mx-4"
-                    onClick={() => {
-                      setIsOpen(!isOpen);
-                    }}
-                  />
-                </button>
-                 
-                <NotifcationModal
-                    isOpen={setIsOpen}
-                  />
-                {/* {isOpen && (
-                  <NotifcationModal
-                    isOpen={setIsOpen}
-                  />
-                )} */}
+                <button onClick={handleOpen} className=" h-full"></button>
 
                 <div>
                   {/* <img src={dp} alt="dp" width={35} /> */}

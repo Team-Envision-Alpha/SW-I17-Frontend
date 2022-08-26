@@ -197,11 +197,10 @@ export default function Event() {
         progress: undefined,
       });
     },
-    onCompleted: (data) => {
-      console.log(data);
-      setEventId(data.createEvent.id);
-      setVenueData({ ...venuedata, event_id: data.createEvent.id });
-      venues();
+    onCompleted: async (data) => {
+      await console.log(data);
+      await setEventId(data.createEvent.id);
+      await setVenueData({ ...venuedata, event_id: data.createEvent.id });
       toast.success(`Event Added successfully!`, {
         position: "top-center",
         autoClose: 3000,
@@ -232,7 +231,8 @@ export default function Event() {
       // image: url,
       image:
         "https://aicte-storage.s3.ap-south-1.amazonaws.com/venues/aicte-1661152629031.webp",
-      status: "pending",
+      status:
+        user.role === "aicte" || user.role === "poc" ? "teamhead" : "pending",
       time:
         typeof formdata.time != "string"
           ? await JSON.stringify(formdata.time)
@@ -244,6 +244,14 @@ export default function Event() {
     });
     console.log(formdata);
 
+    events();
+    // window.alert(`Request Successsful for ${venueid}`, venueid == eventid);
+    // console.log(venuedata);
+    // if (status)
+  };
+  const handleVenueBook = async (e) => {
+    e.preventDefault();
+
     setVenueData({
       ...venuedata,
       venue_id: formdata.venue,
@@ -252,13 +260,9 @@ export default function Event() {
       to_date: formdata.to_date,
       time: formdata.time,
     });
-
-    events();
-    // window.alert(`Request Successsful for ${venueid}`, venueid == eventid);
-    // console.log(venuedata);
-    // if (status)
+    console.log(venuedata);
+    if (venuedata.event_id) await venues();
   };
-
   return (
     <main
       className="flex flex-row"
@@ -371,6 +375,8 @@ export default function Event() {
               onSubmit={onSubmit}
               fooddata={fooddata}
               setFoodData={setFoodData}
+              handleVenueBook={handleVenueBook}
+              venuedata={venuedata}
             />
           ) : null}
 

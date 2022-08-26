@@ -8,10 +8,12 @@ import Icon_4 from "../Assets/Images/Icon4_Modal.svg";
 import Icon_5 from "../Assets/Images/Icon5_Modal.svg";
 import Icon_6 from "../Assets/Images/Icon6_Modal.svg";
 import { ImCancelCircle } from "react-icons/im";
+import { Navigate, useNavigate } from "react-router-dom";
 
 import Modal from "./MoreDetails";
 
 const EventModal = ({ setIsOpen, event }) => {
+  const navigate = useNavigate();
   const [show, setShow] = useState(false);
   function reqlevel(e) {
     if (e === "pending") {
@@ -60,9 +62,17 @@ const EventModal = ({ setIsOpen, event }) => {
                 <br />
                 To - {event?.to_date}
                 <br />
-                {event?.time}
+                {/* {event?.time} */}
                 <br />
-                {event?.id}
+                ID - {event?.id}
+                <br />
+                <br />
+                <p
+                  className="hover:text-red-800 transition cursor-pointer"
+                  onClick={(e) => navigate("/getevent/" + event?.id)}
+                >
+                  View More
+                </p>
               </div>
             </div>
             <div className="flex flex-col gap-4">

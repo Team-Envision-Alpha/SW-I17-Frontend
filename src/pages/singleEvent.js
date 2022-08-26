@@ -5,8 +5,11 @@ import { gql, useQuery } from "@apollo/client";
 import { useParams } from "react-router-dom";
 import polygon from "../Assets/Images/errorimg.png";
 import _ from "lodash";
-
+import { useNavigate } from "react-router-dom";
 export default function Event() {
+  const user = JSON.parse(localStorage.getItem("aicteuser"));
+  console.log(user);
+  const navigate = useNavigate();
   const EVENT_QUERY = gql`
     query getEvent($getEventId: ID!) {
       getEvent(id: $getEventId) {
@@ -103,6 +106,16 @@ export default function Event() {
                 className="rounded-lg max-w-[250px] mt-10"
                 alt="event"
               />
+              {user?.id ? (
+                <div
+                  className="bg-[#ef6522] p-4 m-1 rounded-lg text-center text-white cursor-pointer hover:bg-[#ff6533] transition"
+                  onClick={(e) => {
+                    navigate("/dashboard/");
+                  }}
+                >
+                  Go to Dashboard
+                </div>
+              ) : null}
             </div>
           </div>
         </div>
