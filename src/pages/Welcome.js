@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import logo from "../Assets/Images/logo.svg";
 import hands from "../Assets/Images/hands.svg";
 import TourPage from "./Tourpage";
 import { Link } from "react-router-dom";
 
 const Welcome = () => {
+  const [show, setShow] = useState(true);
+
  
   
   
