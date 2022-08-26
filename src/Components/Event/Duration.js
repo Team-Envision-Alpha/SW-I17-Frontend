@@ -110,7 +110,7 @@ export default function Details({
         }
       });
     }
-    return check;
+    return true;
   }
   function checkData() {
     console.log(formdata);

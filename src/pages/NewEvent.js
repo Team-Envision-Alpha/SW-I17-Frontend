@@ -148,7 +148,8 @@ export default function Event() {
       )
     }
   `;
-
+  const [fooddata, setFoodData] = useState({});
+  console.log(fooddata);
   const [venues, venues_loading] = useMutation(VENUE_MUTATION, {
     onError: (err) => {
       console.log(err.message);
@@ -368,6 +369,8 @@ export default function Event() {
               data={data}
               teams={teams}
               onSubmit={onSubmit}
+              fooddata={fooddata}
+              setFoodData={setFoodData}
             />
           ) : null}
 
