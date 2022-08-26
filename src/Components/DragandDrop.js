@@ -2,9 +2,24 @@
 import React, { useState } from "react";
 import { useDropzone } from "react-dropzone";
 import axios from "axios";
+import { gql, useQuery } from "@apollo/client";
+
 function DragAndDrop({ url, seturl }) {
 
+    const EVENT_QUERY = gql`
+    query Query($image: String!) {
+        getHashtags(image: $image)
+      }
+      
+  `;
 
+    const { loading, err, data,refetch } = useQuery(EVENT_QUERY, {
+        variables: { image: url }
+    });
+    if (!loading) {
+        console.log(data?.getHashtags);
+
+    }
     const { acceptedFiles, fileRejections, getRootProps, getInputProps } =
         useDropzone({
             accept: "image/*",
@@ -24,6 +39,7 @@ function DragAndDrop({ url, seturl }) {
             .then((res) => {
                 console.log(res);
                 seturl(res.data.data);
+                refetch({image:res.data.data});
             });
     };
 
@@ -34,7 +50,7 @@ function DragAndDrop({ url, seturl }) {
                 <p>Drag and drop your post here, or click to select file</p>
             </div>
             <aside>
-                {url && <img src={url} alt="post" className="h-[20vh]"/>}
+                {url && <img src={url} alt="post" className="h-[20vh]" />}
             </aside>
         </section>
     );
