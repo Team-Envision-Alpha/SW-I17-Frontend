@@ -233,7 +233,7 @@ const App = () => {
               />
               <Route
                 path="/report"
-                element={<Report title="see report"></Report>}
+                element={<Global heading="Event Reports"><Report title="see report"/></Global>}
               />
 
               <Route path="/feedback" element={<Feedback />} />
