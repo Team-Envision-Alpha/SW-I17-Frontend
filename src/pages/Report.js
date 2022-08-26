@@ -9,6 +9,9 @@ import userReportIcon from "../Assets/Images/userReportIcon.svg";
 import teleReportIcon from "../Assets/Images/teleReportIcon.svg";
 import groupReportIcon from "../Assets/Images/groupReportIcon.svg";
 import mailReportIcon from "../Assets/Images/mailReportIcon.svg";
+import ribbon from "../Assets/Images/Ribbon.png";
+import azadi from "../Assets/Images/Azadi.png";
+import logo from "../Assets/Images/logo_new.svg";
 import Icon3 from "../Assets/Images/Icon3_Modal.svg";
 import DetailTable from "../Components/Detailtable";
 import ReportResTable from "../Components/ReportResTable";
@@ -43,7 +46,7 @@ const Report = () => {
   // };
   return (
     <>
-      <div className="flex h-fit mb-20 pl-3">
+      <div className="flex h-fit mb-20 pl justify-center">
         {/* <div>
           <Navbar />
           <div className="md:hidden block absolute z-50">
@@ -62,8 +65,9 @@ const Report = () => {
             </p>
           </div> */}
           <div className="flex flex-col gap-10" id="capture">
-            <div className="font-extrabold font-IBM-Sans text-2xl tracking-wide">
+            <div className="font-extrabold font-IBM-Sans text-2xl tracking-wide flex justify-between pt-4">
               <p>AICTE Event Report </p>
+              <a href="/" className="underline text-blue-700 text-base">Download Report</a>
             </div>
 
             <div className="flex justify-center w-[70vw]" ref={componentRef}>
@@ -72,16 +76,22 @@ const Report = () => {
   @page { size: landscape; }\
 "}
               </style>
-              <div className="w-[60vw] px-6 py-10 bg-[#EBEBEB] flex flex-col gap-10 justify-center items-center">
+              <div className="w-[60vw]  py-10 bg-[#EBEBEB] flex flex-col gap-10 justify-center items-center">
                 {/* header */}
 
-                <div className="flex flex-col justify-center items-center gap-6  ">
+                <div className="flex  justify-between items-center gap-6 w-full px-4 ">
+                <img src={logo} alt="logo" width={90}   />
+
                   <p className="font-IBM-Sans font-extrabold text-3xl tracking-wide">
                     Event Report
                   </p>
+                  <img src={azadi} alt="azadi" width={90} />
+
                 </div>
 
-                <div className="border-b-2 border-b-[#B4ABABA8] w-full "></div>
+                <div >
+                  <img src={ribbon} alt="ribbon"width={1500} />
+                </div>
 
                 {/* main report */}
 
@@ -268,10 +278,10 @@ const Report = () => {
                     </div>
 
                     {newelement.map((data) => (
-                      <div className="flex flex-col gap-3">
-                        <h1 className="font-IBM-Sans text-xl font-extrabold">
+                      <div className="flex flex-col gap-3 bg-white w-full rounded-xl border-2 border-black justify-center items-center p-3">
+                        <p className="font-IBM-Sans  font-extrabold text-xl">
                           {data.heading}
-                        </h1>
+                        </p>
                         <p>{data.message}</p>
                       </div>
                     ))}
