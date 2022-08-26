@@ -166,7 +166,7 @@ const Navbar = () => {
                     <div className="img-wrap img-upload">
                       <img
                         for="photo-upload"
-                        src={user.image}
+                        src={user?.image ? user?.image : dp}
                         alt="hello"
                         className="h-[40px] w-[40px] rounded-full"
                       />

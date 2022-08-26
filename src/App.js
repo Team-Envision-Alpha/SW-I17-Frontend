@@ -45,6 +45,7 @@ const App = () => {
   const aicteuser = localStorage.getItem("aicteuser");
 
   function checkPermission(group) {
+    const aicteuser = localStorage.getItem("aicteuser");
     if (aicteuser) {
       const user = JSON.parse(aicteuser);
       if (group.includes(user.role)) {
