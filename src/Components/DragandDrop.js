@@ -6,7 +6,8 @@ import { gql, useQuery } from "@apollo/client";
 
 function DragAndDrop({ url, seturl , hashtag,sethashtag }) {
 
-    const [ hash, sethash ] = useState("");
+    // const [ hash, sethash ] = useState("");
+    let hash = ""
 
     const EVENT_QUERY = gql`
     query Query($image: String!) {
@@ -20,8 +21,9 @@ function DragAndDrop({ url, seturl , hashtag,sethashtag }) {
     });
     if (!loading) {
         console.log(data?.getHashtags);
-        sethashtag(data?.getHashtags);
-        sethash(data?.getHashtags);
+        // sethashtag(data?.getHashtags);
+        hash  = data?.getHashtags;
+        // sethash(data?.getHashtags);
 
     }
     const { acceptedFiles, fileRejections, getRootProps, getInputProps } =
