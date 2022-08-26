@@ -21,7 +21,7 @@ function DragAndDrop({ url, seturl , hashtag,sethashtag }) {
     if (!loading) {
         console.log(data?.getHashtags);
         sethashtag(data?.getHashtags);
-        sethash(data.getHashtags);
+        sethash(data?.getHashtags);
 
     }
     const { acceptedFiles, fileRejections, getRootProps, getInputProps } =
