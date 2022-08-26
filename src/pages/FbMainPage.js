@@ -184,6 +184,10 @@ const FbMainPage = () => {
     postupload()
   }
 
+  if(hashtag){
+    setcaption(hashtag)
+  }
+
   return (
     <>
       {pageloading ? <Loading /> :
