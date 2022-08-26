@@ -1,11 +1,18 @@
 import React, { useState, useEffect } from 'react'
 import { BsImage } from "react-icons/bs";
+import DragandDrop from "../Components/DragandDrop";
 
 const BothHandlePost = ({ twconnected, fbconnected }) => {
   const [fbtext, setfbtext] = useState()
   const [twtext, settwtext] = useState()
   const [image, setimage] = useState()
+  const [url, seturl] = useState("");
+  // const pageaccesstoken = localStorage.getItem(`${id}`);
+  // const { id } = useParams();
 
+  const Submit = () =>{
+   
+  }
   return (
     <>
       <div className="flex flex-col gap-10">
@@ -22,6 +29,7 @@ const BothHandlePost = ({ twconnected, fbconnected }) => {
               rows="5"
               placeholder="Facebook caption here..."
               className="border-2 border-[#999999] rounded-xl p-2 font-IBM-Sans"
+              onChange={(e) => setfbtext(e.target.value)}
             ></textarea>
             <textarea
               name="twitter"
@@ -29,11 +37,12 @@ const BothHandlePost = ({ twconnected, fbconnected }) => {
               cols="35"
               rows="5"
               placeholder="Twitter caption here..."
+              onChange={(e) => setfbtext(e.target.value)}
               className="border-2 border-[#999999] rounded-xl p-2 font-IBM_Sans "
             ></textarea>
           </div>
           <div>
-            <button className="w-full border-2 p-3  border-[#F0783B] rounded-xl">
+            <button className="w-full border-2 p-3  border-[#F0783B] rounded-xl" >
               <div className="flex gap-4 justify-center items-center">
                 <BsImage className="text-[#F0783B] font-bold text-xl " />
                 <p className="font-IBM-Sans text-[#F0783B] font-bold text-xl">
@@ -44,7 +53,7 @@ const BothHandlePost = ({ twconnected, fbconnected }) => {
           </div>
           <div className="grid grid-cols-2 w-full  gap-10 font-bold">
             <button className="w-full border-2 p-4  border-[#A72314] rounded-xl text-[#A72314] text-xl">Discard</button>
-            <button className="w-full border-2 p-4  bg-[#1877F2] rounded-xl text-white text-xl">Post</button>
+            <button className="w-full border-2 p-4  bg-[#1877F2] rounded-xl text-white text-xl" onClick={() => { Submit() }}>Post</button>
           </div>
         </div>
       </div>
