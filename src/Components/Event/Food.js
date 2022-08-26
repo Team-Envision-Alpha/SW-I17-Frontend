@@ -47,6 +47,8 @@ export default function Food({
   onSubmit,
   fooddata,
   setFoodData,
+  handleVenueBook,
+  venuedata,
 }) {
   const VENUE_QUERY = gql`
     query getVenue($id: ID!) {
@@ -433,12 +435,21 @@ export default function Food({
           <div className="font-bold py-3 cursor-pointer" onClick={handleBack}>
             Go back
           </div>
-          <div
-            className=" bg-green-700 text-white px-10 py-3 rounded-lg cursor-pointer "
-            onClick={onSubmit}
-          >
-            Request Event
-          </div>
+          {venuedata.event_id ? (
+            <div
+              className=" bg-green-700 text-white px-10 py-3 rounded-lg cursor-pointer "
+              onClick={handleVenueBook}
+            >
+              Confirm Venue Book
+            </div>
+          ) : (
+            <div
+              className=" bg-green-700 text-white px-10 py-3 rounded-lg cursor-pointer "
+              onClick={onSubmit}
+            >
+              Request Event
+            </div>
+          )}
         </div>
       </div>
     </div>

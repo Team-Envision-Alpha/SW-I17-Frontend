@@ -4,36 +4,53 @@ import dp from "../Assets/Images/ico.svg";
 import logo from "../Assets/Images/logo.svg";
 import Button from "@mui/material/Button";
 import { useNavigate } from "react-router-dom";
-import '../Assets/styles.css'
+import "../Assets/styles.css";
 import axios from "axios";
 import { gql, useMutation, useQuery } from "@apollo/client";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+import Modal from "@mui/material/Modal";
+
+const style = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: 400,
+  bgcolor: "background.paper",
+  border: "2px solid #000",
+  boxShadow: 24,
+  p: 4,
+};
 const Navbar = () => {
   const navigate = useNavigate();
   const user = JSON.parse(localStorage.getItem("aicteuser"));
-  const [file, setfile] = useState()
-  let image = user.image
+  const [file, setfile] = useState();
+  let image = user.image;
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
-//   const USER_QUERY = gql`
-//   query user($id: ID!) {
-//     getUser(id:$id){
-//       image
-//   }
-// }
-// `
-//   const userData = useQuery(USER_QUERY, {
-//     variables: { id: user?.id },
-//   }
-//   );
+  //   const USER_QUERY = gql`
+  //   query user($id: ID!) {
+  //     getUser(id:$id){
+  //       image
+  //   }
+  // }
+  // `
+  //   const userData = useQuery(USER_QUERY, {
+  //     variables: { id: user?.id },
+  //   }
+  //   );
 
-//   if (!userData.loading) {
-//     image = userData?.data?.getUser.image
-//   }
-
+  //   if (!userData.loading) {
+  //     image = userData?.data?.getUser.image
+  //   }
 
   // const [image, setimage] = useState(user?.image ? user?.image : dp)
-  const [url, seturl] = useState()
+  const [url, seturl] = useState();
   // const user = { name: "Rishit", role: "admin" };
   const PROFILE_MUTATION = gql`
     mutation updateProfileImage($id: ID!, $image: String!) {
@@ -72,36 +89,35 @@ const Navbar = () => {
     },
 
     variables: {
-      id: user?.id, image: url
+      id: user?.id,
+      image: url,
     },
   });
 
-  const photoUpload = e => {
+  const photoUpload = (e) => {
     e.preventDefault();
     const reader = new FileReader();
     const file = e.target.files[0];
     const data = new FormData();
     data.append("image", file);
     reader.onloadend = async () => {
-      setfile(file)
+      setfile(file);
       // setimage(reader.result)
       const url = await axios
         .post("https://envisionalpha.aaruush.org/upload/fbpageupload", data)
         .then((res) => {
           console.log(res.data.data);
           seturl(res.data.data);
-          return res.data.data
+          return res.data.data;
         });
       if (url) {
-        login()
+        login();
       }
-    }
+    };
     reader.readAsDataURL(file);
-  }
+  };
 
   return (
-
-
     <div className="flex justify-between items-center">
       <ToastContainer
         position="top-center"
@@ -114,14 +130,42 @@ const Navbar = () => {
         draggable
         pauseOnHover
       />
+      <div>
+        <Button onClick={handleOpen}>Open modal</Button>
+        <Modal
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+          <Box sx={style}>
+            <Typography id="modal-modal-title" variant="h6" component="h2">
+              Text in a modal
+            </Typography>
+            <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+              Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+            </Typography>
+          </Box>
+        </Modal>
+      </div>
       <div className="flex mr-3 gap-2 ">
         <div>
           {/* <img src={dp} alt="dp" width={35} /> */}
           <label htmlFor="photo-upload" className="custom-file-upload fas">
-            <div className="img-wrap img-upload" >
-              <img for="photo-upload" src={image} alt="hello" className="h-[40px] w-[40px] rounded-full" />
+            <div className="img-wrap img-upload">
+              <img
+                for="photo-upload"
+                src={image}
+                alt="hello"
+                className="h-[40px] w-[40px] rounded-full"
+              />
             </div>
-            <input id="photo-upload" type="file" onChange={photoUpload} hidden />
+            <input
+              id="photo-upload"
+              type="file"
+              onChange={photoUpload}
+              hidden
+            />
           </label>
 
           <input type="file" hidden />
@@ -131,7 +175,6 @@ const Navbar = () => {
           <p className="text-xs capitalize " style={{ color: "#818181" }}>
             {user.role}
           </p>
-
         </div>
       </div>
       <a
@@ -146,10 +189,6 @@ const Navbar = () => {
         </Button>
       </a>
     </div>
-
-
-
-
   );
 };
 

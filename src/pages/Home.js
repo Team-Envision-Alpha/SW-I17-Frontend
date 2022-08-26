@@ -3,7 +3,7 @@ import Modal from "../Components/Detailmodal";
 import { useState } from "react";
 import { gql, useQuery } from "@apollo/client";
 
-export default function Home({user}) {
+export default function Home({ user }) {
   const [show, setShow] = useState(false);
   const [current, setCurrent] = useState(0);
   // const user = JSON.parse(localStorage.getItem("aicteuser"));
@@ -29,9 +29,9 @@ export default function Home({user}) {
   if (!loading) {
     console.log(data?.getInvitedEvents);
   }
-  
+
   // console.log(current);
-  const dummyevents = [
+  const dummydata = [
     {
       id: 1,
       name: "Event 1",
@@ -71,7 +71,12 @@ export default function Home({user}) {
   ];
   return (
     <div className="m-10">
-      <Modal setIsOpen={setShow} isOpen={show} event={dummyevents[current]} user={user}/>
+      <Modal
+        setIsOpen={setShow}
+        isOpen={show}
+        event={data ? data[current] : dummydata[current]}
+        user={user}
+      />
       <Segment
         color={"#ff7271"}
         name={"Invited Events"}
@@ -79,7 +84,7 @@ export default function Home({user}) {
         setShow={setShow}
         user={user}
         setCurrent={setCurrent}
-        events={dummyevents}
+        events={data}
       />
       <Segment
         color={"#faa918"}
@@ -88,7 +93,7 @@ export default function Home({user}) {
         setShow={setShow}
         user={user}
         setCurrent={setCurrent}
-        // events={dummyevents}
+        // events={data}
       />
     </div>
   );

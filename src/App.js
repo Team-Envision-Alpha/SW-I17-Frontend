@@ -40,7 +40,9 @@ import Temp from "./Components/Temp";
 import Requests from "./pages/Request";
 import Welcome from "./pages/Welcome";
 import TourPage from "./pages/Tourpage";
-import CreateOrg from "./pages/NewOrg"
+import CreateOrg from "./pages/NewOrg";
+import SingleEvent from "./pages/singleEvent";
+
 const App = () => {
   const aicteuser = localStorage.getItem("aicteuser");
 
@@ -53,17 +55,16 @@ const App = () => {
       return false;
     }
     return false;
-
   }
 
   const groups = [
-    ['aicte', 'poc'],
-    ['aicte', 'poc', 'admin'],
-    ['aicte', 'poc', 'admin', 'social'],
-    ['aicte', 'poc', 'admin', 'venue'],
-    ['aicte', 'poc', 'admin', 'social', 'venue'],
-    ['aicte', 'poc', 'admin', 'venue', 'social', 'user'],
-  ]
+    ["aicte", "poc"],
+    ["aicte", "poc", "admin"],
+    ["aicte", "poc", "admin", "social"],
+    ["aicte", "poc", "admin", "venue"],
+    ["aicte", "poc", "admin", "social", "venue"],
+    ["aicte", "poc", "admin", "venue", "social", "user"],
+  ];
 
   // console.log(checkPermission(groups[0]))
 
@@ -77,6 +78,7 @@ const App = () => {
               <>{aicteuser ? <Navigate to="/dashboard" /> : <Login />}</>
             }
           />
+          <Route path="/getevent/:id" element={<SingleEvent />} />
           <Route
             path="/"
             element={
@@ -85,21 +87,31 @@ const App = () => {
           />
           {aicteuser ? (
             <>
+              {checkPermission(["aicte"]) && (
+                <Route
+                  pat="/create_organisation"
+                  element={
+                    <Global heading="Create Organization" user={aicteuser}>
+                      <CreateOrg />
+                    </Global>
+                  }
+                />
+              )}
+              <Route
+                path="/dashboard"
+                element={<DashBoard user={aicteuser} />}
+              />
 
-              {
-                checkPermission(["aicte"]) && (<Route pat="/create_organisation" element={<Global heading="Create Organization" user={aicteuser} ><CreateOrg /></Global>} />)
-              }
-              <Route path="/dashboard" element={<DashBoard user={aicteuser} />} />
-
-              <Route path="/event_dashboard" element={
-                <Global heading="Event Dashboard" user={aicteuser}>
-                  <Home user={aicteuser} />
-                </Global>
-
-              } />
+              <Route
+                path="/event_dashboard"
+                element={
+                  <Global heading="Event Dashboard" user={aicteuser}>
+                    <Home user={aicteuser} />
+                  </Global>
+                }
+              />
               <Route
                 path="/events"
-
                 element={
                   <Global heading="Add Events" user={aicteuser}>
                     <Event user={aicteuser} />
@@ -114,7 +126,8 @@ const App = () => {
                       <User user={aicteuser} />
                     </Global>
                   }
-                />) : null}
+                />
+              ) : null}
               {checkPermission(groups[1]) ? (
                 <Route
                   path="/department_registration"
@@ -141,7 +154,8 @@ const App = () => {
                       <EditUser user={aicteuser} />
                     </Global>
                   }
-                />) : null}
+                />
+              ) : null}
               <Route
                 path="/venues"
                 element={
@@ -154,12 +168,11 @@ const App = () => {
                 path="/invited_event"
                 element={
                   <Global heading="Invited Events" user={aicteuser}>
-                    <InvitedEvent user={aicteuser} />
+                    <Home user={aicteuser} />
                   </Global>
                 }
               />
               {checkPermission(groups[3]) ? (
-
                 <Route
                   path="/add_venue"
                   element={
@@ -167,10 +180,10 @@ const App = () => {
                       <VenueDetails user={aicteuser} />
                     </Global>
                   }
-                />) : null}
+                />
+              ) : null}
 
               {checkPermission(groups[1]) ? (
-
                 <Route
                   path="/activity_log"
                   element={
@@ -178,7 +191,8 @@ const App = () => {
                       <ActivityLog user={aicteuser} />
                     </Global>
                   }
-                />) : null}
+                />
+              ) : null}
 
               <Route
                 path="/mass_mailer"
@@ -189,15 +203,18 @@ const App = () => {
                 }
               />
               {checkPermission(groups[2]) ? (
-
                 <Route
                   path="/social_media"
                   element={
                     <Global heading="Social Media" user={aicteuser}>
-                      <SocialMedia title="Social Media Dashboard" user={aicteuser} />
+                      <SocialMedia
+                        title="Social Media Dashboard"
+                        user={aicteuser}
+                      />
                     </Global>
                   }
-                />) : null}
+                />
+              ) : null}
               {/* social media internal */}
               {checkPermission(groups[2]) ? (
                 <Route
@@ -208,11 +225,10 @@ const App = () => {
                       <FbAccount title="See your account" user={aicteuser} />
                     </Global>
                   }
-                />) : null}
+                />
+              ) : null}
               {checkPermission(groups[2]) ? (
-
                 <Route
-
                   path="/fb_page/:id"
                   element={
                     <Global heading="Your Facebook Page" user={aicteuser}>
@@ -220,10 +236,10 @@ const App = () => {
                       <FacebookMain title="Check Post" user={aicteuser} />
                     </Global>
                   }
-                />) : null}
+                />
+              ) : null}
 
               {checkPermission(groups[2]) ? (
-
                 <Route
                   path="/twitter_main"
                   element={
@@ -232,29 +248,29 @@ const App = () => {
                       <TwitterMainPage title="Twitter Page" user={aicteuser} />
                     </Global>
                   }
-                />) : null}
+                />
+              ) : null}
               {checkPermission(groups[2]) ? (
+                <Route
+                  path="/req"
+                  element={
+                    <Global heading="Your Twitter Page" user={aicteuser}>
+                      {" "}
+                      <Requests title="Activity log" user={aicteuser} />
+                    </Global>
+                  }
+                />
+              ) : null}
 
-                <Route path="/req" element={
-                  <Global heading="Your Twitter Page" user={aicteuser}>
-                    {" "}
-                    <Requests title="Activity log" user={aicteuser} />
-                  </Global>
-                }
-                />) : null}
-
-
-              <Route path="/tour" element={
-                <TourPage user={aicteuser} />
-              }
-              />
+              <Route path="/tour" element={<TourPage user={aicteuser} />} />
               {groups[5].map((data) => (
                 <Route
                   path={`/meeting_room/${data.role}`}
-                  element={<MeetingRoom title="Meeting Room" user={aicteuser} />}
+                  element={
+                    <MeetingRoom title="Meeting Room" user={aicteuser} />
+                  }
                 />
               ))}
-
 
               <Route
                 path="/chat"
@@ -265,19 +281,33 @@ const App = () => {
                 }
               />
               {checkPermission(groups[2]) ? (
-
                 <Route
                   path="/report"
-                  element={<Global heading="Event Reports" user={aicteuser}><Report title="see report" user={aicteuser} /></Global>}
-                />) : null}
+                  element={
+                    <Global heading="Event Reports" user={aicteuser}>
+                      <Report title="see report" user={aicteuser} />
+                    </Global>
+                  }
+                />
+              ) : null}
 
-              <Route path="/feedback" element={<Global heading="Feedback Form" user={aicteuser}><Feedback user={aicteuser} /></Global>} />
+              <Route
+                path="/feedback"
+                element={
+                  <Global heading="Feedback Form" user={aicteuser}>
+                    <Feedback user={aicteuser} />
+                  </Global>
+                }
+              />
 
-              <Route path="/venue_dashboard" element={<Global heading="Venue Dashboard" user={aicteuser}><VenueDashboard user={aicteuser} /></Global>} />
-
-
-
-
+              <Route
+                path="/venue_dashboard"
+                element={
+                  <Global heading="Venue Dashboard" user={aicteuser}>
+                    <VenueDashboard user={aicteuser} />
+                  </Global>
+                }
+              />
             </>
           ) : (
             <Route path="*" element={<Navigate to="/404" />} />
