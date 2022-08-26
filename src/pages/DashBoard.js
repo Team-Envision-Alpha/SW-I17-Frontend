@@ -5,21 +5,25 @@ import bg from "../Assets/Images/Group.svg";
 import { BsCameraReels, BsCamera } from "react-icons/bs";
 import { AiFillDashboard, AiOutlineDown } from "react-icons/ai";
 import Button from "@mui/material/Button";
-import frame1 from "../Assets/Dashboardicons/Dashboard Icons/frame1.png"
-import frame2 from "../Assets/Dashboardicons/Dashboard Icons/frame2.png"
-import frame3 from "../Assets/Dashboardicons/Dashboard Icons/frame3.png"
-import frame4 from "../Assets/Dashboardicons/Dashboard Icons/frame4.png"
-import frame5 from "../Assets/Dashboardicons/Dashboard Icons/frame5.png"
-import frame6 from "../Assets/Dashboardicons/Dashboard Icons/frame6.png"
-import frame7 from "../Assets/Dashboardicons/Dashboard Icons/frame7.png"
-import frame8 from "../Assets/Dashboardicons/Dashboard Icons/frame8.png"
-import frame9 from "../Assets/Dashboardicons/Dashboard Icons/frame9.png"
-import frame10 from "../Assets/Dashboardicons/Dashboard Icons/frame10.png"
-import frame11 from "../Assets/Dashboardicons/Dashboard Icons/frame11.png"
-import frame12 from "../Assets/Dashboardicons/Dashboard Icons/frame12.png"
-import frame13 from "../Assets/Dashboardicons/Dashboard Icons/frame13.png"
-import frame14 from "../Assets/Dashboardicons/Dashboard Icons/frame14.png"
-import frame15 from "../Assets/Dashboardicons/Dashboard Icons/frame15.png"
+import frame1 from "../Assets/Dashboardicons/Dashboard Icons/frame1.png";
+import frame2 from "../Assets/Dashboardicons/Dashboard Icons/frame2.png";
+import frame3 from "../Assets/Dashboardicons/Dashboard Icons/frame3.png";
+import frame4 from "../Assets/Dashboardicons/Dashboard Icons/frame4.png";
+import frame5 from "../Assets/Dashboardicons/Dashboard Icons/frame5.png";
+import frame6 from "../Assets/Dashboardicons/Dashboard Icons/frame6.png";
+import frame7 from "../Assets/Dashboardicons/Dashboard Icons/frame7.png";
+import frame8 from "../Assets/Dashboardicons/Dashboard Icons/frame8.png";
+import frame9 from "../Assets/Dashboardicons/Dashboard Icons/frame9.png";
+import frame10 from "../Assets/Dashboardicons/Dashboard Icons/frame10.png";
+import frame11 from "../Assets/Dashboardicons/Dashboard Icons/frame11.png";
+import frame12 from "../Assets/Dashboardicons/Dashboard Icons/frame12.png";
+import frame13 from "../Assets/Dashboardicons/Dashboard Icons/frame13.png";
+import frame14 from "../Assets/Dashboardicons/Dashboard Icons/frame14.png";
+import activity from "../Assets/Dashboardicons/activity.png";
+import communication from "../Assets/Dashboardicons/communication.png";
+import events from "../Assets/Dashboardicons/events.png";
+import usericon from "../Assets/Dashboardicons/user.png";
+import venue from "../Assets/Dashboardicons/venue.png";
 import Navbar from "../Components/Navbar";
 import DashCard from "../Components/DashCard";
 import { Link } from "react-router-dom";
@@ -27,12 +31,7 @@ const DashBoard = () => {
   const user = JSON.parse(localStorage.getItem("aicteuser"));
   // const user = { name: "Rishit", role: "admin" };
   return (
-
-    <div
-
-      className="min-h-[100vh] bg-cover"
-    >
-
+    <div className="min-h-[100vh] bg-cover">
       <Navbar />
       <div className="flex flex-col justify-center items-center px-20 gap-8">
         <div>
@@ -41,8 +40,23 @@ const DashBoard = () => {
           </p>
         </div>
 
-        <div className="flex justify-center items-center gap-8 flex-wrap  ">
-          <Link to="/events">
+        <div className="flex justify-center mt-20 gap-8 flex-wrap h-[70vh] w-[90vw]  ">
+          <div>
+            <DashCard icon={events} name="Events" />
+          </div>
+          <div>
+            <DashCard icon={usericon} name="Users" />
+          </div>
+          <div>
+            <DashCard icon={venue} name="Venue" />
+          </div>
+          <div>
+            <DashCard icon={activity} name="Activity" />
+          </div>
+          <div>
+            <DashCard icon={communication} name="Communication" />
+          </div>
+          {/* <Link to="/events">
             <DashCard icon={frame1} name="Add New Event" />
           </Link>
           <Link to="/invited_event">
@@ -112,13 +126,9 @@ const DashBoard = () => {
 
           <Link to="/department_registration">
             <DashCard icon={frame15} name="Portal Activity Log" />
-          </Link>
-
-
-
+          </Link> */}
         </div>
       </div>
-
     </div>
   );
 };

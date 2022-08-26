@@ -137,8 +137,6 @@ export default function Event() {
       $from_date: String!
       $to_date: String!
       $time: String!
-      $food_req: String!
-      $expected_count: String!
     ) {
       requestVenue(
         event_id: $event_id
@@ -147,16 +145,15 @@ export default function Event() {
         from_date: $from_date
         to_date: $to_date
         time: $time
-        food_req: $food_req
-        expected_count: $expected_count
       )
     }
   `;
-
+  const [fooddata, setFoodData] = useState({});
+  console.log(fooddata);
   const [venues, venues_loading] = useMutation(VENUE_MUTATION, {
     onError: (err) => {
       console.log(err.message);
-      toast.error("Error: Event Not Added!", {
+      toast.error("Error: Venue not Added!", {
         position: "top-center",
         autoClose: 3000,
         hideProgressBar: false,
@@ -182,6 +179,7 @@ export default function Event() {
       });
       setFormData({});
       setVenueData({});
+      navigate("../requests", { replace: true });
     },
     variables: venuedata,
   });
@@ -258,7 +256,7 @@ export default function Event() {
     events();
     // window.alert(`Request Successsful for ${venueid}`, venueid == eventid);
     // console.log(venuedata);
-    if (status) navigate("../requests", { replace: true });
+    // if (status)
   };
 
   return (
@@ -371,6 +369,8 @@ export default function Event() {
               data={data}
               teams={teams}
               onSubmit={onSubmit}
+              fooddata={fooddata}
+              setFoodData={setFoodData}
             />
           ) : null}
 

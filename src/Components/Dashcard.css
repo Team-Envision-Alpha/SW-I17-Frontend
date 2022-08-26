@@ -1,0 +1,40 @@
+    .grp {
+        height: 0;
+        transition: 2s;
+    }
+
+    .grp .this {
+        height: 0;
+        transition: 2s;
+        opacity: 0;
+        display: none;
+    }
+
+    .grp:hover {
+        height: auto;
+        animation: animategrp 2s ease-in-out linear;
+        transition: 2s;
+    }
+
+    .grp:hover .this {
+        height: auto;
+        animation: animategrp 2s ease-in-out linear;
+        transition: 2s;
+        display: block;
+        opacity: 100;
+    }
+
+    /* .grp:hover .this>div {
+    transform: translateY(0);
+    transition: 5s all ease-in-out;
+} */
+
+    @keyframes animategrp {
+        0% {
+            height: 0;
+        }
+
+        100% {
+            height: max-content;
+        }
+    }

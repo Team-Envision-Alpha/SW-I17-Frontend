@@ -18,6 +18,9 @@ import "react-date-range/dist/theme/default.css"; // theme css file
 import { BsCheckLg, BsXLg, BsPlusLg } from "react-icons/bs";
 // import states from "../Assets/Data/States.json";
 
+import CreatableSelect from "react-select/creatable";
+import makeAnimated from "react-select/animated";
+
 import * as XLSX from "xlsx";
 import _ from "lodash";
 
@@ -26,6 +29,7 @@ import lunch from "../../Assets/Images/Event/lunch.svg";
 import dinner from "../../Assets/Images/Event/dinner.svg";
 
 import { gql, useMutation, useQuery } from "@apollo/client";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function Food({
   setFormData,
@@ -41,6 +45,8 @@ export default function Food({
   setCurrent,
   teams,
   onSubmit,
+  fooddata,
+  setFoodData,
 }) {
   const VENUE_QUERY = gql`
     query getVenue($id: ID!) {
@@ -51,6 +57,7 @@ export default function Food({
       }
     }
   `;
+  const animatedComponents = makeAnimated();
 
   const { loading, err, data } = useQuery(VENUE_QUERY, {
     variables: {
@@ -59,6 +66,42 @@ export default function Food({
   });
   const [menu, setMenu] = useState();
 
+  function convertToArray(arr) {
+    let newArr = [];
+    for (let i = 0; i < arr.length; i++) {
+      newArr.push(arr[i].value);
+    }
+    return newArr;
+  }
+
+  const customStyles = {
+    option: (provided, state) => ({
+      ...provided,
+      // borderBottom: "1px dotted pink",
+      color: state.isSelected ? "white" : "blue",
+      padding: 10,
+    }),
+    control: (provided) => ({
+      // none of react-select's styles are passed to <Control />
+      ...provided,
+      width: "100%",
+      background: "#f6f5f6",
+      padding: "0.6rem",
+      marginTop: "0.1rem",
+      border: "2px solid #808080",
+      borderRadius: "8px",
+    }),
+    menu: (provided) => ({
+      ...provided,
+      width: "100%",
+    }),
+    singleValue: (provided, state) => {
+      const opacity = state.isDisabled ? 0.5 : 1;
+      const transition = "opacity 300ms";
+
+      return { ...provided, opacity, transition };
+    },
+  };
   useEffect(() => {
     if (data) {
       setMenu(JSON.parse(data.getVenue.canteen_menu));
@@ -148,6 +191,13 @@ export default function Food({
     date.setDate(date.getDate() + days);
     return date.toDateString().split(",")[0];
   };
+  function convertToArray(arr) {
+    let newArr = [];
+    for (let i = 0; i < arr.length; i++) {
+      newArr.push(arr[i].value);
+    }
+    return newArr;
+  }
   function editFood(str, index, value) {
     var newFood = { ...formdata.food };
     var target = { ...newFood[str] };
@@ -187,8 +237,16 @@ export default function Food({
     newMenu[str] = target;
     return newMenu;
   }
-  console.log(formdata);
 
+  function handleFoodDate(str, index, value) {
+    var newFood = { ...formdata.food };
+    var target = { ...newFood[str] };
+    target[index] = convertToArray(value);
+    newFood[str] = target;
+    return newFood[str];
+  }
+  // console.log(formdata);
+  console.log(fooddata);
   return (
     <div className="w-[80vw] md:w-[50vw] bg-[#f3b641] shadow-xl rounded-2xl overflow-y-hidden my-10">
       <div className="w-full h-full py-5 mt-5 bg-white px-10">
@@ -197,6 +255,7 @@ export default function Food({
         </p>
         Food Details
         {_.times(daysCount(), (i) => {
+          console.log(i);
           return (
             <div
               className="flex flex-col w-full gap-y-4 my-5 shadow-lg hover:shadow-xl transition"
@@ -243,6 +302,21 @@ export default function Food({
                             </div>
                           );
                         })}
+
+                        <CreatableSelect
+                          className="w-full outline-none"
+                          styles={customStyles}
+                          closeMenuOnSelect={false}
+                          isMulti
+                          components={animatedComponents}
+                          value={formdata.food}
+                          onChange={(e) => {
+                            setFoodData({
+                              ...fooddata,
+                              breakfast: handleFoodDate("breakfast", i, e),
+                            });
+                          }}
+                        />
                       </Typography>
                     </div>
 
@@ -275,6 +349,21 @@ export default function Food({
                             </div>
                           );
                         })}
+                        <h4 className="capitalize">Lunch</h4>
+                        <CreatableSelect
+                          className="w-full outline-none"
+                          styles={customStyles}
+                          closeMenuOnSelect={false}
+                          isMulti
+                          components={animatedComponents}
+                          value={formdata.food}
+                          onChange={(e) => {
+                            setFoodData({
+                              ...fooddata,
+                              lunch: handleFoodDate("lunch", i, e),
+                            });
+                          }}
+                        />
                       </Typography>
                     </div>
 
@@ -307,6 +396,21 @@ export default function Food({
                             </div>
                           );
                         })}
+                        <h4 className="capitalize">Dinner</h4>
+                        <CreatableSelect
+                          className="w-full outline-none"
+                          styles={customStyles}
+                          closeMenuOnSelect={false}
+                          isMulti
+                          components={animatedComponents}
+                          value={formdata.food}
+                          onChange={(e) => {
+                            setFoodData({
+                              ...fooddata,
+                              dinner: handleFoodDate("dinner", i, e),
+                            });
+                          }}
+                        />
                       </Typography>
                     </div>
                   </div>
