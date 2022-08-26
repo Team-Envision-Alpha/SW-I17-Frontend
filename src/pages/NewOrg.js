@@ -32,42 +32,20 @@ const User = () => {
   // console.log(validateEmail("rishitshiesvh@gmail.com"));
   const [formdata, setFormData] = useState({});
   const REGISTER_MUTATION = gql`
-    mutation registerUser(
-      $email: String!
-      $password: String!
-      $role: String!
-      $department: String!
-      $name: String!
-      $phone: String!
-      $org_name: String!
-      $org_id: String!
-    ) {
-      registerUser(
-        email: $email
-        password: $password
-        role: $role
-        department: $department
-        name: $name
-        phone: $phone
-        org_name: $org_name
-        org_id: $org_id
-      ) {
-        id
-        name
-      }
+  mutation RegisterOrgUser($email: String!, $phone: String!, $name: String!, $orgName: String!) {
+    registerOrgUser(email: $email, phone: $phone, name: $name, org_name: $orgName) {
+      id
     }
+  }
+  
+ 
   `;
   const [formValidate, setFormValidate] = useState(false);
   const [phoneValidate, setPhoneValidate] = useState(false);
   const [passwordValidate, setPasswordValidate] = useState(false);
 
   useEffect(() => {
-    if (confirmpassword === formdata.password && formdata.password !== "") {
-      setSubmitstate(true);
-    } else {
-      setSubmitstate(false);
-    }
-
+    
     if (validateEmail(formdata.email)) {
       setFormValidate(true);
     } else {
@@ -80,17 +58,12 @@ const User = () => {
       setPhoneValidate(false);
     }
 
-    if (validatePassword(formdata.password)) {
-      setPasswordValidate(true);
-    } else {
-      setPasswordValidate(false);
-    }
+
   }, [
-    confirmpassword,
-    formdata.password,
+
     formdata.email,
     formdata.phone,
-    formdata.password,
+
   ]);
   const [register, { loading }] = useMutation(REGISTER_MUTATION, {
     onError: (err) => {
@@ -201,50 +174,7 @@ const User = () => {
                       }}
                     />
                   </div>
-                  <div className="flex flex-col gap-4">
-                    <h4>
-                      Password{" "}
-                      <span className="text-gray-400 text-xs">
-                        Password should be atleast 8 digit long alphanumeric, with
-                        one special character
-                      </span>
-                    </h4>
-                    <input
-                      type="password"
-                      className="w-full p-4 outline-none"
-                      style={{
-                        color: "#818181",
-                        background: "#F6F5F6",
-                        border: `${!passwordValidate ? "2px solid red" : "2px solid green"
-                          }`,
-                        borderRadius: "8px",
-                      }}
-                      value={formdata.password ? formdata.password : ""}
-                      placeholder="Text here"
-                      onChange={(e) => {
-                        setFormData({ ...formdata, password: e.target.value });
-                      }}
-                    />
-                  </div>
-                  <div className="flex flex-col gap-4">
-                    <h4>Confirm Password</h4>
-                    <input
-                      type="password"
-                      className="w-full p-4 outline-none"
-                      style={{
-                        color: "#818181",
-                        background: "#F6F5F6",
-                        border: `${!submitstate ? "2px solid red" : "2px solid green"
-                          }`,
-                        borderRadius: "8px",
-                      }}
-                      value={confirmpassword ? confirmpassword : ""}
-                      placeholder="Text here"
-                      onChange={(e) => {
-                        setConfrmpassword(e.target.value);
-                      }}
-                    />
-                  </div>
+                 
                   <div className="flex flex-col gap-4">
                     <h4>Phone</h4>
                     <input
@@ -264,27 +194,28 @@ const User = () => {
                       }}
                     />
                   </div>
+                  <div className="flex flex-col gap-4">
+                    <h4>Organisation Name</h4>
+                    <input
+                      type="text"
+                      className="w-full p-4 outline-none"
+                      value={formdata.org_name ? formdata.org_name : ""}
+                      style={{
+                        color: "#818181",
+                        background: "#F6F5F6",
+                        
+                        borderRadius: "8px",
+                      }}
+                      placeholder="Text here"
+                      onChange={(e) => {
+                        setFormData({ ...formdata, org_name: e.target.value });
+                      }}
+                    />
+                  </div>
                 </div>
 
                 <div className="flex flex-col gap-10">
-                  <div className="flex flex-col gap-4">
-                    <h4 className="pt-6">Role</h4>
-                    <Select
-                      data={roles}
-                      name="role"
-                      formdata={formdata}
-                      setFormData={setFormData}
-                    />
-                  </div>
-                  <div className="flex flex-col gap-4">
-                    <h4>Department</h4>
-                    <Select
-                      data={departments}
-                      name="department"
-                      formdata={formdata}
-                      setFormData={setFormData}
-                    />
-                  </div>
+                 
 
                   <div className="flex flex-col gap-4 justify-center items-center">
                     <h4 className="invisible">Submit</h4>
@@ -296,10 +227,9 @@ const User = () => {
                       placeholder="Text here"
                       type="submit"
                       disabled={
-                        !submitstate ||
                         !formValidate ||
-                        !phoneValidate ||
-                        !passwordValidate
+                        !phoneValidate
+                        
                       }
                     >
                       Submit
