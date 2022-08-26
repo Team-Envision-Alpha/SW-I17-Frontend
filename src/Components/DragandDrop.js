@@ -58,6 +58,7 @@ function DragAndDrop({ url, seturl , hashtag,sethashtag }) {
             <aside>
                 {url && <img src={url} alt="post" className="h-[20vh]" />}
             </aside>
+            <p>{hash}</p>
         </section>
     );
 }
