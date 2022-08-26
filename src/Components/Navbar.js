@@ -146,17 +146,18 @@ const Navbar = () => {
                     className="mx-4"
                     onClick={() => {
                       setIsOpen(!isOpen);
-                    
                     }}
                   />
                 </button>
                  
-                
-                {isOpen && (
+                <NotifcationModal
+                    isOpen={setIsOpen}
+                  />
+                {/* {isOpen && (
                   <NotifcationModal
                     isOpen={setIsOpen}
                   />
-                )}
+                )} */}
 
                 <div>
                   {/* <img src={dp} alt="dp" width={35} /> */}
