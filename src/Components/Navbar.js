@@ -138,25 +138,26 @@ const Navbar = () => {
           {user && (
             <div className="flex gap-8 ">
               <div className="flex gap-2">
-                <button>
+              <button>
                   <img
                     src={bellIcon}
                     alt="bellIcon"
                     width={40}
                     className="mx-4"
                     onClick={() => {
-                      setIsOpen(!setIsOpen);
+                      setIsOpen(!isOpen);
+                    
                     }}
                   />
                 </button>
+                 
+                
                 {isOpen && (
                   <NotifcationModal
                     isOpen={setIsOpen}
-                    // onClickOutside={() => {
-                    //   setIsOpen(false);
-                    // }}
                   />
                 )}
+
                 <div>
                   {/* <img src={dp} alt="dp" width={35} /> */}
                   <label
