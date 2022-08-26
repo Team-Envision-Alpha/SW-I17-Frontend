@@ -1,12 +1,16 @@
 import React, { useEffect, useState } from "react";
 import logo from "../Assets/Images/logo.svg";
+import Tourcarousel from "../Components/Tourcarousel";
 const TourPage= () => {
-    
+
     return (
         <>
         <div className="flex flex-col gap-4 items-center justify-center">
            <div>
             <img src={logo} alt="logo" className="w-[32vw] h-[15vh] mt-16"  />
+           </div>
+           <div>
+           <Tourcarousel />
            </div>
            <div className="flex items-center gap-16">
 <div>
