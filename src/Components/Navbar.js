@@ -204,6 +204,8 @@ const Navbar = () => {
                   </Box>
                 </Modal>
               </div>
+              <Button onClick={handleOpen}>Notifications</Button>
+
               <div className="flex gap-2">
                 <button onClick={handleOpen} className=" h-full"></button>
 

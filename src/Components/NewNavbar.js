@@ -116,9 +116,55 @@ const Navbar = () => {
     };
     reader.readAsDataURL(file);
   };
-
+  const NOTIFY = gql`
+    query notify($id: ID!) {
+      getNotifications(user_id: $id) {
+        id
+        user_id
+        message
+        createdat
+      }
+    }
+  `;
+  console.log(user);
+  const notify = useQuery(NOTIFY, {
+    variables: { id: user.id },
+  });
+  if (!notify?.loading) {
+    console.log(notify?.data);
+  }
   return (
     <div className="flex justify-between items-center">
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style}>
+          <div className="flex  flex-col gap-2">
+            <div>
+              <p className="font-bold text-xl">Notifications</p>
+            </div>
+            {notify?.data?.getNotifications.map((notify) => (
+              <div className="flex justify-between items-center ">
+                <div className=" font-IBM-Sans">
+                  <p className="text-base text-[#F0783B] font-bold ">
+                    {notify.message}
+                    <span className="text-3xl relative bottom-1">.</span>
+                  </p>
+                </div>
+                <div>
+                  <p className="text-sm text-[#696969] ">
+                    {new Date(notify.createdat).toLocaleDateString()}
+                  </p>
+                </div>
+              </div>
+            ))}
+            <div className="border-b-2 border-b-[#B4ABABA8] w-full py-1 px-4"></div>
+          </div>
+        </Box>
+      </Modal>
       <ToastContainer
         position="top-center"
         autoClose={3000}
@@ -131,8 +177,8 @@ const Navbar = () => {
         pauseOnHover
       />
       <div>
-        <Button onClick={handleOpen}>Open modal</Button>
-        <Modal
+        <Button onClick={handleOpen}>Notifications</Button>
+        {/* <Modal
           open={open}
           onClose={handleClose}
           aria-labelledby="modal-modal-title"
@@ -146,7 +192,7 @@ const Navbar = () => {
               Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
             </Typography>
           </Box>
-        </Modal>
+        </Modal> */}
       </div>
       <div className="flex mr-3 gap-2 ">
         <div>
