@@ -24,17 +24,20 @@ const SocialMedia = () => {
 
   const [fbconnected, setFBConnected] = useState(false)
   const [twconnected, setTWConnected] = useState(false)
+  const fbtoken = localStorage.getItem('longlivedaccesstoken')
+  const twtoken = localStorage.getItem('twitter_oauth_token')
+
 
   useEffect(() => {
-    const fbtoken = localStorage.getItem('longlivedaccesstoken')
+    // const fbtoken = localStorage.getItem('longlivedaccesstoken')
     if (fbtoken) {
       setFBConnected(true)
     }
-    const twtoken = localStorage.getItem('twitter_oauth_token')
+    // const twtoken = localStorage.getItem('twitter_oauth_token')
     if (twtoken) {
       setTWConnected(true)
     }
-  }, [])
+  }, [fbtoken, twtoken])
 
 
   const [searchParams, setSearchParams] = useSearchParams();

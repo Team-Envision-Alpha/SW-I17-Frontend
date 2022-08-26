@@ -28,6 +28,8 @@ const Login = () => {
         token
         id
         image
+        org_id
+        org_name
       }
     }
   `;

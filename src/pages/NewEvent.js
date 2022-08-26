@@ -235,11 +235,11 @@ export default function Event() {
       status: "pending",
       time:
         typeof formdata.time != "string"
-          ? JSON.stringify(formdata.time)
+          ? await JSON.stringify(formdata.time)
           : formdata.time,
       food_req:
         typeof formdata.food_req != "string"
-          ? JSON.stringify(formdata.food_req)
+          ? await JSON.stringify(formdata.food_req)
           : formdata.food_req,
     });
     console.log(formdata);

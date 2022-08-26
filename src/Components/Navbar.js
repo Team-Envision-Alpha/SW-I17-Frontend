@@ -18,13 +18,14 @@ const Navbar = () => {
   const navigate = useNavigate();
   const user = JSON.parse(localStorage.getItem("aicteuser"));
   const [file, setfile] = useState();
-  
-  let image = user.image;
-  const [ userdata,setUserdata]= useState();
+  let image = user?.image;
 
-  useEffect(()=>{
-  setUserdata(user)
-  },[user])
+
+  // const [ userdata,setUserdata]= useState();
+
+  // useEffect(()=>{
+  //   image=user.image
+  // },[user])
   
   // const [image, setimage] = useState();
 
@@ -165,7 +166,7 @@ const Navbar = () => {
                     <div className="img-wrap img-upload">
                       <img
                         for="photo-upload"
-                        src={image}
+                        src={user.image}
                         alt="hello"
                         className="h-[40px] w-[40px] rounded-full"
                       />

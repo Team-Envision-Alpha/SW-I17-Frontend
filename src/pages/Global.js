@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Sidebar from "../Components/Sidebar";
 import Burger from "../Components/burger";
 import Navbar from "../Components/NewNavbar";
-export default function Global({children,heading}) {
+export default function Global({children,heading,user}) {
     const [show, setShow] = useState(true)
     return (
         <div className="flex">
@@ -19,7 +19,7 @@ export default function Global({children,heading}) {
                         <p className="text-2xl font-extrabold tracking-wide">{heading}</p>
                     </div>
                     {/* <div> */}
-                        <Navbar />
+                        <Navbar user={user}/>
                     {/* </div> */}
                 </div>
                 <div className="">
