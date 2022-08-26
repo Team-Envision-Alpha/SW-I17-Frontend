@@ -33,7 +33,7 @@ export default function Segment({
   // }
   return (
     <div
-      className={`w-[50vw] pt-2 rounded-xl m-5`}
+      className={`w-[60vw] mx-auto mb-5 pt-2 rounded-xl m-5 shadow-md`}
       style={{
         backgroundColor: color,
       }}
@@ -42,7 +42,7 @@ export default function Segment({
         {name}
       </p>
       <div className="bg-white mt-3 p-3 flex flex-row flex-nowrap overflow-x-scroll">
-        {events.map((event, idx) => {
+        {events?events.map((event, idx) => {
           return (
             <div>
               <Card
@@ -54,7 +54,13 @@ export default function Segment({
               />
             </div>
           );
-        })}
+        }):(
+          
+          <div className="text-center flex flex-row justify-center h-[150px] w-full place-items-center align-middle
+            font-black text-gray-200 text-3xl ">
+          
+          No {name}
+          </div>)}
       </div>
     </div>
   );

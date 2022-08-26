@@ -19,7 +19,7 @@ import frame15 from "../Assets/Dashboardicons/Dashboard Icons/frame15.png";
 // import "./Dashcard.css";
 import { Link } from "react-router-dom";
 
-const DashCard = ({ icon, name }) => {
+const DashCard = ({ icon, name, user, groups, checkPermission }) => {
   return (
     <>
       <div className="group flex flex-col gap-6 font-IBM-Sans sm:flex-row sm:bg-red ">
@@ -47,6 +47,7 @@ const DashCard = ({ icon, name }) => {
                     <p className="ml-4 my-auto ">Your Invited Events</p>
                   </div>
                 </Link>
+
                 <Link to="/requests">
                   <div className="flex flex-row px-2 py-4 rounded-xl shadow-xl bg-white hover:shadow-2xl transition mb-2 hover:scale-[1.01]">
                     <img src={frame3} className="w-[2vw]" />
@@ -64,20 +65,23 @@ const DashCard = ({ icon, name }) => {
                     <p className="ml-4 my-auto ">View All Venues</p>
                   </div>
                 </Link>
+                {checkPermission(groups[3]) &&
+                  <div>
+                    <Link to="/add_venue">
+                      <div className="flex flex-row px-2 py-4 rounded-xl shadow-xl bg-white hover:shadow-2xl transition mb-2 hover:scale-[1.01]">
+                        <img src={frame5} className="w-[2vw]" />
+                        <p className="ml-4 my-auto ">Add New Venues</p>
+                      </div>
+                    </Link>
 
-                <Link to="/add_venue">
-                  <div className="flex flex-row px-2 py-4 rounded-xl shadow-xl bg-white hover:shadow-2xl transition mb-2 hover:scale-[1.01]">
-                    <img src={frame5} className="w-[2vw]" />
-                    <p className="ml-4 my-auto ">Add New Venues</p>
+                    <Link to="/venue_dashboard">
+                      <div className="flex flex-row px-2 py-4 rounded-xl shadow-xl bg-white hover:shadow-2xl transition mb-2 hover:scale-[1.01]">
+                        <img src={frame6} className="w-[2vw]" />
+                        <p className="ml-4 my-auto ">View Venue Dashboard</p>
+                      </div>
+                    </Link>
                   </div>
-                </Link>
-
-                <Link to="/venue_dashboard">
-                  <div className="flex flex-row px-2 py-4 rounded-xl shadow-xl bg-white hover:shadow-2xl transition mb-2 hover:scale-[1.01]">
-                    <img src={frame6} className="w-[2vw]" />
-                    <p className="ml-4 my-auto ">View Venue Dashboard</p>
-                  </div>
-                </Link>
+                }
               </div>
             ) : null}
 
@@ -101,6 +105,14 @@ const DashCard = ({ icon, name }) => {
                     <p className="ml-4 my-auto ">Create New Department</p>
                   </div>
                 </Link>
+                {/* {checkPermission(["aicte"]) && 
+                <Link to="/create_organisation">
+                  <div className="flex flex-row px-2 py-4 rounded-xl shadow-xl bg-white hover:shadow-2xl transition mb-2 hover:scale-[1.01]">
+                    <img src={frame15} className="w-[2vw]" />
+                    <p className="ml-4 my-auto ">Create New Organisation</p>
+                  </div>
+                </Link>
+                } */}
               </div>
             ) : null}
             {name === "Activity" ? (
@@ -120,31 +132,42 @@ const DashCard = ({ icon, name }) => {
               </div>
             ) : null}
             {name === "Communication" ? (
+
               <div>
-                <Link to="/social_media">
-                  <div className="flex flex-row px-2 py-4 rounded-xl shadow-xl bg-white hover:shadow-2xl transition mb-2 hover:scale-[1.01]">
-                    <img src={frame9} className="w-[2vw]" />
-                    <p className="ml-4 my-auto ">Social Media</p>
-                  </div>
-                </Link>
-                <Link to="/chat">
-                  <div className="flex flex-row px-2 py-4 rounded-xl shadow-xl bg-white hover:shadow-2xl transition mb-2 hover:scale-[1.01]">
-                    <img src={frame10} className="w-[2vw]" />
-                    <p className="ml-4 my-auto ">AICTE Chats</p>
-                  </div>
-                </Link>
-                <Link to="/mass_mailer">
-                  <div className="flex flex-row px-2 py-4 rounded-xl shadow-xl bg-white hover:shadow-2xl transition mb-2 hover:scale-[1.01]">
-                    <img src={frame11} className="w-[2vw]" />
-                    <p className="ml-4 my-auto ">Mass Mailer</p>
-                  </div>
-                </Link>
-                <Link to="/meeting_room">
-                  <div className="flex flex-row px-2 py-4 rounded-xl shadow-xl bg-white hover:shadow-2xl transition mb-2 hover:scale-[1.01]">
-                    <img src={frame12} className="w-[2vw]" />
-                    <p className="ml-4 my-auto ">Online Meeting Room</p>
-                  </div>
-                </Link>
+                {checkPermission(groups[2]) &&
+                  <Link to="/social_media">
+                    <div className="flex flex-row px-2 py-4 rounded-xl shadow-xl bg-white hover:shadow-2xl transition mb-2 hover:scale-[1.01]">
+                      <img src={frame9} className="w-[2vw]" />
+                      <p className="ml-4 my-auto ">Social Media</p>
+                    </div>
+                  </Link>
+                }
+                {checkPermission(groups[2]) &&
+                  <Link to="/chat">
+                    <div className="flex flex-row px-2 py-4 rounded-xl shadow-xl bg-white hover:shadow-2xl transition mb-2 hover:scale-[1.01]">
+                      <img src={frame10} className="w-[2vw]" />
+                      <p className="ml-4 my-auto ">AICTE Chats</p>
+                    </div>
+                  </Link>
+                }
+                {checkPermission(groups[4]) &&
+                  <Link to="/mass_mailer">
+                    <div className="flex flex-row px-2 py-4 rounded-xl shadow-xl bg-white hover:shadow-2xl transition mb-2 hover:scale-[1.01]">
+                      <img src={frame11} className="w-[2vw]" />
+                      <p className="ml-4 my-auto ">Mass Mailer</p>
+                    </div>
+                  </Link>
+                }
+
+                {checkPermission(groups[5]) &&
+                  <Link to={`/meeting_room/${user.role}`}>
+                    <div className="flex flex-row px-2 py-4 rounded-xl shadow-xl bg-white hover:shadow-2xl transition mb-2 hover:scale-[1.01]">
+                      <img src={frame12} className="w-[2vw]" />
+                      <p className="ml-4 my-auto ">Online Meeting Room</p>
+                    </div>
+                  </Link>
+                }
+
               </div>
             ) : null}
           </div>

@@ -26,10 +26,33 @@ import usericon from "../Assets/Dashboardicons/user.png";
 import venue from "../Assets/Dashboardicons/venue.png";
 import Navbar from "../Components/Navbar";
 import DashCard from "../Components/DashCard";
-import { Link } from "react-router-dom";
-const DashBoard = () => {
-  const user = JSON.parse(localStorage.getItem("aicteuser"));
+// import { Link } from "react-router-dom";
+const DashBoard = ({ user }) => {
+  // const user = JSON.parse(localStorage.getItem("aicteuser"));
   // const user = { name: "Rishit", role: "admin" };
+  function checkPermission(group) {
+    if (user) {
+      const parseduser = JSON.parse(user);
+      if (group.includes(parseduser.role)) {
+        return true;
+      }
+      return false;
+    }
+    return false;
+
+  }
+
+
+  const groups = [
+    ['aicte', 'poc'],
+    ['aicte', 'poc', 'admin'],
+    ['aicte', 'poc', 'admin', 'social'],
+    ['aicte', 'poc', 'admin', 'venue'],
+    ['aicte', 'poc', 'admin', 'social', 'venue'],
+    ['aicte', 'poc', 'admin', 'venue', 'social', 'user'],
+  ]
+
+
   return (
     <div className="min-h-[100vh] bg-cover">
       <Navbar />
@@ -44,18 +67,31 @@ const DashBoard = () => {
           <div>
             <DashCard icon={events} name="Events" />
           </div>
+          {checkPermission(groups[1]) && (
+            <div>
+              <DashCard icon={usericon} name="Users" />
+            </div>
+          )}
+
           <div>
-            <DashCard icon={usericon} name="Users" />
+            <DashCard icon={venue} name="Venue" groups={groups} checkPermission={checkPermission} user={user} />
           </div>
+
+          {checkPermission(groups[1]) && (
+            <div>
+              <DashCard icon={activity} name="Activity" />
+            </div>
+          )}
+
           <div>
-            <DashCard icon={venue} name="Venue" />
+            <DashCard icon={communication} name="Communication" groups={groups} checkPermission={checkPermission} user={user} />
           </div>
-          <div>
-            <DashCard icon={activity} name="Activity" />
-          </div>
-          <div>
-            <DashCard icon={communication} name="Communication" />
-          </div>
+
+
+
+
+
+
           {/* <Link to="/events">
             <DashCard icon={frame1} name="Add New Event" />
           </Link>
