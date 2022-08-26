@@ -23,7 +23,7 @@ if(!props.show)
 
   return (
     <>
-        <div ref={ref} className='mt-10 w-[25vw] h-[30vh] bg-white rounded-xl p-4 shadow-xl absolute top-16 right-[20vw]'>
+        <div ref={ref} className='mt-10 w-[25vw] h-[30vh] bg-white rounded-xl p-4 shadow-xl  top-16 right-[20vw]'>
           <div className='flex  flex-col gap-2'>
             <div>
               <p className='font-bold text-xl'>Notifications</p>

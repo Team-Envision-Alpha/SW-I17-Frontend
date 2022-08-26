@@ -205,22 +205,8 @@ const Navbar = () => {
                 </Modal>
               </div>
               <div className="flex gap-2">
-                <button onClick={handleOpen} className=" h-full">
-                  <img
-                    src={bellIcon}
-                    alt="bellIcon"
-                    width={40}
-                    className="mx-4"
-                  />
-                </button>
-                {isOpen && (
-                  <NotifcationModal
-                    isOpen={setIsOpen}
-                    // onClickOutside={() => {
-                    //   setIsOpen(false);
-                    // }}
-                  />
-                )}
+                <button onClick={handleOpen} className=" h-full"></button>
+
                 <div>
                   {/* <img src={dp} alt="dp" width={35} /> */}
                   <label
@@ -230,7 +216,7 @@ const Navbar = () => {
                     <div className="img-wrap img-upload">
                       <img
                         for="photo-upload"
-                        src={user.image}
+                        src={user?.image ? user?.image : dp}
                         alt="hello"
                         className="h-[40px] w-[40px] rounded-full"
                       />

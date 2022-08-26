@@ -19,7 +19,7 @@ import { AiFillLike } from "react-icons/ai";
 import { GrMail } from "react-icons/gr";
 import { TbWorld } from "react-icons/tb";
 import { MdLocationOn } from "react-icons/md";
-import { BsFillTelephoneFill,  BsUpload } from "react-icons/bs";
+import { BsFillTelephoneFill, BsUpload } from "react-icons/bs";
 import { BsMessenger } from "react-icons/bs";
 import { BsFillClockFill } from "react-icons/bs";
 import { BiWorld } from "react-icons/bi";
@@ -42,7 +42,7 @@ const FbMainPage = () => {
   const [modalIsOpen, setModalIsOpen] = React.useState(false);
   const [url, seturl] = useState("");
   const [caption, setcaption] = useState("");
-  const [hashtag,sethashtag]=useState("");
+  const [hashtag, sethashtag] = useState("");
   const [pageloading, setPageloading] = useState(true);
   let postuploaded
   console.log(url)
@@ -184,7 +184,7 @@ const FbMainPage = () => {
     postupload()
   }
 
-  if(hashtag){
+  if (hashtag) {
     setcaption(hashtag)
   }
 
@@ -215,7 +215,7 @@ const FbMainPage = () => {
           </div>
 
           <div className="flex flex-col gap-[6vh] w-[70vw]">
-           
+
             <div className="flex flex-col gap-8">
               <div className="flex flex-col ">
                 <div className="w-full">
@@ -223,9 +223,9 @@ const FbMainPage = () => {
                 </div>
                 <div className="flex justify-between items-center p-2">
                   <div className="flex gap-6 items-center">
-                  <div className="w-[10vw] h-[20vh] rounded-full  relative bottom-[4vh]">
-                    <img src={pageData?.picture.data.url} alt="logo" className="w-[10vw] h-[20vh] rounded-full " />
-                  </div>
+                    <div className="w-[10vw] h-[20vh] rounded-full  relative bottom-[4vh]">
+                      <img src={pageData?.picture.data.url} alt="logo" className="w-[10vw] h-[20vh] rounded-full " />
+                    </div>
                     <div className="font-IBM-Sans relative bottom-[2vh]">
                       <div className="flex gap-2">
                         <p className="font-bold text-xl tracking-wide ">
@@ -253,17 +253,17 @@ const FbMainPage = () => {
                     </div>
                   </div>
                   <div className="flex flex-col gap-2 relative bottom-[2vh]">
-                  <button className="font-IBM-Sans flex justify-center items-center gap-3 w-[20vw] bg-[#1877F2] text-white font-bold px-12 py-3 rounded-md" onClick={() => { setModalIsOpen(true) }}>
-                   <img src={uploadButtonIcon} alt="uploadButton" width={20} />
-                    <p className="tracking-wide">Upload Post</p>
-                  </button>
-                  <a href={pageData?.website} target="_blank" rel="noopener noreferrer" >
-                    <div className="flex gap-2 justify-center  font-IBM-Sans hover:text-[#1877F2] hover:underline">
-                      <img src={redirect} alt="redirect" />
-                      <p>{pageData?.website}</p>
-                    </div>
-                  </a>
-                </div>
+                    <button className="font-IBM-Sans flex justify-center items-center gap-3 w-[20vw] bg-[#1877F2] text-white font-bold px-12 py-3 rounded-md" onClick={() => { setModalIsOpen(true) }}>
+                      <img src={uploadButtonIcon} alt="uploadButton" width={20} />
+                      <p className="tracking-wide">Upload Post</p>
+                    </button>
+                    <a href={pageData?.website} target="_blank" rel="noopener noreferrer" >
+                      <div className="flex gap-2 justify-center  font-IBM-Sans hover:text-[#1877F2] hover:underline">
+                        <img src={redirect} alt="redirect" />
+                        <p>{pageData?.website}</p>
+                      </div>
+                    </a>
+                  </div>
                 </div>
                 <div className="border-b-2 border-b-[#CED0D4] relative bottom-[3vh]"></div>
               </div>
@@ -332,10 +332,10 @@ const FbMainPage = () => {
                       </div>
                     }
                     <div className="flex gap-6 items-center mb-2 ">
-                    <a href={pageData?.link} target="_blank" rel="noopener noreferrer" className="underline text-[#1877F2]">
-                      Visit this page on Facebook
-                    </a>
-                  </div>
+                      <a href={pageData?.link} target="_blank" rel="noopener noreferrer" className="underline text-[#1877F2]">
+                        Visit this page on Facebook
+                      </a>
+                    </div>
                   </div>
                 </div>
 
@@ -351,9 +351,12 @@ const FbMainPage = () => {
                       </div>
                       <h1 className="text-lg font-bold">Create a Post</h1>
                     </div>
-                    <div className="w-full flex flex-col justify-center items-center gap-4 pt-20"><RiImageAddFill className="text-7xl text-[#818181] " />
-                    <DragandDrop url={url} seturl={seturl} hashtag={hashtag} sethashtag={sethashtag}/>
-                  </div>
+                    <div className="w-full flex flex-col justify-center items-center gap-4 pt-20">
+                      {!url && <><RiImageAddFill className="text-7xl text-[#818181] " />
+                      </>}
+                        <DragandDrop url={url} seturl={seturl} hashtag={hashtag} sethashtag={sethashtag} />
+                      </div>.
+                      
                     <div className="flex p-4 items-center gap-2">
                       <div>
                         <input
@@ -370,7 +373,7 @@ const FbMainPage = () => {
                           onChange={(e) => { setcaption(e.target.value) }}
                         />
                       </div>
-                      <RiSendPlaneFill onClick={(e) => { uploadPost(e) }} className="text-[#1877F2] text-3xl"/>
+                      <RiSendPlaneFill onClick={(e) => { uploadPost(e) }} className="text-[#1877F2] text-3xl" />
                     </div>
                   </div>
 

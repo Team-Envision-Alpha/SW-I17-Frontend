@@ -27,18 +27,11 @@ import venue from "../Assets/Dashboardicons/venue.png";
 import Navbar from "../Components/Navbar";
 import DashCard from "../Components/DashCard";
 // import { Link } from "react-router-dom";
-const DashBoard = ({ user }) => {
-  // const user = JSON.parse(localStorage.getItem("aicteuser"));
+const DashBoard = () => {
+  const user = localStorage.getItem("aicteuser");
   // const user = { name: "Rishit", role: "admin" };
   function checkPermission(group) {
-    if (user) {
-      const parseduser = JSON.parse(user);
-      if (group.includes(parseduser.role)) {
-        return true;
-      }
-      return false;
-    }
-    return false;
+    return true;
   }
 
   const groups = [

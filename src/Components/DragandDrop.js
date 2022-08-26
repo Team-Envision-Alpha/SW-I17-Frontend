@@ -4,7 +4,7 @@ import { useDropzone } from "react-dropzone";
 import axios from "axios";
 import { gql, useQuery } from "@apollo/client";
 
-function DragAndDrop({ url, seturl , hashtag,sethashtag }) {
+function DragAndDrop({ url, seturl, hashtag, sethashtag }) {
 
     // const [ hash, sethash ] = useState("");
     let hash = ""
@@ -16,13 +16,15 @@ function DragAndDrop({ url, seturl , hashtag,sethashtag }) {
       
   `;
 
-    const { loading, err, data,refetch } = useQuery(EVENT_QUERY, {
-        variables: { image: url ? url :"hello" }
+    const { loading, err, data, refetch } = useQuery(EVENT_QUERY, {
+        variables: { image: "hello" }
+        //  variables: { image: "https://aicte-storage.s3.ap-south-1.amazonaws.com/fbpageupload/fbCover-1661511143762.webp" }
     });
     if (!loading) {
-        console.log(data?.getHashtags);
+        console.log(data)
+        // console.log(data?.getHashtags);
         // sethashtag(data?.getHashtags);
-        hash  = data?.getHashtags;
+        hash = data?.getHashtags;
         // sethash(data?.getHashtags);
 
     }
@@ -43,22 +45,24 @@ function DragAndDrop({ url, seturl , hashtag,sethashtag }) {
         axios
             .post("https://envisionalpha.aaruush.org/upload/fbpageupload", data)
             .then((res) => {
-                console.log(res);
                 seturl(res.data.data);
-                refetch({image:res.data.data});
+                refetch({ image: res.data.data });
             });
     };
 
     return (
-        <section className="h-[20vh]">
+        <section className="h-[40vh]">
             <div {...getRootProps({ className: "dropzone" })}>
                 <input {...getInputProps()} />
-                <p>Drag and drop your post here, or click to select file</p>
+                {!url && <p>Drag and drop your post here, or click to select file</p>}
             </div>
             <aside>
                 {url && <img src={url} alt="post" className="h-[20vh]" />}
             </aside>
-            <p>{hash}</p>
+            {hash && <div className="mt-8 space-y-2">
+                <span>Hashtag Generated Automatically</span>
+                <p className="">{hash}</p>
+            </div>}
         </section>
     );
 }
